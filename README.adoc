@@ -1,0 +1,126 @@
+:title: PGDP2223-Test
+:description: Testcases for PGdP exercises
+:keywords: java, tum, pgdp, students
+:author: Maximilian Anzinger
+:revremark:
+:showtitle:
+:sectnums:
+:toc: preamble
+:toclevels: 3
+:icons: font
+
+:owner: MaximilianAnzinger
+:repo: gad2223-tests
+
+= PGdP 22/23 - Tests
+
+This is a repository to collect JUnit Tests for PGdP exercises at TUM in WS22/23. These tests have been written by students for students and are not part of the official course.
+
+== Legal Status
+
+> Es ist alles erlaubt, was die Lösung nicht verrät.
+
+The so-called *Übungsleitung* will have an eye on this repository. But as long as the tests do not reveal the solution of the homework, this repository will tolerate them. To ensure the solution is not getting revealed, the tests should be Input/Output-Tests only.
+
+Furthermore, there is no guarantee of the correctness of the tests. Neither the *Übungsleitung* nor any of the other tutors will contribute own tests. We (Maximilian Anzinger, Johannes Stöhr, Georg Henning, Konrad Gößmann, Robin Marchart, Oliver Specht, and Anton Kluge) will just make shure that there are no tests that reveal the solution. It is your own responsibility to validate the correctness and if necessary report bugs or even provide/contribute a fix for your fellow student.
+
+.Examples
+
+correct:
+[source,java]
+----
+// Test Area calculation
+// Arrange
+Rectangle r1 = new Rectangle(length: 4, width: 4)
+// Act & Assert
+assertEquals(16, r1.calculateArea());
+----
+
+wrong!:
+[source,java]
+----
+// Test Area calculation
+// Arrange
+Rectangle r1 = new Rectangle(length: 4, width: 6)
+// Act & Assert
+// Calculate using length * width             // <-- reveales the solution
+assertEquals(4*6, r1.calculateArea()); // <-- reveales the solution
+----
+
+== Usage
+
+. Clone this repository
++
+[source,shell]
+----
+git clone https://github.com/MaximilianAnzinger/pgdp2223-tests.git
+----
+
+. Check for updates
++
+[source,shell]
+----
+git pull
+----
+
+. Add the test folder to your `src`-folder of your artemis java project
++
+*Or* use the syslink instruction below.
+
+. Make sure your IDE (e.g. IntelIJ or Eclipse) sees your added files
+
+. Include JUnit to your Project by pressing the red lightbulb (or `ALT + ENTER` in IntelIJ) on one of the red underlined @Test Annotations in the test file.
+
+. *Do not add them to your artemis git repository*
+
+. Run the tests and check your mistakes
+
+.Important note
+As this is a student-driven project please keep in mind that mistakes can happen. If you think a test is wrong, please feel free to open an Issue (it is easy!). To help fixing bugs, please add the following info to your https://github.com/MaximilianAnzinger/pgdp2223-tests/issues[`Issue`]:
+
+* Operating system
+* IDE (IntelIJ, Eclipse, ...)
+* Where is the mistake / error
+* Citation of the homework instruction
+
+.How to use symlinks (Advanced Users only!)
+*Windows:*
+
+This has to be executed in the command line, run as administrator:
+[source,shell]
+----
+$ mklink /d \path\to\src\tests \path\to\repository\tests
+----
+
+*Linux/MacOS:*
+
+[source,shell]
+----
+$ ln -s /path/to/repository/tests /path/to/src/
+----
+
+== How to Contribute
+
+. Fork Repository (https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository[Github Documentation])
+. Add / edit tests under `<EXERCISE>/src/test``
+. *Ensure no solution or homework-code is getting revealed*
+. Commit and push to your fork repository
+. Open a Pull Request to this repository (https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests[Github Documentation])
+. Wait until the changes are merged
+
+== Contributors
+[#img-contributors]
+[link=https://github.com/MaximilianAnzinger/pgdp2223-tests/graphs/contributors]
+image::https://contrib.rocks/image?repo=MaximilianAnzinger/pgdp2223-tests[Contributors]
+
+== Helpful Links
+
+. Tests https://github.com/LadnerJonas/PGdP-Tests-WS21-22[PGDP WS 21/22] (Testcases from last year might be a helpful guideline/inspiration)
+. Tests https://github.com/MaximilianAnzinger/gad2022-tests#readme[GAD 2022] (Testcases for a second semester course)
+. Write Tests using https://junit.org/junit5/docs/current/user-guide/#writing-tests[JUnit 5]
+. How to use https://www.atlassian.com/de/git/tutorials/learn-git-with-bitbucket-cloud[Git]
+. How to use https://docs.github.com/en/get-started/quickstart/hello-world[Github]
+
+== Contact
+
+Feel free to contact us (Maximilian Anzinger, Johannes Stöhr, Georg Henning, Oliver Specht) via Zulip, but consider using https://www.google.com/[google] beforehand.
