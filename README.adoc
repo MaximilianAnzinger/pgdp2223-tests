@@ -123,4 +123,4 @@ image::https://contrib.rocks/image?repo=MaximilianAnzinger/pgdp2223-tests[Contri
 
 == Contact
 
-Feel free to contact us (Maximilian Anzinger, Johannes Stöhr, Georg Henning, Oliver Specht) via Zulip, but consider using https://www.google.com/[google] beforehand.
+Feel free to contact us (Maximilian Anzinger, Johannes Stöhr, Georg Henning, Konrad Gößmann, Robin Marchart, Oliver Specht, and Anton Kluge) via Zulip, but consider using https://www.google.com/[google] beforehand.
