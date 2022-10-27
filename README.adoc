@@ -63,7 +63,7 @@ git clone https://github.com/MaximilianAnzinger/pgdp2223-tests.git
 git pull
 ----
 
-. Add the test folder to your `src`-folder of your artemis java project
+. copy the files in the `test` directory to the root of your repository and *not* inside your src folder
 +
 *Or* use the syslink instruction below.
 
@@ -71,7 +71,7 @@ git pull
 
 . Include JUnit to your Project by pressing the red lightbulb (or `ALT + ENTER` in IntelIJ) on one of the red underlined @Test Annotations in the test file.
 
-. *Do not add them to your artemis git repository*
+. *Do not add them to your artemis git repository* (it should already be in your .gitignore)
 
 . Run the tests and check your mistakes
 
@@ -89,20 +89,20 @@ As this is a student-driven project please keep in mind that mistakes can happen
 This has to be executed in the command line, run as administrator:
 [source,shell]
 ----
-$ mklink /d \path\to\src\tests \path\to\repository\tests
+$ mklink /d \path\to\repository\aufgabe\test \path\to\repository\
 ----
 
 *Linux/MacOS:*
 
 [source,shell]
 ----
-$ ln -s /path/to/repository/tests /path/to/src/
+$ ln -s /path/to/repository/aufgabe/test /path/to/repository/
 ----
 
 == How to Contribute
 
 . Fork Repository (https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository[Github Documentation])
-. Add / edit tests under `<EXERCISE>/src/test``
+. Add / edit tests under `<EXERCISE>/test/``
 . *Ensure no solution or homework-code is getting revealed*
 . Commit and push to your fork repository
 . Open a Pull Request to this repository (https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests[Github Documentation])
