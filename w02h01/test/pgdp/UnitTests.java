@@ -33,6 +33,7 @@ public class UnitTests {
         Assertions.assertEquals(PenguWarmup.penguPermutation(21, 19), 420);
         Assertions.assertEquals(PenguWarmup.penguPermutation(10, 7), 720);
         Assertions.assertEquals(PenguWarmup.penguPermutation(42, 42), 1);
+        Assertions.assertEquals(PenguWarmup.penguPermutation(500000000000001L, 500000000000000L), 500000000000001L);
     }
 
     @Test
