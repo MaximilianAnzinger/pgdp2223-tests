@@ -1,6 +1,7 @@
 package pgdp;
 
 import org.junit.jupiter.api.Test;
+import pgdp.warmup.PenguWarmup;
 
 class PenguWarmupTest extends PgdpTestBase {
 
@@ -48,7 +49,7 @@ class PenguWarmupTest extends PgdpTestBase {
     }
 
     @Test
-    public void checkPenguEvolutions() {
+    void checkPenguEvolutions() {
         final var methodName = "penguEvolution";
 
         whenCallingMethod(() -> PenguWarmup.penguEvolution(128, 2))
@@ -65,7 +66,7 @@ class PenguWarmupTest extends PgdpTestBase {
     }
 
     @Test
-    public void checkPenguSum() {
+    void checkPenguSum() {
         final var methodName = "penguSum";
 
         whenCallingMethod(() -> PenguWarmup.penguSum(128))
@@ -102,7 +103,7 @@ class PenguWarmupTest extends PgdpTestBase {
     }
 
     @Test
-    public void checkPenguPermutation() {
+    void checkPenguPermutation() {
         final var methodName = "penguPermutation";
 
         whenCallingMethod(() -> PenguWarmup.penguPermutation(6, 3))
@@ -127,7 +128,7 @@ class PenguWarmupTest extends PgdpTestBase {
     }
 
     @Test
-    public void checkPenguPowers() {
+    void checkPenguPowers() {
         final var methodName = "penguPowers";
 
         whenCallingMethod(() -> PenguWarmup.penguPowers(1337, 2))
