@@ -3,19 +3,18 @@ package pgdp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pgdp.warmup.PenguWarmup;
+
 public class UnitTests {
 
     @Test
-    public void checkPenguEvolutions()
-    {
+    public void checkPenguEvolutions() {
         Assertions.assertEquals(4, PenguWarmup.penguEvolution(128, 2));
         Assertions.assertEquals(7, PenguWarmup.penguEvolution(9, 9));
         Assertions.assertEquals(22, PenguWarmup.penguEvolution(9, 10));
     }
 
     @Test
-    public void checkPenguSum()
-    {
+    public void checkPenguSum() {
         Assertions.assertEquals(11, PenguWarmup.penguSum(128));
         Assertions.assertEquals(14, PenguWarmup.penguSum(1337));
         Assertions.assertEquals(21, PenguWarmup.penguSum(54354));
@@ -27,8 +26,7 @@ public class UnitTests {
     }
 
     @Test
-    public void checkPenguPermutation()
-    {
+    public void checkPenguPermutation() {
         Assertions.assertEquals(120, PenguWarmup.penguPermutation(6, 3));
         Assertions.assertEquals(420, PenguWarmup.penguPermutation(21, 19));
         Assertions.assertEquals(720, PenguWarmup.penguPermutation(10, 7));
@@ -37,8 +35,7 @@ public class UnitTests {
     }
 
     @Test
-    public void checkPenguPowers()
-    {
+    public void checkPenguPowers() {
         Assertions.assertEquals(1787569, PenguWarmup.penguPowers(1337, 2));
         Assertions.assertEquals(1787569, PenguWarmup.penguPowers(-1337, 2));
         Assertions.assertEquals(-512, PenguWarmup.penguPowers(-8, 3));
