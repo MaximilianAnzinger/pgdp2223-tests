@@ -21,8 +21,7 @@ public class UnitTests {
     }
 
     @AfterAll
-    public static void clean()
-    {
+    public static void clean() {
         System.setOut(stdout);
     }
 
