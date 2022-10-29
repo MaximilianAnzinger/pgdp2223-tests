@@ -16,8 +16,7 @@ public class UnitTests {
     private static final PrintStream stdout = System.out;
 
     @BeforeAll
-    public static void prep()
-    {
+    public static void prep() {
         System.setOut(new PrintStream(out));
     }
 
