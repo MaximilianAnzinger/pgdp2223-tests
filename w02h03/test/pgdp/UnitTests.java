@@ -26,7 +26,7 @@ public class UnitTests {
     }
 
     @Test
-    public void checkSqrt() {
+    void checkSqrt() {
         Random rnd = new Random();
 
         for(int i = 0; i < 10000; i++) {
