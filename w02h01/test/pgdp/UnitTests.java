@@ -48,6 +48,7 @@ public class UnitTests {
         Assertions.assertEquals(1, PenguWarmup.penguPowers(1, -42));
         Assertions.assertEquals(0, PenguWarmup.penguPowers(0, 1));
         Assertions.assertEquals(1, PenguWarmup.penguPowers(0, 0));
+        Assertions.assertEquals(Math.pow(Integer.MAX_VALUE, 2), PenguWarmup.penguPowers(Integer.MAX_VALUE, 2));
     }
 
 }
