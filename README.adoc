@@ -101,11 +101,11 @@ $ ln -s /path/to/repository/aufgabe/test /path/to/repository/
 
 == How to Contribute
 
-. Fork Repository (https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository[Github Documentation])
+. Fork Repository (https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository[GitHub Documentation])
 . Add / edit tests under `<EXERCISE>/test/``
 . *Ensure no solution or homework-code is getting revealed*
 . Commit and push to your fork repository
-. Open a Pull Request to this repository (https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests[Github Documentation])
+. Open a Pull Request to this repository (https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests[GitHub Documentation])
 . Wait until the changes are merged
 
 == Contributors
@@ -119,7 +119,7 @@ image::https://contrib.rocks/image?repo=MaximilianAnzinger/pgdp2223-tests[Contri
 . Tests https://github.com/MaximilianAnzinger/gad2022-tests#readme[GAD 2022] (Testcases for a second semester course)
 . Write Tests using https://junit.org/junit5/docs/current/user-guide/#writing-tests[JUnit 5]
 . How to use https://www.atlassian.com/de/git/tutorials/learn-git-with-bitbucket-cloud[Git]
-. How to use https://docs.github.com/en/get-started/quickstart/hello-world[Github]
+. How to use https://docs.github.com/en/get-started/quickstart/hello-world[GitHub]
 
 == Contact
 
