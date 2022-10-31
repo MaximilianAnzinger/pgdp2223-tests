@@ -22,7 +22,7 @@ This is a repository to collect JUnit Tests for PGdP exercises at TUM in WS22/23
 
 The so-called *Übungsleitung* will have an eye on this repository. But as long as the tests do not reveal the solution of the homework, this repository will tolerate them. To ensure the solution is not getting revealed, the tests should be Input/Output-Tests only.
 
-Furthermore, there is no guarantee of the correctness of the tests. Neither the *Übungsleitung* nor any of the other tutors will contribute own tests. We (Maximilian Anzinger, Johannes Stöhr, Georg Henning, Konrad Gößmann, Robin Marchart, Oliver Specht, and Anton Kluge) will just make shure that there are no tests that reveal the solution. It is your own responsibility to validate the correctness and if necessary report bugs or even provide/contribute a fix for your fellow student.
+Furthermore, there is no guarantee of the correctness of the tests. Neither the *Übungsleitung* nor any of the other tutors will contribute own tests. We (Maximilian Anzinger, Johannes Stöhr, Georg Henning, Konrad Gößmann, Robin Marchart, Oliver Specht, and Anton Kluge) will just make sure that there are no tests that reveal the solution. It is your own responsibility to validate the correctness and if necessary report bugs or even provide/contribute a fix for your fellow student.
 
 .Examples
 
