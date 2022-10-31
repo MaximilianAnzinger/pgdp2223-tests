@@ -24,7 +24,7 @@ public class UnitTests {
         PenguWarmup.penguInfoOut(-1);
         Assertions.assertEquals("Penguin -1 is not a known penguin!\n", outContent.toString());
 
-        // Edge Case: 0
+        // Edge Case: 0, from https://zulip.in.tum.de/#narrow/stream/1350-PGdP-W02H01/topic/Null.20Penguin.3F/near/748272.
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         PenguWarmup.penguInfoOut(0);
