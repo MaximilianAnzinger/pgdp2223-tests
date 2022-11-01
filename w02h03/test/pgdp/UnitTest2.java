@@ -1,3 +1,5 @@
+package pgdp;
+
 import pgdp.math.PinguSqrt;
 
 import org.junit.jupiter.api.Test;
@@ -10,7 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 
-public class TestNotation {
+public class UnitTest2 {
 
 	private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private static final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -34,12 +36,10 @@ public class TestNotation {
 		String last_line = lines[lines.length - 1];
 		assertEquals(content, last_line);
 	}
-
-	public double delta = 0.00005;
 	
 	@Test
 	@DisplayName("It should calculate the square roots of example cases")
-	public void example_sqrt() {
+	void example_sqrt() {
 		PinguSqrt.sqrt(1049.76);
 		assertOutput("Ergebnis: 32.4");
 
@@ -49,7 +49,7 @@ public class TestNotation {
 
 	@Test
 	@DisplayName("Should calculate natural square roots")
-	public void natural_sqrt() {
+	void natural_sqrt() {
 
 		PinguSqrt.sqrt(0.0);
 		assertOutput("Ergebnis: 0.0");
@@ -99,7 +99,7 @@ public class TestNotation {
 
 	@Test
 	@DisplayName("It should calculate the square roots of numbers near zero")
-	public void comma_sqrt() {
+	void comma_sqrt() {
 
 		PinguSqrt.sqrt(0.01);
 		assertOutput("Ergebnis: 0.1");
@@ -158,7 +158,7 @@ public class TestNotation {
 
 	@Test
 	@DisplayName("It should calculate big numbers")
-	public void big_number() {
+	void big_number() {
 
 		PinguSqrt.sqrt(2147483647);
 		assertOutput("Ergebnis: 46340.95");
