@@ -1,17 +1,129 @@
 package pgdp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pgdp.warmup.PenguWarmup;
 
 public class UnitTests {
+    private final PrintStream originalOut = System.out;
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void checkPenguInfoOut() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+        // Abort for negative numbers
+        System.setOut(new PrintStream(outContent));
+        PenguWarmup.penguInfoOut(-1);
+        Assertions.assertEquals("Penguin -1 is not a known penguin!\n", outContent.toString());
+
+        // Edge Case: 0, from https://zulip.in.tum.de/#narrow/stream/1350-PGdP-W02H01/topic/Null.20Penguin.3F/near/748272.
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        PenguWarmup.penguInfoOut(0);
+        Assertions.assertEquals("Penguin: 0\nThis penguin is a male.\n", outContent.toString());
+
+        // 1
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        PenguWarmup.penguInfoOut(1);
+        Assertions.assertEquals("Penguin: 1\nThis penguin is a female.\n", outContent.toString());
+
+        // 2
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        PenguWarmup.penguInfoOut(2);
+        Assertions.assertEquals("Penguin: 2\nThis penguin is a male.\n", outContent.toString());
+    }
 
     @Test
     public void checkPenguEvolutions() {
+        // Example 1:
+        // IN: penguin = 128, years = 2
+        // OUT: 4
+        // EVO: Year 0: 128
+        //      Year 1: 1
+        //      Year 2: 4
         Assertions.assertEquals(4, PenguWarmup.penguEvolution(128, 2));
+
+        // Example 2:
+        // IN: penguin = 9, years = 9
+        // OUT: 7
+        // EVO: Year 0: 9
+        //      Year 1: 28
+        //      Year 2: 14
+        //      Year 3: 7
+        //      Year 4: 7
+        //      Year 5: 7
+        //      Year 6: 7
+        //      Year 7: 7
+        //      Year 8: 7
+        //      Year 9: 7
         Assertions.assertEquals(7, PenguWarmup.penguEvolution(9, 9));
+
+        // Example 3:
+        // IN: penguin = 9, years = 10
+        // OUT: 22
+        // EVO: Year  0: 9
+        //      Year  1: 28
+        //      Year  2: 14
+        //      Year  3: 7
+        //      Year  4: 7
+        //      Year  5: 7
+        //      Year  6: 7
+        //      Year  7: 7
+        //      Year  8: 7
+        //      Year  9: 7
+        //      Year 10: 22
         Assertions.assertEquals(22, PenguWarmup.penguEvolution(9, 10));
+
+        // Test case with 1.
+        // 
+        // Example 4:
+        // IN: penguin = 1, years = 0
+        // OUT: 1
+        // EVO: Year  0: 1
+        Assertions.assertEquals(1, PenguWarmup.penguEvolution(1, 0));
+
+        // Example 5:
+        // IN: penguin = 70, years = 0
+        // OUT: 1
+        // EVO: Year  0: 70
+        //      Year  1: 35
+        //      Year  2: 35
+        //      Year  3: 35
+        //      Year  4: 35
+        //      Year  5: 35
+        //      Year  6: 35
+        //      Year  7: 35
+        //      Year  8: 106
+        Assertions.assertEquals(106, PenguWarmup.penguEvolution(70, 8));
+
+        // From https://zulip.in.tum.de/#narrow/stream/1350-PGdP-W02H01/topic/Evolution.20der.20Penguine.20.7C.20Startwert.20ein.20Vielfaches.20von.20sieben/near/748278
+        //
+        // Example 6:
+        // IN: penguin = 7, years = 10
+        // OUT: 17
+        // EVO: Year  0: 7
+        //      Year  1: 7
+        //      Year  2: 7
+        //      Year  3: 7
+        //      Year  4: 7
+        //      Year  5: 7
+        //      Year  6: 7
+        //      Year  7: 22
+        //      Year  8: 11
+        //      Year  9: 34
+        //      Year 10: 17
+        Assertions.assertEquals(17, PenguWarmup.penguEvolution(7, 10));
     }
 
     @Test

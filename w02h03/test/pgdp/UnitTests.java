@@ -27,19 +27,24 @@ public class UnitTests {
         out.reset();
     }
 
+    private static void checkResult(double in, double expected, double delta) {
+        PinguSqrt.sqrt(in);
+        int resultBegin = out.toString().lastIndexOf(" ");
+        String actual = out.toString().substring(resultBegin + 1, out.toString().length() - 1);
+        Assertions.assertEquals(expected, Double.parseDouble(actual), delta);
+    }
+
     @Test
     void checkSqrt() {
         Random rnd = new Random();
 
         for (int i = 0; i < 10000; i++) {
             double testNumber = rnd.nextDouble() * Math.pow(10, rnd.nextInt(9));
-
-            PinguSqrt.sqrt(testNumber);
-            int resultBegin = out.toString().lastIndexOf(" ");
-            String actual = out.toString().substring(resultBegin + 1, out.toString().length() - 1);
-
-            Assertions.assertEquals(Math.sqrt(testNumber), Double.parseDouble(actual), 0.01);
+            checkResult(testNumber, Math.sqrt(testNumber), 0.01);
         }
+
+        checkResult(5.29, 2.3, 0.0);
+        checkResult(5341493.3160, 2311.16, 0.0);
     }
 
     @Test
@@ -88,7 +93,7 @@ public class UnitTests {
                 Rest: 0
                 neue Ergebnis Ziffer: 0
                 """;
-        
+
         String[] actualParts = actual.replace("\r", "").split("\n\n");
         String[] expectedParts = expected.split("\n\n");
 
