@@ -32,7 +32,7 @@ public class UnitTest2 {
 	}
 
 	public void assertOutput(String content) {
-		String[] lines = outContent.toString().split("\n");
+		String[] lines = outContent.toString().replace("\r", "").split("\n");
 		String last_line = lines[lines.length - 1];
 		assertEquals(content, last_line);
 	}
