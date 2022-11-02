@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pgdp.warmup.PenguWarmup;
 
@@ -149,18 +150,23 @@ public class UnitTests {
     @Test
     public void checkPenguPowers() {
         Assertions.assertEquals(1787569, PenguWarmup.penguPowers(1337, 2));
-        Assertions.assertEquals(1787569, PenguWarmup.penguPowers(-1337, 2));
-        Assertions.assertEquals(-512, PenguWarmup.penguPowers(-8, 3));
         Assertions.assertEquals(81, PenguWarmup.penguPowers(3, 4));
         Assertions.assertEquals(1, PenguWarmup.penguPowers(3, 0));
         Assertions.assertEquals(9, PenguWarmup.penguPowers(9, 1));
+        Assertions.assertEquals(0, PenguWarmup.penguPowers(0, 1));
+        Assertions.assertEquals(1, PenguWarmup.penguPowers(0, 0));
+        Assertions.assertEquals(Math.pow(Integer.MAX_VALUE, 2), PenguWarmup.penguPowers(Integer.MAX_VALUE, 2));
+    }
+
+    @Test
+    @DisplayName("checkPenguPowersNegative() (this is an optional test. your code does not have to pass it)")
+    void checkPenguPowersNegative() {
+        Assertions.assertEquals(1787569, PenguWarmup.penguPowers(-1337, 2));
+        Assertions.assertEquals(-512, PenguWarmup.penguPowers(-8, 3));
         Assertions.assertEquals(81, PenguWarmup.penguPowers(-9, 2));
         Assertions.assertEquals(-27, PenguWarmup.penguPowers(-3, 3));
         Assertions.assertEquals(1, PenguWarmup.penguPowers(1, -1));
         Assertions.assertEquals(1, PenguWarmup.penguPowers(1, -42));
-        Assertions.assertEquals(0, PenguWarmup.penguPowers(0, 1));
-        Assertions.assertEquals(1, PenguWarmup.penguPowers(0, 0));
-        Assertions.assertEquals(Math.pow(Integer.MAX_VALUE, 2), PenguWarmup.penguPowers(Integer.MAX_VALUE, 2));
     }
 
 }
