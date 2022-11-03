@@ -3,45 +3,62 @@ package pgdp;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pgdp.warmup.PenguWarmup;
 
 public class UnitTests {
-    private final PrintStream originalOut = System.out;
+
+    private static final ByteArrayOutputStream out = new ByteArrayOutputStream() {
+        // returns platform independent captured output
+        @Override
+        public synchronized String toString() {
+            return super.toString().replace("\r", "");
+        }
+    };
+
+    private static final PrintStream stdOut = System.out;
 
     @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
+    public void resetBuffer() {
+        out.reset();
+    }
+
+    @BeforeAll
+    public static void setUpStreams() {
+        System.setOut(new PrintStream(out));
+    }
+
+    @AfterAll
+    public static void restoreStreams() {
+        System.setOut(stdOut);
     }
 
     @Test
-    public void checkPenguInfoOut() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
+    public void checkPenguInfoOutNegative() {
         // Abort for negative numbers
-        System.setOut(new PrintStream(outContent));
         PenguWarmup.penguInfoOut(-1);
-        Assertions.assertEquals("Penguin -1 is not a known penguin!\n", outContent.toString());
+        Assertions.assertEquals("Penguin -1 is not a known penguin!\n", out.toString());
+    }
 
+    @Test
+    public void checkPenguInfoOutZero() {
         // Edge Case: 0, from https://zulip.in.tum.de/#narrow/stream/1350-PGdP-W02H01/topic/Null.20Penguin.3F/near/748272.
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
         PenguWarmup.penguInfoOut(0);
-        Assertions.assertEquals("Penguin: 0\nThis penguin is a male.\n", outContent.toString());
+        Assertions.assertEquals("Penguin: 0\nThis penguin is a male.\n", out.toString());
+    }
 
+    @Test
+    public void checkPenguInfoOutFemale() {
         // 1
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
         PenguWarmup.penguInfoOut(1);
-        Assertions.assertEquals("Penguin: 1\nThis penguin is a female.\n", outContent.toString());
+        Assertions.assertEquals("Penguin: 1\nThis penguin is a female.\n", out.toString());
+    }
 
+    @Test
+    public void checkPenguInfoOutMale() {
         // 2
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
         PenguWarmup.penguInfoOut(2);
-        Assertions.assertEquals("Penguin: 2\nThis penguin is a male.\n", outContent.toString());
+        Assertions.assertEquals("Penguin: 2\nThis penguin is a male.\n", out.toString());
     }
 
     @Test
