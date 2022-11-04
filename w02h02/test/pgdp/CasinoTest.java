@@ -133,6 +133,21 @@ public class CasinoTest {
     }
 
     @Test
+    @DisplayName("Player should lose when net profit is 0")
+    void check0Profi() {
+        testBlackjackOutput(
+                10,
+                """
+                        Welcome to Pengu-BlackJack!
+                        (1) Start a game or (2) exit
+                        IN: 2
+                        Your final balance: 1000
+                        That's very very sad :(
+                        Thank you for playing. See you next time.
+                        """);
+    }
+
+    @Test
     @DisplayName("No tokens left")
     void broke() {
         testBlackjackOutput(
