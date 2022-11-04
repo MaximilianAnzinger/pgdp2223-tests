@@ -140,40 +140,6 @@ public class CasinoTest {
                 """
                         Welcome to Pengu-BlackJack!
                         (1) Start a game or (2) exit
-                        IN: 1
-                        Your current balance: 1000
-                        How much do you want to bet?
-                        IN: 10
-                        Player cards:
-                        1 : 2
-                        2 : 10
-                        Current standing: 12
-                        (1) draw another card or (2) stay
-                        IN: 2
-                        Dealer cards:
-                        1 : 6
-                        2 : 1
-                        3 : 5
-                        4 : 11
-                        Dealer: 23
-                        You won 10 tokens.
-                        (1) Start a game or (2) exit
-                        IN: 1
-                        Your current balance: 1010
-                        How much do you want to bet?
-                        IN: 10
-                        Player cards:
-                        1 : 5
-                        2 : 5
-                        Current standing: 10
-                        (1) draw another card or (2) stay
-                        IN: 2
-                        Dealer cards:
-                        1 : 8
-                        2 : 11
-                        Dealer: 19
-                        Dealer wins. You lost 10 tokens.
-                        (1) Start a game or (2) exit
                         IN: 2
                         Your final balance: 1000
                         That's very very sad :(
