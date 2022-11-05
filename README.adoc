@@ -69,7 +69,7 @@ git pull
 
 . Make sure your IDE (e.g. IntelIJ or Eclipse) sees your added files
 
-. Include JUnit to your Project by pressing the red lightbulb (or `ALT + ENTER` in IntelIJ) on one of the red underlined @Test Annotations in the test file.
+. JUnit should already be included. If not include JUnit to your Project by pressing the red lightbulb (or `ALT + ENTER` in IntelIJ) on one of the red underlined @Test Annotations in the test file.
 
 . *Do not add them to your artemis git repository* (it should already be in your .gitignore)
 
