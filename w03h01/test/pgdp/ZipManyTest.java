@@ -52,6 +52,13 @@ public class ZipManyTest {
                                 {4}
                         },
                         new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
+                ),
+                arguments(
+                        new int[][]{
+                                {2, 4},
+                                {1, 2, 3}
+                        },
+                        new int[]{2, 1, 4, 2, 3}
                 )
         );
     }
