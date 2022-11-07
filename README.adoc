@@ -89,14 +89,14 @@ As this is a student-driven project please keep in mind that mistakes can happen
 This has to be executed in the command line, run as administrator:
 [source,shell]
 ----
-$ mklink /d \path\to\repository\aufgabe\test \path\to\repository\
+$ mklink /d \path\to\repository\test\pgdp \path\to\repository\aufgabe\test 
 ----
 
 *Linux/MacOS:*
 
 [source,shell]
 ----
-$ ln -s /path/to/repository/aufgabe/test /path/to/repository/
+$ ln -s /path/to/repository/aufgabe/test/pgdp /path/to/repository/test
 ----
 
 == How to Contribute
