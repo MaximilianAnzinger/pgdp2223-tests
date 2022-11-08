@@ -89,7 +89,7 @@ As this is a student-driven project please keep in mind that mistakes can happen
 This has to be executed in the command line, run as administrator:
 [source,shell]
 ----
-$ mklink /d \path\to\repository\test\pgdp \path\to\repository\aufgabe\test 
+$ mklink /d \path\to\artemis-repository\test\pgdp \path\to\test-repository\aufgabe\test\pgdp
 ----
 
 *Linux/MacOS:*
