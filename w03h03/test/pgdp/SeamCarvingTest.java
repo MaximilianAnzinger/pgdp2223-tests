@@ -282,13 +282,10 @@ public class SeamCarvingTest {
             );
         }
 
-        // Not sure whether this is the expected behavior for images with alpha values
-        // NOTE: this one will probably fail
-        // The problem: Black pixels can be represented by 0 or -16777216, depending on whether you are still working with the array or whether the array has already been written as an image
-        // The expected image will read them as the latter value while your program will most likely represent them as 0 (as we are supposed to ignore alpha values) 
-        // As long as only the area around tux (where the alpha space used to be) is marked as different your output should match mine
-        // A comparision with imagemagick between tuxTestOutput.png and tuxExpected.png should reveal whether your result matches the expected
-        // I have not yet found a way to convert the representations of black pixels without revealing part of the solution
+        // NOTE: The main function in './src/pgdp/image/Main.java' removes alpha values before saving an image
+        // Meaning: 0 (which should be completely transparent) will be converted to black (not so transparent)
+        // Therefore an image with with alpha values like 'tux.png' will be black where it should be transparent
+        // See: Main.java, l.107, setRGB(..., BufferedImage.INT_TYPE_RGB
         @ParameterizedTest
         @MethodSource
         void testing_tux_image(int[] image, int[] mask, int width, int height, int newWidth, int[] res) {
@@ -315,7 +312,8 @@ public class SeamCarvingTest {
 
         static int[] imageToArray(String filePath, int width, int height) {
             try {
-                BufferedImage image = ImageIO.read(new FileImageInputStream(new File(filePath)));
+                BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePath)));
+                BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
                 return image.getRGB(0,0, width, height, null, 0, width);
                 } catch(IOException e) {
                 e.printStackTrace();
@@ -325,7 +323,7 @@ public class SeamCarvingTest {
 
         void arrayToImage(String filePath, int[] image, int width, int height) {
             File out = new File(filePath);
-            BufferedImage output = new BufferedImage(width, height, 4);
+            BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0,0,width,height,image,0,width);
             try {
                 ImageIO.write(output, "png", out);
