@@ -2,7 +2,8 @@
 // If you put this file in the same location as I did, you'll have to change the test dir in the build.gradle
 // (add missing dependencies for junit in build.gradle)
 // run 'gradle test'
-// Images belong in the project's root directory
+// Remember to change the filePathPrefix to the location relative to the project root, where you saved the images
+// Use 'package pgdp.tests' if your tests are in ./src/tests/
 package pgdp;
 
 import pgdp.image.SeamCarving;
@@ -37,6 +38,9 @@ import java.util.regex.Pattern;
 
 
 public class SeamCarvingTest {
+    // Change this to whereever you decide to save the png-files
+    static final String filePathPrefix = "./test/pgdp/";
+
     @Nested
     @IndicativeSentencesGeneration(separator = " -> ", generator = DisplayNameGenerator.ReplaceUnderscores.class)
     class Test_compute_gradient_magnitude {
@@ -321,7 +325,7 @@ public class SeamCarvingTest {
 
         static int[] imageToArray(String filePath, int width, int height) {
             try {
-                BufferedImage in = ImageIO.read(new FileImageInputStream(new File("./test/pgdp/" + filePath)));
+                BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePathPrefix + filePath)));
                 BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
                 return image.getRGB(0, 0, width, height, null, 0, width);
             } catch (IOException e) {
@@ -331,7 +335,7 @@ public class SeamCarvingTest {
         }
 
         void arrayToImage(String filePath, int[] image, int width, int height) {
-            File out = new File(filePath);
+            File out = new File(filePathPrefix + filePath);
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0, 0, width, height, image, 0, width);
             try {
