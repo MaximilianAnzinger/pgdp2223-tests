@@ -6,36 +6,26 @@
 // Use 'package pgdp.tests' if your tests are in ./src/tests/
 package pgdp;
 
-import pgdp.image.SeamCarving;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.params.provider.Arguments.*;
-
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.IndicativeSentencesGeneration;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
-
-import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.MethodSource;
+import pgdp.image.SeamCarving;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
-import javax.imageio.stream.FileImageOutputStream;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.attribute.FileAttribute;
 import java.util.Arrays;
-import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 public class SeamCarvingTest {
@@ -261,7 +251,7 @@ public class SeamCarvingTest {
             outputDiffImage(res, shrinkResult, "./exampleDiff.png", newWidth, height);
         }
 
-        static Stream<Arguments> testing_example_image() {
+        static Stream<Arguments> testing_example_image() throws IOException {
             return Stream.of(
                     arguments(
                             imageToArray("./example.png", 876, 534),
@@ -283,7 +273,7 @@ public class SeamCarvingTest {
             outputDiffImage(res, shrinkResult, "./wikipediaDiff.png", newWidth, height);
         }
 
-        static Stream<Arguments> testing_wikipedia_image() {
+        static Stream<Arguments> testing_wikipedia_image() throws IOException {
             return Stream.of(
                     arguments(
                             imageToArray("./wikipedia.png", 274, 186),
@@ -310,7 +300,7 @@ public class SeamCarvingTest {
             assertArrayEquals(res, shrinkResult);
         }
 
-        static Stream<Arguments> testing_tux_image() {
+        static Stream<Arguments> testing_tux_image() throws IOException {
             int[] mask = new int[612320];
             Arrays.fill(mask, 1);
             return Stream.of(
@@ -326,18 +316,13 @@ public class SeamCarvingTest {
             );
         }
 
-        static int[] imageToArray(String filePath, int width, int height) {
-            try {
-                BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePathPrefix + filePath)));
-                BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
-                Graphics graphic = image.getGraphics();
-                graphic.drawImage(in, 0, 0, null);
-                graphic.dispose();
-                return image.getRGB(0, 0, width, height, null, 0, width);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return new int[]{};
+        static int[] imageToArray(String filePath, int width, int height) throws IOException {
+            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePathPrefix + filePath)));
+            BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics graphic = image.getGraphics();
+            graphic.drawImage(in, 0, 0, null);
+            graphic.dispose();
+            return image.getRGB(0, 0, width, height, null, 0, width);
         }
 
         void arrayToImage(String filePath, int[] image, int width, int height) {
@@ -345,8 +330,11 @@ public class SeamCarvingTest {
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0, 0, width, height, image, 0, width);
             try {
-                out.mkdirs();
-                ImageIO.write(output, "png", out);
+                if (out.mkdirs()) {
+                    ImageIO.write(output, "png", out);
+                } else {
+                    throw new IOException("Could not create directories!");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
