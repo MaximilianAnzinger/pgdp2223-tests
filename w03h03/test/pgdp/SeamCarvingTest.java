@@ -40,6 +40,8 @@ import java.util.regex.Pattern;
 
 public class SeamCarvingTest {
     // Change this to whereever you decide to save the png-files
+    static final String filePathPrefixOut = "./test/pgdp/out/";
+
     static final String filePathPrefix = "./test/pgdp/";
 
     @Nested
@@ -339,10 +341,11 @@ public class SeamCarvingTest {
         }
 
         void arrayToImage(String filePath, int[] image, int width, int height) {
-            File out = new File(filePathPrefix + filePath);
+            File out = new File(filePathPrefixOut + filePath);
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0, 0, width, height, image, 0, width);
             try {
+                out.mkdirs();
                 ImageIO.write(output, "png", out);
             } catch (IOException e) {
                 e.printStackTrace();
