@@ -247,8 +247,8 @@ public class SeamCarvingTest {
         void testing_example_image(int[] image, int[] mask, int width, int height, int newWidth, int[] res) {
             int[] shrinkResult = (new SeamCarving()).shrink(image, mask, width, height, newWidth);
             arrayToImage("./exampleTestOutput.png", shrinkResult, newWidth, height);
-            assertArrayEquals(res, shrinkResult);
             outputDiffImage(res, shrinkResult, "./exampleDiff.png", newWidth, height);
+            assertArrayEquals(res, shrinkResult);
         }
 
         static Stream<Arguments> testing_example_image() throws IOException {
@@ -269,8 +269,8 @@ public class SeamCarvingTest {
         void testing_wikipedia_image(int[] image, int[] mask, int width, int height, int newWidth, int[] res) {
             int[] shrinkResult = (new SeamCarving()).shrink(image, mask, width, height, newWidth);
             arrayToImage("./wikipediaTestOutput.png", shrinkResult, newWidth, height);
-            assertArrayEquals(res, shrinkResult);
             outputDiffImage(res, shrinkResult, "./wikipediaDiff.png", newWidth, height);
+            assertArrayEquals(res, shrinkResult);
         }
 
         static Stream<Arguments> testing_wikipedia_image() throws IOException {
@@ -289,7 +289,7 @@ public class SeamCarvingTest {
 
         // NOTE: The main function in './src/pgdp/image/Main.java' removes alpha values before saving an image
         // Meaning: 0 (which should be completely transparent) will be converted to black (not so transparent)
-        // Therefore an image with with alpha values like 'tux.png' will be black where it should be transparent
+        // Therefore an image with alpha values like 'tux.png' will be black where it should be transparent
         // See: Main.java, l.107, setRGB(..., BufferedImage.INT_TYPE_RGB
         @ParameterizedTest
         @MethodSource
