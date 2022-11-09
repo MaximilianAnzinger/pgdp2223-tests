@@ -330,7 +330,7 @@ public class SeamCarvingTest {
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0, 0, width, height, image, 0, width);
             try {
-                if (outDir.exists() | outDir.mkdirs()) {
+                if (outDir.exists() || outDir.mkdirs()) {
                     ImageIO.write(output, "png", new File(filePathPrefixOut + filePath));
                 } else {
                     throw new IOException("Could not create directories!");
