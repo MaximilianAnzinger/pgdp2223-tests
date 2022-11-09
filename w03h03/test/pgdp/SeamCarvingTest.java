@@ -326,12 +326,12 @@ public class SeamCarvingTest {
         }
 
         void arrayToImage(String filePath, int[] image, int width, int height) {
-            File out = new File(filePathPrefixOut + filePath);
+            File outDir = new File(filePathPrefixOut);
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0, 0, width, height, image, 0, width);
             try {
-                if (out.mkdirs()) {
-                    ImageIO.write(output, "png", out);
+                if (outDir.exists() | outDir.mkdirs()) {
+                    ImageIO.write(output, "png", new File(filePathPrefixOut + filePath));
                 } else {
                     throw new IOException("Could not create directories!");
                 }
