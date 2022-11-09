@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.FileImageOutputStream;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -327,6 +328,9 @@ public class SeamCarvingTest {
             try {
                 BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePathPrefix + filePath)));
                 BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
+                Graphics graphic = image.getGraphics();
+                graphic.drawImage(in, 0, 0, null);
+                graphic.dispose();
                 return image.getRGB(0, 0, width, height, null, 0, width);
             } catch (IOException e) {
                 e.printStackTrace();
