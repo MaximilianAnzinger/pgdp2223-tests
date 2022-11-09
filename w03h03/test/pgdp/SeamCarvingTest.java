@@ -45,16 +45,17 @@ public class SeamCarvingTest {
         void testing_compute_gradient_magnitude(int v1, int v2, int res) {
             assertEquals((new SeamCarving()).computeGradientMagnitude(v1, v2), res);
         }
+
         static Stream<Arguments> testing_compute_gradient_magnitude() {
             return Stream.of(
-                arguments(0, 0, 0),
-                arguments(1, 2, 1),
-                arguments(16777215, 0, 195075),
-                arguments(-1, 0, 195075),
-                arguments(2066367881, 18428516, 2019),
-                arguments(1337, 420, 11465),
-                arguments(6669420, 80085, 40625),
-                arguments(-4206669, -1337_83745, 49985) 
+                    arguments(0, 0, 0),
+                    arguments(1, 2, 1),
+                    arguments(16777215, 0, 195075),
+                    arguments(-1, 0, 195075),
+                    arguments(2066367881, 18428516, 2019),
+                    arguments(1337, 420, 11465),
+                    arguments(6669420, 80085, 40625),
+                    arguments(-4206669, -1337_83745, 49985)
             );
         }
     }
@@ -68,33 +69,34 @@ public class SeamCarvingTest {
             (new SeamCarving()).toGradientMagnitude(image, gradientMagnitude, width, height);
             assertArrayEquals(gradientMagnitude, res);
         }
+
         static Stream<Arguments> testing_to_gradient_magnitude() {
             return Stream.of(
-                // Fun times calculating this by hand
-                arguments(
-                    new int[]{0,1,2,3,4,5,
-                              6,7,8,9,10,11,
-                              12,13,14,15,16,17,
-                              18,19,20,21,22,23},
-                    new int[24],
-                    6,
-                    4,
-                    new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,
-                              Integer.MAX_VALUE,148,148,148,148,Integer.MAX_VALUE,
-                              Integer.MAX_VALUE,148,148,148,148,Integer.MAX_VALUE,
-                              Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,}),
-                arguments(
-                    new int[]{2,-3,-5,7,-11,13,
-                              -17,19,23,29,-31,37,
-                              -41,43,47,53,-59,61,
-                              -67,71,73,79,-83,97},
-                    new int[24],
-                    6,
-                    4,
-                    new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,
-                              Integer.MAX_VALUE,350856,171766,172970,2368,Integer.MAX_VALUE,
-                              Integer.MAX_VALUE,160978,2600,155050,2768,Integer.MAX_VALUE,
-                              Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,})
+                    // Fun times calculating this by hand
+                    arguments(
+                            new int[]{0, 1, 2, 3, 4, 5,
+                                    6, 7, 8, 9, 10, 11,
+                                    12, 13, 14, 15, 16, 17,
+                                    18, 19, 20, 21, 22, 23},
+                            new int[24],
+                            6,
+                            4,
+                            new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                                    Integer.MAX_VALUE, 148, 148, 148, 148, Integer.MAX_VALUE,
+                                    Integer.MAX_VALUE, 148, 148, 148, 148, Integer.MAX_VALUE,
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,}),
+                    arguments(
+                            new int[]{2, -3, -5, 7, -11, 13,
+                                    -17, 19, 23, 29, -31, 37,
+                                    -41, 43, 47, 53, -59, 61,
+                                    -67, 71, 73, 79, -83, 97},
+                            new int[24],
+                            6,
+                            4,
+                            new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                                    Integer.MAX_VALUE, 350856, 171766, 172970, 2368, Integer.MAX_VALUE,
+                                    Integer.MAX_VALUE, 160978, 2600, 155050, 2768, Integer.MAX_VALUE,
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,})
             );
         }
     }
@@ -108,38 +110,39 @@ public class SeamCarvingTest {
             (new SeamCarving()).combineMagnitudeWithMask(gradientMagnitude, mask, width, height);
             assertArrayEquals(gradientMagnitude, res);
         }
+
         static Stream<Arguments> testing_combine_magnitude_with_mask() {
             return Stream.of(
-                arguments(
-                    new int[]{2,-3,-5,7,-11,13,
-                              -17,19,23,29,-31,37,
-                              -41,43,47,53,-59,61,
-                              -67,71,73,79,-83,97},
-                    new int[]{0,1,2,3,4,5,
-                            6,7,2063597568,0,1,1,
-                            0,-16777216,0,0,0,0,
-                            9,9,9,9,9,9},
-                    6,
-                    4,
-                    new int[]{Integer.MAX_VALUE,-3,-5,7,-11,13,
-                              -17,19,Integer.MAX_VALUE,Integer.MAX_VALUE,-31,37,
-                              Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,
-                              -67,71,73,79,-83,97}),
-                arguments(
-                    new int[]{2,-3,-5,7,-11,13,
-                              -17,19,23,29,-31,37,
-                              -41,43,47,53,-59,61,
-                              -67,71,73,79,-83,97},
-                    new int[]{1,1,1,1,1,1,
-                                1,1,1,1,1,1,
-                                1,1,1,1,1,1,
-                                1,1,1,1,1,1},
-                    6,
-                    4,
-                    new int[]{2,-3,-5,7,-11,13,
-                              -17,19,23,29,-31,37,
-                              -41,43,47,53,-59,61,
-                              -67,71,73,79,-83,97})
+                    arguments(
+                            new int[]{2, -3, -5, 7, -11, 13,
+                                    -17, 19, 23, 29, -31, 37,
+                                    -41, 43, 47, 53, -59, 61,
+                                    -67, 71, 73, 79, -83, 97},
+                            new int[]{0, 1, 2, 3, 4, 5,
+                                    6, 7, 2063597568, 0, 1, 1,
+                                    0, -16777216, 0, 0, 0, 0,
+                                    9, 9, 9, 9, 9, 9},
+                            6,
+                            4,
+                            new int[]{Integer.MAX_VALUE, -3, -5, 7, -11, 13,
+                                    -17, 19, Integer.MAX_VALUE, Integer.MAX_VALUE, -31, 37,
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                                    -67, 71, 73, 79, -83, 97}),
+                    arguments(
+                            new int[]{2, -3, -5, 7, -11, 13,
+                                    -17, 19, 23, 29, -31, 37,
+                                    -41, 43, 47, 53, -59, 61,
+                                    -67, 71, 73, 79, -83, 97},
+                            new int[]{1, 1, 1, 1, 1, 1,
+                                    1, 1, 1, 1, 1, 1,
+                                    1, 1, 1, 1, 1, 1,
+                                    1, 1, 1, 1, 1, 1},
+                            6,
+                            4,
+                            new int[]{2, -3, -5, 7, -11, 13,
+                                    -17, 19, 23, 29, -31, 37,
+                                    -41, 43, 47, 53, -59, 61,
+                                    -67, 71, 73, 79, -83, 97})
             );
         }
     }
@@ -153,22 +156,23 @@ public class SeamCarvingTest {
             (new SeamCarving()).buildSeams(seams, seamWeights, gradientMagnitude, width, height);
             assertArrayEquals(seams, res);
         }
+
         static Stream<Arguments> testing_build_seams_seamsArray() {
             return Stream.of(
-                arguments(
-                    new int[6][5],
-                    new long[6],
-                    new int[]{
-                        Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,
-                        1,1,1,1,1,1,
-                        69,420,42,42,42,1337,
-                        100,10,666,20,3,10,
-                        Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE
-                    },
-                    6,
-                    5,
-                    new int[][]{new int[]{0,0,0,1,1}, new int[]{1,1,2,1,1}, new int[]{2,2,2,1,1}, new int[]{3,3,3,4,4}, new int[]{4,4,4,4,4}, new int[]{5,5,4,4,4}}
-                )
+                    arguments(
+                            new int[6][5],
+                            new long[6],
+                            new int[]{
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                                    1, 1, 1, 1, 1, 1,
+                                    69, 420, 42, 42, 42, 1337,
+                                    100, 10, 666, 20, 3, 10,
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE
+                            },
+                            6,
+                            5,
+                            new int[][]{new int[]{0, 0, 0, 1, 1}, new int[]{1, 1, 2, 1, 1}, new int[]{2, 2, 2, 1, 1}, new int[]{3, 3, 3, 4, 4}, new int[]{4, 4, 4, 4, 4}, new int[]{5, 5, 4, 4, 4}}
+                    )
             );
         }
 
@@ -178,22 +182,23 @@ public class SeamCarvingTest {
             (new SeamCarving()).buildSeams(seams, seamWeights, gradientMagnitude, width, height);
             assertArrayEquals(seamWeights, res);
         }
+
         static Stream<Arguments> testing_build_seams_seamWeights() {
             return Stream.of(
-                arguments(
-                    new int[6][5],
-                    new long[6],
-                    new int[]{
-                        Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,
-                        1,1,1,1,1,1,
-                        69,420,42,42,42,1337,
-                        100,10,666,20,3,10,
-                        Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE
-                    },
-                    6,
-                    5,
-                    new long[]{4294967374L,4294967347L,4294967347L,4294967340L,4294967340L,4294967340L}
-                )
+                    arguments(
+                            new int[6][5],
+                            new long[6],
+                            new int[]{
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                                    1, 1, 1, 1, 1, 1,
+                                    69, 420, 42, 42, 42, 1337,
+                                    100, 10, 666, 20, 3, 10,
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE
+                            },
+                            6,
+                            5,
+                            new long[]{4294967374L, 4294967347L, 4294967347L, 4294967340L, 4294967340L, 4294967340L}
+                    )
             );
         }
     }
@@ -209,27 +214,28 @@ public class SeamCarvingTest {
             System.arraycopy(image, 0, newImage, 0, 25);
             assertArrayEquals(newImage, res);
         }
+
         static Stream<Arguments> testing_remove_seam() {
             return Stream.of(
-                arguments(
-                    new int[]{
-                        0,1,2,3,4,5,
-                        6,7,8,9,10,11,
-                        12,13,14,15,16,17,
-                        18,19,20,21,22,23,
-                        24,25,26,27,28,29
-                    },
-                    new int[]{3,3,3,4,4},
-                    6,
-                    5,
-                    new int[]{
-                        0,1,2,4,5,
-                        6,7,8,10,11,
-                        12,13,14,16,17,
-                        18,19,20,21,23,
-                        24,25,26,27,29
-                    }
-                )
+                    arguments(
+                            new int[]{
+                                    0, 1, 2, 3, 4, 5,
+                                    6, 7, 8, 9, 10, 11,
+                                    12, 13, 14, 15, 16, 17,
+                                    18, 19, 20, 21, 22, 23,
+                                    24, 25, 26, 27, 28, 29
+                            },
+                            new int[]{3, 3, 3, 4, 4},
+                            6,
+                            5,
+                            new int[]{
+                                    0, 1, 2, 4, 5,
+                                    6, 7, 8, 10, 11,
+                                    12, 13, 14, 16, 17,
+                                    18, 19, 20, 21, 23,
+                                    24, 25, 26, 27, 29
+                            }
+                    )
             );
         }
     }
@@ -247,16 +253,17 @@ public class SeamCarvingTest {
             assertArrayEquals(res, shrinkResult);
             outputDiffImage(res, shrinkResult, "./exampleDiff.png", newWidth, height);
         }
+
         static Stream<Arguments> testing_example_image() {
             return Stream.of(
-                arguments(
-                    imageToArray("./example.png", 876, 534),
-                    imageToArray("./mask.png", 876, 534),
-                    876,
-                    534,
-                    875,
-                    imageToArray("./expected.png", 875, 534)
-                )
+                    arguments(
+                            imageToArray("./example.png", 876, 534),
+                            imageToArray("./mask.png", 876, 534),
+                            876,
+                            534,
+                            875,
+                            imageToArray("./expected.png", 875, 534)
+                    )
             );
         }
 
@@ -268,17 +275,18 @@ public class SeamCarvingTest {
             assertArrayEquals(res, shrinkResult);
             outputDiffImage(res, shrinkResult, "./wikipediaDiff.png", newWidth, height);
         }
+
         static Stream<Arguments> testing_wikipedia_image() {
             return Stream.of(
-                arguments(
-                    imageToArray("./wikipedia.png", 274, 186),
-                    // Note: this is just a white png
-                    imageToArray("./wikipediaMask.png", 274, 186),
-                    274,
-                    186,
-                    160,
-                    imageToArray("./wikipediaExpected.png", 160, 186)
-                )
+                    arguments(
+                            imageToArray("./wikipedia.png", 274, 186),
+                            // Note: this is just a white png
+                            imageToArray("./wikipediaMask.png", 274, 186),
+                            274,
+                            186,
+                            160,
+                            imageToArray("./wikipediaExpected.png", 160, 186)
+                    )
             );
         }
 
@@ -294,19 +302,20 @@ public class SeamCarvingTest {
             outputDiffImage(res, shrinkResult, "./tuxDiff.png", newWidth, height);
             assertArrayEquals(res, shrinkResult);
         }
+
         static Stream<Arguments> testing_tux_image() {
             int[] mask = new int[612320];
             Arrays.fill(mask, 1);
             return Stream.of(
-                arguments(
-                    imageToArray("./tux.png", 712, 860),
-                    // Note: this is just a white png
-                    mask,
-                    712,
-                    860,
-                    420,
-                    imageToArray("./tuxExpected.png", 420, 860)
-                )
+                    arguments(
+                            imageToArray("./tux.png", 712, 860),
+                            // Note: this is just a white png
+                            mask,
+                            712,
+                            860,
+                            420,
+                            imageToArray("./tuxExpected.png", 420, 860)
+                    )
             );
         }
 
@@ -314,8 +323,8 @@ public class SeamCarvingTest {
             try {
                 BufferedImage in = ImageIO.read(new FileImageInputStream(new File("./test/pgdp/" + filePath)));
                 BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
-                return image.getRGB(0,0, width, height, null, 0, width);
-                } catch(IOException e) {
+                return image.getRGB(0, 0, width, height, null, 0, width);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return new int[]{};
@@ -324,10 +333,10 @@ public class SeamCarvingTest {
         void arrayToImage(String filePath, int[] image, int width, int height) {
             File out = new File(filePath);
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            output.setRGB(0,0,width,height,image,0,width);
+            output.setRGB(0, 0, width, height, image, 0, width);
             try {
                 ImageIO.write(output, "png", out);
-                } catch(IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -338,11 +347,10 @@ public class SeamCarvingTest {
         // Red pixels -> pixels differ from expedted output
         void outputDiffImage(int[] imageExpected, int[] imageTest, String diffName, int width, int height) {
             int[] diff = new int[imageExpected.length];
-            for(int i = 0; i < imageExpected.length; i++) {
-                if(imageExpected[i] == imageTest[i]) {
+            for (int i = 0; i < imageExpected.length; i++) {
+                if (imageExpected[i] == imageTest[i]) {
                     diff[i] = 0;
-                }
-                else {
+                } else {
                     diff[i] = 16711680;
                 }
             }
