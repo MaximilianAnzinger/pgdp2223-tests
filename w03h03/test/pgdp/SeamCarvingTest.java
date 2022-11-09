@@ -3,7 +3,7 @@
 // (add missing dependencies for junit in build.gradle)
 // run 'gradle test'
 // Images belong in the project's root directory
-package pgdp.tests;
+package pgdp;
 
 import pgdp.image.SeamCarving;
 
@@ -312,7 +312,7 @@ public class SeamCarvingTest {
 
         static int[] imageToArray(String filePath, int width, int height) {
             try {
-                BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePath)));
+                BufferedImage in = ImageIO.read(new FileImageInputStream(new File("./test/pgdp/" + filePath)));
                 BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
                 return image.getRGB(0,0, width, height, null, 0, width);
                 } catch(IOException e) {
