@@ -31,7 +31,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 public class SeamCarvingTest {
-    // Change this to whereever you decide to save the png-files
+    // Change this to wherever you decide to save the png-files
     static final String PATH_OUT = "./test/out/";
 
     static final String PATH_TEST_RESOURCES = "./test/resources/test/";
@@ -264,6 +264,7 @@ public class SeamCarvingTest {
             Map<String, int[]> imagesMasked = new Hashtable<>();
             imagesMasked.put("example", new int[]{876, 534, 875});
             imagesMasked.put("test-noise-seam", new int[]{92, 66, 91});
+            imagesMasked.put("test-noise", new int[]{92, 66, 80});
 
             return Stream.concat(images.keySet().stream().map(s -> {
                 try {
@@ -301,7 +302,7 @@ public class SeamCarvingTest {
                             height,
                             newWidth,
                             imageToArray("./" + s + "_masked-expected.png", newWidth, height),
-                            s
+                            s + "-masked"
                     );
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -340,7 +341,7 @@ public class SeamCarvingTest {
         // Outputs a file showcasing the differences between the expected output (example/mine) and the tested function
         // This diff is primitive, so it doesn't reveal part of the solution
         // Black pixels -> pixels in expected match the tested output
-        // Red pixels -> pixels differ from expedted output
+        // Red pixels -> pixels differ from expected output
         void outputDiffImage(int[] imageExpected, int[] imageTest, String diffName, int width, int height) {
 
             BufferedImage expected = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
