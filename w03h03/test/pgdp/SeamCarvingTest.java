@@ -342,16 +342,37 @@ public class SeamCarvingTest {
         // Black pixels -> pixels in expected match the tested output
         // Red pixels -> pixels differ from expedted output
         void outputDiffImage(int[] imageExpected, int[] imageTest, String diffName, int width, int height) {
-            int[] diff = new int[imageExpected.length];
-            for (int i = 0; i < imageExpected.length; i++) {
-                if (imageExpected[i] == imageTest[i]) {
-                    diff[i] = 0;
-                } else {
-                    diff[i] = 16711680;
+
+            BufferedImage expected = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            expected.setRGB(0, 0, width, height, imageExpected, 0, width);
+
+            BufferedImage actual = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            actual.setRGB(0, 0, width, height, imageTest, 0, width);
+
+            BufferedImage diff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+
+                    Color c = new Color(expected.getRGB(x, y));
+                    float[] hsb = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
+                    int desaturated = Color.HSBtoRGB(hsb[0], hsb[1] / 5f, hsb[2]);
+                    if (expected.getRGB(x, y) == actual.getRGB(x, y)) {
+
+                        diff.setRGB(x, y, desaturated);
+                    } else {
+                        c = new Color(desaturated);
+                        int r = (c.getRed() + 255 * 5) / 6;
+                        int g = (c.getRed()) / 6;
+                        int b = (c.getRed()) / 6;
+                        diff.setRGB(x, y, new Color(r, g, b).getRGB());
+                    }
+
+
                 }
             }
 
-            saveImage(diffName, diff, width, height);
+            saveImage(diffName, diff);
         }
     }
 }
