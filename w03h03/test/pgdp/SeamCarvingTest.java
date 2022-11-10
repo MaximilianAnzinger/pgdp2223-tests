@@ -248,8 +248,8 @@ public class SeamCarvingTest {
         @MethodSource
         void testing_image(int[] input, int[] mask, int width, int height, int newWidth, int[] expected, String name) {
             int[] shrinkResult = (new SeamCarving()).shrink(input, mask, width, height, newWidth);
-            saveImage("./" + name + "TestOutput.png", shrinkResult, newWidth, height);
-            outputDiffImage(expected, shrinkResult, "./" + name + "Diff.png", newWidth, height);
+            saveImage("./" + name + "_test-output.png", shrinkResult, newWidth, height);
+            outputDiffImage(expected, shrinkResult, "./" + name + "_test-diff.png", newWidth, height);
             assertArrayEquals(expected, shrinkResult);
         }
 
