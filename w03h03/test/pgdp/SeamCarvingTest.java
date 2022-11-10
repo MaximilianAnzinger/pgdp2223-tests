@@ -32,9 +32,9 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class SeamCarvingTest {
     // Change this to whereever you decide to save the png-files
-    static final String filePathPrefixOut = "./test/pgdp/out/";
+    static final String PATH_OUT = "./test/out/";
 
-    static final String filePathPrefix = "./test/pgdp/";
+    static final String PATH_TEST_RESOURCES = "./test/resources/test/";
 
     @Nested
     @IndicativeSentencesGeneration(separator = " -> ", generator = DisplayNameGenerator.ReplaceUnderscores.class)
@@ -310,7 +310,7 @@ public class SeamCarvingTest {
         }
 
         static int[] imageToArray(String filePath, int width, int height) throws IOException {
-            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePathPrefix + filePath)));
+            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(PATH_TEST_RESOURCES + filePath)));
             BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics graphic = image.getGraphics();
             graphic.drawImage(in, 0, 0, null);
@@ -325,10 +325,10 @@ public class SeamCarvingTest {
         }
 
         void saveImage(String filePath, BufferedImage image) {
-            File outDir = new File(filePathPrefixOut);
+            File outDir = new File(PATH_OUT);
             try {
                 if (outDir.exists() || outDir.mkdirs()) {
-                    ImageIO.write(image, "png", new File(filePathPrefixOut + filePath));
+                    ImageIO.write(image, "png", new File(PATH_OUT + filePath));
                 } else {
                     throw new IOException("Could not create directories!");
                 }
