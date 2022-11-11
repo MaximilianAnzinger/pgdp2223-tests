@@ -21,6 +21,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -29,10 +31,10 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 public class SeamCarvingTest {
-    // Change this to whereever you decide to save the png-files
-    static final String filePathPrefixOut = "./test/pgdp/out/";
+    // Change this to wherever you decide to save the png-files
+    static final String PATH_OUT = "./test/out/";
 
-    static final String filePathPrefix = "./test/pgdp/";
+    static final String PATH_TEST_RESOURCES = "./test/resources/test/";
 
     @Nested
     @IndicativeSentencesGeneration(separator = " -> ", generator = DisplayNameGenerator.ReplaceUnderscores.class)
@@ -244,80 +246,72 @@ public class SeamCarvingTest {
     class Test_shrink {
         @ParameterizedTest
         @MethodSource
-        void testing_example_image(int[] image, int[] mask, int width, int height, int newWidth, int[] res) {
-            int[] shrinkResult = (new SeamCarving()).shrink(image, mask, width, height, newWidth);
-            arrayToImage("./exampleTestOutput.png", shrinkResult, newWidth, height);
-            outputDiffImage(res, shrinkResult, "./exampleDiff.png", newWidth, height);
-            assertArrayEquals(res, shrinkResult);
+        void testing_image(int[] input, int[] mask, int width, int height, int newWidth, int[] expected, String name) {
+            int[] shrinkResult = (new SeamCarving()).shrink(input, mask, width, height, newWidth);
+            saveImage("./" + name + "_test-output.png", shrinkResult, newWidth, height);
+            outputDiffImage(expected, shrinkResult, "./" + name + "_test-diff.png", newWidth, height);
+            assertArrayEquals(expected, shrinkResult);
         }
 
-        static Stream<Arguments> testing_example_image() throws IOException {
-            return Stream.of(
-                    arguments(
-                            imageToArray("./example.png", 876, 534),
-                            imageToArray("./mask.png", 876, 534),
-                            876,
-                            534,
-                            875,
-                            imageToArray("./expected.png", 875, 534)
-                    )
-            );
-        }
+        static Stream<Arguments> testing_image() {
 
-        @ParameterizedTest
-        @MethodSource
-        void testing_wikipedia_image(int[] image, int[] mask, int width, int height, int newWidth, int[] res) {
-            int[] shrinkResult = (new SeamCarving()).shrink(image, mask, width, height, newWidth);
-            arrayToImage("./wikipediaTestOutput.png", shrinkResult, newWidth, height);
-            outputDiffImage(res, shrinkResult, "./wikipediaDiff.png", newWidth, height);
-            assertArrayEquals(res, shrinkResult);
-        }
+            Map<String, int[]> images = new Hashtable<>();
+            images.put("wikipedia", new int[]{274, 186, 160});
+            images.put("tux", new int[]{712, 860, 420});
+            images.put("test-noise", new int[]{92, 66, 91});
+            images.put("test-noise-seam", new int[]{92, 66, 91});
 
-        static Stream<Arguments> testing_wikipedia_image() throws IOException {
-            return Stream.of(
-                    arguments(
-                            imageToArray("./wikipedia.png", 274, 186),
-                            // Note: this is just a white png
-                            imageToArray("./wikipediaMask.png", 274, 186),
-                            274,
-                            186,
-                            160,
-                            imageToArray("./wikipediaExpected.png", 160, 186)
-                    )
-            );
-        }
+            Map<String, int[]> imagesMasked = new Hashtable<>();
+            imagesMasked.put("example", new int[]{876, 534, 875});
+            imagesMasked.put("test-noise-seam", new int[]{92, 66, 91});
+            imagesMasked.put("test-noise", new int[]{92, 66, 80});
 
-        // NOTE: The main function in './src/pgdp/image/Main.java' removes alpha values before saving an image
-        // Meaning: 0 (which should be completely transparent) will be converted to black (not so transparent)
-        // Therefore an image with alpha values like 'tux.png' will be black where it should be transparent
-        // See: Main.java, l.107, setRGB(..., BufferedImage.INT_TYPE_RGB
-        @ParameterizedTest
-        @MethodSource
-        void testing_tux_image(int[] image, int[] mask, int width, int height, int newWidth, int[] res) {
-            int[] shrinkResult = (new SeamCarving()).shrink(image, mask, width, height, newWidth);
-            arrayToImage("./tuxTestOutput.png", shrinkResult, newWidth, height);
-            outputDiffImage(res, shrinkResult, "./tuxDiff.png", newWidth, height);
-            assertArrayEquals(res, shrinkResult);
-        }
+            return Stream.concat(images.keySet().stream().map(s -> {
+                try {
+                    int width = images.get(s)[0];
+                    int height = images.get(s)[1];
+                    int newWidth = images.get(s)[2];
 
-        static Stream<Arguments> testing_tux_image() throws IOException {
-            int[] mask = new int[612320];
-            Arrays.fill(mask, 1);
-            return Stream.of(
-                    arguments(
-                            imageToArray("./tux.png", 712, 860),
-                            // Note: this is just a white png
+                    int[] mask = new int[width * height];
+                    Arrays.fill(mask, -1);
+
+                    return arguments(
+                            imageToArray("./" + s + ".png", width, height),
                             mask,
-                            712,
-                            860,
-                            420,
-                            imageToArray("./tuxExpected.png", 420, 860)
-                    )
-            );
+                            width,
+                            height,
+                            newWidth,
+                            imageToArray("./" + s + "_expected.png", newWidth, height),
+                            s
+                    );
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }), imagesMasked.keySet().stream().map(s -> {
+                try {
+                    int width = imagesMasked.get(s)[0];
+                    int height = imagesMasked.get(s)[1];
+                    int newWidth = imagesMasked.get(s)[2];
+
+                    int[] mask = imageToArray("./" + s + "_mask.png", width, height);
+
+                    return arguments(
+                            imageToArray("./" + s + ".png", width, height),
+                            mask,
+                            width,
+                            height,
+                            newWidth,
+                            imageToArray("./" + s + "_masked-expected.png", newWidth, height),
+                            s + "-masked"
+                    );
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
         }
 
         static int[] imageToArray(String filePath, int width, int height) throws IOException {
-            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(filePathPrefix + filePath)));
+            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(PATH_TEST_RESOURCES + filePath)));
             BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics graphic = image.getGraphics();
             graphic.drawImage(in, 0, 0, null);
@@ -325,13 +319,17 @@ public class SeamCarvingTest {
             return image.getRGB(0, 0, width, height, null, 0, width);
         }
 
-        void arrayToImage(String filePath, int[] image, int width, int height) {
-            File outDir = new File(filePathPrefixOut);
+        void saveImage(String filePath, int[] image, int width, int height) {
             BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             output.setRGB(0, 0, width, height, image, 0, width);
+            saveImage(filePath, output);
+        }
+
+        void saveImage(String filePath, BufferedImage image) {
+            File outDir = new File(PATH_OUT);
             try {
-                if (outDir.exists() | outDir.mkdirs()) {
-                    ImageIO.write(output, "png", new File(filePathPrefixOut + filePath));
+                if (outDir.exists() || outDir.mkdirs()) {
+                    ImageIO.write(image, "png", new File(PATH_OUT + filePath));
                 } else {
                     throw new IOException("Could not create directories!");
                 }
@@ -343,17 +341,39 @@ public class SeamCarvingTest {
         // Outputs a file showcasing the differences between the expected output (example/mine) and the tested function
         // This diff is primitive, so it doesn't reveal part of the solution
         // Black pixels -> pixels in expected match the tested output
-        // Red pixels -> pixels differ from expedted output
+        // Red pixels -> pixels differ from expected output
         void outputDiffImage(int[] imageExpected, int[] imageTest, String diffName, int width, int height) {
-            int[] diff = new int[imageExpected.length];
-            for (int i = 0; i < imageExpected.length; i++) {
-                if (imageExpected[i] == imageTest[i]) {
-                    diff[i] = 0;
-                } else {
-                    diff[i] = 16711680;
+
+            BufferedImage expected = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            expected.setRGB(0, 0, width, height, imageExpected, 0, width);
+
+            BufferedImage actual = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            actual.setRGB(0, 0, width, height, imageTest, 0, width);
+
+            BufferedImage diff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+
+                    Color c = new Color(expected.getRGB(x, y));
+                    float[] hsb = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
+                    int desaturated = Color.HSBtoRGB(hsb[0], hsb[1] / 5f, hsb[2]);
+                    if (expected.getRGB(x, y) == actual.getRGB(x, y)) {
+
+                        diff.setRGB(x, y, desaturated);
+                    } else {
+                        c = new Color(desaturated);
+                        int r = (c.getRed() + 255 * 5) / 6;
+                        int g = (c.getRed()) / 6;
+                        int b = (c.getRed()) / 6;
+                        diff.setRGB(x, y, new Color(r, g, b).getRGB());
+                    }
+
+
                 }
             }
-            arrayToImage(diffName, diff, width, height);
+
+            saveImage(diffName, diff);
         }
     }
 }
