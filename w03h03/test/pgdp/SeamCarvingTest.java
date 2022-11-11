@@ -249,6 +249,7 @@ public class SeamCarvingTest {
         void testing_image(int[] input, int[] mask, int width, int height, int newWidth, int[] expected, String name) {
             int[] shrinkResult = (new SeamCarving()).shrink(input, mask, width, height, newWidth);
             saveImage("./" + name + "_test-output.png", shrinkResult, newWidth, height);
+
             outputDiffImage(expected, shrinkResult, "./" + name + "_test-diff.png", newWidth, height);
             assertArrayEquals(expected, shrinkResult);
         }
@@ -310,13 +311,18 @@ public class SeamCarvingTest {
             }));
         }
 
+        static void removeAlpha(int[] img) {
+            for (int i = 0; i < img.length; i++) {
+                img[i] = img[i] & 0xFFFFFF;
+            }
+        }
+
         static int[] imageToArray(String filePath, int width, int height) throws IOException {
-            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(PATH_TEST_RESOURCES + filePath)));
-            BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
-            Graphics graphic = image.getGraphics();
-            graphic.drawImage(in, 0, 0, null);
-            graphic.dispose();
-            return image.getRGB(0, 0, width, height, null, 0, width);
+            BufferedImage inputImage = ImageIO.read(new File(PATH_TEST_RESOURCES + filePath));
+            int[] input = inputImage.getRGB(0, 0, width, height, null, 0, width);
+            removeAlpha(input);
+
+            return input;
         }
 
         void saveImage(String filePath, int[] image, int width, int height) {
