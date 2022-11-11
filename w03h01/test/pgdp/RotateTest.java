@@ -75,6 +75,60 @@ public class RotateTest {
         );
     }
 
+    @DisplayName("Integer.MAX_VALUE amount")
+    @MethodSource
+    void maxValueAmount(int[] input, int amount, int[] expected) {
+        ArrayFunctions.rotate(input, amount);
+        assertArrayEquals(expected, input);
+    }
+
+    private static Stream<Arguments> maxValueAmount() {
+        return Stream.of(
+                arguments(
+                        new int[]{1, 2},
+                        Integer.MAX_VALUE,
+                        new int[]{2, 1}
+                ),
+                arguments(
+                        new int[]{1, 2, 3},
+                        Integer.MAX_VALUE,
+                        new int[]{3, 1, 2}
+                ),
+                arguments(
+                        new int[]{1, 2, 3, 4},
+                        Integer.MAX_VALUE,
+                        new int[]{4, 1, 2, 3}
+                )
+        );
+    }
+
+    @DisplayName("Integer.MIN_VALUE amount")
+    @MethodSource
+    void minValueAmount(int[] input, int amount, int[] expected) {
+        ArrayFunctions.rotate(input, amount);
+        assertArrayEquals(expected, input);
+    }
+
+    private static Stream<Arguments> minValueAmount() {
+        return Stream.of(
+                arguments(
+                        new int[]{1, 2},
+                        Integer.MIN_VALUE,
+                        new int[]{1, 2}
+                ),
+                arguments(
+                        new int[]{1, 2, 3},
+                        Integer.MIN_VALUE,
+                        new int[]{3, 1, 2}
+                ),
+                arguments(
+                        new int[]{1, 2, 3, 4},
+                        Integer.MIN_VALUE,
+                        new int[]{1, 2, 3, 4}
+                )
+        );
+    }
+
     @ParameterizedTest
     @DisplayName("No rotation")
     @MethodSource
@@ -104,6 +158,16 @@ public class RotateTest {
                         new int[]{1, 2, 3},
                         -9,
                         new int[]{1, 2, 3}
+                ),
+                arguments(
+                        new int[]{1},
+                        Integer.MAX_VALUE,
+                        new int[]{1}
+                ),
+                arguments(
+                        new int[]{1},
+                        Integer.MIN_VALUE,
+                        new int[]{1}
                 )
         );
     }
@@ -116,7 +180,10 @@ public class RotateTest {
         ArrayFunctions.rotate(a, 0);
         ArrayFunctions.rotate(a, 1);
         ArrayFunctions.rotate(a, -12345);
+        ArrayFunctions.rotate(a, Integer.MAX_VALUE);
+        ArrayFunctions.rotate(a, Integer.MIN_VALUE);
 
         assertArrayEquals(new int[0], a);
     }
+
 }
