@@ -71,7 +71,12 @@ class UnitTest {
         int[][] expected = new int[][] {{-3, 2}, {-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
         int[][] expectedAlternative = new int[][] {{-3, 2}, {-2, 1},{-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
         int[][] actual = quickHull(points);
-        
+
+        /* You can include or exclude a point that is on a line between to other points
+         Both answers will be graded as correct:
+         https://zulip.in.tum.de/#narrow/stream/1451-PGdP-W04H03/topic/.C3.9Cberfl.C3.BCssige.20Ecken/near/785061
+        */
+
         boolean matchesExpected = true;
         for (int i = 0; i < expected.length; i++) {
             int[] expectedPoint = expected[i];
@@ -91,6 +96,7 @@ class UnitTest {
                 break;
             }
         }
+
 
         Assertions.assertFalse(!matchesExpected && !matchesAlternative, "Output of quickHull is not correct!");
 
