@@ -100,26 +100,6 @@ public class MoreSeamCarvingTests {
             assertArrayEquals(image2_result, gradientMagnitudesOfFlatImage);
         }
 
-        @Test
-        void toGradientMagnitude0x6Image(){
-            int[] image2 = {   //the format of the hex codes is mixed on purpose to make sure every valid entry (w and w/o transparency) works
-                      0xffffff,   0x780000,      0x000,        0x0,  0xfffffff,
-                    0xffffffff,        0x0, 0x23ff1291,   0x008200, 0xffffe6c8,
-                      0xffffff,   0xdbdeff,  0xf6dff9f,   0xffffff,   0xffffff,
-                      0x6f12ff, 0x22ff9424,   0xbfc800,   0xda80ff,        0x0,
-                    0xffffffff, 0xdeffffff,       0x00,   0xffffff,  0x56912ff,
-                    0x01ffffff,        0x0,   0xffffff,   0x80caff,  0xfffffff
-            };
-            int width = 0;
-            int height = 6;
-            int[] gradientMagnitudesOfFlatImage = new int[width*height];
-            var seamcarving = new SeamCarving();
-            seamcarving.toGradientMagnitude(image2, gradientMagnitudesOfFlatImage, width, height);
-
-            int[] image2_result = {};
-            assertArrayEquals(image2_result, gradientMagnitudesOfFlatImage);
-        }
-
         // ++++++++++++++++++++++++++++++++++++++++++++++++
         // TEST combineMagnitudeWithMask()
         // ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -463,5 +443,69 @@ public class MoreSeamCarvingTests {
 
             assertArrayEquals(expectedImage, shrunkImage);
         }
+
+    @Test
+    void shrink5x0ImageBy2PixelsIneffectiveMask() {
+        int[] image1 = {   //the format of the hex codes is mixed on purpose to make sure every valid entry (w and w/o transparency) works
+                0xffffff, 0x780000, 0x000, 0x0, 0xfffffff,
+                0xffffffff, 0x0, 0x23ff1291, 0x008200, 0xffffe6c8,
+                0xffffff, 0xdbdeff, 0xf6dff9f, 0xffffff, 0xffffff,
+                0x6f12ff, 0x22ff9424, 0xbfc800, 0xda80ff, 0x0,
+                0xffffffff, 0xdeffffff, 0x00, 0xffffff, 0x56912ff,
+                0x01ffffff, 0x0, 0xffffff, 0x80caff, 0xfffffff
+        };
+
+        int[] mask = {
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff
+        };
+
+        int width = 5;
+        int newWidth = 3;
+        int height = 0;
+
+        var seamcarving = new SeamCarving();
+        int[] shrunkImage = seamcarving.shrink(image1, mask, width, height, newWidth);
+
+        int[] expectedImage = {};
+
+        assertArrayEquals(expectedImage, shrunkImage);
+    }
+
+    @Test
+    void shrink0x6ImageBy2PixelsIneffectiveMask() {
+        int[] image1 = {   //the format of the hex codes is mixed on purpose to make sure every valid entry (w and w/o transparency) works
+                0xffffff, 0x780000, 0x000, 0x0, 0xfffffff,
+                0xffffffff, 0x0, 0x23ff1291, 0x008200, 0xffffe6c8,
+                0xffffff, 0xdbdeff, 0xf6dff9f, 0xffffff, 0xffffff,
+                0x6f12ff, 0x22ff9424, 0xbfc800, 0xda80ff, 0x0,
+                0xffffffff, 0xdeffffff, 0x00, 0xffffff, 0x56912ff,
+                0x01ffffff, 0x0, 0xffffff, 0x80caff, 0xfffffff
+        };
+
+        int[] mask = {
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff,
+                0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff
+        };
+
+        int width = 0;
+        int newWidth = 0;
+        int height = 6;
+
+        var seamcarving = new SeamCarving();
+        int[] shrunkImage = seamcarving.shrink(image1, mask, width, height, newWidth);
+
+        int[] expectedImage = {};
+
+        assertArrayEquals(expectedImage, shrunkImage);
+    }
 
 }
