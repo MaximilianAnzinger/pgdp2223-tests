@@ -1,4 +1,10 @@
-public class QuickHallLeftOfExample {
+package pgdp.convexhull;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.*;
+
+public class OpenConvexHullExample {
     /**
      * Tests the example for creating an open convex hull.
      * See here for a visualization of the example:
@@ -34,4 +40,6 @@ public class QuickHallLeftOfExample {
         final var actual = QuickHull.quickHullLeftOf(points, p, q);
         assertArrayEquals(expectedLeftHull, actual);
     }
+
+
 }
