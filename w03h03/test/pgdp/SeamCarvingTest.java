@@ -41,8 +41,8 @@ public class SeamCarvingTest {
     class Test_compute_gradient_magnitude {
         @ParameterizedTest
         @MethodSource
-        void testing_compute_gradient_magnitude(int v1, int v2, int res) {
-            assertEquals((new SeamCarving()).computeGradientMagnitude(v1, v2), res);
+        void testing_compute_gradient_magnitude(int v1, int v2, int expected) {
+            assertEquals(expected, new SeamCarving().computeGradientMagnitude(v1, v2));
         }
 
         static Stream<Arguments> testing_compute_gradient_magnitude() {
@@ -64,9 +64,9 @@ public class SeamCarvingTest {
     class Test_to_gradient_magnitude {
         @ParameterizedTest
         @MethodSource
-        void testing_to_gradient_magnitude(int[] image, int[] gradientMagnitude, int width, int height, int[] res) {
-            (new SeamCarving()).toGradientMagnitude(image, gradientMagnitude, width, height);
-            assertArrayEquals(gradientMagnitude, res);
+        void testing_to_gradient_magnitude(int[] image, int[] gradientMagnitude, int width, int height, int[] expected) {
+            new SeamCarving().toGradientMagnitude(image, gradientMagnitude, width, height);
+            assertArrayEquals(expected, gradientMagnitude);
         }
 
         static Stream<Arguments> testing_to_gradient_magnitude() {
@@ -105,9 +105,9 @@ public class SeamCarvingTest {
     class Test_combine_magnitude_with_mask {
         @ParameterizedTest
         @MethodSource
-        void testing_combine_magnitude_with_mask(int[] gradientMagnitude, int[] mask, int width, int height, int[] res) {
-            (new SeamCarving()).combineMagnitudeWithMask(gradientMagnitude, mask, width, height);
-            assertArrayEquals(gradientMagnitude, res);
+        void testing_combine_magnitude_with_mask(int[] gradientMagnitude, int[] mask, int width, int height, int[] expected) {
+            new SeamCarving().combineMagnitudeWithMask(gradientMagnitude, mask, width, height);
+            assertArrayEquals(expected, gradientMagnitude);
         }
 
         static Stream<Arguments> testing_combine_magnitude_with_mask() {
@@ -151,9 +151,9 @@ public class SeamCarvingTest {
     class Test_build_seam {
         @ParameterizedTest
         @MethodSource
-        void testing_build_seams_seamsArray(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, int[][] res) {
-            (new SeamCarving()).buildSeams(seams, seamWeights, gradientMagnitude, width, height);
-            assertArrayEquals(seams, res);
+        void testing_build_seams_seamsArray(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, int[][] expected) {
+            new SeamCarving().buildSeams(seams, seamWeights, gradientMagnitude, width, height);
+            assertArrayEquals(expected, seams);
         }
 
         static Stream<Arguments> testing_build_seams_seamsArray() {
@@ -177,9 +177,9 @@ public class SeamCarvingTest {
 
         @ParameterizedTest
         @MethodSource
-        void testing_build_seams_seamWeights(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, long[] res) {
-            (new SeamCarving()).buildSeams(seams, seamWeights, gradientMagnitude, width, height);
-            assertArrayEquals(seamWeights, res);
+        void testing_build_seams_seamWeights(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, long[] expected) {
+            new SeamCarving().buildSeams(seams, seamWeights, gradientMagnitude, width, height);
+            assertArrayEquals(expected, seamWeights);
         }
 
         static Stream<Arguments> testing_build_seams_seamWeights() {
@@ -207,11 +207,11 @@ public class SeamCarvingTest {
     class Test_remove_seam {
         @ParameterizedTest
         @MethodSource
-        void testing_remove_seam(int[] image, int[] seam, int width, int height, int[] res) {
-            (new SeamCarving()).removeSeam(seam, image, height, width);
+        void testing_remove_seam(int[] image, int[] seam, int width, int height, int[] expected) {
+            new SeamCarving().removeSeam(seam, image, height, width);
             int[] newImage = new int[25];
             System.arraycopy(image, 0, newImage, 0, 25);
-            assertArrayEquals(newImage, res);
+            assertArrayEquals(expected, newImage);
         }
 
         static Stream<Arguments> testing_remove_seam() {
@@ -247,7 +247,7 @@ public class SeamCarvingTest {
         @ParameterizedTest
         @MethodSource
         void testing_image(int[] input, int[] mask, int width, int height, int newWidth, int[] expected, String name) {
-            int[] shrinkResult = (new SeamCarving()).shrink(input, mask, width, height, newWidth);
+            int[] shrinkResult = new SeamCarving().shrink(input, mask, width, height, newWidth);
             saveImage("./" + name + "_test-output.png", shrinkResult, newWidth, height);
 
             outputDiffImage(expected, shrinkResult, "./" + name + "_test-diff.png", newWidth, height);
