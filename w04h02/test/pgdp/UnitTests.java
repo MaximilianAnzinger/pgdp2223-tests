@@ -56,13 +56,13 @@ public class UnitTests {
         return out.toString().lines().toList();
     }
 
-    private void assertArrayEquals(int[] expected, int[] actual, String message) {
+    private void assertArrayEquals(int[] actual, int[] expected, String message) {
         if (!Arrays.equals(expected, actual)) {
             fail(message + "\nExpected: " + Arrays.toString(expected) + "\nActual: " + Arrays.toString(actual));
         }
     }
 
-    private void assertArrayEquals(int[][] expected, int[][] actual, String message) {
+    private void assertArrayEquals(int[][] actual, int[][] expected, String message) {
         if (!Arrays.deepEquals(expected, actual)) {
             fail(message + "\nExpected: " + Arrays.deepToString(expected) + "\nActual: " + Arrays.deepToString(actual));
         }
