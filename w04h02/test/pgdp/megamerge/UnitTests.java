@@ -1,4 +1,4 @@
-package pgdp;
+package pgdp.megamerge;
 
 import jdk.jfr.Name;
 import org.junit.jupiter.api.*;
