@@ -53,6 +53,7 @@ class RecursivePingulogyTest {
         Assertions.assertTimeout(Duration.ofSeconds(1), () -> RecursivePingulogy.pinguSequenceRec(40, 1, 1, 2), "Nicht Einhaltung des Zeitlimits von einer Sekunde");
         Assertions.assertTimeout(Duration.ofSeconds(1), () -> RecursivePingulogy.pinguSequenceRec(144, 1, 1, 2), "Nicht Einhaltung des Zeitlimits von einer Sekunde");
     }
+
     private void testpinguSequenceRecPositiv(long[][] array, int p0, int p1, int p2) {
         for (long[] i : array) {
             assertEquals(i[1], RecursivePingulogy.pinguSequenceRec((int) i[0], p0, p1, p2));
