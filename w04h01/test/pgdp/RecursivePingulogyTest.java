@@ -38,6 +38,12 @@ class RecursivePingulogyTest {
         testpinguSequenzRecNegativ(test2, 1, 2, 2);
     }
 
+    @Test
+    @DisplayName("Teste p=(0,0,0)")
+    void testPinguSequenzVektorAusNullen() {
+        testpinguSequenceRecPositiv(new long[][]{{144, 0L}}, 0, 0, 0);
+    }
+
     private void testpinguSequenceRecPositiv(long[][] array, int p0, int p1, int p2) {
         for (long[] i : array) {
             assertEquals(i[1], RecursivePingulogy.pinguSequenceRec((int) i[0], p0, p1, p2));
