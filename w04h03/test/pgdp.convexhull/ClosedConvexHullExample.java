@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Arrays;
+
 class ClosedConvexHullExample {
     /**
      * Tests the example for creating a closed convex hull.
@@ -41,7 +43,19 @@ class ClosedConvexHullExample {
                 {-2, 5},
                 {-3, 2}
         };
+
+        final var alternativeExpectedHull = new int[][]{
+                {-3, 2},
+                {-1, 0},
+                {3, -1},
+                {4, 3},
+                {3, 5},
+                {1, 6},
+                {-2, 5},
+                {-3, 2}
+        };
         final var actual = QuickHull.quickHull(points);
-        assertArrayEquals(expectedHull, actual);
+
+        assertTrue(Arrays.deepEquals(actual, expectedHull) || Arrays.deepEquals(actual, alternativeExpectedHull));
     }
 }
