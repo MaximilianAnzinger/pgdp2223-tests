@@ -3,9 +3,12 @@ package pgdp;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pgdp.pingulogy.RecursivePingulogy;
+
+import java.time.Duration;
 
 
 class RecursivePingulogyTest {
@@ -44,6 +47,11 @@ class RecursivePingulogyTest {
         testpinguSequenceRecPositiv(new long[][]{{144, 0L}}, 0, 0, 0);
     }
 
+    @Test
+    @DisplayName("Test timelimit")
+    void testTimeLimit(){
+        Assertions.assertTimeout(Duration.ofSeconds(1), () -> RecursivePingulogy.pinguSequenceRec(40, 1, 1, 2), "Nicht Einhaltung des Zeitlimits von einer Sekunde");
+    }
     private void testpinguSequenceRecPositiv(long[][] array, int p0, int p1, int p2) {
         for (long[] i : array) {
             assertEquals(i[1], RecursivePingulogy.pinguSequenceRec((int) i[0], p0, p1, p2));
