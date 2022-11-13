@@ -2,6 +2,7 @@ package pgdp;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -52,6 +53,12 @@ class RecursivePingulogyTest {
     void testTimeLimit(){
         Assertions.assertTimeout(Duration.ofSeconds(1), () -> RecursivePingulogy.pinguSequenceRec(40, 1, 1, 2), "Nicht Einhaltung des Zeitlimits von einer Sekunde");
         Assertions.assertTimeout(Duration.ofSeconds(1), () -> RecursivePingulogy.pinguSequenceRec(144, 1, 1, 2), "Nicht Einhaltung des Zeitlimits von einer Sekunde");
+    }
+
+    @Test
+    @DisplayName("Test reset static variablen")
+    void testReset(){
+        assertNotEquals(RecursivePingulogy.pinguSequenceRec(40, 1, 1, 2), RecursivePingulogy.pinguSequenceRec(40, 2, 2, 2));
     }
 
     private void testpinguSequenceRecPositiv(long[][] array, int p0, int p1, int p2) {
