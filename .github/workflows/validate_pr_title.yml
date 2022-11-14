@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: Slashgear/action-check-pr-title@3.0.0
+      - uses: Slashgear/action-check-pr-title@v3.0.0
         with:
           regex: '^(\[W[0-9]{2}H[0-9]{2}\][ ]|\[\*\][ ])'
