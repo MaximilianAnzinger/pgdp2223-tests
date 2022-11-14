@@ -158,20 +158,43 @@ public class SeamCarvingTest {
 
         static Stream<Arguments> testing_build_seams_seamsArray() {
             return Stream.of(
-                    arguments(
-                            new int[6][5],
-                            new long[6],
-                            new int[]{
-                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
-                                    1, 1, 1, 1, 1, 1,
-                                    69, 420, 42, 42, 42, 1337,
-                                    100, 10, 666, 20, 3, 10,
-                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE
-                            },
-                            6,
-                            5,
-                            new int[][]{new int[]{0, 0, 0, 1, 1}, new int[]{1, 1, 2, 1, 1}, new int[]{2, 2, 2, 1, 1}, new int[]{3, 3, 3, 4, 4}, new int[]{4, 4, 4, 4, 4}, new int[]{5, 5, 4, 4, 4}}
-                    )
+                arguments(
+                    new int[6][5],
+                    new long[6],
+                    new int[] {
+                        Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                        Integer.MAX_VALUE,
+                        1, 1, 1, 1, 1, 1,
+                        69, 420, 42, 42, 42, 1337,
+                        100, 10, 666, 20, 3, 10,
+                        Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                        Integer.MAX_VALUE
+                    },
+                    6,
+                    5,
+                    new int[][] {
+                        {0, 0, 0, 1, 1},
+                        {1, 1, 2, 1, 1},
+                        {2, 2, 2, 1, 1},
+                        {3, 3, 3, 4, 4},
+                        {4, 4, 4, 4, 4},
+                        {5, 5, 4, 4, 4}
+                    }
+                ),
+                arguments(
+                    new int[2][2],
+                    new long[2],
+                    new int[] {
+                        Integer.MAX_VALUE, Integer.MAX_VALUE,
+                        Integer.MAX_VALUE, Integer.MAX_VALUE,
+                    },
+                    2,
+                    2,
+                    new int[][] {
+                        {0, 0},
+                        {1, 1}
+                    }
+                )
             );
         }
 
