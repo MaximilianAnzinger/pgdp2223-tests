@@ -34,6 +34,55 @@ class UnitTest {
     }
 
     @Test
+    @DisplayName("Testing combineHulls for empty hulls.")
+    public void testEmptyHulls() {
+        int[][][] firstHull = {
+                {},
+                {{1, 2}, {2, 3}},
+                {},
+                null,
+                {{1, 2}, {2, 3}},
+                null,
+                {},
+                null
+        };
+        int[][][] secondHull = {
+                {{1, 2}, {2, 3}},
+                {},
+                {},
+                {{1, 2}, {2, 3}},
+                null,
+                null,
+                null,
+                {}
+        };
+        int[][][] expected = {
+                {{1, 2}, {2, 3}},
+                {{1, 2}, {2, 3}},
+                {},
+                {{1, 2}, {2, 3}},
+                {{1, 2}, {2, 3}},
+                {},
+                {},
+                {}
+        };
+        String[] message = {
+                "Incorrect result when first hull is empty.",
+                "Incorrect result when second hull is empty.",
+                "Incorrect result when both hulls are empty.",
+                "Incorrect result when first hull is null.",
+                "Incorrect result when second hull is null.",
+                "Incorrect result when both hulls are null.",
+                "Incorrect result when first hull is empty and second hull is null.",
+                "Incorrect result when first hull is null and second hull is empty."
+        };
+        for (int t = 0; t < message.length; ++t) {
+            int[][] actual = combineHulls(firstHull[t], secondHull[t]);
+            for (int i = 0; i < expected[t].length; i++) assertArrayEquals(expected[t][i], actual[i], message[t]);
+        }
+    }
+
+    @Test
     @DisplayName("Testing quickHullLeftOf method.")
     public void testQuickHullLeftOf(){
         int[][] points = new int[][] {
@@ -101,5 +150,67 @@ class UnitTest {
         Assertions.assertFalse(!matchesExpected && !matchesAlternative, "Output of quickHull is not correct!");
 
 
+    }
+
+    @Test
+    @DisplayName("Testing quickHullLeftOf for null / invalid points.")
+    public void testQuickHullLeftOfInvalidInput() {
+        int[][] points = new int[][] {{1,2},{3,4}};
+        int[][] p = {
+            null,
+            {1,2},
+            null,
+            {},
+            {1, 2},
+            {},
+            {3, 4, 5},
+            {1, 2},
+            {3, 4, 5},
+            null,
+            {3, 4, 5}
+        };
+        int[][] q = {
+            {1,2},
+            null,
+            null,
+            {1, 2},
+            {},
+            {},
+            {1, 2},
+            {3, 4, 5},
+            {3, 4, 5},
+            {3, 4, 5},
+            null
+        };
+        int[][][] expected = {
+            {{1, 2}},
+            {{1, 2}},
+            {},
+            {{1, 2}},
+            {{1, 2}},
+            {},
+            {{1, 2}},
+            {{1, 2}},
+            {},
+            {},
+            {}
+        };
+        String[] message = {
+            "Incorrect result when p is null.",
+            "Incorrect result when q is null.",
+            "Incorrect result when both p and q are null.",
+            "Incorrect result when p is empty.",
+            "Incorrect result when q is empty.",
+            "Incorrect result when both p and q are empty.",
+            "Incorrect result when p is invalid.",
+            "Incorrect result when q is invalid.",
+            "Incorrect result when both p and q are invalid.",
+            "Incorrect result when p is null and q is invalid.",
+            "Incorrect result when p is invalid and q is null."
+        };
+        for (int t = 0; t < message.length; ++t) {
+            int[][] actual = quickHullLeftOf(points, p[t], q[t]);
+            for (int i = 0; i < expected[t].length; i++) assertArrayEquals(expected[t][i], actual[i], message[t]);
+        }
     }
 }
