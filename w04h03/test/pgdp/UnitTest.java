@@ -64,36 +64,6 @@ class UnitTest {
                         new int[][]{},
                         new int[][]{},
                         "Incorrect result when both hulls are empty."
-                ),
-                Arguments.arguments(
-                        null,
-                        new int[][]{{1, 2}, {2, 3}},
-                        new int[][]{{1, 2}, {2, 3}},
-                        "Incorrect result when first hull is null."
-                ),
-                Arguments.arguments(
-                        new int[][]{{1, 2}, {2, 3}},
-                        null,
-                        new int[][]{{1, 2}, {2, 3}},
-                        "Incorrect result when second hull is null."
-                ),
-                Arguments.arguments(
-                        null,
-                        null,
-                        new int[][]{},
-                        "Incorrect result when both hulls are null."
-                ),
-                Arguments.arguments(
-                        new int[][]{},
-                        null,
-                        new int[][]{},
-                        "Incorrect result when first hull is empty and second hull is null."
-                ),
-                Arguments.arguments(
-                        null,
-                        new int[][]{},
-                        new int[][]{},
-                        "Incorrect result when first hull is null and second hull is empty."
                 )
         );
     }
@@ -143,88 +113,6 @@ class UnitTest {
         boolean equals = Arrays.deepEquals(expected, actual) || Arrays.deepEquals(expectedAlternative, actual);
         Assertions.assertTrue(equals, "Output of quickHull is not correct! Got: " + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected) + " or " + Arrays.deepToString(expectedAlternative));
 
-    }
-
-    @ParameterizedTest
-    @MethodSource
-    @DisplayName("Testing quickHullLeftOf for null / invalid points. Your implementation does not have to pass this. It ist undefined behaviour!")
-    public void testQuickHullLeftOfInvalidInput(int[] p, int[] q, int[][] expected, String message) {
-        int[][] points = new int[][]{{1, 2}, {3, 4}};
-        int[][] actual = quickHullLeftOf(points, p, q);
-        message = message + " Got: " + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected);
-        assertArrayEquals(expected, actual, message);
-    }
-
-    public static Stream<Arguments> testQuickHullLeftOfInvalidInput() {
-        return Stream.of(
-                Arguments.arguments(
-                        null,
-                        new int[]{1, 2},
-                        new int[][]{{1, 2}},
-                        "Incorrect result when p is null."
-                ),
-                Arguments.arguments(
-                        new int[]{1, 2},
-                        null,
-                        new int[][]{{1, 2}},
-                        "Incorrect result when q is null."
-                ),
-                Arguments.arguments(
-                        null,
-                        null,
-                        new int[][]{},
-                        "Incorrect result when both p and q are null."
-                ),
-                Arguments.arguments(
-                        new int[]{},
-                        new int[]{1, 2},
-                        new int[][]{{1, 2}},
-                        "Incorrect result when p is empty."
-                ),
-                Arguments.arguments(
-                        new int[]{1, 2},
-                        new int[]{},
-                        new int[][]{{1, 2}},
-                        "Incorrect result when q is empty."
-                ),
-                Arguments.arguments(
-                        new int[]{},
-                        new int[]{},
-                        new int[][]{},
-                        "Incorrect result when both p and q are empty."
-                ),
-                Arguments.arguments(
-                        new int[]{3, 4, 5},
-                        new int[]{1, 2},
-                        new int[][]{{1, 2}},
-                        "Incorrect result when p is invalid."
-                ),
-                Arguments.arguments(
-                        new int[]{1, 2},
-                        new int[]{3, 4, 5},
-                        new int[][]{{1, 2}},
-                        "Incorrect result when q is invalid."
-                ),
-                Arguments.arguments(
-                        new int[]{3, 4, 5},
-                        new int[]{3, 4, 5},
-                        new int[][]{},
-                        "Incorrect result when both p and q are invalid."
-                ),
-
-                Arguments.arguments(
-                        null,
-                        new int[]{3, 4, 5},
-                        new int[][]{},
-                        "Incorrect result when p is null and q is invalid."
-                ),
-                Arguments.arguments(
-                        new int[]{3, 4, 5},
-                        new int[]{3, 4, 5},
-                        new int[][]{},
-                        "Incorrect result when p is invalid and q is null."
-                )
-        );
     }
 
 }
