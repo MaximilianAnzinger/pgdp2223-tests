@@ -1,32 +1,38 @@
 package pgdp.megamerge;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static pgdp.megamerge.MegaMergeSortTest.NO_RECURSIONS_EXPECTED;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-
 public class MegaMergeSortTest {
+
+    // Better description for magic number "0"
+    static final int NO_RECURSIONS_EXPECTED = 0;
+
     @ParameterizedTest
     @DisplayName("Correct sorting")
     @MethodSource
-    void correctSorting(int[] a, int div, int[] result) {
-        assertArrayEquals(result, (new MegaMergeSort()).megaMergeSort(a, div));
+    void correctSorting(int[] a, int div, int[] expected) {
+        int[] actual = (new MegaMergeSort()).megaMergeSort(a, div);
+        assertArrayEquals(expected, actual, Arrays.toString(a) + " div " + div + "\ndid not get sorted to\n\t" + Arrays.toString(expected) +
+                                            "\nIt was sorted to:\n\t" + Arrays.toString(actual) + "\n");
     }
 
     private static ArrayList<Arguments> correctSorting() {
         int[][] arrays = new int[][]{
-                {7, 6, 1, 2, 5, 9, 3, 4, 8},
-                {8, -6, 3, Integer.MAX_VALUE, Integer.MIN_VALUE, 2, 8, 0, -10, 11, 0},
-                {1, 8, 6, -3, 7, -89, 784632, Integer.MIN_VALUE, 0, 0, 0, -1, 69, 2, 12345, -1}
+            {7, 6, 1, 2, 5, 9, 3, 4, 8},
+            {8, -6, 3, Integer.MAX_VALUE, Integer.MIN_VALUE, 2, 8, 0, -10, 11, 0},
+            {1, 8, 6, -3, 7, -89, 784632, Integer.MIN_VALUE, 0, 0, 0, -1, 69, 2, 12345, -1}
         };
 
         ArrayList<Arguments> inputs = new ArrayList<>();
@@ -58,84 +64,103 @@ public class MegaMergeSortTest {
     @ParameterizedTest
     @DisplayName("Array split")
     @MethodSource
-    void arraySplit(int[] a, int div, int[][] expectedSplit) {
-        SortWrapper wrapper = new SortWrapper();
+    void arraySplit(int[] a, int div, int expectedRecursionDepth, int[][] expectedSplit) {
+        SortWrapper wrapper = new SortWrapper(expectedRecursionDepth);
         int[][] actualSplit = wrapper.megaMergeSortSplit(a, div);
 
         if (!Arrays.deepEquals(expectedSplit, actualSplit)) {
             String msg = "Incorrect split!\n" +
-                    "Expected:\t" + Arrays.deepToString(expectedSplit) +
-                    "\nActual:\t\t" + Arrays.deepToString(actualSplit);
+                         "Expected:\t" + Arrays.deepToString(expectedSplit) +
+                         "\nActual:\t\t" + Arrays.deepToString(actualSplit);
             fail(msg);
         }
     }
 
     private static Stream<Arguments> arraySplit() {
         return Stream.of(
-                arguments(
-                        new int[]{1, 2, 3, 4, 5, 6, 7, 8},
-                        3,
-                        new int[][]{
-                                {1, 2, 3},
-                                {4, 5, 6},
-                                {7, 8}
-                        }
-                ),
-                arguments(
-                        new int[]{1, 2, 3},
-                        3,
-                        new int[][]{
-                                {1},
-                                {2},
-                                {3}
-                        }
-                ),
-                arguments(
-                        new int[]{7, 8},
-                        3,
-                        new int[][]{
-                                {7},
-                                {8},
-                                {}
-                        }
-                ),
-                arguments(
-                        new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-                        3,
-                        new int[][]{
-                                {1, 2, 3, 4},
-                                {5, 6, 7},
-                                {8, 9, 10}
-                        }
-                ),
-                arguments(
-                        new int[]{1, 2},
-                        5,
-                        new int[][]{
-                                {1},
-                                {2},
-                                {},
-                                {},
-                                {}
-                        }
-                )
+            arguments(
+                new int[]{1, 2, 3, 4, 5, 6, 7, 8},
+                3,
+                1,
+                new int[][]{
+                    {1, 2, 3},
+                    {4, 5, 6},
+                    {7, 8}
+                }
+            ),
+            arguments(
+                new int[]{1, 2, 3},
+                3,
+                NO_RECURSIONS_EXPECTED,
+                new int[][]{
+                    {1},
+                    {2},
+                    {3}
+                }
+            ),
+            arguments(
+                new int[]{7, 8},
+                3,
+                NO_RECURSIONS_EXPECTED,
+                new int[][]{
+                    {7},
+                    {8},
+                    {}
+                }
+            ),
+            arguments(
+                new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+                3,
+                1,
+                new int[][]{
+                    {1, 2, 3, 4},
+                    {5, 6, 7},
+                    {8, 9, 10}
+                }
+            ),
+            arguments(
+                new int[]{1, 2},
+                5,
+                NO_RECURSIONS_EXPECTED,
+                new int[][]{
+                    {1},
+                    {2},
+                    {},
+                    {},
+                    {}
+                }
+            )
         );
     }
 }
 
 class SortWrapper extends MegaMergeSort {
+
     private final ArrayList<int[]> split = new ArrayList<>();
+    private final int expectedRecursiveCalls;
+
+    SortWrapper(int expectedRecursiveCalls) {
+        this.expectedRecursiveCalls = expectedRecursiveCalls;
+    }
 
     @Override
     protected int[] megaMergeSort(int[] array, int div, int from, int to) {
         int[] result = super.megaMergeSort(array, div, from, to);
 
         // I can't think of a better way to check if this is the second level of recursion
-        if (Thread.currentThread().getStackTrace()[3].getMethodName().equals("megaMergeSortSplit")) {
+        if (Thread.currentThread().getStackTrace()[2 + expectedRecursiveCalls].getMethodName().equals("megaMergeSortSplit")) {
             split.add(result);
         }
 
         return result;
+    }
+
+    @Override
+    protected int[] merge(int[][] arrays, int from, int to) {
+        if (expectedRecursiveCalls == NO_RECURSIONS_EXPECTED && split.isEmpty()) {
+            split.addAll(Arrays.asList(arrays));
+        }
+        return super.merge(arrays, from, to);
     }
 
     public int[][] megaMergeSortSplit(int[] array, int div) {
