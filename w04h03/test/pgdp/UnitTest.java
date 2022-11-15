@@ -1,8 +1,16 @@
 package pgdp;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pgdp.convexhull.QuickHull.*;
@@ -12,80 +20,88 @@ class UnitTest {
     @Test
     @DisplayName("Testing combineHulls method for open hulls.")
     public void testCombineHullsOpenHull() {
-        int[][] firstHull = new int[][] {{4, 3}, {3, 5}, {1, 6}};
-        int[][] secondHull = new int[][] {{1, 6}, {-2, 5}, {-3, 2}};
-        int[][] expected = new int[][] {{4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
+        int[][] firstHull = new int[][]{{4, 3}, {3, 5}, {1, 6}};
+        int[][] secondHull = new int[][]{{1, 6}, {-2, 5}, {-3, 2}};
+        int[][] expected = new int[][]{{4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
         int[][] actual = combineHulls(firstHull, secondHull);
-        for (int i = 0; i < expected.length; i++) {
-            assertArrayEquals(expected[i], actual[i], "Points in hull are not correct!");
-        }
+        assertArrayEquals(expected, actual, "Points in hull are not correct! Got: " + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected));
     }
 
     @Test
     @DisplayName("Testing combineHulls method for closed hulls.")
     public void testCombineHulls() {
-        int[][] firstHull = new int[][] {{-3, 2}, {-1, 0}, {3, -1}, {4, 3}};
-        int[][] secondHull = new int[][] {{4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
-        int[][] expected = new int[][] {{-3, 2}, {-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
+        int[][] firstHull = new int[][]{{-3, 2}, {-1, 0}, {3, -1}, {4, 3}};
+        int[][] secondHull = new int[][]{{4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
+        int[][] expected = new int[][]{{-3, 2}, {-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
         int[][] actual = combineHulls(firstHull, secondHull);
-        for (int i = 0; i < expected.length; i++) {
-            assertArrayEquals(expected[i], actual[i], "Points in hull are not correct!");
-        }
+        assertArrayEquals(expected, actual, "Points in hull are not correct! Got:" + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected));
     }
 
-    @Test
-    @DisplayName("Testing combineHulls for empty hulls.")
-    public void testEmptyHulls() {
-        int[][][] firstHull = {
-                {},
-                {{1, 2}, {2, 3}},
-                {},
-                null,
-                {{1, 2}, {2, 3}},
-                null,
-                {},
-                null
-        };
-        int[][][] secondHull = {
-                {{1, 2}, {2, 3}},
-                {},
-                {},
-                {{1, 2}, {2, 3}},
-                null,
-                null,
-                null,
-                {}
-        };
-        int[][][] expected = {
-                {{1, 2}, {2, 3}},
-                {{1, 2}, {2, 3}},
-                {},
-                {{1, 2}, {2, 3}},
-                {{1, 2}, {2, 3}},
-                {},
-                {},
-                {}
-        };
-        String[] message = {
-                "Incorrect result when first hull is empty.",
-                "Incorrect result when second hull is empty.",
-                "Incorrect result when both hulls are empty.",
-                "Incorrect result when first hull is null.",
-                "Incorrect result when second hull is null.",
-                "Incorrect result when both hulls are null.",
-                "Incorrect result when first hull is empty and second hull is null.",
-                "Incorrect result when first hull is null and second hull is empty."
-        };
-        for (int t = 0; t < message.length; ++t) {
-            int[][] actual = combineHulls(firstHull[t], secondHull[t]);
-            for (int i = 0; i < expected[t].length; i++) assertArrayEquals(expected[t][i], actual[i], message[t]);
-        }
+    @ParameterizedTest
+    @MethodSource
+    @DisplayName("Testing combineHulls edge-cases")
+    public void testEmptyHulls(int[][] firstHull, int[][] secondHull, int[][] expected, String message) {
+        int[][] actual = combineHulls(firstHull, secondHull);
+        assertArrayEquals(expected, actual, message + " Got: " + Arrays.deepToString(actual));
+    }
+
+    public static Stream<Arguments> testEmptyHulls() {
+        return Stream.of(
+                Arguments.arguments(
+                        new int[][]{},
+                        new int[][]{{1, 2}, {2, 3}},
+                        new int[][]{{1, 2}, {2, 3}},
+                        "Incorrect result when first hull is empty."
+                ),
+                Arguments.arguments(
+                        new int[][]{{1, 2}, {2, 3}},
+                        new int[][]{},
+                        new int[][]{{1, 2}, {2, 3}},
+                        "Incorrect result when second hull is empty."
+                ),
+                Arguments.arguments(
+                        new int[][]{},
+                        new int[][]{},
+                        new int[][]{},
+                        "Incorrect result when both hulls are empty."
+                ),
+                Arguments.arguments(
+                        null,
+                        new int[][]{{1, 2}, {2, 3}},
+                        new int[][]{{1, 2}, {2, 3}},
+                        "Incorrect result when first hull is null."
+                ),
+                Arguments.arguments(
+                        new int[][]{{1, 2}, {2, 3}},
+                        null,
+                        new int[][]{{1, 2}, {2, 3}},
+                        "Incorrect result when second hull is null."
+                ),
+                Arguments.arguments(
+                        null,
+                        null,
+                        new int[][]{},
+                        "Incorrect result when both hulls are null."
+                ),
+                Arguments.arguments(
+                        new int[][]{},
+                        null,
+                        new int[][]{},
+                        "Incorrect result when first hull is empty and second hull is null."
+                ),
+                Arguments.arguments(
+                        null,
+                        new int[][]{},
+                        new int[][]{},
+                        "Incorrect result when first hull is null and second hull is empty."
+                )
+        );
     }
 
     @Test
     @DisplayName("Testing quickHullLeftOf method.")
-    public void testQuickHullLeftOf(){
-        int[][] points = new int[][] {
+    public void testQuickHullLeftOf() {
+        int[][] points = new int[][]{
                 {-3, 2},
                 {-2, 1}, {-2, 3}, {-2, 5},
                 {-1, 0}, {-1, 4},
@@ -95,19 +111,17 @@ class UnitTest {
                 {3, -1}, {3, 2}, {3, 5},
                 {4, 3}
         };
-        int[] p = new int[] {-3, 2};
-        int[] q = new int[] {4, 3};
-        int[][] expected = new int[][] {{4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
+        int[] p = new int[]{-3, 2};
+        int[] q = new int[]{4, 3};
+        int[][] expected = new int[][]{{4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
         int[][] actual = quickHullLeftOf(points, p, q);
-        for (int i = 0; i < expected.length; i++) {
-            assertArrayEquals(expected[i], actual[i], "Points in hull are not correct!");
-        }
+        assertArrayEquals(expected, actual, "Points in hull are not correct! Got: " + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected));
     }
 
     @Test
     @DisplayName("Testing quickHull method")
-    public void testQuickHull(){
-        int[][] points = new int[][] {
+    public void testQuickHull() {
+        int[][] points = new int[][]{
                 {-3, 2},
                 {-2, 1}, {-2, 3}, {-2, 5},
                 {-1, 0}, {-1, 4},
@@ -117,100 +131,100 @@ class UnitTest {
                 {3, -1}, {3, 2}, {3, 5},
                 {4, 3}
         };
-        int[][] expected = new int[][] {{-3, 2}, {-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
-        int[][] expectedAlternative = new int[][] {{-3, 2}, {-2, 1},{-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
+
+        int[][] expected = new int[][]{{-3, 2}, {-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
+        int[][] expectedAlternative = new int[][]{{-3, 2}, {-2, 1}, {-1, 0}, {3, -1}, {4, 3}, {3, 5}, {1, 6}, {-2, 5}, {-3, 2}};
         int[][] actual = quickHull(points);
 
         /* You can include or exclude a point that is on a line between to other points
          Both answers will be graded as correct:
          https://zulip.in.tum.de/#narrow/stream/1451-PGdP-W04H03/topic/.C3.9Cberfl.C3.BCssige.20Ecken/near/785061
         */
-
-        boolean matchesExpected = true;
-        for (int i = 0; i < expected.length; i++) {
-            int[] expectedPoint = expected[i];
-            int[] actualPoint = actual[i];
-            if (expectedPoint[0] != actualPoint[0] || expectedPoint[1] != actualPoint[1]) {
-                matchesExpected = false;
-                break;
-            }
-        }
-        
-        boolean matchesAlternative = true;
-        for (int i = 0; i < actual.length; i++) {
-            int[] expectedPoint = expectedAlternative[i];
-            int[] actualPoint = actual[i];
-            if (expectedPoint[0] != actualPoint[0] || expectedPoint[1] != actualPoint[1]) {
-                matchesAlternative = false;
-                break;
-            }
-        }
-
-
-        Assertions.assertFalse(!matchesExpected && !matchesAlternative, "Output of quickHull is not correct!");
-
+        boolean equals = Arrays.deepEquals(expected, actual) || Arrays.deepEquals(expectedAlternative, actual);
+        Assertions.assertTrue(equals, "Output of quickHull is not correct! Got: " + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected) + " or " + Arrays.deepToString(expectedAlternative));
 
     }
 
-    @Test
-    @DisplayName("Testing quickHullLeftOf for null / invalid points.")
-    public void testQuickHullLeftOfInvalidInput() {
-        int[][] points = new int[][] {{1,2},{3,4}};
-        int[][] p = {
-            null,
-            {1,2},
-            null,
-            {},
-            {1, 2},
-            {},
-            {3, 4, 5},
-            {1, 2},
-            {3, 4, 5},
-            null,
-            {3, 4, 5}
-        };
-        int[][] q = {
-            {1,2},
-            null,
-            null,
-            {1, 2},
-            {},
-            {},
-            {1, 2},
-            {3, 4, 5},
-            {3, 4, 5},
-            {3, 4, 5},
-            null
-        };
-        int[][][] expected = {
-            {{1, 2}},
-            {{1, 2}},
-            {},
-            {{1, 2}},
-            {{1, 2}},
-            {},
-            {{1, 2}},
-            {{1, 2}},
-            {},
-            {},
-            {}
-        };
-        String[] message = {
-            "Incorrect result when p is null.",
-            "Incorrect result when q is null.",
-            "Incorrect result when both p and q are null.",
-            "Incorrect result when p is empty.",
-            "Incorrect result when q is empty.",
-            "Incorrect result when both p and q are empty.",
-            "Incorrect result when p is invalid.",
-            "Incorrect result when q is invalid.",
-            "Incorrect result when both p and q are invalid.",
-            "Incorrect result when p is null and q is invalid.",
-            "Incorrect result when p is invalid and q is null."
-        };
-        for (int t = 0; t < message.length; ++t) {
-            int[][] actual = quickHullLeftOf(points, p[t], q[t]);
-            for (int i = 0; i < expected[t].length; i++) assertArrayEquals(expected[t][i], actual[i], message[t]);
-        }
+    @ParameterizedTest
+    @MethodSource
+    @DisplayName("Testing quickHullLeftOf for null / invalid points. Your implementation does not have to pass this. It ist undefined behaviour!")
+    public void testQuickHullLeftOfInvalidInput(int[] p, int[] q, int[][] expected, String message) {
+        int[][] points = new int[][]{{1, 2}, {3, 4}};
+        int[][] actual = quickHullLeftOf(points, p, q);
+        message = message + " Got: " + Arrays.deepToString(actual) + " Expected: " + Arrays.deepToString(expected);
+        assertArrayEquals(expected, actual, message);
     }
+
+    public static Stream<Arguments> testQuickHullLeftOfInvalidInput() {
+        return Stream.of(
+                Arguments.arguments(
+                        null,
+                        new int[]{1, 2},
+                        new int[][]{{1, 2}},
+                        "Incorrect result when p is null."
+                ),
+                Arguments.arguments(
+                        new int[]{1, 2},
+                        null,
+                        new int[][]{{1, 2}},
+                        "Incorrect result when q is null."
+                ),
+                Arguments.arguments(
+                        null,
+                        null,
+                        new int[][]{},
+                        "Incorrect result when both p and q are null."
+                ),
+                Arguments.arguments(
+                        new int[]{},
+                        new int[]{1, 2},
+                        new int[][]{{1, 2}},
+                        "Incorrect result when p is empty."
+                ),
+                Arguments.arguments(
+                        new int[]{1, 2},
+                        new int[]{},
+                        new int[][]{{1, 2}},
+                        "Incorrect result when q is empty."
+                ),
+                Arguments.arguments(
+                        new int[]{},
+                        new int[]{},
+                        new int[][]{},
+                        "Incorrect result when both p and q are empty."
+                ),
+                Arguments.arguments(
+                        new int[]{3, 4, 5},
+                        new int[]{1, 2},
+                        new int[][]{{1, 2}},
+                        "Incorrect result when p is invalid."
+                ),
+                Arguments.arguments(
+                        new int[]{1, 2},
+                        new int[]{3, 4, 5},
+                        new int[][]{{1, 2}},
+                        "Incorrect result when q is invalid."
+                ),
+                Arguments.arguments(
+                        new int[]{3, 4, 5},
+                        new int[]{3, 4, 5},
+                        new int[][]{},
+                        "Incorrect result when both p and q are invalid."
+                ),
+
+                Arguments.arguments(
+                        null,
+                        new int[]{3, 4, 5},
+                        new int[][]{},
+                        "Incorrect result when p is null and q is invalid."
+                ),
+                Arguments.arguments(
+                        new int[]{3, 4, 5},
+                        new int[]{3, 4, 5},
+                        new int[][]{},
+                        "Incorrect result when p is invalid and q is null."
+                )
+        );
+    }
+
 }
