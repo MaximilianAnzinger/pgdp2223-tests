@@ -131,7 +131,6 @@ public class MergeRecursiveTest {
             wrapper.merge(array, fromStep, to);
 
         int[][] mergeSteps = wrapper.mergeSteps();
-        int j = 0;
 
         assertArrayEquals(expectedMergeSteps, mergeSteps, "\nExpected merge steps:\t" + Arrays.deepToString(expectedMergeSteps) + "\nActual merge steps:\t\t" + Arrays.deepToString(mergeSteps));
     }
