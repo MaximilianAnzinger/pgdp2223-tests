@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class MergeRecursiveTest {
@@ -94,7 +95,7 @@ public class MergeRecursiveTest {
         assertArrayEquals(result, (new MegaMergeSort()).merge(array, 0, array.length));
     }
 
-    private static Stream<Arguments> emptyArrays(){
+    private static Stream<Arguments> emptyArrays() {
         return Stream.of(
                 arguments(
                         new int[10][0],
@@ -125,28 +126,14 @@ public class MergeRecursiveTest {
     @MethodSource
     void mergeOrder(int[][] array, int from, int to, int[][] expectedMergeSteps) {
         MergeWrapper wrapper = new MergeWrapper();
-        wrapper.merge(array, from, to);
+
+        for (int fromStep = to; fromStep >= from; fromStep--)
+            wrapper.merge(array, fromStep, to);
 
         int[][] mergeSteps = wrapper.mergeSteps();
         int j = 0;
 
-        for (int i = 0; i < mergeSteps.length; i++) {
-            if (j == expectedMergeSteps.length) {
-                failMergeOrder(mergeSteps, expectedMergeSteps, "More merge steps than expected!");
-            }
-
-            if (Arrays.equals(mergeSteps[i], expectedMergeSteps[j])) {
-                j++;
-            } else {
-                if (j > 0) {
-                    failMergeOrder(mergeSteps, expectedMergeSteps, "Incorrect merge step(s)!");
-                }
-            }
-        }
-
-        if (j != expectedMergeSteps.length) {
-            failMergeOrder(mergeSteps, expectedMergeSteps, "Missing merge step(s)!");
-        }
+        assertArrayEquals(expectedMergeSteps, mergeSteps, "\nExpected merge steps:\t" + Arrays.deepToString(expectedMergeSteps) + "\nActual merge steps:\t\t" + Arrays.deepToString(mergeSteps));
     }
 
     private static void failMergeOrder(int[][] actual, int[][] expected, String msg) {
@@ -167,6 +154,8 @@ public class MergeRecursiveTest {
                         0,
                         4,
                         new int[][]{
+                                {},
+                                {4},
                                 {3, 4},
                                 {2, 3, 4},
                                 {1, 2, 3, 4}
@@ -185,6 +174,8 @@ public class MergeRecursiveTest {
                         1,
                         5,
                         new int[][]{
+                                {},
+                                {120, 121},
                                 {1, 2, 3, 120, 121},
                                 {1, 2, 2, 3, 5, 6, 120, 121},
                                 {0, 0, 0, 1, 2, 2, 3, 5, 6, 120, 121}
@@ -197,6 +188,7 @@ public class MergeRecursiveTest {
                         0,
                         1,
                         new int[][]{
+                                {},
                                 {1}
                         }
                 )
