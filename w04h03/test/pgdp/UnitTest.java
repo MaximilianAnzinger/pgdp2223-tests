@@ -39,7 +39,7 @@ class UnitTest {
 
     @ParameterizedTest
     @MethodSource
-    @DisplayName("Testing combineHulls edge-cases OPTIONAL: You do not have to pass this test because secondHull always starts with the last element of lastHull")
+    @DisplayName("[OPTIONAL] Testing combineHulls edge-cases - You do not have to pass this test because secondHull always starts with the last element of lastHull")
     public void testEmptyHulls(int[][] firstHull, int[][] secondHull, int[][] expected, String message) {
         int[][] actual = combineHulls(firstHull, secondHull);
         assertArrayEquals(expected, actual, message + " Got: " + Arrays.deepToString(actual));
