@@ -1,5 +1,6 @@
 package pgdp.megamerge;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -55,6 +56,7 @@ public class MegaMergeSortTest {
         assertArrayEquals(new int[0], (new MegaMergeSort()).megaMergeSort(new int[0], 5));
     }
 
+    @Disabled
     @ParameterizedTest
     @DisplayName("Array split")
     @MethodSource
