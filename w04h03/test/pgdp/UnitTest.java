@@ -1,4 +1,4 @@
-package pgdp;
+package w04h03.test.pgdp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
@@ -13,7 +13,8 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pgdp.convexhull.QuickHull.*;
+import static w04h03.src.pgdp.convexhull.QuickHull.*;
+
 
 class UnitTest {
 

@@ -1,10 +1,11 @@
-package pgdp.megamerge;
+package w04h02.test.pgdp.megamerge;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import w04h02.src.pgdp.megamerge.MegaMergeSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +56,7 @@ public class MegaMergeSortTest {
         assertArrayEquals(new int[0], (new MegaMergeSort()).megaMergeSort(new int[0], 5));
     }
 
+    /*
     @ParameterizedTest
     @DisplayName("Array split")
     @MethodSource
@@ -68,7 +70,7 @@ public class MegaMergeSortTest {
                     "\nActual:\t\t" + Arrays.deepToString(actualSplit);
             fail(msg);
         }
-    }
+    }*/
 
     private static Stream<Arguments> arraySplit() {
         return Stream.of(
@@ -123,6 +125,7 @@ public class MegaMergeSortTest {
     }
 }
 
+/*
 class SortWrapper extends MegaMergeSort {
     private final ArrayList<int[]> split = new ArrayList<>();
 
@@ -142,4 +145,4 @@ class SortWrapper extends MegaMergeSort {
         super.megaMergeSort(array, div, 0, array.length);
         return split.toArray(new int[0][]);
     }
-}
+}*/

@@ -1,9 +1,9 @@
-package pgdp;
+package w04h01.test.pgdp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pgdp.pingulogy.RecursivePingulogy;
+import w04h01.src.pgdp.pingulogy.RecursivePingulogy;
 
 import java.time.Duration;
 

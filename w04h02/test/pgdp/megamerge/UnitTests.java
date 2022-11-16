@@ -1,8 +1,8 @@
-package pgdp.megamerge;
+package w04h02.test.pgdp.megamerge;
 
 import jdk.jfr.Name;
 import org.junit.jupiter.api.*;
-import pgdp.megamerge.MegaMergeSort;
+import w04h02.src.pgdp.megamerge.MegaMergeSort;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

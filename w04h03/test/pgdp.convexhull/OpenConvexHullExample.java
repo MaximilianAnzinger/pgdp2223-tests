@@ -3,6 +3,7 @@ package pgdp.convexhull;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
+import w04h03.src.pgdp.convexhull.QuickHull;
 
 public class OpenConvexHullExample {
     /**
