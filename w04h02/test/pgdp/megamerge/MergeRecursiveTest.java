@@ -22,21 +22,25 @@ public class MergeRecursiveTest {
     }
 
     private static Stream<Arguments> mergeArrays() {
-        int[][] input1 = {{1}, {2}, {3}, {4}};
         int[][] input2 = {{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}};
 
         return Stream.of(
-                arguments(input1, 4, 4, new int[]{}),
-                arguments(input1, 3, 4, new int[]{4}),
-                arguments(input1, 2, 4, new int[]{3, 4}),
-                arguments(input1, 1, 4, new int[]{2, 3, 4}),
-                arguments(input1, 0, 4, new int[]{1, 2, 3, 4}),
+                arguments(new int[][]{{1}, {2}, {3}, {4}}, 4, 4, new int[]{}),
+                arguments(new int[][]{{1}, {2}, {3}, {4}}, 3, 4, new int[]{4}),
+                arguments(new int[][]{{1}, {2}, {3}, {4}}, 2, 4, new int[]{3, 4}),
+                arguments(new int[][]{{1}, {2}, {3}, {4}}, 1, 4, new int[]{2, 3, 4}),
+                arguments(new int[][]{{1}, {2}, {3}, {4}}, 0, 4, new int[]{1, 2, 3, 4}),
 
-                arguments(input2, 5, 5, new int[]{}),
-                arguments(input2, 4, 5, new int[]{120, 121}),
-                arguments(input2, 3, 5, new int[]{1, 2, 3, 120, 121}),
-                arguments(input2, 2, 5, new int[]{1, 2, 2, 3, 5, 6, 120, 121}),
-                arguments(input2, 1, 5, new int[]{0, 0, 0, 1, 2, 2, 3, 5, 6, 120, 121}),
+                arguments(new int[][]{{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}},
+                        5, 5, new int[]{}),
+                arguments(new int[][]{{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}},
+                        4, 5, new int[]{120, 121}),
+                arguments(new int[][]{{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}},
+                        3, 5, new int[]{1, 2, 3, 120, 121}),
+                arguments(new int[][]{{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}},
+                        2, 5, new int[]{1, 2, 2, 3, 5, 6, 120, 121}),
+                arguments(new int[][]{{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}},
+                        1, 5, new int[]{0, 0, 0, 1, 2, 2, 3, 5, 6, 120, 121}),
 
                 arguments(
                         new int[][]{{1}, {2}, {3}, {4}},
