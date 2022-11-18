@@ -1,6 +1,5 @@
 package pgdp.megamerge;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -56,15 +55,14 @@ public class MegaMergeSortTest {
         assertArrayEquals(new int[0], (new MegaMergeSort()).megaMergeSort(new int[0], 5));
     }
 
-    // This test only works if you do not use a helper method to implement recursion in megaMergeSort
-    // Refer to https://github.com/MaximilianAnzinger/pgdp2223-tests/pull/64 for more information
-    @Disabled
     @ParameterizedTest
     @DisplayName("Array split")
     @MethodSource
     void arraySplit(int[] a, int div, int[][] expectedSplit) {
-        SortWrapper wrapper = new SortWrapper();
-        int[][] actualSplit = wrapper.megaMergeSortSplit(a, div);
+        MergeWrapper wrapper = new MergeWrapper();
+        wrapper.megaMergeSort(a, div);
+
+        int[][] actualSplit = wrapper.split();
 
         if (!Arrays.deepEquals(expectedSplit, actualSplit)) {
             String msg = "Incorrect split!\n" +
@@ -80,70 +78,58 @@ public class MegaMergeSortTest {
                         new int[]{1, 2, 3, 4, 5, 6, 7, 8},
                         3,
                         new int[][]{
-                                {1, 2, 3},
-                                {4, 5, 6},
-                                {7, 8}
+                                {1, 2, 3}, {4, 5, 6}, {7, 8},
                         }
                 ),
                 arguments(
                         new int[]{1, 2, 3},
                         3,
                         new int[][]{
-                                {1},
-                                {2},
-                                {3}
+                                {1}, {2}, {3}
                         }
                 ),
                 arguments(
                         new int[]{7, 8},
                         3,
                         new int[][]{
-                                {7},
-                                {8},
-                                {}
+                                {7}, {8}, {}
                         }
                 ),
                 arguments(
                         new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
                         3,
                         new int[][]{
-                                {1, 2, 3, 4},
-                                {5, 6, 7},
-                                {8, 9, 10}
+                                {1, 2, 3, 4}, {5, 6, 7}, {8, 9, 10}
                         }
                 ),
                 arguments(
                         new int[]{1, 2},
                         5,
                         new int[][]{
-                                {1},
-                                {2},
-                                {},
-                                {},
-                                {}
+                                {1}, {2}, {}, {}, {}
+                        }
+                ),
+                arguments(
+                        new int[]{1, 3, 4, 2},
+                        2,
+                        new int[][]{
+                                {1, 3}, {2, 4}
                         }
                 )
         );
     }
 }
 
-class SortWrapper extends MegaMergeSort {
-    private final ArrayList<int[]> split = new ArrayList<>();
+class MergeWrapper extends MegaMergeSort {
+    private int[][] split = new int[0][];
 
     @Override
-    protected int[] megaMergeSort(int[] array, int div, int from, int to) {
-        int[] result = super.megaMergeSort(array, div, from, to);
-
-        // I can't think of a better way to check if this is the second level of recursion
-        if (Thread.currentThread().getStackTrace()[3].getMethodName().equals("megaMergeSortSplit")) {
-            split.add(result);
-        }
-
-        return result;
+    protected int[] merge(int[][] arrays, int from, int to) {
+        split = arrays;
+        return super.merge(arrays, from, to);
     }
 
-    public int[][] megaMergeSortSplit(int[] array, int div) {
-        super.megaMergeSort(array, div, 0, array.length);
-        return split.toArray(new int[0][]);
+    public int[][] split() {
+        return split;
     }
 }
