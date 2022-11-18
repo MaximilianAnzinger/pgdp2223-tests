@@ -46,7 +46,7 @@ public class MegaMergeSortTest {
     @Test
     @DisplayName("Empty range")
     void emptyRange() {
-        assertArrayEquals(new int[0], (new MegaMergeSort()).megaMergeSort(new int[10], 2, 5, 5));
+        assertArrayEquals(new int[10], (new MegaMergeSort()).megaMergeSort(new int[10], 2, 5, 5));
     }
 
     @Test
