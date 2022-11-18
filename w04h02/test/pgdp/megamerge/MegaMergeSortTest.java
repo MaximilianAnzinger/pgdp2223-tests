@@ -1,5 +1,6 @@
 package pgdp.megamerge;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -55,6 +56,9 @@ public class MegaMergeSortTest {
         assertArrayEquals(new int[0], (new MegaMergeSort()).megaMergeSort(new int[0], 5));
     }
 
+    // This test only works if you do not use a helper method to implement recursion in megaMergeSort
+    // Refer to https://github.com/MaximilianAnzinger/pgdp2223-tests/pull/64 for more information
+    @Disabled
     @ParameterizedTest
     @DisplayName("Array split")
     @MethodSource
