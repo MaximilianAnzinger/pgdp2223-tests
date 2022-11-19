@@ -1,17 +1,19 @@
 package pgdp.megamerge;
 
-import jdk.jfr.Name;
-import org.junit.jupiter.api.*;
-import pgdp.megamerge.MegaMergeSort;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import jdk.jfr.Name;
 
 public class UnitTests {
 
@@ -52,19 +54,9 @@ public class UnitTests {
         return values;
     }
 
-    private List<String> lines() {
-        return out.toString().lines().toList();
-    }
-
     private void assertArrayEquals(int[] actual, int[] expected, String message) {
         if (!Arrays.equals(expected, actual)) {
             fail(message + "\nExpected: " + Arrays.toString(expected) + "\nActual: " + Arrays.toString(actual));
-        }
-    }
-
-    private void assertArrayEquals(int[][] actual, int[][] expected, String message) {
-        if (!Arrays.deepEquals(expected, actual)) {
-            fail(message + "\nExpected: " + Arrays.deepToString(expected) + "\nActual: " + Arrays.deepToString(actual));
         }
     }
 

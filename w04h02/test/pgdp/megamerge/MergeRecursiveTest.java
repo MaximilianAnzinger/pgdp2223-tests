@@ -22,8 +22,6 @@ public class MergeRecursiveTest {
     }
 
     private static Stream<Arguments> mergeArrays() {
-        int[][] input2 = {{-7, 3, 10}, {0, 0, 0}, {2, 5, 6}, {1, 2, 3}, {120, 121}, {-1, 1}, {-5, 10, 15}};
-
         return Stream.of(
                 arguments(new int[][]{{1}, {2}, {3}, {4}}, 4, 4, new int[]{}),
                 arguments(new int[][]{{1}, {2}, {3}, {4}}, 3, 4, new int[]{4}),
