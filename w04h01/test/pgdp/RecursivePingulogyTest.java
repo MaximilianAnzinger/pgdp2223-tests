@@ -123,4 +123,12 @@ class RecursivePingulogyTest {
         assertEquals("AATCTCGAAC", RecursivePingulogy.pinguDNA(12, 33));
     }
 
+    @Test
+    @DisplayName("pinguDNA mit Integer.MAX_VALUE")
+    void pinguDNALarge() {
+        assertEquals("GCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGC",
+                RecursivePingulogy.pinguDNA(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        assertEquals("TTTTTTTTTTTTTTTTTTTTTTTTTGTTCGTTCGTTC", RecursivePingulogy.pinguDNA(Integer.MAX_VALUE, 42));
+        assertEquals("AAAAAAAAAAAAAAAAAAAAAAAAAGAACGAACGAAC", RecursivePingulogy.pinguDNA(42, Integer.MAX_VALUE));
+    }
 }
