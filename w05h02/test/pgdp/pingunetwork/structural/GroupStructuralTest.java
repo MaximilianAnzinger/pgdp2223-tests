@@ -18,9 +18,9 @@ public class GroupStructuralTest extends StructuralTest<Group> {
     @Test
     @DisplayName("Check fields")
     void checkFields() {
-        expectAttribute("name", 0, String.class, PRIVATE);
-        expectAttribute("description", 1, String.class, PRIVATE);
-        expectAttribute("owner", 2, User.class, PRIVATE);
+        expectAttribute("name", String.class, PRIVATE);
+        expectAttribute("description", String.class, PRIVATE);
+        expectAttribute("owner", User.class, PRIVATE);
         expectAttribute("members", User[].class, PRIVATE);
         expectAttribute("picture", Picture.class, PRIVATE);
     }
