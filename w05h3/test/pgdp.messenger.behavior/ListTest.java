@@ -203,7 +203,7 @@ public class ListTest {
         final var list = new List();
         final var message = getTestMessage();
         list.add(message);
-        assertEquals(message.toString(), list.toString());
+        assertEquals(message.toString() + "\n", list.toString());
     }
 
     @Test
@@ -213,6 +213,6 @@ public class ListTest {
         final var message2 = getTestMessage();
         list.add(message);
         list.add(message2);
-        assertEquals(message.toString() + "\n" + message2.toString(), list.toString());
+        assertEquals(message.toString() + "\n" + message2.toString() + "\n", list.toString());
     }
 }
