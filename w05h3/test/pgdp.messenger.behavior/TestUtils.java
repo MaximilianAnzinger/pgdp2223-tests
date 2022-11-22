@@ -1,4 +1,5 @@
-package pgdp.messenger.unit;
+package pgdp.messenger.behavior;
+
 
 import pgdp.messenger.Message;
 import pgdp.messenger.User;
