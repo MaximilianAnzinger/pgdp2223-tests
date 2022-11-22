@@ -1,4 +1,4 @@
-package Test;
+package pgdp;
 
 import pgdp.messenger.*;
 import org.junit.jupiter.api.Assertions;
