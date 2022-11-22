@@ -303,9 +303,9 @@ public class BehaviorTest {
             Assertions.assertEquals(0, pictureEmptyArray1.getWidth());
             Assertions.assertEquals(0, pictureEmptyArray1.getHeight());
 
-            Assertions.assertArrayEquals(new int[0][1], pictureEmptyArray1.getData());
-            Assertions.assertEquals(0, pictureEmptyArray1.getWidth());
-            Assertions.assertEquals(0, pictureEmptyArray1.getHeight());
+            Assertions.assertArrayEquals(new int[0][1], pictureEmptyArray2.getData());
+            Assertions.assertEquals(0, pictureEmptyArray2.getWidth());
+            Assertions.assertEquals(0, pictureEmptyArray2.getHeight());
         }
     }
 }
