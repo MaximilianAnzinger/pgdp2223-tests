@@ -278,7 +278,7 @@ public class BehaviorTest {
 
             Assertions.assertEquals(1, defaultGroup.getMembers().length);
             Assertions.assertArrayEquals(beforeRemove, defaultGroup.getMembers());
-         }
+        }
     }
 
     @Nested
@@ -291,6 +291,21 @@ public class BehaviorTest {
             Picture[] thumbnails = new Picture[]{new Picture("New York", picture1), new Picture("Toronto", picture2)};
             defaultPicture.setThumbnails(thumbnails);
             Assertions.assertArrayEquals(thumbnails, defaultPicture.getThumbnails());
+        }
+
+        @Test
+        @DisplayName("Create Picture with the data parameter as empty array")
+        void createPictureWithEmptyArrayData() {
+            Picture pictureEmptyArray1 = new Picture("Munich", new int[0][0]);
+            Picture pictureEmptyArray2 = new Picture("Berlin", new int[0][1]);
+
+            Assertions.assertArrayEquals(new int[0][0], pictureEmptyArray1.getData());
+            Assertions.assertEquals(0, pictureEmptyArray1.getWidth());
+            Assertions.assertEquals(0, pictureEmptyArray1.getHeight());
+
+            Assertions.assertArrayEquals(new int[0][1], pictureEmptyArray1.getData());
+            Assertions.assertEquals(0, pictureEmptyArray1.getWidth());
+            Assertions.assertEquals(0, pictureEmptyArray1.getHeight());
         }
     }
 }
