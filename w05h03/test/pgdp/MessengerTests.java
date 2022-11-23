@@ -130,7 +130,7 @@ public class MessengerTests {
     public void testUserArrayGetterSetter() {
         UserArray ua = new UserArray(3);
         User alice = new User(5, "Alice", null);
-        User[] output = {alice, null, alice, null};
+        User[] output = {alice, null, alice};
         Assertions.assertEquals(3, ua.getUsers().length, "Wrong size at start");
         ua.setUsers(output);
         Assertions.assertEquals(output, ua.getUsers(), "Wrong members after setting with setter");
