@@ -10,6 +10,8 @@ import pgdp.messenger.Topic;
 import pgdp.messenger.User;
 import pgdp.messenger.UserArray;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -61,6 +63,16 @@ public class MessengerTests {
         ReflectionHelper.invokeVoidMethod(pt, "setTopics", new Class[]{Topic[].class}, (Object) topics);
     }
 
+    //Constructor
+    private static PinguTalk pinguTalk(int userCount, int topicLength) {
+        Constructor<PinguTalk> c = ReflectionHelper.getConstructor(PinguTalk.class, int.class, int.class);
+        try {
+            return c.newInstance(userCount, topicLength);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /*---- TESTS FÜR UserArray ----*/
     //Master-Test, der alle Konzepte von UserArray beinhalten sollte. Wenn alle anderen UserArray Tests bestanden werden, sollte es auch dieser
@@ -186,7 +198,7 @@ public class MessengerTests {
     @Test
     @DisplayName("Allgemeiner Test PinguTalk")
     public void testPinguTalk() {
-        PinguTalk pt = new PinguTalk(-5, 4);
+        PinguTalk pt = pinguTalk(-5, 4);
         Assertions.assertEquals(1, getUsers(getMembers(pt)).length, "Wrong size at start");
         Assertions.assertEquals(4, getTopics(pt).length, "Wrong size of topics at start");
         User u = addMember(pt, "Alice", null);
@@ -232,7 +244,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.PinguTalk")
     public void testPinguTalkConstructor() {
-        PinguTalk pt = new PinguTalk(3, 4);
+        PinguTalk pt = pinguTalk(3, 4);
         Assertions.assertEquals(3, getUsers(getMembers(pt)).length, "UserArray: Wrong size at start");
         Assertions.assertEquals(4, getTopics(pt).length, "Topic: Wrong size at start");
     }
@@ -240,7 +252,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.PinguTalk negativer Input ")
     public void testPinguTalkConstructor2() {
-        PinguTalk pt = new PinguTalk(-3, -3);
+        PinguTalk pt = pinguTalk(-3, -3);
         Assertions.assertEquals(1, getUsers(getMembers(pt)).length, "UserArray: Wrong size at start");
         Assertions.assertEquals(1, getTopics(pt).length, "Topic: Wrong size at start");
     }
@@ -248,7 +260,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.createNewTopic")
     public void testPinguTalkCreateNewTopic() {
-        PinguTalk pt = new PinguTalk(2, 3);
+        PinguTalk pt = pinguTalk(2, 3);
         Topic t = createNewTopic(pt, "Topic 1");
         Topic u = createNewTopic(pt, "Topic 2");
         Assertions.assertEquals(1, u.getId() - t.getId(), "IDs dont differ by 1");
@@ -258,7 +270,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.createNewTopic with empty space")
     public void testPinguTalkCreateNewTopic2() {
-        PinguTalk pt = new PinguTalk(2, 3);
+        PinguTalk pt = pinguTalk(2, 3);
         Topic t = new Topic(9, "Topic 1");
         setTopics(pt, new Topic[] {null, t});
         Topic u = createNewTopic(pt, "Topic 2");
@@ -268,7 +280,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.createNewTopic with no space")
     public void testPinguTalkCreateNewTopic3() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         Topic t = createNewTopic(pt, "Topic 1");
         Topic u = createNewTopic(pt, "Topic 2");
         Topic v = createNewTopic(pt, "Topic 3");
@@ -279,7 +291,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.deleteTopic")
     public void testPinguTalkDeleteTopic() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         Topic t = new Topic(20, "Topic 1");
         Topic u = new Topic(69, "Topic 2");
         Topic v = new Topic(1, "Topic 3");
@@ -294,7 +306,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.addMember")
     public void testPinguTalkAddMember1() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         User alice = addMember(pt, "Alice", null);
         User bob = addMember(pt, "Bob", null);
         User eve = addMember(pt, "Eve", null);
@@ -306,7 +318,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.addMember UserID")
     public void testPinguTalkAddMember2() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         User alice = addMember(pt, "Alice", null);
         User bob = addMember(pt,"Bob", null);
         User eve = addMember(pt, "Eve", null);
@@ -316,7 +328,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.addMember with space")
     public void testPinguTalkAddMember3() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         User alice = new User(1, "Alice", null);
         User bob = new User(2, "Bob", null);
         UserArray ua = new UserArray(1);
@@ -329,7 +341,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.addMember with no space")
     public void testPinguTalkAddMember4() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         User alice = new User(1, "Alice", null);
         User bob = new User(2, "Bob", null);
         UserArray ua = new UserArray(1);
@@ -342,7 +354,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.deleteMember")
     public void testPinguTalkDeleteMember() {
-        PinguTalk pt = new PinguTalk(2, 2);
+        PinguTalk pt = pinguTalk(2, 2);
         User alice = new User(1, "Alice", null);
         User bob = new User(2, "Bob", null);
         UserArray ua = new UserArray(1);
@@ -356,7 +368,7 @@ public class MessengerTests {
     @Test
     @DisplayName("PinguTalk.deleteMember not existing")
     public void testPinguTalkDeleteMember2() {
-        PinguTalk pt = new PinguTalk(1, 2);
+        PinguTalk pt = pinguTalk(1, 2);
         User alice = new User(1, "Alice", null);
         User u = deleteMember(pt, alice.getId());
         Assertions.assertArrayEquals(new User[] {null}, getUsers(getMembers(pt)), "Wrong members");
