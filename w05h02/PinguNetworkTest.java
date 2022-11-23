@@ -1,11 +1,14 @@
 package pgdp.pingunetwork;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class PinguNetworkTest {
 
@@ -13,6 +16,20 @@ public class PinguNetworkTest {
     private Picture pic2 = new Picture("testest", new int[0][4]);
     private Picture pic3 = new Picture("", new int[][]{{0, 0, 0}, {0, 1, 1}, {0, -6, 3}});
     private Picture pic4 = new Picture("3", new int[7][0]);
+
+    /**
+     * Vertauscht expected und actual, damit die Fehler richtig angezeigt werden
+     * !!!!!!!!!!!!!!!!!!! assertEquals(actual, expected) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * @param actual
+     * @param expected
+     */
+    public static void assertEquals(Object actual, Object expected){
+        Assertions.assertEquals(expected, actual);
+    }
+
+    public static void assertArrayEquals(Object[] actual, Object[] expected){
+        Assertions.assertArrayEquals(expected, actual);
+    }
 
     @Test
     @DisplayName("User - Interact with own post")
