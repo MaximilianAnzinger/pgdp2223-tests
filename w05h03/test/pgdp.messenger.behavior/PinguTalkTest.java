@@ -21,7 +21,7 @@ public class PinguTalkTest {
 
 
     long getCurrentTopicId() throws NoSuchFieldException, IllegalAccessException {
-        final var field = PinguTalk.class.getDeclaredField("topicId");
+        final var field = PinguTalk.class.getDeclaredField("topicID");
         field.setAccessible(true);
         return field.getLong(null);
 
