@@ -17,7 +17,7 @@ public class ModifierTests {
         ReflectionHelper.assertMethodModifiers(Modifier.PUBLIC, PinguTalk.class, "deleteTopic", long.class);
 
         ReflectionHelper.assertFieldModifiers(Modifier.PRIVATE, UserArray.class, "users", User[].class);
-        ReflectionHelper.assertFieldModifiers(Modifier.PRIVATE, PinguTalk.class, "userArray", UserArray.class);
+        ReflectionHelper.assertFieldModifiers(Modifier.PRIVATE, PinguTalk.class, "members", UserArray.class);
         ReflectionHelper.assertFieldModifiers(Modifier.PRIVATE, PinguTalk.class, "topics", Topic[].class);
         ReflectionHelper.assertFieldModifiers(Modifier.PRIVATE | Modifier.STATIC, PinguTalk.class, "topicID", long.class);
         ReflectionHelper.assertFieldModifiers(Modifier.PRIVATE | Modifier.STATIC, PinguTalk.class, "userID", long.class);
