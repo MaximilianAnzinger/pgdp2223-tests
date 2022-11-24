@@ -13,7 +13,7 @@ public class PinguTalkTest {
 
 
     long getCurrentUserId() throws NoSuchFieldException, IllegalAccessException {
-        final var field = PinguTalk.class.getDeclaredField("userId");
+        final var field = PinguTalk.class.getDeclaredField("userID");
         field.setAccessible(true);
         return field.getLong(null);
 
