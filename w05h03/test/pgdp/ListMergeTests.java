@@ -167,6 +167,10 @@ public class ListMergeTests {
 
         var merged = List.megaMerge(lists);
 
+        for (int i = 0; i < messages.length; i++) {
+            Assertions.assertEquals(messages[i], merged.getByIndex(i));
+        }
+
         Assertions.assertEquals(expected.toString(), merged.toString());
     }
 
