@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pgdp.messenger.unit.TestUtils.getTestMessage;
-import static pgdp.messenger.unit.TestUtils.getTestUser;
+import static pgdp.messenger.behavior.TestUtils.getTestMessage;
+import static pgdp.messenger.behavior.TestUtils.getTestUser;
 
 public class ListTest {
     @Test()

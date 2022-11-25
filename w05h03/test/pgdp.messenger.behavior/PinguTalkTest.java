@@ -7,7 +7,7 @@ import pgdp.messenger.Topic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static pgdp.messenger.unit.TestUtils.getTestUser;
+import static pgdp.messenger.behavior.TestUtils.getTestUser;
 
 public class PinguTalkTest {
 
