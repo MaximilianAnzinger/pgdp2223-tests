@@ -37,8 +37,8 @@ public class InteractionStructuralTest extends StructuralTest<Interaction> {
     @Test
     @DisplayName("Check setters")
     void checkSetters() {
-        dontExpectMethod(PUBLIC, "setUser", String.class);
-        dontExpectMethod(PUBLIC, "setInteractionType", String.class);
+        dontExpectMethod(PUBLIC, "setUser", User.class);
+        dontExpectMethod(PUBLIC, "setInteractionType", int.class);
     }
 
 }
