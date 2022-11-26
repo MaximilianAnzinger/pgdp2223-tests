@@ -1,4 +1,4 @@
-package pgdp.pingunetwork.test.pgdp.pingunetwork.behavioral;
+package pgdp.pingunetwork.behavioral;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +9,8 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// Import everything from package pgdp.pingunetwork
+import pgdp.pingunetwork.*;
 
 public class PinguNetworkTest {
 
