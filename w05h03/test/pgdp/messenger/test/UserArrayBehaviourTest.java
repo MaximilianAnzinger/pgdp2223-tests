@@ -68,20 +68,6 @@ public class UserArrayBehaviourTest {
             Assertions.assertArrayEquals(new User[]{Mike, Emily, null, null}, userArray.getUsers(), "Wrong list of users in the UserArray");
         }
 
-        //https://zulip.in.tum.de/#narrow/stream/1467-PGdP-W05H03/topic/UserArray.20addUser
-        @Test
-        @DisplayName("[OPTIONAL] Add two same users to the array")
-        void addSameUsers() {
-            UserArray userArray = new UserArray(4);
-            userArray.addUser(Mike);
-            userArray.addUser(Emily);
-            userArray.addUser(Mike);
-            userArray.addUser(Susan);
-
-            Assertions.assertEquals(3, userArray.size(), "Wrong number of the users in the UserArray. Expected 2, but got " + userArray.size() + " instead");
-            Assertions.assertArrayEquals(new User[]{Mike, Emily, Susan, null}, userArray.getUsers(), "Wrong list of users in the UserArray");
-        }
-
         @Test
         @DisplayName("Add user to the end of UserArray")
         void addUserToTheEnd() {
@@ -138,20 +124,6 @@ public class UserArrayBehaviourTest {
             UserArray userArray = new UserArray(5);
             userArray.setUsers(new User[]{David, Emily, Andrew, null, null});
             Assertions.assertEquals(3, userArray.size(), "Wrong number of the users in the UserArray. Expected 3, but got " + userArray.size() + " instead");
-        }
-
-        //https://zulip.in.tum.de/#narrow/stream/1467-PGdP-W05H03/topic/UserArray.20addUser
-        @Test
-        @DisplayName("[OPTIONAL] Add user to the first empty place in the UserArray - with setter")
-        void addToEmptyPlaceWithSetter() {
-            UserArray userArray = new UserArray(5);
-            userArray.setUsers(new User[]{David, Emily, null, Andrew, null});
-
-            Assertions.assertEquals(3, userArray.size(), "Wrong number of the users in the UserArray. Expected 3, but got " + userArray.size() + " instead");
-            userArray.addUser(Mike);
-
-            Assertions.assertEquals(4, userArray.size(), "Wrong number of the users in the UserArray. Expected 4, but got " + userArray.size() + " instead");
-            Assertions.assertArrayEquals(new User[]{David, Emily, Mike, Andrew, null}, userArray.getUsers(), "Wrong list of users");
         }
 
         //https://zulip.in.tum.de/#narrow/stream/1467-PGdP-W05H03/topic/UserArray.20addUser
