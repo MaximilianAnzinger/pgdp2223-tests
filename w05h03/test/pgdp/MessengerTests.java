@@ -118,16 +118,6 @@ public class MessengerTests {
     }
 
     @Test
-    @DisplayName("[OPTIONAL] UserArray.addUser")
-    public void testUserArrayAddUser1() {
-        UserArray ua = new UserArray(3);
-        User alice = new User(5, "Alice", null);
-        ua.addUser(alice);
-        ua.addUser(alice);
-        Assertions.assertArrayEquals(new User[] {alice, alice, null}, getUsers(ua), "Wrong Users");
-    }
-
-    @Test
     @DisplayName("UserArray.deleteUser")
     public void testUserArrayDeleteUser1() {
         UserArray ua = new UserArray(3);
@@ -148,20 +138,6 @@ public class MessengerTests {
         User u = ua.deleteUser(alice.getId());
         Assertions.assertArrayEquals(new User[] {null, null}, getUsers(ua), "Wrong members");
         Assertions.assertEquals(null, u, "Wrong return");
-    }
-
-    @Test
-    @DisplayName("[OPTIONAL] UserArray.size & .length")
-    public void testUserArraySizeAndLength() {
-        UserArray ua = new UserArray(0);
-        Assertions.assertEquals(0, getSize(ua), "Wrong size at start");
-        Assertions.assertEquals(1, getUsers(ua).length, "Wrong size at start");
-        User alice = new User(5, "Alice", null);
-        ua.addUser(alice);
-        ua.addUser(alice);
-        ua.addUser(alice);
-        Assertions.assertEquals(3, getSize(ua), "Wrong size after adding Users");
-        Assertions.assertEquals(4, getUsers(ua).length, "Wrong size after adding users");
     }
 
     @Test
