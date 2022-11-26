@@ -160,14 +160,18 @@ public class ListBehaviourTest {
         @DisplayName("Merge one list")
         void mergeOneList() {
             List orderedList1 = new List();
+            List orderedList2 = new List();
 
             orderedList1.add(messages[0]);
             orderedList1.add(messages[8]);
+            
+            orderedList2.add(messages[0]);
+            orderedList2.add(messages[8]);
 
             List megaMeredList = List.megaMerge(orderedList1);
 
             for(int i = 0; i < megaMeredList.size(); i++) {
-                Assertions.assertSame(orderedList1.getByIndex(i), megaMeredList.getByIndex(i), "Wrong order of the merged list");
+                Assertions.assertSame(orderedList2.getByIndex(i), megaMeredList.getByIndex(i), "Wrong order of the merged list");
             }
         }
 
