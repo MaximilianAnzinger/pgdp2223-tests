@@ -100,6 +100,14 @@ public class PinguTalkTest {
         final var deletedMember = pinguTalk.deleteMember(0);
         assertNull(deletedMember);
     }
+    
+    @Test
+    void setMembersToNullCheckDeleteMember() {
+        final var pinguTalk = new PinguTalk(0, 0);
+        pinguTalk.setMembers(null);
+        final var deletedMember = pinguTalk.deleteMember(0);
+        assertNull(deletedMember);
+    }
 
     @Test()
     void createNewTopic() {
@@ -187,6 +195,14 @@ public class PinguTalkTest {
     @Test
     void deleteTopicShouldReturnNullWhenTopicDoesNotExist() {
         final var pinguTalk = new PinguTalk(0, 0);
+        final var deletedTopic = pinguTalk.deleteTopic(0);
+        assertNull(deletedTopic);
+    }
+    
+    @Test
+    void setTopicsToNullTryCheckTopicDeletion() {
+        final var pinguTalk = new PinguTalk(0, 0);
+        pinguTalk.setTopics(null);
         final var deletedTopic = pinguTalk.deleteTopic(0);
         assertNull(deletedTopic);
     }
