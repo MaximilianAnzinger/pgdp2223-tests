@@ -1,3 +1,4 @@
+
 package pgdp.ds;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -89,8 +90,13 @@ public class MultiStackTest {
     }
 
     @Test
+    void topShouldReturnOnEmptyStack() {
+        assertEquals(Integer.MIN_VALUE, stack.top());
+    }
+
+    @Test
     void popShouldNotRemoveFirstStack() {
-        stack.pop();
+        assertEquals(Integer.MIN_VALUE, stack.pop());
         assertNotNull(getHead());
     }
 
