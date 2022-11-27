@@ -299,6 +299,25 @@ public class PinguNetworkTest {
         assertArrayEquals(bob_gang.getMembers(), new User[]{});
         assertEquals(bob_gang.getOwner(), null);
     }
+    
+    @Test
+    @DisplayName("Group - remove owner, members not empty afterwards, owner arbitrary pos.")
+    void testGroup6() {
+        User bob = new User("Bob", "i code stuff", pic2);
+        Group bob_gang = new Group("zulip-chat", "more recycling symbols than on most bottles", bob, new Picture("Bayern", new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}));
+        User alice = new User("Alice", "lol", pic4);
+        User wonderland = new User("wonderland", "lol", pic3);
+
+        bob_gang.addUser(alice);
+        bob_gang.addUser(wonderland);
+        assertArrayEquals(bob_gang.getMembers(), new User[]{bob, alice, wonderland});
+
+        bob_gang.setOwner(alice);
+        assertEquals(bob_gang.getOwner(), alice);
+        bob_gang.removeUser(alice);
+
+        assertEquals(bob_gang.getOwner(), bob);
+    }
 
     @Test
     @DisplayName("Simulated interactions - 1")
