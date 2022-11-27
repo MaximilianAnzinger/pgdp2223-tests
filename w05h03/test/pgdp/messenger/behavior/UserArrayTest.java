@@ -129,5 +129,18 @@ public class UserArrayTest {
         final var deletedUser = userArray.deleteUser(2);
         assertNull(deletedUser);
     }
+    
+    @Test
+    void setUserArrToNullThenTryMethods() {
+        final var userArray = new UserArray(1);
+        final var user = TestUtils.getTestUser();
+        final var user1 = TestUtils.getTestUser();
+        userArray.setUsers(null);
+        userArray.addUser(user);
+        final var returned = userArray.deleteUser(user1.getId());
+        assertNull(returned);
+        final var size = userArray.size();
+        assertEquals(0, size);
+    }
 }
 
