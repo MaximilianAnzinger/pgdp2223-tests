@@ -1,8 +1,8 @@
-package pgdp.datastructures;
+package pgdp;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
-import static pgdp.datastructures.TestBase.list;
+import static pgdp.TestBase.list;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;

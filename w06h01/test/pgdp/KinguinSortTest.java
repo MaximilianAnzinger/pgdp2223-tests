@@ -1,4 +1,4 @@
-package pgdp.datastructures;
+package pgdp;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 

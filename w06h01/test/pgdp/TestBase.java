@@ -1,4 +1,4 @@
-package pgdp.datastructures;
+package pgdp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
