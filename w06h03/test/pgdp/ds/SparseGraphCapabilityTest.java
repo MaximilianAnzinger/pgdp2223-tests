@@ -17,7 +17,7 @@ class SparseGraphCapabilityTest {
      **/
 
     private int nodes = 5_000_000;
-    private int edgesPerNode = 10;
+    private int edgesPerNode = 3;
 
     @Test
     @DisplayName("Testing SparseGraph")
@@ -39,11 +39,5 @@ class SparseGraphCapabilityTest {
         }
         Assertions.assertArrayEquals(res, sparseGraph.getAdj(420));
     }
-
-
-
-
-
-
 
 }
