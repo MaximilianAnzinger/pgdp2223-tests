@@ -184,15 +184,4 @@ public class MultiStackTest {
         assertEquals(head, getHead());
     }
 
-    @Test
-    void pop() {
-        final var head = getHead();
-        stack.push(200);
-        stack.push(200);
-        stack.pop();
-        stack.pop();
-        assertEquals(head, getHead());
-    }
-
-
 }
