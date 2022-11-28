@@ -1,43 +1,47 @@
 package pgdp;
 
-import pgdp.datastructures.lists.RecIntList;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pgdp.TestAPI.RecList;
+public class ReverseTest extends TestBase {
 
-import org.junit.jupiter.api.*;
-
-public class ReverseTest {
     @Test
     @DisplayName("should reverse an empty list")
     public void empty() {
-        assertEquals("Empty list", RecList().toString());
+        var list = list();
+        list.reverse();
+        assertListEquals(list(), list);
+    }
+
+    @Test
+    @DisplayName("should reverse a list with one element")
+    public void singleElement() {
+        var list = list(0);
+        list.reverse();
+        assertListEquals(list(0), list);
+    }
+
+    @Test
+    @DisplayName("should reverse a list with two elements")
+    public void twoElements() {
+        var list = list(1, 2);
+        list.reverse();
+        assertListEquals(list(2, 1), list);
     }
 
     @Test
     @DisplayName("should reverse example list")
     public void example() {
-        var list = RecList(1, 2, 3, 4, 5);
+        var list = list(1, 2, 3, 4, 5);
         list.reverse();
-        assertEquals("List: [5, 4, 3, 2, 1]", list.toString());
+        assertListEquals(list(5, 4, 3, 2, 1), list);
     }
 
     @Test
-    @Timeout(1)
-    @DisplayName("should pass performance test")
-    public void performance_test() {
-        // TODO: FIX PERFORMANCE TEST
-
-        var list = RecList();
-        var expected = RecList();
-
-        int length = 10000;
-        for (int i = 0; i < length; i++) {
-            list.append(i);
-            expected.append(length - i - 1);
-        }
-        
+    @DisplayName("should reverse list with even amount of elements")
+    public void evenElementCount() {
+        var list = list(1, 2, 3, 4, 5, 6);
         list.reverse();
-        assertEquals(expected.toString(), list.toString());
+        assertListEquals(list(6, 5, 4, 3, 2, 1), list);
     }
 }
