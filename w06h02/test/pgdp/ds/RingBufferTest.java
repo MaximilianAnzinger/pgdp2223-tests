@@ -81,6 +81,17 @@ public class RingBufferTest {
         assertEquals(Integer.MIN_VALUE, rb.get());
     }
 
+    @Test
+    void shouldHandleOverflow() {
+        final var rb = createRB(2);
+        rb.put(1);
+        rb.put(2);
+        rb.put(3);
+        assertEquals(1, rb.get());
+        assertEquals(2, rb.get());
+        assertEquals(Integer.MIN_VALUE, rb.get());
+    }
+
     // Some integration tests
 
     @Test

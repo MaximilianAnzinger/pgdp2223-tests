@@ -1,4 +1,3 @@
-
 package pgdp.ds;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -90,13 +89,8 @@ public class MultiStackTest {
     }
 
     @Test
-    void topShouldReturnOnEmptyStack() {
-        assertEquals(Integer.MIN_VALUE, stack.top());
-    }
-
-    @Test
     void popShouldNotRemoveFirstStack() {
-        assertEquals(Integer.MIN_VALUE, stack.pop());
+        stack.pop();
         assertNotNull(getHead());
     }
 
@@ -128,5 +122,77 @@ public class MultiStackTest {
         stack.pop();
         assertNull(getNext(getHead()));
     }
+
+    @Test
+    void emptyStackShouldReturnMinValue() {
+        assertEquals(Integer.MIN_VALUE, stack.top());
+    }
+
+    @Test
+    void emptyStackShouldReturnMinValueOnPop() {
+        assertEquals(Integer.MIN_VALUE, stack.pop());
+    }
+
+    @Test
+    void pushShouldNotChangeStacks() {
+        final var stacks = getHead();
+        stack.push(200);
+        assertEquals(stacks, getHead());
+    }
+
+    @Test
+    void popShouldNotChangeStacks() {
+        final var stacks = getHead();
+        stack.push(200);
+        stack.pop();
+        assertEquals(stacks, getHead());
+    }
+
+    @Test
+    void appendedStacksShouldAlwaysHaveDoubleCapacity() {
+        final var stacksToCreate = 10;
+        var valuesToPush = 1;
+        for (int i = 0; i < stacksToCreate; i++) {
+            for (int j = 0; j < valuesToPush; j++) {
+                stack.push(j);
+            }
+            valuesToPush *= 2;
+        }
+        var current = getHead();
+        var expectedCapacity = 1;
+        for (int i = 0; i < stacksToCreate; i++) {
+            assertEquals(expectedCapacity, getMem(current).length);
+            current = getNext(current);
+            expectedCapacity *= 2;
+        }
+    }
+
+    @Test
+    void topShouldNotRemoveValue() {
+        final var value = 200;
+        stack.push(value);
+        stack.top();
+        assertArrayEquals(array(value), getMem(getHead()));
+    }
+
+    @Test
+    void pushShouldNotChangeHead() {
+        final var head = getHead();
+        stack.push(200);
+        stack.push(200);
+        stack.push(200);
+        assertEquals(head, getHead());
+    }
+
+    @Test
+    void pop() {
+        final var head = getHead();
+        stack.push(200);
+        stack.push(200);
+        stack.pop();
+        stack.pop();
+        assertEquals(head, getHead());
+    }
+
 
 }
