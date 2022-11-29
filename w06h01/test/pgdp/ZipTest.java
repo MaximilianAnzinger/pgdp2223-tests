@@ -14,9 +14,11 @@ public class ZipTest extends TestBase {
     public void empty() {
         l1 = list();
         l2 = list();
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(), l1);
     }
 
@@ -25,9 +27,11 @@ public class ZipTest extends TestBase {
     public void example() {
         l1 = list(1, 3, 5, 7, 8);
         l2 = list(2, 4, 6);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2, 3, 4, 5, 6, 7, 8), l1);
     }
 
@@ -36,9 +40,11 @@ public class ZipTest extends TestBase {
     public void only_one() {
         l1 = list(1, 3, 5, 7, 8);
         l2 = list();
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 3, 5, 7, 8), l1);
     }
 
@@ -47,9 +53,11 @@ public class ZipTest extends TestBase {
     public void only_two() {
         l1 = list();
         l2 = list(1, 3, 5, 7, 8);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 3, 5, 7, 8), l1);
     }
 
@@ -58,9 +66,11 @@ public class ZipTest extends TestBase {
     public void one_smaller() {
         l1 = list(1, 3, 5);
         l2 = list(2, 4, 6, 8);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2, 3, 4, 5, 6, 8), l1);
     }
 
@@ -69,9 +79,11 @@ public class ZipTest extends TestBase {
     public void two_smaller() {
         l1 = list(1, 3, 5, 8);
         l2 = list(2, 4, 6);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2, 3, 4, 5, 6, 8), l1);
     }
 
@@ -80,9 +92,11 @@ public class ZipTest extends TestBase {
     public void one_great_smaller() {
         l1 = list(1, 3, 5);
         l2 = list(2, 4, 6, 8, 9, 9, 9);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2, 3, 4, 5, 6, 8, 9, 9, 9), l1);
     }
 
@@ -91,9 +105,11 @@ public class ZipTest extends TestBase {
     public void two_great_smaller() {
         l1 = list(1, 3, 5, 8, 9, 9, 9);
         l2 = list(2, 4, 6);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2, 3, 4, 5, 6, 8, 9, 9, 9), l1);
     }
 
@@ -102,9 +118,11 @@ public class ZipTest extends TestBase {
     public void equals_one() {
         l1 = list(1);
         l2 = list(2);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2), l1);
     }
 
@@ -113,9 +131,11 @@ public class ZipTest extends TestBase {
     public void equal() {
         l1 = list(1, 3, 5, 7, 9);
         l2 = list(2, 4, 6, 8, 10);
+        var data = asDataList(l1, l2);
 
         RecIntList.zip(l1, l2);
 
+        checkIllegalModification(l1, data);
         assertListEquals(list(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), l1);
     }
 }
