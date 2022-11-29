@@ -76,7 +76,7 @@ public class MultiStackTest {
         stack.push(value);
         final var next = getNext(getHead());
         final var mem = getMem(next);
-        assertTrue(arrayContains(mem, value));
+        assertEquals(mem[0], value);
     }
 
     @Test
@@ -183,7 +183,7 @@ public class MultiStackTest {
         stack.push(200);
         assertEquals(head, getHead());
     }
-    
+
     @Test
     void topShouldReturnCorrectValues() {
         final var value = 10;
@@ -202,7 +202,7 @@ public class MultiStackTest {
 
         assertArrayEquals(array(value), getMem(getHead()));
         assertArrayEquals(array(value2, value3), getMem(getNext(getHead())));
-        assertArrayEquals(array(value4, 0, 0, 0), getMem(getNext(getNext(getHead()))));
+        assertEquals(value4, getMem(getNext(getNext(getHead())))[0]);
     }
 
 
@@ -227,7 +227,5 @@ public class MultiStackTest {
         assertEquals(value3, stack.pop());
         assertEquals(value4, stack.pop());
         assertEquals(value2, stack.pop());
-
-        assertArrayEquals(array(0), getMem(getHead()));
     }
 }
