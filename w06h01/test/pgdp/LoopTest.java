@@ -1,11 +1,13 @@
 package pgdp;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +24,13 @@ public class LoopTest {
                 "src/pgdp/datastructures/lists/RecIntListElement.java"
         };
 
-        String[] notAllowedKeywords = new String[] { "for", "while", "Stream" };
+        String[] notAllowedRegExp = new String[] {
+                "for\s*[(]{1}",
+                "while\s*[(]{1}",
+                "Stream.of\\(",
+                "Stream<",
+                "Arrays.stream\\(",
+        };
 
         for (String path : filePaths) {
             // Methods that are allowed to use loops
@@ -36,9 +44,11 @@ public class LoopTest {
             String filteredFile = removeMultipleMethods(file, allowedMethods);
 
             // Check if there are any loops
-            for (String keyword : notAllowedKeywords) {
-                assertTrue(!filteredFile.contains(keyword),
-                        "You are not allowed to use loops in your solution! Found a loop : " + keyword);
+            for (String regExp : notAllowedRegExp) {
+                Pattern pattern = Pattern.compile(regExp);
+                Matcher matcher = pattern.matcher(filteredFile);
+                assertFalse(matcher.find(),
+                        "You are not allowed to use loops in your solution!");
             }
         }
     }
