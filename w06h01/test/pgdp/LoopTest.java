@@ -53,11 +53,11 @@ public class LoopTest {
     /**
      * Removes a method from a file
      *
-     * The goes throws the file line by line and searches the name of the
-     * method. When the method is found, the method is searching for the closing
-     * bracket of the method. When the closing bracket is found, the method is
-     * removed.
-     * 
+     * The method goes through the file line by line and searches the name of
+     * the method. When the method is found, the method is searching for the
+     * closing bracket of the method. When the closing bracket is found, the
+     * method is removed.
+     *
      * @param file   The file as string
      * @param method The name of the method to remove
      * @return
