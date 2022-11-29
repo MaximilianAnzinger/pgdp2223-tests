@@ -1,6 +1,6 @@
 package pgdp;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -27,8 +27,9 @@ public class LoopTest {
         String[] notAllowedRegExp = new String[] {
                 "for\s*[(]{1}",
                 "while\s*[(]{1}",
-                "Stream.of",
+                "Stream.of\\(",
                 "Stream<",
+                "Arrays.stream\\(",
         };
 
         for (String path : filePaths) {
@@ -46,7 +47,7 @@ public class LoopTest {
             for (String regExp : notAllowedRegExp) {
                 Pattern pattern = Pattern.compile(regExp);
                 Matcher matcher = pattern.matcher(filteredFile);
-                assertTrue(!matcher.find(),
+                assertFalse(matcher.find(),
                         "You are not allowed to use loops in your solution!");
             }
         }
