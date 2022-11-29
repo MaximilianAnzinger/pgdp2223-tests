@@ -1,20 +1,12 @@
 package pgdp.ds.behavior;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 import pgdp.ds.Graph;
-
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class GraphTest<GraphType extends Graph> {
 
-    final Class<GraphType> graphType;
-
-    public GraphTest(Class<GraphType> graphType) {
-        this.graphType = graphType;
-    }
 
     protected abstract GraphType createGraph(int nodes);
 
@@ -33,9 +25,7 @@ public abstract class GraphTest<GraphType extends Graph> {
         };
         graph.addEdge(1, expectedNeighbors[0]);
         graph.addEdge(1, expectedNeighbors[1]);
-        int[] actual = graph.getAdj(1);
-        Arrays.sort(actual);
-        assertArrayEquals(expectedNeighbors, actual);
+        assertArrayEquals(expectedNeighbors, graph.getAdj(1));
     }
 
     @Test
@@ -60,31 +50,25 @@ public abstract class GraphTest<GraphType extends Graph> {
         assertArrayEquals(new int[0], neighbors);
     }
 
-    private int random(int min, int max) {
-        return (int) (Math.random() * (max - min + 1) + min);
-    }
 
-    private <T> T switchGraph(T sparse, T dense) {
-        return switch (graphType.getSimpleName()) {
-            case "SparseGraph" -> sparse;
-            case "DenseGraph" -> dense;
-            default -> throw new IllegalArgumentException("Unknown graph type");
-        };
+    @Test
+    final void shouldNotAddEdgeWhenNodeIsOutOfRange() {
+        final var graph = createGraph(3);
+        graph.addEdge(1, 3);
+        assertFalse(graph.isAdj(1, 3));
     }
 
     @Test
-    @Timeout(2)
-    final void getAdjShouldBeFast() {
-        final var numberOfNodes = switchGraph(1_000_000, 10_000);
-        final var numberOfEdges = numberOfNodes * switchGraph(1.5, 8.0);
+    final void shouldNotAddEdgeWhenNodeIsNegative() {
+        final var graph = createGraph(3);
+        graph.addEdge(1, -1);
+        assertFalse(graph.isAdj(1, -1));
+    }
 
-        final var graph = createGraph(numberOfNodes);
-        for (int i = 0; i < numberOfEdges; i++) {
-            graph.addEdge(random(0, numberOfNodes - 1), random(0, numberOfNodes - 1));
-        }
-        for (int i = 0; i < 1000; i++) {
-            graph.getAdj(i);
-        }
+    @Test
+    final void shouldSetNumberOfNodesToZeroWhenNegative() {
+        final var graph = createGraph(-1);
+        assertEquals(0, graph.getNumberOfNodes());
     }
 
 
