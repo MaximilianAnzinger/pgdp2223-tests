@@ -22,7 +22,6 @@ public class LoopTest {
                 "src/pgdp/datastructures/lists/RecIntListElement.java"
         };
 
-        // Not allowed keywords
         String[] notAllowedKeywords = new String[] { "for", "while", "Stream" };
 
         for (String path : filePaths) {
@@ -33,10 +32,7 @@ public class LoopTest {
                     "public String toConnectionString() {"
             };
 
-            // Read RecIntList.java
             String file = readFile(path);
-
-            // Remove methods
             String filteredFile = removeMultipleMethods(file, allowedMethods);
 
             // Check if there are any loops
