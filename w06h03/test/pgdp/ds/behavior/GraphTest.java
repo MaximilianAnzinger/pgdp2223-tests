@@ -50,19 +50,31 @@ public abstract class GraphTest<GraphType extends Graph> {
         assertArrayEquals(new int[0], neighbors);
     }
 
-
     @Test
-    final void shouldNotAddEdgeWhenNodeIsOutOfRange() {
+    final void shouldNotAddEdgeWhenFromIsOutOfRange() {
+        final var graph = createGraph(3);
+        graph.addEdge(3, 1);
+        assertFalse(graph.isAdj(3, 1));
+    }
+    @Test
+    final void shouldNotAddEdgeWhenToIsOutOfRange() {
         final var graph = createGraph(3);
         graph.addEdge(1, 3);
         assertFalse(graph.isAdj(1, 3));
     }
 
     @Test
-    final void shouldNotAddEdgeWhenNodeIsNegative() {
+    final void shouldNotAddEdgeWhenToIsNegative() {
         final var graph = createGraph(3);
         graph.addEdge(1, -1);
         assertFalse(graph.isAdj(1, -1));
+    }
+
+    @Test
+    final void shouldNotAddEdgeWhenFromIsNegative() {
+        final var graph = createGraph(3);
+        graph.addEdge(-1, 1);
+        assertFalse(graph.isAdj(-1, 1));
     }
 
     @Test
