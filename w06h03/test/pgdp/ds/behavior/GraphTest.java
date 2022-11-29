@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import pgdp.ds.Graph;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class GraphTest<GraphType extends Graph> {
@@ -31,7 +33,9 @@ public abstract class GraphTest<GraphType extends Graph> {
         };
         graph.addEdge(1, expectedNeighbors[0]);
         graph.addEdge(1, expectedNeighbors[1]);
-        assertArrayEquals(expectedNeighbors, graph.getAdj(1));
+        int[] actual = graph.getAdj(1);
+        Arrays.sort(actual);
+        assertArrayEquals(expectedNeighbors, actual);
     }
 
     @Test
