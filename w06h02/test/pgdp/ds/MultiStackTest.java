@@ -183,5 +183,51 @@ public class MultiStackTest {
         stack.push(200);
         assertEquals(head, getHead());
     }
+    
+    @Test
+    void topShouldReturnCorrectValues() {
+        final var value = 10;
+        final var value2 = 20;
+        final var value3 = 30;
+        final var value4 = 40;
 
+        stack.push(value);
+        assertEquals(value, stack.top());
+        stack.push(value2);
+        assertEquals(value2, stack.top());
+        stack.push(value3);
+        assertEquals(value3, stack.top());
+        stack.push(value4);
+        assertEquals(value4, stack.top());
+
+        assertArrayEquals(array(value), getMem(getHead()));
+        assertArrayEquals(array(value2, value3), getMem(getNext(getHead())));
+        assertArrayEquals(array(value4, 0, 0, 0), getMem(getNext(getNext(getHead()))));
+    }
+
+
+    @Test
+    void popShouldReturnCorrectValues() {
+        final var value = 10;
+        final var value2 = 20;
+        final var value3 = 30;
+        final var value4 = 40;
+
+        stack.push(value);
+        assertEquals(value, stack.pop());
+
+        stack.push(value2);
+        stack.push(value3);
+        assertEquals(value3, stack.pop());
+
+        assertArrayEquals(array(value2), getMem(getHead()));
+
+        stack.push(value4);
+        stack.push(value3);
+        assertEquals(value3, stack.pop());
+        assertEquals(value4, stack.pop());
+        assertEquals(value2, stack.pop());
+
+        assertArrayEquals(array(0), getMem(getHead()));
+    }
 }
