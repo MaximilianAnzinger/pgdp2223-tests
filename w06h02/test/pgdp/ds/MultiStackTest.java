@@ -227,5 +227,7 @@ public class MultiStackTest {
         assertEquals(value3, stack.pop());
         assertEquals(value4, stack.pop());
         assertEquals(value2, stack.pop());
+
+        assertEquals(Integer.MIN_VALUE, stack.pop());
     }
 }
