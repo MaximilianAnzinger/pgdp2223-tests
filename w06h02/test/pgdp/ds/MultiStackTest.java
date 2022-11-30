@@ -230,4 +230,15 @@ public class MultiStackTest {
 
         assertArrayEquals(array(0), getMem(getHead()));
     }
+
+    @Test
+    void shouldNotCreateNewStackWhenCurrentStackIsNotFull() {
+        stack.push(200);
+        stack.push(200);
+        stack.push(200);
+        stack.pop();
+        stack.push(200);
+        final var next = getNext(getHead());
+        assertNull(getNext(next));
+    }
 }
