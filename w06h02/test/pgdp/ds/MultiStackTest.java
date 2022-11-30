@@ -241,4 +241,5 @@ public class MultiStackTest {
         final var next = getNext(getHead());
         assertNull(getNext(next));
     }
+
 }
