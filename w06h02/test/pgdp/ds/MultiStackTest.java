@@ -238,6 +238,6 @@ public class MultiStackTest {
         assertEquals(value4, stack.pop());
         assertEquals(value2, stack.pop());
 
-        assertArrayEquals(array(0), getMem(getHead()));
+        assertEquals(-1, getTopPointer(getHead()));
     }
 }
