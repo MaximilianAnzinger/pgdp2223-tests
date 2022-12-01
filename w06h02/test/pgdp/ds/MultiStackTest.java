@@ -57,6 +57,16 @@ public class MultiStackTest {
         }
     }
 
+    int getTopPointer(Stack s) {
+        try {
+            final var field = s.getClass().getDeclaredField("top");
+            field.setAccessible(true);
+            return (int) field.get(s);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+                throw new RuntimeException(e);
+        }
+    }
+
     MultiStack createMultiStack() {
         return new MultiStack();
     }
