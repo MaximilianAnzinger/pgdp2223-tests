@@ -29,11 +29,11 @@ class SparseGraphCapabilityTest {
 
         for(int i = 0; i< nodes; i++){
             for (int j = i; j < i+edgesPerNode; j++){
-                if(i == 420 && j == 420){;
-                }
                 sparseGraph.addEdge(i, j);
             }
         }
+        long l = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()) / 1_000_000;
+        System.out.println("Used: " + l + "MB of RAM");
         int[] res = new int[edgesPerNode];
         for(int i = 0; i < edgesPerNode; i++){
             int addRes = 420 + i;
