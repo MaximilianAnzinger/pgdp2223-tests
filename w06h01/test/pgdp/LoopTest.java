@@ -67,6 +67,7 @@ public class LoopTest {
                 return i + 1;
             }
         }
+        // No loop found, returning -1
         return -1;
     }
 
