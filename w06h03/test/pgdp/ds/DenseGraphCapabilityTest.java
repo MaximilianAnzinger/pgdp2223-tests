@@ -30,7 +30,8 @@ class DenseGraphCapabilityTest {
                 denseGraph.addEdge(i, j);
             }
         }
-
+        long l = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()) / 1_000_000;
+        System.out.println("Used: " + l + "MB of RAM");
         int[] res = new int[n];
         for (int i = 0; i < res.length; i++){
             res[i] = i;
