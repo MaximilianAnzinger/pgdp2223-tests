@@ -239,5 +239,6 @@ public class MultiStackTest {
         assertEquals(value2, stack.pop());
 
         assertEquals(-1, getTopPointer(getHead()));
+        assertNull(getNext(getHead()));
     }
 }
