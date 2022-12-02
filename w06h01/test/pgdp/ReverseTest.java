@@ -64,4 +64,28 @@ public class ReverseTest extends TestBase {
         checkIllegalModification(list, data);
         assertListEquals(list(6, 5, 4, 3, 2, 1), list);
     }
+    
+    @Test
+    @DisplayName("should reverse list with even amount of elements")
+    public void testNegativeNumbers() {
+        var list = list(Integer.MIN_VALUE, -1, 0, 1, Integer.MAX_VALUE);
+        list.reverse();
+        assertListEquals(list(Integer.MAX_VALUE, 1, 0, -1, Integer.MIN_VALUE), list);
+    }
+
+    @Test
+    @DisplayName("should reverse long list")
+    public void longList() {
+        int[] longArr = new int[1000];
+        int[] revLongArr = new int[1000];
+
+        for(int i = 0; i < longArr.length; i++) {
+            longArr[i] = i;
+            revLongArr[i] = longArr.length - i - 1;
+        }
+
+        var list = list(longArr);
+        list.reverse();
+        assertListEquals(list(revLongArr), list);
+    }
 }
