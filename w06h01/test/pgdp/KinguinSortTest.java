@@ -113,8 +113,6 @@ public class KinguinSortTest extends TestBase {
     public void testKinguinSortSetLinks(RecIntList expected, RecIntList actual, boolean increasing) {
         actual.kinguinSort(increasing);
         assertListEquals(expected, actual);
-        System.out.println(expected.toConnectionString());
-        System.out.println(actual.toConnectionString());
         assertEquals(expected.toConnectionString(), actual.toConnectionString());
     }
 
