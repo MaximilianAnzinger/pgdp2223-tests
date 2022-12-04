@@ -13,7 +13,7 @@ public class CanEatBehaviourTest {
     void expectEat() {
         Assertions.assertTrue(ham.canEat(plant), "Expected Hamster to be able to eat a Plant");
         Assertions.assertTrue(pingu.canEat(plant), "Expected Pingu to be able to eat a Plant");
-        Assertions.assertTrue(wolf.canEat(ham), "Expected Wolf to be able to eat a Plant");
+        Assertions.assertTrue(wolf.canEat(ham), "Expected Wolf to be able to eat a Hamster");
     }
 
     @Test
