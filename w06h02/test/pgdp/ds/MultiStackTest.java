@@ -76,7 +76,7 @@ public class MultiStackTest {
         stack.push(value);
         final var next = getNext(getHead());
         final var mem = getMem(next);
-        assertTrue(arrayContains(mem, value));
+        assertEquals(mem[0], value);
     }
 
     @Test
@@ -183,14 +183,15 @@ public class MultiStackTest {
         stack.push(200);
         assertEquals(head, getHead());
     }
-    
+
     @Test
     void topShouldReturnCorrectValues() {
         final var value = 10;
         final var value2 = 20;
         final var value3 = 30;
         final var value4 = 40;
-
+        
+        assertEquals(Integer.MIN_VALUE, stack.top());
         stack.push(value);
         assertEquals(value, stack.top());
         stack.push(value2);
@@ -202,7 +203,7 @@ public class MultiStackTest {
 
         assertArrayEquals(array(value), getMem(getHead()));
         assertArrayEquals(array(value2, value3), getMem(getNext(getHead())));
-        assertArrayEquals(array(value4, 0, 0, 0), getMem(getNext(getNext(getHead()))));
+        assertEquals(value4, getMem(getNext(getNext(getHead())))[0]);
     }
 
 
@@ -228,6 +229,18 @@ public class MultiStackTest {
         assertEquals(value4, stack.pop());
         assertEquals(value2, stack.pop());
 
-        assertArrayEquals(array(0), getMem(getHead()));
+        assertEquals(Integer.MIN_VALUE, stack.pop());
     }
+
+    @Test
+    void shouldNotCreateNewStackWhenCurrentStackIsNotFull() {
+        stack.push(200);
+        stack.push(200);
+        stack.push(200);
+        stack.pop();
+        stack.push(200);
+        final var next = getNext(getHead());
+        assertNull(getNext(next));
+    }
+
 }

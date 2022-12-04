@@ -1,5 +1,5 @@
 package pgdp;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.stream.Stream;
@@ -89,6 +89,37 @@ public class KinguinSortTest extends TestBase {
             arguments(list(3, 2, 1), list(3, 2, 4, 7, 1, 6, 5, 9, 8), false),
             arguments(list(-5, 0, 5), list(-5, 0, 5), true),
             arguments(list(-5), list(-5, 0, 5), false)
+        );
+    }
+
+    @ParameterizedTest(name = "{1} | Increasing: {2}")
+    @MethodSource
+    @DisplayName("kinguinSort works for equals elements")
+    public void testKinguinSortEqualsElements(RecIntList expected, RecIntList actual, boolean increasing) {
+        actual.kinguinSort(increasing);
+        assertListEquals(expected, actual);
+    }
+
+    static Stream<Arguments> testKinguinSortEqualsElements() {
+        return Stream.of(
+                arguments(list(3,4,4,7,9,9), list(3,2,4,4,7,1,6,5,9,9,8), true),
+                arguments(list(3,2,1,1), list(3,2,4,4,7,1,1,6,5,9,9,8), false)
+        );
+    }
+
+    @ParameterizedTest(name = "{1} | Increasing: {2}")
+    @MethodSource
+    @DisplayName("kinguinSort set links correctly")
+    public void testKinguinSortSetLinks(RecIntList expected, RecIntList actual, boolean increasing) {
+        actual.kinguinSort(increasing);
+        assertListEquals(expected, actual);
+        assertEquals(expected.toConnectionString(), actual.toConnectionString());
+    }
+
+    static Stream<Arguments> testKinguinSortSetLinks() {
+        return Stream.of(
+                arguments(list(3,4,7,9), list(3,2,4,7,1,6,5,9,8), true),
+                arguments(list(3,2,1), list(3,2,4,4,7,1,6,5,9,9,8), false)
         );
     }
 }

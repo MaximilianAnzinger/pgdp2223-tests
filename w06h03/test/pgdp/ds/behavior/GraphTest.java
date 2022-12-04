@@ -82,6 +82,12 @@ public abstract class GraphTest<GraphType extends Graph> {
         final var graph = createGraph(-1);
         assertEquals(0, graph.getNumberOfNodes());
     }
+    
+    @Test
+    final void shouldBeNullWhenNodeDoesNotExist() {
+        final var graph = createGraph(5);
+        assertArrayEquals(null, graph.getAdj(5));
+    }
 
 
 }

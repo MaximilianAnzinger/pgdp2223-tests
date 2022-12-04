@@ -1,13 +1,16 @@
 package pgdp;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,13 +21,8 @@ public class LoopTest {
     // loops in your solution.
     @DisplayName("Source code should not contain loops because they are not allowed in this exercise")
     @Test
-    public void testUsageOfLoops() {
-        String[] filePaths = new String[] {
-                "src/pgdp/datastructures/lists/RecIntList.java",
-                "src/pgdp/datastructures/lists/RecIntListElement.java"
-        };
-
-        String[] notAllowedRegExp = new String[] {
+    public void testUsageOfLoops() throws IOException {
+        String[] notAllowedRegExp = new String[]{
                 "for\s*[(]{1}",
                 "while\s*[(]{1}",
                 "Stream.of\\(",
@@ -32,25 +30,45 @@ public class LoopTest {
                 "Arrays.stream\\(",
         };
 
-        for (String path : filePaths) {
-            // Methods that are allowed to use loops
-            String[] allowedMethods = new String[] {
-                    "public static void main(String[] args) {",
-                    "public String toString() {",
-                    "public String toConnectionString() {"
-            };
+        try (Stream<Path> sourceFiles = Files.find(Path.of("src"), 100, (filePath, fileAttr) -> fileAttr.isRegularFile() && filePath.toString().endsWith(".java"))) {
+            sourceFiles.forEach(f -> {
+                String path = f.toString();
 
-            String file = readFile(path);
-            String filteredFile = removeMultipleMethods(file, allowedMethods);
 
-            // Check if there are any loops
-            for (String regExp : notAllowedRegExp) {
-                Pattern pattern = Pattern.compile(regExp);
-                Matcher matcher = pattern.matcher(filteredFile);
-                assertFalse(matcher.find(),
-                        "You are not allowed to use loops in your solution!");
+                // Methods that are allowed to use loops
+                String[] allowedMethods = new String[]{
+                        "public static void main(String[] args) {",
+                        "public String toString() {",
+                        "public String toConnectionString() {"
+                };
+
+                String file = readFile(path);
+                String filteredFile = removeMultipleMethods(file, allowedMethods);
+
+                // Check if there are any loops
+                for (String regExp : notAllowedRegExp) {
+                    int lineNum = getOffendingLineNum(filteredFile, regExp);
+                    boolean noLoop = lineNum == -1;
+
+                    assertTrue(noLoop,
+                            "You are not allowed to use loops in your solution! Found a loop at " + path + ":" + lineNum);
+                }
+            });
+        }
+    }
+
+    private int getOffendingLineNum(String s, String regExp) {
+        Pattern pattern = Pattern.compile(regExp);
+
+        String[] lines = s.split("\n");
+        for (int i = 0; i < lines.length; i++) {
+            Matcher matcher = pattern.matcher(lines[i]);
+            if (matcher.find()) {
+                return i + 1;
             }
         }
+        // No loop found, returning -1
+        return -1;
     }
 
     private String removeMultipleMethods(String file, String[] methods) {
@@ -62,7 +80,7 @@ public class LoopTest {
 
     /**
      * Removes a method from a file
-     *
+     * <p>
      * The method goes through the file line by line and searches the name of
      * the method. When the method is found, the method is searching for the
      * closing bracket of the method. When the closing bracket is found, the
