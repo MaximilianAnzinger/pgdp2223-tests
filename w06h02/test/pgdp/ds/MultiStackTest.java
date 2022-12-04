@@ -190,7 +190,8 @@ public class MultiStackTest {
         final var value2 = 20;
         final var value3 = 30;
         final var value4 = 40;
-
+        
+        assertEquals(Integer.MIN_VALUE, stack.top());
         stack.push(value);
         assertEquals(value, stack.top());
         stack.push(value2);
