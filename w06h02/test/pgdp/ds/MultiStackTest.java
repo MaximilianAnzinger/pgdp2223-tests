@@ -230,4 +230,16 @@ public class MultiStackTest {
 
         assertEquals(Integer.MIN_VALUE, stack.pop());
     }
+
+    @Test
+    void shouldNotCreateNewStackWhenCurrentStackIsNotFull() {
+        stack.push(200);
+        stack.push(200);
+        stack.push(200);
+        stack.pop();
+        stack.push(200);
+        final var next = getNext(getHead());
+        assertNull(getNext(next));
+    }
+
 }
