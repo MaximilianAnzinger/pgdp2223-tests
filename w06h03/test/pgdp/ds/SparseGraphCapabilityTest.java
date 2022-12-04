@@ -27,19 +27,25 @@ class SparseGraphCapabilityTest {
         SparseGraph sparseGraph = new SparseGraph(nodes);
         System.out.println(sparseGraph.getNumberOfNodes());
 
-        for(int i = 0; i< nodes; i++){
-            for (int j = i; j < i+edgesPerNode; j++){
+        for (int i = 0; i < nodes; i++) {
+            for (int j = i; j < i + edgesPerNode; j++) {
                 sparseGraph.addEdge(i, j);
             }
         }
-        long l = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()) / 1_000_000;
+        long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
         System.out.println("Used: " + l + "MB of RAM");
         int[] res = new int[edgesPerNode];
-        for(int i = 0; i < edgesPerNode; i++){
+        for (int i = 0; i < edgesPerNode; i++) {
             int addRes = 420 + i;
             res[i] = addRes;
         }
-        Assertions.assertArrayEquals(res, sparseGraph.getAdj(420));
+
+        int[] actual = sparseGraph.getAdj(420);
+
+        Arrays.sort(res);
+        Arrays.sort(actual);
+
+        Assertions.assertArrayEquals(res, actual);
     }
 
 }
