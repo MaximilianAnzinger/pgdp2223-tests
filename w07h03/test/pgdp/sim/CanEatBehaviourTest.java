@@ -3,7 +3,7 @@ package pgdp.sim;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class EatBehaviourTest {
+public class CanEatBehaviourTest {
     static Hamster ham = new Hamster();
     static Plant plant = new Plant();
     static Pingu pingu = new Pingu();
