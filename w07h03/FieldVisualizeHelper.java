@@ -1,8 +1,8 @@
 package pgdp.sim;
 
 public class FieldVisualizeHelper {
-    private static final String[] emojiSymbols = {"🌱", "🐹", "🐧", "🐺", "🔳"};
-    private static final String[] textualSymbols = {"g", "h", "p", "w", "."};
+    private static final String[] emojiSymbols = {"🌱", "🐹", "🐺", "🐧", "🔳"};
+    private static final String[] textualSymbols = {"g", "h", "w", "p", "."};
 
     /**
      * Turns a field description into a Cell-Array.<br>
@@ -29,28 +29,24 @@ public class FieldVisualizeHelper {
      *     . g g h . h w w p . . . . . . . . . . . .
      * </code></pre></p>
      *
-     * @param cellsTextual  A String/text block containing the field description in FDL
-     * @param width         The width of the field
-     * @param height        The height of the field
-     * @return              A Cell-Array with the entities created
+     * @param cellsTextual A String/text block containing the field description in FDL
+     * @param width        The width of the field
+     * @param height       The height of the field
+     * @return A Cell-Array with the entities created
      */
     public static Cell[] fieldDescriptionToCellArray(String cellsTextual, int width, int height) {
         cellsTextual = cellsTextual.replace("\n", " ");
         String[] cellFieldTextual = cellsTextual.split(" ");
         Cell[] cellField = new Cell[width * height];
 
-        for (int pos = 0; pos < width*height; pos++) {
-            if (textualSymbols[0].equals(cellFieldTextual[pos])){
-                cellField[pos] = new Plant();
-            } else if (textualSymbols[1].equals(cellFieldTextual[pos])){
-                cellField[pos] = new Hamster();
-            } else if (textualSymbols[2].equals(cellFieldTextual[pos])){
-                cellField[pos] = new Wolf();
-            } else if (textualSymbols[3].equals(cellFieldTextual[pos])){
-                cellField[pos] = new Pingu();
-            } else if (textualSymbols[4].equals(cellFieldTextual[pos])){
-                cellField[pos] = null;
-            }
+        for (int i = 0; i < width * height; i++) {
+            cellField[i] = switch (cellFieldTextual[i]) {
+                case "g" -> new Plant();
+                case "h" -> new Hamster();
+                case "w" -> new Wolf();
+                case "p" -> new Pingu();
+                default -> null;
+            };
         }
         return cellField;
     }
@@ -81,11 +77,11 @@ public class FieldVisualizeHelper {
      *     🔳 🔳 🔳 🔳 🔳 🔳 🔳
      * </code></pre></p>
      *
-     * @param cellField     A Cell-Array to be turned into an FDL description
-     * @param width         The width of the field
-     * @param height        The height of the field
-     * @param useEmojis     Specifies whether the output should be given as emojis representing the respective cells. Might make it easier to get an overview of the field.
-     * @return              A String with the textual description of cellField in FDL
+     * @param cellField A Cell-Array to be turned into an FDL description
+     * @param width     The width of the field
+     * @param height    The height of the field
+     * @param useEmojis Specifies whether the output should be given as emojis representing the respective cells. Might make it easier to get an overview of the field.
+     * @return A String with the textual description of cellField in FDL
      */
     public static String cellArrayToFieldDescription(Cell[] cellField, int width, int height, boolean useEmojis) {
         String[] charSetToUse = useEmojis ? emojiSymbols : textualSymbols;
