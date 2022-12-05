@@ -25,31 +25,33 @@ public class SimulationTest {
     @DisplayName("One single plant only")
     void singlePlant() {
         var states = new String[]{"""
-                p . . . .
+                g . . . .
                 . . . . .
                 . . . . .
                 . . . . .
                 . . . . .""", """
-                p . . . .
-                w . . . .
+                g g . . .
+                g . . . .
                 . . . . .
                 . . . . .
                 . . . . .""", """
-                p w . . .
-                w . . . .
-                . . . . .
-                . . . . .
-                . . . . .""", """
-                p w w . .
-                w w . . .
-                w . . . .
+                g g g . .
+                g g . . .
+                g . . . .
                 . . . . .
                 . . . . .""", """
-                p w w w .
-                w w w . .
-                w w . . .
-                . w . . .
+                g g g . .
+                g g g . .
+                g g . . .
+                . . . . .
+                . . . . .""", """
+                g g g g .
+                g g g g .
+                g g g g .
+                g g . . .
                 . . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
         runTest("plant", 5, 5, states);
     }
 }
