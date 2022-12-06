@@ -27,15 +27,21 @@ public class EatBehaviourTest {
                 for (int y = 0; y < height; y++) {
                     Cell[] newWorld = theWorld.clone();
                     consumer.eat(theWorld.clone(), newWorld, width, height, x,y);
-                    String errormsg = "\n------Failure------\n"
+                    var expected = herbivoreWorlds[x][y];
+                    var orExpected = expected.clone();
+                    String errorMsg = "\n------Failure------\n"
                             + "Eating on coordinates: \n"
                             + "  x: " + x + "\n"
                             + "  y: " + y + "\n"
                             + "Eating party was a:\n"
                             + consumer.getSymbol() + "\n"
-                            + "Expected world was: " + Arrays.toString(herbivoreWorlds[x][y]) + "\n\n"
+                            + "Expected world was: " + Arrays.toString(expected) + "\n"
+                            + "or: " + Arrays.toString(orExpected)+ "\n\n"
                             + "Got world: " + Arrays.toString(newWorld) + "\n\n";
-                    Assertions.assertArrayEquals(herbivoreWorlds[x][y], newWorld, errormsg);
+                    orExpected[x + y*width] = orExpected[x + y*width] instanceof Plant ? null :orExpected[x + y*width];
+
+                    boolean assertion = Arrays.equals(newWorld, expected) || Arrays.equals(newWorld, orExpected);
+                    Assertions.assertTrue(assertion, errorMsg);
                 }
             }
         }
@@ -86,14 +92,14 @@ public class EatBehaviourTest {
                     {
                             null, pingu, plant1,
                             ham, null, wolf,
-                            null, null, null,
+                            null, plant2, null,
                     },
             },
             // [2]
             {
                     // [2][0]
                     {
-                            null, pingu, null,
+                            null, pingu, plant1,
                             ham, null, wolf,
                             null, plant2, null,
                     },
