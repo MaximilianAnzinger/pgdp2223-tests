@@ -22,11 +22,11 @@ public class EatBehaviourTest {
 
     @Test
     void herbivoreBehaviour() {
-        for(var consumer : new MovingCell[]{ham, pingu}) {
+        for (var consumer : new MovingCell[]{ham, pingu}) {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     Cell[] newWorld = theWorld.clone();
-                    consumer.eat(theWorld.clone(), newWorld, width, height, x,y);
+                    consumer.eat(theWorld.clone(), newWorld, width, height, x, y);
                     var expected = herbivoreWorlds[x][y];
                     var orExpected = expected.clone();
                     String errorMsg = "\n------Failure------\n"
@@ -36,9 +36,10 @@ public class EatBehaviourTest {
                             + "Eating party was a:\n"
                             + consumer.getSymbol() + "\n"
                             + "Expected world was: " + Arrays.toString(expected) + "\n"
-                            + "or: " + Arrays.toString(orExpected)+ "\n\n"
+                            + "or: " + Arrays.toString(orExpected) + "\n\n"
                             + "Got world: " + Arrays.toString(newWorld) + "\n\n";
-                    orExpected[x + y*width] = orExpected[x + y*width] instanceof Plant ? null :orExpected[x + y*width];
+
+                    orExpected[x + y * width] = orExpected[x + y * width] instanceof Plant ? null : orExpected[x + y * width];
 
                     boolean assertion = Arrays.equals(newWorld, expected) || Arrays.equals(newWorld, orExpected);
                     Assertions.assertTrue(assertion, errorMsg);
@@ -52,7 +53,7 @@ public class EatBehaviourTest {
     /**
      * Depending on which coordinate (first two array indecies) you place the herbivore, this world results
      */
-    static Cell[][][] herbivoreWorlds = new Cell[][][] {
+    static Cell[][][] herbivoreWorlds = new Cell[][][]{
             // [0]
             {
                     // [0][0]
