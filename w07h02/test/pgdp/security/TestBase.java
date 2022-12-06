@@ -65,11 +65,6 @@ public abstract class TestBase {
     }
 
     @Test
-    void upShouldReturnFalseOnNullInput() {
-        assertFalse(sut.up(null));
-    }
-
-    @Test
     void upShouldReturnFalseOnEmptyInput() {
         assertFalse(sut.up(""));
     }
