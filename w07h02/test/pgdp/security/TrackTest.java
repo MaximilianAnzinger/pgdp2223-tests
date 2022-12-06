@@ -299,12 +299,14 @@ public class TrackTest {
         final var outSave = System.out;
         final var printStream = new PrintStream(output);
         System.setOut(printStream);
-        final var expectedBuilder = new StringBuilder();
         final var track = new Track(4);
-        for (final var post : track.getPosts()) {
-            expectedBuilder.append(post.toString()).append("\n");
-        }
-        final var expected = expectedBuilder.append("\n").toString();
+        final var posts = track.getPosts();
+        final var expected = posts[0] +
+                System.lineSeparator() +
+                posts[1] + System.lineSeparator() +
+                posts[2] + System.lineSeparator() +
+                posts[3] + System.lineSeparator() +
+                System.lineSeparator();
         track.printStatus();
 
         assertEquals(expected, output.toString());
