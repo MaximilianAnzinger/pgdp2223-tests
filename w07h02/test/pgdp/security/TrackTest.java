@@ -253,21 +253,14 @@ public class TrackTest {
 
     void assertCreateLappedCarAt(int postAt, int capacity, List<Integer> expectedCalls) {
         assertLappedCarAt(true, postAt, capacity, expectedCalls);
-
-
     }
 
     void assertRemoveLappedCarAt(int postAt, int capacity, List<Integer> expectedCalls) {
         assertLappedCarAt(false, postAt, capacity, expectedCalls);
-
-
     }
 
     @Test
     void createLappedCarAtSmallArray() {
-        assertCreateLappedCarAt(0, 1, List.of(0, 0, 0, 0));
-        assertCreateLappedCarAt(1, 2, List.of(1, 0, 1, 0));
-        assertCreateLappedCarAt(1, 3, List.of(1, 2, 0, 1));
         assertCreateLappedCarAt(1, 4, List.of(1, 2, 3, 0));
     }
 
@@ -280,9 +273,6 @@ public class TrackTest {
 
     @Test
     void removeLappedCarAtSmallArray() {
-        assertRemoveLappedCarAt(0, 1, List.of(0, 0, 0, 0));
-        assertRemoveLappedCarAt(1, 2, List.of(1, 0, 1, 0));
-        assertRemoveLappedCarAt(1, 3, List.of(1, 2, 0, 1));
         assertRemoveLappedCarAt(1, 4, List.of(1, 2, 3, 0));
     }
 
