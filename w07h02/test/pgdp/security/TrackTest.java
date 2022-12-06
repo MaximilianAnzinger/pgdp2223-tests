@@ -304,7 +304,7 @@ public class TrackTest {
         for (final var post : track.getPosts()) {
             expectedBuilder.append(post.toString()).append("\n");
         }
-        final var expected = expectedBuilder.toString();
+        final var expected = expectedBuilder.append("\n").toString();
         track.printStatus();
 
         assertEquals(expected, output.toString());
