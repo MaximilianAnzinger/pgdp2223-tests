@@ -122,7 +122,7 @@ public class FlagPostTest extends TestBase {
     @Override
     @Test
     void correctToStringForLevelZero() {
-        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵⎵flag⎵post⎵⎵is⎵in⎵level⎵%d⎵and⎵is⎵⎵doing⎵nothing".replace("⎵", " "), sut.getPostNumber(), sut.getLevel());
+        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵⎵flag⎵post⎵⎵is⎵in⎵level⎵0⎵and⎵is⎵⎵doing⎵nothing".replace("⎵", " "), sut.getPostNumber());
         assertEquals(expected, sut.toString());
     }
 
@@ -130,7 +130,7 @@ public class FlagPostTest extends TestBase {
     @Test
     void correctToString() {
         sut.up("end");
-        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵⎵flag⎵post⎵⎵is⎵in⎵level⎵%d⎵and⎵is⎵⎵waving⎵⎵%s".replace("⎵", " "), sut.getPostNumber(), sut.getLevel(), sut.getDepiction());
+        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵⎵flag⎵post⎵⎵is⎵in⎵level⎵5⎵and⎵is⎵⎵waving⎵⎵end".replace("⎵", " "), sut.getPostNumber());
         assertEquals(expected, sut.toString());
     }
 }

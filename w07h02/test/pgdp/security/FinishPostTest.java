@@ -21,15 +21,16 @@ public class FinishPostTest extends FlagPostTest {
     @Override
     @Test
     void correctToString() {
-        sut.up("red");
-        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵finish⎵post⎵is⎵in⎵level⎵%d⎵and⎵is⎵⎵waving⎵⎵%s".replace("⎵", " "), sut.getPostNumber(), sut.getLevel(), sut.getDepiction());
+        final var depiction = "red";
+        sut.up(depiction);
+        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵finish⎵post⎵is⎵in⎵level⎵4⎵and⎵is⎵⎵waving⎵⎵%s".replace("⎵", " "), sut.getPostNumber(), depiction);
         assertEquals(expected, sut.toString());
     }
 
     @Override
     @Test
     void correctToStringForLevelZero() {
-        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵finish⎵post⎵is⎵in⎵level⎵%d⎵and⎵is⎵⎵doing⎵nothing".replace("⎵", " "), sut.getPostNumber(), sut.getLevel());
+        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵finish⎵post⎵is⎵in⎵level⎵0⎵and⎵is⎵⎵doing⎵nothing".replace("⎵", " "), sut.getPostNumber());
         assertEquals(expected, sut.toString());
     }
 }

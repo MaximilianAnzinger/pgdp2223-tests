@@ -49,15 +49,16 @@ public class LightPanelTest extends TestBase {
     @Test
     @Override
     void correctToStringForLevelZero() {
-        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵light⎵panel⎵is⎵in⎵level⎵%d⎵and⎵is⎵switched⎵off".replace("⎵", " "), sut.getPostNumber(), sut.getLevel());
+        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵light⎵panel⎵is⎵in⎵level⎵0⎵and⎵is⎵switched⎵off".replace("⎵", " "), sut.getPostNumber());
         assertEquals(expected, sut.toString());
     }
 
     @Test
     @Override
     void correctToString() {
-        sut.up("green");
-        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵light⎵panel⎵is⎵in⎵level⎵%d⎵and⎵is⎵blinking⎵%s".replace("⎵", " "), sut.getPostNumber(), sut.getLevel(), sut.getDepiction());
+        final var depiction = "green";
+        sut.up(depiction);
+        final var expected = String.format("Signal⎵post⎵%d⎵of⎵type⎵light⎵panel⎵is⎵in⎵level⎵1⎵and⎵is⎵blinking⎵%s".replace("⎵", " "), sut.getPostNumber(), depiction);
         assertEquals(expected, sut.toString());
     }
 
