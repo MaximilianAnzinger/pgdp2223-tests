@@ -100,14 +100,14 @@ public class UnitTests {
             @DisplayName("Check if the state would change from the level 5")
             void checkStateChangeForLastLevel() {
                 lightPanel.setLevel(5);
-                lightPanel.setDepiction("end");
+                lightPanel.setDepiction("yellow");
 
                 boolean success = lightPanel.up("green");
                 assertFalse(success, "Expected the return value of false");
                 assertEquals(5, lightPanel.getLevel(),
                         "Wrong level. Expected " + 5 + " but got " + lightPanel.getLevel());
-                assertEquals("end", lightPanel.getDepiction(),
-                        "Wrong depiction. Expected " + "end" + " but got " + lightPanel.getDepiction());
+                assertEquals("yellow", lightPanel.getDepiction(),
+                        "Wrong depiction. Expected " + "yellow" + " but got " + lightPanel.getDepiction());
             }
 
             @ParameterizedTest(name = "Initial level: {0} | Initial depiction: {1} | Expected level: {2} | Expected depiction: {3} | Expected return value: {4} | Up method input: {5}")
