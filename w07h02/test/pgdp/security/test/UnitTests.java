@@ -599,14 +599,14 @@ public class UnitTests {
             @DisplayName("Check if the state would change from the level 5")
             void checkStateChangeForLastLevel() {
                 finishPost.setLevel(5);
-                finishPost.setDepiction("end");
+                finishPost.setDepiction("chequered");
 
                 boolean success = finishPost.up("green");
                 assertFalse(success, "Expected the return value of false");
                 assertEquals(5, finishPost.getLevel(),
                         "Wrong level. Expected " + 5 + " but got " + finishPost.getLevel());
-                assertEquals("end", finishPost.getDepiction(),
-                        "Wrong depiction. Expected " + "end" + " but got " + finishPost.getDepiction());
+                assertEquals("chequered", finishPost.getDepiction(),
+                        "Wrong depiction. Expected " + "chequered" + " but got " + finishPost.getDepiction());
             }
 
             @ParameterizedTest(name = "Initial level: {0} | Initial depiction: {1} | Expected level: {2} | Expected depiction: {3} | Expected return value: {4} | Up method input: {5}")
