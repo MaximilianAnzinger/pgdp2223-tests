@@ -100,14 +100,14 @@ public class UnitTests {
             @DisplayName("Check if the state would change from the level 5")
             void checkStateChangeForLastLevel() {
                 lightPanel.setLevel(5);
-                lightPanel.setDepiction("end");
+                lightPanel.setDepiction("yellow");
 
                 boolean success = lightPanel.up("green");
                 assertFalse(success, "Expected the return value of false");
                 assertEquals(5, lightPanel.getLevel(),
                         "Wrong level. Expected " + 5 + " but got " + lightPanel.getLevel());
-                assertEquals("end", lightPanel.getDepiction(),
-                        "Wrong depiction. Expected " + "end" + " but got " + lightPanel.getDepiction());
+                assertEquals("yellow", lightPanel.getDepiction(),
+                        "Wrong depiction. Expected " + "yellow" + " but got " + lightPanel.getDepiction());
             }
 
             @ParameterizedTest(name = "Initial level: {0} | Initial depiction: {1} | Expected level: {2} | Expected depiction: {3} | Expected return value: {4} | Up method input: {5}")
@@ -346,14 +346,14 @@ public class UnitTests {
             @DisplayName("Check if the state would change from the level 5")
             void checkStateChangeForLastLevel() {
                 flagPost.setLevel(5);
-                flagPost.setDepiction("end");
+                flagPost.setDepiction("green/yellow/red/blue");
 
                 boolean success = flagPost.up("green");
                 assertFalse(success, "Expected the return value of false");
                 assertEquals(5, flagPost.getLevel(),
                         "Wrong level. Expected " + 5 + " but got " + flagPost.getLevel());
-                assertEquals("end", flagPost.getDepiction(),
-                        "Wrong depiction. Expected " + "end" + " but got " + flagPost.getDepiction());
+                assertEquals("green/yellow/red/blue", flagPost.getDepiction(),
+                        "Wrong depiction. Expected " + "green/yellow/red/blue" + " but got " + flagPost.getDepiction());
             }
 
             @ParameterizedTest(name = "Initial level: {0} | Initial depiction: {1} | Expected level: {2} | Expected depiction: {3} | Expected return value: {4} | Up method input: {5}")
@@ -599,14 +599,14 @@ public class UnitTests {
             @DisplayName("Check if the state would change from the level 5")
             void checkStateChangeForLastLevel() {
                 finishPost.setLevel(5);
-                finishPost.setDepiction("end");
+                finishPost.setDepiction("chequered");
 
                 boolean success = finishPost.up("green");
                 assertFalse(success, "Expected the return value of false");
                 assertEquals(5, finishPost.getLevel(),
                         "Wrong level. Expected " + 5 + " but got " + finishPost.getLevel());
-                assertEquals("end", finishPost.getDepiction(),
-                        "Wrong depiction. Expected " + "end" + " but got " + finishPost.getDepiction());
+                assertEquals("chequered", finishPost.getDepiction(),
+                        "Wrong depiction. Expected " + "chequered" + " but got " + finishPost.getDepiction());
             }
 
             @ParameterizedTest(name = "Initial level: {0} | Initial depiction: {1} | Expected level: {2} | Expected depiction: {3} | Expected return value: {4} | Up method input: {5}")
