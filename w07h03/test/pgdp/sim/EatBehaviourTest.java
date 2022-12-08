@@ -29,7 +29,7 @@ public class EatBehaviourTest {
                     consumer.eat(theWorld.clone(), newWorld, width, height, x, y);
                     var expected = herbivoreWorlds[x][y];
                     var orExpected = expected.clone();
-                    String errorMsg = "\n------Failure------\n"
+                    String errorMsg = "\n-------Failure-------\n"
                             + "Eating on coordinates: \n"
                             + "  x: " + x + "\n"
                             + "  y: " + y + "\n"
