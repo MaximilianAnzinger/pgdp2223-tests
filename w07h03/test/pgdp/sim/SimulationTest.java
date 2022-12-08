@@ -4,20 +4,30 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 
 public class SimulationTest {
     void runTest(String seed, int width, int height, String[] states) {
-        runTest(seed.getBytes(StandardCharsets.UTF_8), width, height, states);
+        try {
+            runTest(seed.getBytes(StandardCharsets.UTF_8), width, height, states);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
     }
 
-    void runTest(byte[] seed, int width, int height, String[] states) {
+    void runTest(byte[] seed, int width, int height, String[] states) throws IllegalAccessException, NoSuchFieldException {
         RandomGenerator.reseed(seed);
+
+        Field cellsField = Simulation.class.getDeclaredField("cells");
+        cellsField.setAccessible(true);
+
         var cells = FieldVisualizeHelper.fieldDescriptionToCellArray(states[0], width, height);
-        var a = new Simulation(cells, width, height);
+        var sim = new Simulation(cells, width, height);
         for (int i = 1; i < states.length; i++) {
-            a.tick();
-            Assertions.assertEquals(states[i] + "\n", FieldVisualizeHelper.cellArrayToFieldDescription(a.getCells(), width, height, false), "State " + i + ", " + (i + 1) + ".ter String");
+            sim.tick();
+            Cell[] currentCells = (Cell[]) cellsField.get(sim);
+            Assertions.assertEquals(states[i] + "\n", FieldVisualizeHelper.cellArrayToFieldDescription(currentCells, width, height, false), "State " + i + ", " + (i + 1) + ".ter String");
         }
     }
 
