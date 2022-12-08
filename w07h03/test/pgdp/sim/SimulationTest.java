@@ -1,6 +1,7 @@
 package pgdp.sim;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,26 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 
 public class SimulationTest {
+
+    @BeforeEach
+    void setDefaults() {
+        SimConfig.plantReproductionCost = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.pinguFoodConsumption = 1;
+        SimConfig.pinguConsumedFood = 4;
+        SimConfig.pinguReproductionCost = 10;
+        SimConfig.pinguInitialFood = 0;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfReproductionCost = 15;
+        SimConfig.wolfInitialFood = 2;
+    }
+
     void runTest(String seed, int width, int height, String[] states) {
         try {
             runTest(seed.getBytes(StandardCharsets.UTF_8), width, height, states);
