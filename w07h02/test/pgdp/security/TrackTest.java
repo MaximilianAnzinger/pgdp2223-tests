@@ -292,14 +292,14 @@ public class TrackTest {
         final var track = new Track(4);
         final var posts = track.getPosts();
         final var expected = posts[0] +
-                System.lineSeparator() +
-                posts[1] + System.lineSeparator() +
-                posts[2] + System.lineSeparator() +
-                posts[3] + System.lineSeparator() +
-                System.lineSeparator();
+                "\n" +
+                posts[1] + "\n" +
+                posts[2] + "\n" +
+                posts[3] + "\n" +
+                "\n";
         track.printStatus();
 
-        assertEquals(expected, output.toString());
+        assertEquals(expected, output.toString().replace("\r\n",  "\n").replace("\r", "\n"));
         System.setOut(outSave);
     }
 
