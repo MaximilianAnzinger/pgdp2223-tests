@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 public class EatBehaviourTest {
-    static Pingu pingu = new Pingu();
+    static Pingu staticPingu = new Pingu();
     static Plant plant1 = new Plant();
     static Plant plant2 = new Plant();
-    static Hamster ham = new Hamster();
+    static Hamster staticHamster = new Hamster();
     static Wolf wolf = new Wolf();
 
     static Cell[] theWorld = new Cell[]{
-            null, pingu, plant1,
-            ham, null, wolf,
+            null, staticPingu, plant1,
+            staticHamster, null, wolf,
             null, plant2, null,
     };
 
@@ -22,27 +22,31 @@ public class EatBehaviourTest {
 
     @Test
     void herbivoreBehaviour() {
-        for (var consumer : new MovingCell[]{ham, pingu}) {
+        for (var consumer : new MovingCell[]{new Hamster(), new Pingu()}) {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
+                    Cell[] worldclone = theWorld.clone();
                     Cell[] newWorld = theWorld.clone();
-                    consumer.eat(theWorld.clone(), newWorld, width, height, x, y);
-                    var expected = herbivoreWorlds[x][y];
-                    var orExpected = expected.clone();
+                    var expected = herbivoreWorlds[x][y].clone();
+
+                    newWorld[x + width * y] = consumer;
+                    worldclone[x + width * y] = consumer;
+                    expected[x + width * y] = consumer;
+
+
+                    consumer.eat(worldclone, newWorld, width, height, x, y);
                     String errorMsg = "\n-------Failure-------\n"
                             + "Eating on coordinates: \n"
                             + "  x: " + x + "\n"
-                            + "  y: " + y + "\n"
+                            + "  y: " + y + "\n\n"
                             + "Eating party was a:\n"
-                            + consumer.getSymbol() + "\n"
-                            + "Expected world was: " + Arrays.toString(expected) + "\n"
-                            + "or: " + Arrays.toString(orExpected) + "\n\n"
-                            + "Got world: " + Arrays.toString(newWorld) + "\n\n";
+                            + consumer.getSymbol() + "\n\n"
+                            + "Expected world was:\n"
+                            + FieldVisualizeHelper.cellArrayToFieldDescription(expected, width, height, false) + "\n"
+                            + "Got world:\n"
+                            + FieldVisualizeHelper.cellArrayToFieldDescription(newWorld, width, height, false) + "\n\n";
 
-                    orExpected[x + y * width] = orExpected[x + y * width] instanceof Plant ? null : orExpected[x + y * width];
-
-                    boolean assertion = Arrays.equals(newWorld, expected) || Arrays.equals(newWorld, orExpected);
-                    Assertions.assertTrue(assertion, errorMsg);
+                    Assertions.assertArrayEquals(expected, newWorld, errorMsg);
                 }
             }
         }
@@ -58,20 +62,20 @@ public class EatBehaviourTest {
             {
                     // [0][0]
                     {
-                            null, pingu, plant1,
-                            ham, null, wolf,
+                            null, staticPingu, plant1,
+                            staticHamster, null, wolf,
                             null, plant2, null,
                     },
                     // [0][1]
                     {
-                            null, pingu, plant1,
-                            ham, null, wolf,
+                            null, staticPingu, plant1,
+                            staticHamster, null, wolf,
                             null, null, null,
                     },
                     // [0][2]
                     {
-                            null, pingu, plant1,
-                            ham, null, wolf,
+                            null, staticPingu, plant1,
+                            staticHamster, null, wolf,
                             null, null, null,
                     },
             },
@@ -79,20 +83,20 @@ public class EatBehaviourTest {
             {
                     // [1][0]
                     {
-                            null, pingu, null,
-                            ham, null, wolf,
+                            null, staticPingu, null,
+                            staticHamster, null, wolf,
                             null, plant2, null,
                     },
                     // [1][1]
                     {
-                            null, pingu, null,
-                            ham, null, wolf,
+                            null, staticPingu, null,
+                            staticHamster, null, wolf,
                             null, null, null,
                     },
                     // [1][2]
                     {
-                            null, pingu, plant1,
-                            ham, null, wolf,
+                            null, staticPingu, plant1,
+                            staticHamster, null, wolf,
                             null, plant2, null,
                     },
             },
@@ -100,20 +104,20 @@ public class EatBehaviourTest {
             {
                     // [2][0]
                     {
-                            null, pingu, plant1,
-                            ham, null, wolf,
+                            null, staticPingu, plant1,
+                            staticHamster, null, wolf,
                             null, plant2, null,
                     },
                     // [2][1]
                     {
-                            null, pingu, null,
-                            ham, null, wolf,
+                            null, staticPingu, null,
+                            staticHamster, null, wolf,
                             null, null, null,
                     },
                     // [2][2]
                     {
-                            null, pingu, plant1,
-                            ham, null, wolf,
+                            null, staticPingu, plant1,
+                            staticHamster, null, wolf,
                             null, null, null,
                     },
             },
