@@ -1,0 +1,121 @@
+package pgdp.sim;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+public class EatBehaviourTest {
+    static Pingu pingu = new Pingu();
+    static Plant plant1 = new Plant();
+    static Plant plant2 = new Plant();
+    static Hamster ham = new Hamster();
+    static Wolf wolf = new Wolf();
+
+    static Cell[] theWorld = new Cell[]{
+            null, pingu, plant1,
+            ham, null, wolf,
+            null, plant2, null,
+    };
+
+    static int width = 3, height = 3;
+
+    @Test
+    void herbivoreBehaviour() {
+        for (var consumer : new MovingCell[]{ham, pingu}) {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    Cell[] newWorld = theWorld.clone();
+                    consumer.eat(theWorld.clone(), newWorld, width, height, x, y);
+                    var expected = herbivoreWorlds[x][y];
+                    var orExpected = expected.clone();
+                    String errorMsg = "\n-------Failure-------\n"
+                            + "Eating on coordinates: \n"
+                            + "  x: " + x + "\n"
+                            + "  y: " + y + "\n"
+                            + "Eating party was a:\n"
+                            + consumer.getSymbol() + "\n"
+                            + "Expected world was: " + Arrays.toString(expected) + "\n"
+                            + "or: " + Arrays.toString(orExpected) + "\n\n"
+                            + "Got world: " + Arrays.toString(newWorld) + "\n\n";
+
+                    orExpected[x + y * width] = orExpected[x + y * width] instanceof Plant ? null : orExpected[x + y * width];
+
+                    boolean assertion = Arrays.equals(newWorld, expected) || Arrays.equals(newWorld, orExpected);
+                    Assertions.assertTrue(assertion, errorMsg);
+                }
+            }
+        }
+
+    }
+
+
+    /**
+     * Depending on which coordinate (first two array indecies) you place the herbivore, this world results
+     */
+    static Cell[][][] herbivoreWorlds = new Cell[][][]{
+            // [0]
+            {
+                    // [0][0]
+                    {
+                            null, pingu, plant1,
+                            ham, null, wolf,
+                            null, plant2, null,
+                    },
+                    // [0][1]
+                    {
+                            null, pingu, plant1,
+                            ham, null, wolf,
+                            null, null, null,
+                    },
+                    // [0][2]
+                    {
+                            null, pingu, plant1,
+                            ham, null, wolf,
+                            null, null, null,
+                    },
+            },
+            // [1]
+            {
+                    // [1][0]
+                    {
+                            null, pingu, null,
+                            ham, null, wolf,
+                            null, plant2, null,
+                    },
+                    // [1][1]
+                    {
+                            null, pingu, null,
+                            ham, null, wolf,
+                            null, null, null,
+                    },
+                    // [1][2]
+                    {
+                            null, pingu, plant1,
+                            ham, null, wolf,
+                            null, plant2, null,
+                    },
+            },
+            // [2]
+            {
+                    // [2][0]
+                    {
+                            null, pingu, plant1,
+                            ham, null, wolf,
+                            null, plant2, null,
+                    },
+                    // [2][1]
+                    {
+                            null, pingu, null,
+                            ham, null, wolf,
+                            null, null, null,
+                    },
+                    // [2][2]
+                    {
+                            null, pingu, plant1,
+                            ham, null, wolf,
+                            null, null, null,
+                    },
+            },
+    };
+}
