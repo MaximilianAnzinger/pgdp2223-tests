@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 // Reflections API
 import java.lang.reflect.Constructor;
@@ -44,6 +45,7 @@ public class ExampleTest {
         assertEquals(2, t1.getResult());
     }
 
+    @Test
     public void TaskPoolTest() {
         try {
 
@@ -66,10 +68,12 @@ public class ExampleTest {
             assertEquals(t1, tp.insert(t2));
             assertEquals(t1, tp.getByValue(1, f));
         } catch (Exception e) {
+            fail("TaskPoolTest failed with exception [" + e.getClass().getName() + "]");
             e.printStackTrace();
         }
     }
 
+    @Test
     public void TaskFactoryTest() {
         TaskFactory<Integer, Integer> tf = new TaskFactory<>();
         TaskFunction<Integer, Integer> f = new TaskFunction<>(FunctionLib.SQUARE);
