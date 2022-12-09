@@ -162,7 +162,7 @@ public class SimulationTest {
                 w . . . .
                 . . . . ."""};
         SimConfig.plantMinGrowth = 1;
-        SimConfig.plantMaxGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
         SimConfig.plantReproductionCost = 3;
         SimConfig.hamsterInitialFood = 1;
         SimConfig.hamsterConsumedFood = 2;
