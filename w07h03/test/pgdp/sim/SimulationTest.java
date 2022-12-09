@@ -12,21 +12,22 @@ public class SimulationTest {
 
     @BeforeEach
     void setDefaults() {
-        SimConfig.plantReproductionCost = 1;
-        SimConfig.plantMaxGrowth = 2;
-        SimConfig.plantMinGrowth = 1;
-        SimConfig.hamsterFoodConsumption = 1;
-        SimConfig.hamsterConsumedFood = 2;
-        SimConfig.hamsterReproductionCost = 3;
-        SimConfig.hamsterInitialFood = 1;
-        SimConfig.pinguFoodConsumption = 1;
-        SimConfig.pinguConsumedFood = 4;
-        SimConfig.pinguReproductionCost = 10;
+        SimConfig.plantReproductionCost = 0;
+        // has to be grater than 0 so in case of a faulty implementation rng does not throw an exception
+        SimConfig.plantMaxGrowth = 1;
+        SimConfig.plantMinGrowth = 0;
+        SimConfig.hamsterFoodConsumption = 0;
+        SimConfig.hamsterConsumedFood = 0;
+        SimConfig.hamsterReproductionCost = 0;
+        SimConfig.hamsterInitialFood = 0;
+        SimConfig.pinguFoodConsumption = 0;
+        SimConfig.pinguConsumedFood = 0;
+        SimConfig.pinguReproductionCost = 0;
         SimConfig.pinguInitialFood = 0;
-        SimConfig.wolfFoodConsumption = 1;
-        SimConfig.wolfConsumedFood = 3;
-        SimConfig.wolfReproductionCost = 15;
-        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfFoodConsumption = 0;
+        SimConfig.wolfConsumedFood = 0;
+        SimConfig.wolfReproductionCost = 0;
+        SimConfig.wolfInitialFood = 0;
     }
 
     void runTest(String seed, int width, int height, String[] states) {
