@@ -144,8 +144,8 @@ public class SimulationTest {
     }
 
     @Test
-    @DisplayName("hamster eats plant, reproduces, wolf eats hamster child, reproduces")
-    void hamsterEatsPlantWolfEatsHamster() {
+    @DisplayName("hamster eats plant, reproduces, wolf eats hamster child, reproduces, and dies")
+    void hamsterEatsPlantWolfEatsHamsterAndDies() {
         var states = new String[]{"""
                 h g . . .
                 . . . . .
@@ -161,6 +161,21 @@ public class SimulationTest {
                 . w . . .
                 . . . . .
                 w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                w . . . .
+                w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                . . . . .
+                w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
                 . . . . ."""};
         SimConfig.plantMinGrowth = 1;
         SimConfig.plantMaxGrowth = 2;
