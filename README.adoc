@@ -63,17 +63,51 @@ git clone https://github.com/MaximilianAnzinger/pgdp2223-tests.git
 git pull
 ----
 
-. copy the files in the `test` directory to the root of your repository and *not* inside your src folder
+. copy the `test` directory to the root of your repository (next to `src`) and *not* inside your src folder
++
+[source]
+----
+./your-pgdp-project
+├───src
+├───test
+└───...
+----
 +
 *Or* use the symlink instruction below.
 
-. Make sure your IDE (e.g. IntelIJ or Eclipse) sees your added files
+. make sure in the `build.gradle` file `sourceSets`, `test` and `dependencies` look somewhat like that:
++
+[source,groovy]
+----
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+    }
+}
 
-. JUnit should already be included. If not include JUnit to your Project by pressing the red lightbulb (or `ALT + ENTER` in IntelIJ) on one of the red underlined @Test Annotations in the test file.
+test {
+    useJUnitPlatform()
+}
 
-. *Do not add them to your artemis git repository* (it should already be in your .gitignore)
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
+}
+----
 
-. Run the tests and check your mistakes
+. Open the gradle tool window
+
+. Click reload
+
+. Run the tests via `tasks -> verification -> test` and check your mistakes
+
+. *Do not add the tests/modified build.gradle to your artemis git repository* (it should already be in your .gitignore)
 
 .Important note
 As this is a student-driven project please keep in mind that mistakes can happen. If you think a test is wrong, please feel free to open an Issue (it is easy!). To help fixing bugs, please add the following info to your https://github.com/MaximilianAnzinger/pgdp2223-tests/issues[`Issue`]:
@@ -102,7 +136,7 @@ $ ln -s /path/to/test-repository/aufgabe/test/pgdp /path/to/artemis-repository/t
 == How to Contribute
 
 . Fork Repository (https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository[GitHub Documentation])
-. Add / edit tests under `<EXERCISE>/test/``
+. Add / edit tests under `<EXERCISE>/test/`
 . *Ensure no solution or homework-code is getting revealed*
 . Commit and push to your fork repository
 . Open a Pull Request to this repository (https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests[GitHub Documentation])
