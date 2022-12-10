@@ -750,7 +750,7 @@ public class UnitTests {
                                 return Stream.of(
                                                 // input type: clear
                                                 arguments(0, "", 0, "", false, "clear"),
-                                                arguments(5, "green/yellow/red/blue", 0, "", true, "clear"),
+                                                arguments(5, "chequered", 0, "", true, "clear"),
                                                 arguments(4, "red", 0, "", true, "clear"),
                                                 arguments(3, "doubleYellow", 0, "", true, "clear"),
                                                 arguments(3, "doubleYellow/[SC]", 0, "", true, "clear"),
@@ -761,7 +761,7 @@ public class UnitTests {
 
                                                 // input type: blue
                                                 arguments(0, "", 0, "", false, "blue"),
-                                                arguments(5, "green/yellow/red/blue", 5, "green/yellow/red/blue", false,
+                                                arguments(5, "chequered", 5, "chequered", false,
                                                                 "blue"),
                                                 arguments(4, "red", 4, "red", false, "blue"),
                                                 arguments(3, "doubleYellow", 3, "doubleYellow", false, "blue"),
@@ -774,7 +774,7 @@ public class UnitTests {
 
                                                 // input type: green
                                                 arguments(0, "", 0, "", false, "green"),
-                                                arguments(5, "green/yellow/red/blue", 5, "green/yellow/red/blue", false,
+                                                arguments(5, "chequered", 5, "chequered", false,
                                                                 "green"),
                                                 arguments(4, "red", 4, "red", false, "green"),
                                                 arguments(3, "doubleYellow", 3, "doubleYellow", false, "green"),
@@ -787,7 +787,7 @@ public class UnitTests {
 
                                                 // input type: danger
                                                 arguments(0, "", 0, "", false, "danger"),
-                                                arguments(5, "green/yellow/red/blue", 5, "green/yellow/red/blue", false,
+                                                arguments(5, "chequered", 5, "chequered", false,
                                                                 "danger"),
                                                 arguments(4, "red", 1, "green", true, "danger"),
                                                 arguments(3, "doubleYellow", 1, "green", true, "danger"),
