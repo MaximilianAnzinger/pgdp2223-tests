@@ -128,7 +128,6 @@ public class EatBehaviourTest {
 
     @Test
     public void canEatShouldUseInstanceOf() {
-        System.out.println(new Pingu().canEat(new FakePlant()));
         assertTrue(new Pingu().canEat(new FakePlant()));
         assertTrue(new Hamster().canEat(new FakePlant()));
         assertTrue(new Wolf().canEat(new FakeHamster()));
