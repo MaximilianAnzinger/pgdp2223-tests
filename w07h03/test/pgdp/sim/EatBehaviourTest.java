@@ -122,4 +122,25 @@ public class EatBehaviourTest {
                     },
             },
     };
+
+    @Test
+    public void testCanEatDoesntUseInstanceof() {
+        assertFalse(new Pingu().canEat(new FakePlant()));
+        assertFalse(new Hamster().canEat(new FakePlant()));
+        assertFalse(new Wolf().canEat(new FakeHamster()));
+    }
+
+    private static class FakePlant extends Plant {
+        @Override
+        public CellSymbol getSymbol() {
+            return CellSymbol.WOLF;
+        }
+    }
+
+    private static class FakeHamster extends Hamster {
+        @Override
+        public CellSymbol getSymbol() {
+            return CellSymbol.WOLF;
+        }
+    }
 }
