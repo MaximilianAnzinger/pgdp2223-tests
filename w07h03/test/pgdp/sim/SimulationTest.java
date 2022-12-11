@@ -162,6 +162,21 @@ public class SimulationTest {
                 . w . . .
                 . . . . .
                 w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                w . . . .
+                w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                . . . . .
+                w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
                 . . . . ."""};
         SimConfig.plantMinGrowth = 1;
         SimConfig.plantMaxGrowth = 2;
