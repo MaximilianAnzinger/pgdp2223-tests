@@ -184,6 +184,8 @@ public class TrackTest {
         assertSetRange("down", true, 0, 5, 3, List.of());
         assertSetRange("down", true, 5, 5, 3, List.of());
         assertSetRange("down", true, 0, -1, 3, List.of());
+
+        assertSetRange("down", true, 0, 0, 0, List.of());
     }
 
 
@@ -258,6 +260,8 @@ public class TrackTest {
         assertCreateHazardAt(1, -3, 5, List.of());
         assertCreateHazardAt(99, 3, 5, List.of());
         assertCreateHazardAt(1, 99, 5, List.of());
+
+        assertCreateHazardAt(0, 0, 0, List.of());
     }
 
     void assertLappedCarAt(boolean up, int postAt, int capacity, List<Integer> expectedCalls) {
@@ -327,6 +331,7 @@ public class TrackTest {
         assertCreateLappedCarAt(99, 5, List.of());
         assertRemoveLappedCarAt(-1, 5, List.of());
         assertRemoveLappedCarAt(99, 5, List.of());
+        assertRemoveLappedCarAt(0, 0, List.of());
     }
 
     @Test
