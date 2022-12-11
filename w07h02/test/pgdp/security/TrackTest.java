@@ -178,17 +178,6 @@ public class TrackTest {
         assertSetRange("down", true, 1, 1, 3, List.of(1));
     }
 
-    @Test
-    void setRangeInvalid() {
-        assertSetRange("down", true, -2, 1, 3, List.of());
-        assertSetRange("down", true, 0, 5, 3, List.of());
-        assertSetRange("down", true, 5, 5, 3, List.of());
-        assertSetRange("down", true, 0, -1, 3, List.of());
-
-        assertSetRange("down", true, 0, 0, 0, List.of());
-    }
-
-
     void assertCreateHazardAt(int start, int end, int capacity, List<Integer> expectedCalls) {
         final var track = trackWithMocks(capacity);
         track.createHazardAt(start, end);
@@ -247,21 +236,6 @@ public class TrackTest {
         assertRemoveHazardAt(3, 1, 4, List.of(3, 0, 1));
         assertRemoveHazardAt(10, 5, 15, List.of(10, 11, 12, 13, 14, 0, 1, 2, 3, 4, 5));
         assertRemoveHazardAt(3, 3, 5, List.of(3));
-    }
-
-    @Test
-    void hazardInvalid() {
-        assertRemoveHazardAt(-1, 3, 5, List.of());
-        assertRemoveHazardAt(1, -3, 5, List.of());
-        assertRemoveHazardAt(99, 3, 5, List.of());
-        assertRemoveHazardAt(1, 99, 5, List.of());
-
-        assertCreateHazardAt(-1, 3, 5, List.of());
-        assertCreateHazardAt(1, -3, 5, List.of());
-        assertCreateHazardAt(99, 3, 5, List.of());
-        assertCreateHazardAt(1, 99, 5, List.of());
-
-        assertCreateHazardAt(0, 0, 0, List.of());
     }
 
     void assertLappedCarAt(boolean up, int postAt, int capacity, List<Integer> expectedCalls) {
@@ -326,12 +300,11 @@ public class TrackTest {
     }
 
     @Test
-    void lappedCarInvalid() {
-        assertCreateLappedCarAt(-1, 5, List.of());
-        assertCreateLappedCarAt(99, 5, List.of());
-        assertRemoveLappedCarAt(-1, 5, List.of());
-        assertRemoveLappedCarAt(99, 5, List.of());
+    void lengthZeroTests() {
+        assertSetRange("down", true, 0, 0, 0, List.of());
         assertRemoveLappedCarAt(0, 0, List.of());
+        assertCreateHazardAt(0, 0, 0, List.of());
+
     }
 
     @Test
