@@ -30,7 +30,7 @@ public class SimulationTest {
         SimConfig.wolfInitialFood = 0;
     }
 
-    void runTest(String seed, int width, int height, String[] states) {
+    static void runTest(String seed, int width, int height, String[] states) {
         try {
             runTest(seed.getBytes(StandardCharsets.UTF_8), width, height, states);
         } catch (IllegalAccessException | NoSuchFieldException e) {
@@ -38,7 +38,7 @@ public class SimulationTest {
         }
     }
 
-    void runTest(byte[] seed, int width, int height, String[] states) throws IllegalAccessException, NoSuchFieldException {
+    static void runTest(byte[] seed, int width, int height, String[] states) throws IllegalAccessException, NoSuchFieldException {
         RandomGenerator.reseed(seed);
 
         Field cellsField = Simulation.class.getDeclaredField("cells");
