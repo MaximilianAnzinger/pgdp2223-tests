@@ -4,31 +4,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class UnitTest {
-	static int[] values = new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 };
-
-	@Test
-	public void artemisExample() {
-		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
-
-		for (int i : values) {
-			n.insert(i);
-		}
-
-		int j = 1;
-		for (int i : n) {
-			assertEquals(j++, i, "Invalid Output at position [" + (j - 1) + "]: Expected [" + j + "], got [" + i + "]");
-		}
-		j--;
-
-		assertEquals(15, j, "Invalid Iteration Count. Expected [15] got [" + j + "]");
-	}
-
 	@Test
 	public void emptyTest() {
 		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
+	}
+
+	@ParameterizedTest
+	@DisplayName("Dynamic Test")
+	@MethodSource
+	void dynamicTests(String type, int[] expected, int[] input) {
+		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<Integer>();
+
+		for (int i : input) {
+			tree.insert(i);
+		}
+
+		int j = 1;
+		for (int i : tree) {
+			assertEquals(j++, i, type + ": Invalid Output at position [" + (j - 1) + "]: Expected [" + j + "], got [" + i + "]");
+		}
+		j--;
+
+		assertEquals(expected.length, j, type + ": Invalid Iteration Count. Expected [15] got [" + j + "]");
+	}
+
+	private static Stream<Arguments> dynamicTests() {
+		// <region tests>
+		return Stream.of(
+				//
+				// Artemis Example
+				//
+				arguments(
+						"Artemis Example",
+						new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
+						new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 }),
+				//
+				// Empty Example
+				//
+				arguments(
+						"Empty Test",
+						new int[] {},
+						new int[] {})
+		// </end-region>
+		);
 	}
 }
