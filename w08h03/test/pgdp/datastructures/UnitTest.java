@@ -31,7 +31,8 @@ public class UnitTest {
 
 		int j = 0;
 		for (int i : tree) {
-			assertEquals(expected[j++], i, type + ": Invalid Output at position [" + (j-1) + "]: Expected [" + expected[j] + "], got [" + i + "]");
+			int e = expected[j++];
+			assertEquals(e, i, type + ": Invalid Output at position [" + (j-1) + "]: Expected [" + e + "], got [" + i + "]");
 		}
 
 		assertEquals(expected.length, j, type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + j + "]");
