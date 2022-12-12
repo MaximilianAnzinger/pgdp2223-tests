@@ -29,13 +29,12 @@ public class UnitTest {
 			tree.insert(i);
 		}
 
-		int j = 1;
+		int j = 0;
 		for (int i : tree) {
-			assertEquals(j++, i, type + ": Invalid Output at position [" + (j - 1) + "]: Expected [" + j + "], got [" + i + "]");
+			assertEquals(expected[j++], i, type + ": Invalid Output at position [" + (j-1) + "]: Expected [" + expected[j] + "], got [" + i + "]");
 		}
-		j--;
 
-		assertEquals(expected.length, j, type + ": Invalid Iteration Count. Expected [15] got [" + j + "]");
+		assertEquals(expected.length, j, type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + j + "]");
 	}
 
 	private static Stream<Arguments> dynamicTests() {
