@@ -167,11 +167,15 @@ public class TrackTest {
     @Test
     void setRangeNotCircle() {
         assertSetRange("down", true, 0, 1, 3, List.of(0, 1));
+        assertSetRange("down", true, 0, 2, 3, List.of(0, 1, 2));
+        assertSetRange("down", true, 5, 10, 20, List.of(5, 6, 7, 8, 9, 10));
     }
 
     @Test
     void setRangeCircle() {
         assertSetRange("down", true, 2, 1, 3, List.of(2, 0, 1));
+        assertSetRange("down", true, 3, 2, 5, List.of(3, 4, 5, 0, 1, 2));
+        assertSetRange("down", true, 1, 1, 3, List.of(1));
     }
 
     void assertCreateHazardAt(int start, int end, int capacity, List<Integer> expectedCalls) {
@@ -196,12 +200,14 @@ public class TrackTest {
     @Test
     void createdHazardAtNotCircle() {
         assertCreateHazardAt(1, 3, 4, List.of(1, 2, 3));
-    }
+        assertCreateHazardAt(1, 2, 3, List.of(1, 2));
+        assertCreateHazardAt(2, 10, 20, List.of(2, 3, 4 ,5, 6, 7, 8, 9, 10));    }
 
     @Test
     void createHazardAtCircle() {
         assertCreateHazardAt(3, 1, 4, List.of(3, 0, 1));
-    }
+        assertCreateHazardAt(10, 5, 15, List.of(10, 11, 12, 13, 14, 0, 1, 2, 3, 4, 5));
+        assertCreateHazardAt(3, 3, 5, List.of(3));    }
 
     void assertRemoveHazardAt(int start, int end, int capacity, List<Integer> expectedCalls) {
         final var track = trackWithMocks(capacity);
@@ -221,11 +227,15 @@ public class TrackTest {
     @Test
     void removeHazardAtNotCircle() {
         assertRemoveHazardAt(1, 3, 4, List.of(1, 2, 3));
+        assertRemoveHazardAt(1, 2, 3, List.of(1, 2));
+        assertRemoveHazardAt(2, 10, 20, List.of(2, 3, 4 ,5, 6, 7, 8, 9, 10));
     }
 
     @Test
     void removeHazardAtCircle() {
         assertRemoveHazardAt(3, 1, 4, List.of(3, 0, 1));
+        assertRemoveHazardAt(10, 5, 15, List.of(10, 11, 12, 13, 14, 0, 1, 2, 3, 4, 5));
+        assertRemoveHazardAt(3, 3, 5, List.of(3));
     }
 
     void assertLappedCarAt(boolean up, int postAt, int capacity, List<Integer> expectedCalls) {
@@ -262,6 +272,8 @@ public class TrackTest {
     @Test
     void createLappedCarAtSmallArray() {
         assertCreateLappedCarAt(1, 4, List.of(1, 2, 3, 0));
+        assertCreateLappedCarAt(1, 3, List.of(1, 2, 0));
+        assertCreateLappedCarAt(2, 3, List.of(2, 0, 1));
     }
 
     @Test
@@ -269,11 +281,14 @@ public class TrackTest {
         assertCreateLappedCarAt(0, 8, List.of(0, 1, 2, 3));
         assertCreateLappedCarAt(7, 8, List.of(7, 0, 1, 2));
         assertCreateLappedCarAt(5, 10, List.of(5, 6, 7, 8));
+        assertCreateLappedCarAt(9, 10, List.of(9, 0, 1, 2));
     }
 
     @Test
     void removeLappedCarAtSmallArray() {
         assertRemoveLappedCarAt(1, 4, List.of(1, 2, 3, 0));
+        assertRemoveLappedCarAt(1, 3, List.of(1, 2, 0));
+        assertRemoveLappedCarAt(2, 3, List.of(2, 0, 1));
     }
 
     @Test
@@ -281,6 +296,15 @@ public class TrackTest {
         assertRemoveLappedCarAt(0, 8, List.of(0, 1, 2, 3));
         assertRemoveLappedCarAt(7, 8, List.of(7, 0, 1, 2));
         assertRemoveLappedCarAt(5, 10, List.of(5, 6, 7, 8));
+        assertRemoveLappedCarAt(9, 10, List.of(9, 0, 1, 2));
+    }
+
+    @Test
+    void lengthZeroTests() {
+        assertSetRange("down", true, 0, 0, 0, List.of());
+        assertRemoveLappedCarAt(0, 0, List.of());
+        assertCreateHazardAt(0, 0, 0, List.of());
+
     }
 
     @Test
