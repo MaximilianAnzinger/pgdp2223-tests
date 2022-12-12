@@ -25,17 +25,17 @@ public class UnitTest {
 	void dynamicTests(String type, int[] expected, int[] input) {
 		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<Integer>();
 
-		for (int i : input) {
-			tree.insert(i);
+		for (int element : input) {
+			tree.insert(element);
 		}
 
-		int j = 0;
-		for (int i : tree) {
-			int e = expected[j++];
-			assertEquals(e, i, type + ": Invalid Output at position [" + (j-1) + "]: Expected [" + e + "], got [" + i + "]");
+		int position = 0;
+		for (int element : tree) {
+			int exp = expected[position++];
+			assertEquals(exp, element, type + ": Invalid Output at position [" + (position-1) + "]: Expected [" + exp + "], got [" + element + "]");
 		}
 
-		assertEquals(expected.length, j, type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + j + "]");
+		assertEquals(expected.length, position, type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
 	}
 
 	private static Stream<Arguments> dynamicTests() {
