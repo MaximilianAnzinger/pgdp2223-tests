@@ -21,7 +21,7 @@ public class NoUsageOfValuesMethodTest {
     // you if you have code in your solution that is not allowed.
     @DisplayName("Source code should not contain .values() method because they are not allowed in this exercise")
     @Test
-    public void testUsageOfLoops() throws IOException {
+    public void testUsageOfValuesMethod() throws IOException {
         String[] notAllowedRegExp = new String[] {
                 "\\.values\\(",
         };
@@ -52,7 +52,8 @@ public class NoUsageOfValuesMethodTest {
                     for (int i = 0; i < lines.length; i++) {
                         Matcher matcher = Pattern.compile(regExp).matcher(lines[i]);
                         assertFalse(matcher.find(),
-                                "You are not allowed to use loops in your solution! Found a loop in " + path);
+                                "You are not allowed to use .values() methods in your solution! Found a .values() method in "
+                                        + path);
                     }
                 }
             });
