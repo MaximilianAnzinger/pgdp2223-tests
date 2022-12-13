@@ -88,10 +88,7 @@ public class SimpleGenericsTest {
         assertEquals("[1, 2, 3, 4, 5]", Arrays.toString(SimpleGenerics.specialSort(Integer.class, getList(), new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                if (o1 > o2) {
-                    return 1;
-                }
-                return 0;
+                return o1.compareTo(o2);
             }
         })));
     }
@@ -102,10 +99,7 @@ public class SimpleGenericsTest {
         assertEquals("[]", Arrays.toString(SimpleGenerics.specialSort(Integer.class, new ArrayList<>(), new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                if (o1 > o2) {
-                    return 0;
-                }
-                return 1;
+                return o1.compareTo(o2);
             }
         })));
     }
@@ -116,10 +110,7 @@ public class SimpleGenericsTest {
         assertEquals("[a, b, c, d]", Arrays.toString(SimpleGenerics.specialSort(String.class, getStack(), new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                if(o1.charAt(0) > o2.charAt(0)) {
-                    return 0;
-                }
-                return 1;
+                return o1.compareTo(o2);
             }
         })));
     }
