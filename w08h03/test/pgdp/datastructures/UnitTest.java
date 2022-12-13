@@ -41,16 +41,19 @@ public class UnitTest {
 	}
 
 	@Test
+	@DisplayName("should iterate over empty graph")
 	public void emptyTest() {
 		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
 	}
 
 	@Test
+	@DisplayName("should iterate over graph in artemis example")
 	public void artemisTest() {
 		testArray(new Integer[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
 	}
 
 	@Test
+	@DisplayName("should iterate over a numeric graph")
 	public void numericTest() {
 		IntStream.range(0, 10).forEach(i -> {
 			var args = new Integer[i];
@@ -79,6 +82,7 @@ public class UnitTest {
 	}
 
 	@Test
+	@DisplayName("should iterate over a non-numeric graph")
 	public void stringTest() {
 		IntStream.range(0, 10).forEach(i -> {
 			var args = new String[i];
