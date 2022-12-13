@@ -23,7 +23,7 @@ public class UnitTest {
 	@ParameterizedTest
 	@DisplayName("Dynamic Test")
 	@MethodSource
-	void dynamicTests(String type, int[] input) {
+	void dynamicTests(int[] input) {
 		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<Integer>();
 		int[] expected = Arrays.copyOf(input, input.length);
 		Arrays.sort(expected);
@@ -35,12 +35,12 @@ public class UnitTest {
 		int position = 0;
 		for (int element : tree) {
 			int exp = expected[position++];
-			assertEquals(exp, element, type + ": Invalid Output at position [" + (position - 1) + "]: Expected [" + exp
+			assertEquals(exp, element, "Invalid Output at position [" + (position - 1) + "]: Expected [" + exp
 					+ "], got [" + element + "]");
 		}
 
 		assertEquals(expected.length, position,
-				type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
+				"Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
 	}
 
 	private static Stream<Arguments> dynamicTests() {
@@ -50,13 +50,11 @@ public class UnitTest {
 				// Artemis Example
 				//
 				arguments(
-						"Artemis Example",
 						new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 }),
 				//
 				// Empty Example
 				//
 				arguments(
-						"Empty Test",
 						new int[] {})
 		// </end-region>
 		);
