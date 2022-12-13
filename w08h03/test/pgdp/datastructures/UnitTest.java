@@ -19,16 +19,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class UnitTest {
 	static int seed = 69420;
 
-	@Test
-	public void emptyTest() {
-		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
-	}
-
-	@Test
-	public void artemisTest() {
-		testArray(new Integer[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
-	}
-
 	<Type extends Comparable<Type>> void testArray(Type[] input) {
 		QuarternarySearchTree<Type> tree = new QuarternarySearchTree<Type>();
 		Type[] expected = Arrays.copyOf(input, input.length);
@@ -47,6 +37,16 @@ public class UnitTest {
 
 		assertEquals(expected.length, position,
 				"Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
+	}
+
+	@Test
+	public void emptyTest() {
+		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
+	}
+
+	@Test
+	public void artemisTest() {
+		testArray(new Integer[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
 	}
 
 	@Test
