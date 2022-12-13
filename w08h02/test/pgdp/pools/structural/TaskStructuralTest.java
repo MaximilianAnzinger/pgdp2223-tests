@@ -1,7 +1,6 @@
 package pgdp.pools.structural;
 
 import java.lang.reflect.Modifier;
-import java.util.function.Function;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pgdp.pools.Task;
