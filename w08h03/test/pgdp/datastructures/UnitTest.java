@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +16,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class UnitTest {
+	static int seed = 69420;
+
 	@Test
 	public void emptyTest() {
 		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
@@ -48,20 +51,11 @@ public class UnitTest {
 				"Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
 	}
 
+	private static int seedDifference = 0;
 	private static Stream<Arguments> dynamicTests() {
-		// <region tests>
-		return Stream.of(
-				//
-				// Artemis Example
-				//
-				arguments(
-						new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 }),
-				//
-				// Empty Example
-				//
-				arguments(
-						new int[] {})
-		// </end-region>
-		);
+		// TODO improve this
+		return Stream.generate(() -> {
+			return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
+		}).limit(10);
 	}
 }
