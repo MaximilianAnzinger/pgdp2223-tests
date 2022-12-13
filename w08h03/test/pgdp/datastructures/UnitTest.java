@@ -1,9 +1,5 @@
 package pgdp.datastructures;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -14,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -85,6 +83,37 @@ public class UnitTest {
 		StringBuilder s = new StringBuilder();
 		rnd.ints(rnd.nextInt(100), 97, 122).mapToObj(i -> (char) i).forEach(c -> s.append(c));
 		return s.toString();
+	}
+
+	@Test
+	@DisplayName("should work with two iterators in parallel")
+	public void parallelIteratorsTest() {
+		QuarternarySearchTree<Integer> t = new QuarternarySearchTree<>();
+
+		Random random = new Random();
+		int[] values = IntStream.range(0, 20).map(__ -> random.nextInt()).toArray();
+		int[] expected = Arrays.copyOf(values, values.length);
+		Arrays.sort(expected);
+
+		for (var v : values) t.insert(v);
+
+		var iter1 = t.iterator();
+		var iter2 = t.iterator();
+
+		for (int i = 0; i < values.length; i++) {
+			int exp = expected[i];
+			int element1 = iter1.next();
+			int element2 = iter2.next();
+
+			assertEquals(exp, element1, "Invalid Output at position [" + i + "] in Iterator 1: Expected [" + exp
+					+ "], got [" + element1 + "]");
+
+			assertEquals(exp, element2, "Invalid Output at position [" + i + "] in Iterator 2: Expected [" + exp
+					+ "], got [" + element2 + "]");
+		}
+
+		assertFalse(iter1.hasNext(), "Iterator 1 should be empty.");
+		assertFalse(iter2.hasNext(), "Iterator 2 should be empty.");
 	}
 
 	@Test
