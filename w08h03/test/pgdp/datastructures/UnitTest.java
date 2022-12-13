@@ -53,6 +53,12 @@ public class UnitTest {
 	}
 
 	@Test
+	@DisplayName("should iterate over a graph of one repeat element")
+	public void oneElementTest() {
+		testArray(new Integer[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 });
+	}
+
+	@Test
 	@DisplayName("should iterate over a numeric graph")
 	public void numericTest() {
 		IntStream.range(0, 10).forEach(i -> {
