@@ -30,7 +30,7 @@ public class SimulationTest {
         SimConfig.wolfInitialFood = 0;
     }
 
-    void runTest(String seed, int width, int height, String[] states) {
+    static void runTest(String seed, int width, int height, String[] states) {
         try {
             runTest(seed.getBytes(StandardCharsets.UTF_8), width, height, states);
         } catch (IllegalAccessException | NoSuchFieldException e) {
@@ -38,7 +38,7 @@ public class SimulationTest {
         }
     }
 
-    void runTest(byte[] seed, int width, int height, String[] states) throws IllegalAccessException, NoSuchFieldException {
+    static void runTest(byte[] seed, int width, int height, String[] states) throws IllegalAccessException, NoSuchFieldException {
         RandomGenerator.reseed(seed);
 
         Field cellsField = Simulation.class.getDeclaredField("cells");
@@ -54,7 +54,7 @@ public class SimulationTest {
     }
 
     @Test
-    @DisplayName("One single plant")
+    @DisplayName("Single Plant should reproduce and create Plant colony")
     void singlePlant() {
         var states = new String[]{"""
                 g . . . .
@@ -89,7 +89,7 @@ public class SimulationTest {
     }
 
     @Test
-    @DisplayName("single pingu, should reproduce and create big pingu")
+    @DisplayName("Single pingu should reproduce and create Pingu Colony")
     void singlePingu() {
         var states = new String[]{"""
                 p . . . .
@@ -124,6 +124,7 @@ public class SimulationTest {
     }
 
     @Test
+    @DisplayName("Pingu eats plant and reproduces")
     void pinguEatsPlant() {
         var states = new String[]{"""
                 p g . . .
@@ -144,7 +145,7 @@ public class SimulationTest {
     }
 
     @Test
-    @DisplayName("hamster eats plant, reproduces, wolf eats hamster child, reproduces")
+    @DisplayName("Hamster eats plant, reproduces, wolf eats hamster child, reproduces")
     void hamsterEatsPlantWolfEatsHamster() {
         var states = new String[]{"""
                 h g . . .
@@ -161,6 +162,21 @@ public class SimulationTest {
                 . w . . .
                 . . . . .
                 w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                w . . . .
+                w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                . . . . .
+                w . . . .
+                . . . . .""", """
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
                 . . . . ."""};
         SimConfig.plantMinGrowth = 1;
         SimConfig.plantMaxGrowth = 2;
@@ -174,5 +190,796 @@ public class SimulationTest {
         SimConfig.wolfFoodConsumption = 1;
         SimConfig.wolfReproductionCost = 3;
         runTest("plant", 5, 5, states);
+    }
+
+    @Test
+    @DisplayName("10x10 2 ticks sparse")
+    void tenByTen2TicksSparse() {
+        var states = new String[]{"""
+                h g . . . . . . . .
+                . . . . . . . . . .
+                w . . p . . . . . .
+                . . . . . . . h . .
+                h g . . . . . . . .
+                . . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . . p . . .
+                . . . . . . . . . .""", """
+                h . . . . . . . . .
+                h . . . . . . . . .
+                w . . . . . . . h .
+                . . . p . . . . . .
+                h h . . . . . . . .
+                . . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . p . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                h . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        SimConfig.pinguInitialFood = 1;
+        SimConfig.pinguFoodConsumption = 1;
+        SimConfig.pinguReproductionCost = 2;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 5 ticks sparse")
+    void tenByTen5TicksSparse() {
+        var states = new String[]{"""
+                h g . . . . . . . .
+                . . . . . . . . . .
+                w . . p . . . . . .
+                . . . . . . . h . .
+                h g . . . . . . . .
+                . . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . . p . . .
+                . . . . . . . . . .""", """
+                h . . . . . . . . .
+                h . . . . . . . . .
+                w . . . . . . . h .
+                . . . p . . . . . .
+                h h . . . . . . . .
+                . . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . p . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                h . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w w . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                . . . . g g . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . w . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                . . . . g g . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . g g . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        SimConfig.pinguInitialFood = 1;
+        SimConfig.pinguFoodConsumption = 1;
+        SimConfig.pinguReproductionCost = 2;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 10 ticks sparse")
+    void tenByTen10TicksSparse() {
+        var states = new String[]{"""
+                h g . . . . . . . .
+                . . . . . . . . . .
+                w . . p . . . . . .
+                . . . . . . . h . .
+                h g . . . . . . . .
+                . . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . . p . . .
+                . . . . . . . . . .""", """
+                h . . . . . . . . .
+                h . . . . . . . . .
+                w . . . . . . . h .
+                . . . p . . . . . .
+                h h . . . . . . . .
+                . . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . p . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                h . . . . . . . . .
+                w . . . . g . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w w . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                . . . . g g . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . w . . . . . . .
+                . . . . . . . . . .
+                w . . . . . . . . .
+                . . . . g g . . . .
+                w . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                w . . . g g . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . g . . .
+                . . . . g g . . . .
+                . . . g . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . g . . .
+                . . . . g g . . . .
+                . . . g . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . g . . .
+                . . . . g g . . . .
+                . . . g . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . g . . . . . . .
+                . . . . . g g . . .
+                . . . . g g . g . .
+                . g . g . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . g . . . . . . .
+                . . . . . g g . . .
+                . . . . g g . g . .
+                . g . g . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . g . . . . . . .
+                . . . . . g g . . .
+                . . . . g g . g . .
+                . g . g . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        SimConfig.pinguInitialFood = 1;
+        SimConfig.pinguFoodConsumption = 1;
+        SimConfig.pinguReproductionCost = 2;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 2 ticks dense")
+    void tenByTen2TicksDense() {
+        var states = new String[]{"""
+                h g . . . . g . . .
+                . p . g . p . h . .
+                w . w w . p . . p .
+                . w . p . g . h . .
+                h g . . w . p . h .
+                . . . g . g . p . .
+                w p . . . g . . h .
+                . . w . g . . h . .
+                . w . p p h . g . h
+                . . . . . . . . . .""", """
+                h . . p . h p . . .
+                h p p g . . . . . .
+                w p . w p . h p . .
+                . . w p p . . h . .
+                w . . . . p p . h .
+                w p . g p w . p . .
+                . p . p p g . . h .
+                . . w . . . . h . .
+                . . . . p . h h . h
+                . w p . . h . . . .""", """
+                . . p . . . p . . .
+                . p p p h p . . . .
+                w p p w p p . p . .
+                p w . p p p . . . .
+                w w p . . p p . . .
+                . p p . p w . . . .
+                w . w p p . p p . .
+                p . . p p . . . h .
+                . . . p p h . . . .
+                . w . p . . . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 5 ticks dense")
+    void tenByTen5TicksDense() {
+        var states = new String[]{"""
+                h g . . . . g . . .
+                . p . g . p . h . .
+                w . w w . p . . p .
+                . w . p . g . h . .
+                h g . . w . p . h .
+                . . . g . g . p . .
+                w p . . . g . . h .
+                . . w . g . . h . .
+                . w . p p h . g . h
+                . . . . . . . . . .""", """
+                h . . p . h p . . .
+                h p p g . . . . . .
+                w p . w p . h p . .
+                . . w p p . . h . .
+                w . . . . p p . h .
+                w p . g p w . p . .
+                . p . p p g . . h .
+                . . w . . . . h . .
+                . . . . p . h h . h
+                . w p . . h . . . .""", """
+                . . p . . . p . . .
+                . p p p h p . . . .
+                w p p w p p . p . .
+                p w . p p p . . . .
+                w w p . . p p . . .
+                . p p . p w . . . .
+                w . w p p . p p . .
+                p . . p p . . . h .
+                . . . p p h . . . .
+                . w . p . . . . . .""", """
+                . p p p p p p . . .
+                p p p p p p . . . .
+                w p p w p p . . p .
+                p w w p p p p p . .
+                w . p p p p p p . .
+                w p p p p . . . . .
+                . p . p p . p p . .
+                . . p p p p . p . .
+                p p . p p . . . . .
+                . . . p p p . . . .""", """
+                p p p p p p p . . .
+                p p p p p p p p . .
+                . p p w p p p p p .
+                p w w p p p p p p .
+                w p p p p p p . p .
+                w p p p p p p p . .
+                p p p p p p p . . .
+                . p p p p p . . p .
+                p p p p p p . . p .
+                . . p p p p . . . .""", """
+                p p p p p p p p . .
+                p p p p p p p p p p
+                p p p . p p p p p .
+                p . w p p p p p p p
+                . p p p p p p p . .
+                w p p p p p p p p .
+                p p p p p p p p . .
+                p p p p p p p . . p
+                p p p p p p p . . p
+                p p p p p p . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 10 ticks dense")
+    void tenByTen10TicksDense() {
+        var states = new String[]{"""
+                h g . . . . g . . .
+                . p . g . p . h . .
+                w . w w . p . . p .
+                . w . p . g . h . .
+                h g . . w . p . h .
+                . . . g . g . p . .
+                w p . . . g . . h .
+                . . w . g . . h . .
+                . w . p p h . g . h
+                . . . . . . . . . .""", """
+                h . . p . h p . . .
+                h p p g . . . . . .
+                w p . w p . h p . .
+                . . w p p . . h . .
+                w . . . . p p . h .
+                w p . g p w . p . .
+                . p . p p g . . h .
+                . . w . . . . h . .
+                . . . . p . h h . h
+                . w p . . h . . . .""", """
+                . . p . . . p . . .
+                . p p p h p . . . .
+                w p p w p p . p . .
+                p w . p p p . . . .
+                w w p . . p p . . .
+                . p p . p w . . . .
+                w . w p p . p p . .
+                p . . p p . . . h .
+                . . . p p h . . . .
+                . w . p . . . . . .""", """
+                . p p p p p p . . .
+                p p p p p p . . . .
+                w p p w p p . . p .
+                p w w p p p p p . .
+                w . p p p p p p . .
+                w p p p p . . . . .
+                . p . p p . p p . .
+                . . p p p p . p . .
+                p p . p p . . . . .
+                . . . p p p . . . .""", """
+                p p p p p p p . . .
+                p p p p p p p p . .
+                . p p w p p p p p .
+                p w w p p p p p p .
+                w p p p p p p . p .
+                w p p p p p p p . .
+                p p p p p p p . . .
+                . p p p p p . . p .
+                p p p p p p . . p .
+                . . p p p p . . . .""", """
+                p p p p p p p p . .
+                p p p p p p p p p p
+                p p p . p p p p p .
+                p . w p p p p p p p
+                . p p p p p p p . .
+                w p p p p p p p p .
+                p p p p p p p p . .
+                p p p p p p p . . p
+                p p p p p p p . . p
+                p p p p p p . . . .""", """
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p . p p p p p p p
+                p p p p p p p p p p
+                . p p p p p p p . p
+                p p p p p p p p . .
+                p p p p p p p p . p
+                p p p p p p p p p .
+                p p p p p p p . . .""", """
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p . .
+                p p p p p p p p . p""", """
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p""", """
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p""", """
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p
+                p p p p p p p p p p"""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 10 ticks Die Off")
+    void tenByTen10TicksDieOff() {
+        var states = new String[]{"""
+                h g . . . . g . . .
+                . p . g . p . h . .
+                w . w w . p . . p .
+                . w . p . g . h . .
+                h g . . w . p . h .
+                . . . g . g . p . .
+                w p . . . g . . h .
+                . . w . g . . h . .
+                . w . p p h . g . h
+                . . . . . . . . . .""", """
+                h . . p . h p . . .
+                h p p g . . . . . .
+                w p . w p . h p . .
+                . . w p p . . h . .
+                w . . . . p p . h .
+                w p . g p w . p . .
+                . p . p p g . . h .
+                . . w . . . . h . .
+                . . . . p . h h . h
+                . w p . . h . . . .""", """
+                . . p . . . p . . .
+                . p p p h p . . . .
+                w p p w p p . p . .
+                p w . p p p . . . .
+                w w p . . p p . . .
+                . p p . p w . . . .
+                w . w p p . p p . .
+                p . . p p . . . h .
+                . . . p p h . . . .
+                . w . p . . . . . .""", """
+                . p p p . p p . p .
+                p p p p p p . . . .
+                w p p w p . p . . .
+                p w w p p . p . . .
+                w . p p . p p p . .
+                w p p . p . p . . .
+                . p . p p p p p . .
+                . . p p p p . . . .
+                . p p p p . . . . .
+                . . p p . . . . . .""", """
+                p p p p p p p p p .
+                p p p p p p p p . .
+                . . p w . p . . . .
+                p w w . p p p p . .
+                w p p p p . p p p .
+                . . p p p p p p p .
+                w p p p p p p . . .
+                p p p p p p p . p .
+                p p p . p p . . . .
+                . p p p p p . . . .""", """
+                p p . p p p . p p .
+                p . . . p . p p p .
+                p p . . p p p p . .
+                p . w p . p p p p p
+                . p p p p p p p p .
+                p p . p p p p p p p
+                w p p . . p p p p .
+                p p p . p p p . . p
+                p p p p p p p p . .
+                p p p p p p p . . .""", """
+                p . . . . . p p . .
+                p p p p p p p p p p
+                p . p p p p p p p .
+                p p . p p p p . p p
+                p p p p p p . p p p
+                p p p p . p p p p p
+                . . p p p . . p p p
+                p p . p p . p p p p
+                p . . p . p p p . .
+                p p . . . p p p . .""", """
+                p p p p p p p . p .
+                . p p p . p p . p p
+                p p p p p . p p p p
+                p p . p p . . p p p
+                p p . p . p p . p p
+                p . p p p p . . p p
+                p p p p p p p p p .
+                . . p p . p p p p .
+                . p . p p . p p p p
+                p . . . p p p p p .""", """
+                p p p . p p p p p p
+                p p p p p p . p p p
+                . p p p . p . p p p
+                . p p . . p . p . .
+                p . p p p p p p . p
+                p p p p p . p p . .
+                p p . p p p p p . p
+                . p p p p . p p p p
+                p . . p p p p p p p
+                . . p p p p p p p p""", """
+                p p p p p p p p p p
+                p . p . p . p p . .
+                p p . . p p p p . p
+                p . p p p p p p p .
+                p p p . p . p p . .
+                . p . p p p p . . p
+                p p p p . p p . p .
+                p p p . p p p . p p
+                p p p . p p . p p p
+                . . p p p . . . p p""", """
+                . . p p . . p p . p
+                p p . p p p p p p p
+                p . p p p . p p p .
+                p p p p p p . . p p
+                . p p p p p p p p .
+                p p p p p p . p p p
+                p . p . p . . p p p
+                p p . p p . . p . p
+                p p p . p . . . . .
+                p p . p . p . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        SimConfig.pinguInitialFood = 6;
+        SimConfig.pinguConsumedFood = 2;
+        SimConfig.pinguReproductionCost = 2;
+        SimConfig.pinguFoodConsumption = 3;
+        runTest("plant", 10, 10, states);
+    }
+
+    @Test
+    @DisplayName("10x10 10 ticks Aggressive Die Off")
+    void tenByTen10TicksAggressiveDieOff() {
+        var states = new String[]{"""
+                h g . . . . g . . .
+                . p . g . p . h . .
+                w . w w . p . . p .
+                . w . p . g . h . .
+                h g . . w . p . h .
+                . . . g . g . p . .
+                w p . . . g . . h .
+                . . w . g . . h . .
+                . w . p p h . g . h
+                . . . . . . . . . .""", """
+                h . . p . h p . . .
+                h p p g . . . . . .
+                w p . w p . h p . .
+                . . w p p . . h . .
+                w . . . . p p . h .
+                w p . g p w . p . .
+                . p . p p g . . h .
+                . . w . . . . h . .
+                . . . . p . h h . h
+                . w p . . h . . . .""", """
+                . . p . . . p . . .
+                p . p p h . . . . .
+                w p p w p p . . . .
+                p w w . . p . . . .
+                w . . p p . p . . .
+                w . p . p w . . . .
+                . . . p . . . . . .
+                . . . p p h h . . .
+                . . w . . . . . . .
+                . w . . . . . . . .""", """
+                p . . . . . . . . .
+                . p . p p p p . . .
+                w . p w . p . . . .
+                p w . . w p . . . .
+                w p . p p . . . . .
+                . . . p . . . . . .
+                . . . . . p . . . .
+                . . . . . . . . . .
+                . . . . p . . . . .
+                . . . . . . . . . .""", """
+                . . . . p . p . . .
+                . . p . p . . p . .
+                . p . w p . . . . .
+                . . w . . . . . . .
+                w p p . . w . . . .
+                . . . p . . p . . .
+                . . . . p . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . p . . . p . . . .
+                . . . p . . . . . .
+                . p . . p p . . . .
+                . . . p . . . . . .
+                . . p . . . . . . .
+                . w . . p w . . . .
+                . . . . . . . . . .
+                . . p . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . p . . p . . . .
+                p . . . p p . . . .
+                . . . . . . . . . .
+                . . . p . . p . . .
+                . . . p . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                p . . . . . . . . .
+                . . p . . . . . . .
+                . . . . . . . . . .""", """
+                . p . . . . . . . .
+                . . . . . . . . . .
+                p . . p . p p . . .
+                . . p . p . p . . .
+                . . . . . . . . . .
+                p . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                p . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . p . . . .
+                . p p p . . . . . .
+                . . . p . p . . . .
+                . . . . . . . . . .
+                . . p . p . . . . .
+                p . . . . . . . . .
+                . p . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . p . . . .
+                . . p p . . p . . .
+                . . p . p . . . . .
+                . . . . . . . . . .
+                p p . p . . . . . .
+                . . . . . . . . . .
+                . p . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .""", """
+                . . . . . . . . . .
+                . p . . . . . . . .
+                . . . p p . p p . .
+                p . . . p . . . . .
+                p . . . . . . . . .
+                . . . . p . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . .
+                . . . . . . . . . ."""};
+        SimConfig.plantMinGrowth = 1;
+        SimConfig.plantMaxGrowth = 2;
+        SimConfig.plantReproductionCost = 3;
+        SimConfig.hamsterInitialFood = 1;
+        SimConfig.hamsterConsumedFood = 2;
+        SimConfig.hamsterFoodConsumption = 1;
+        SimConfig.hamsterReproductionCost = 3;
+        SimConfig.wolfInitialFood = 2;
+        SimConfig.wolfConsumedFood = 3;
+        SimConfig.wolfFoodConsumption = 1;
+        SimConfig.wolfReproductionCost = 3;
+        SimConfig.pinguInitialFood = 6;
+        SimConfig.pinguConsumedFood = 2;
+        SimConfig.pinguReproductionCost = 2;
+        SimConfig.pinguFoodConsumption = 5;
+        runTest("plant", 10, 10, states);
     }
 }

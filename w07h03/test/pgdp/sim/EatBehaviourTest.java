@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class EatBehaviourTest {
     static Pingu staticPingu = new Pingu();
     static Plant plant1 = new Plant();
@@ -122,4 +125,25 @@ public class EatBehaviourTest {
                     },
             },
     };
+
+    @Test
+    public void canEatShouldUseInstanceOf() {
+        assertTrue(new Pingu().canEat(new FakePlant()));
+        assertTrue(new Hamster().canEat(new FakePlant()));
+        assertTrue(new Wolf().canEat(new FakeHamster()));
+    }
+
+    private static class FakePlant extends Plant {
+        @Override
+        public CellSymbol getSymbol() {
+            return CellSymbol.WOLF;
+        }
+    }
+
+    private static class FakeHamster extends Hamster {
+        @Override
+        public CellSymbol getSymbol() {
+            return CellSymbol.WOLF;
+        }
+    }
 }
