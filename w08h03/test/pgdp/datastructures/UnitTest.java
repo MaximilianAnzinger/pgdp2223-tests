@@ -20,6 +20,11 @@ public class UnitTest {
 		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
 	}
 
+	@Test
+	public void artemisTest() {
+		dynamicTests(new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
+	}
+
 	@ParameterizedTest
 	@DisplayName("Dynamic Test")
 	@MethodSource
