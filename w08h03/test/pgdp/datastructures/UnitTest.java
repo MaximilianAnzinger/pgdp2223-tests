@@ -3,6 +3,7 @@ package pgdp.datastructures;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
@@ -22,8 +23,10 @@ public class UnitTest {
 	@ParameterizedTest
 	@DisplayName("Dynamic Test")
 	@MethodSource
-	void dynamicTests(String type, int[] expected, int[] input) {
+	void dynamicTests(String type, int[] input) {
 		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<Integer>();
+		int[] expected = Arrays.copyOf(input, input.length);
+		Arrays.sort(expected);
 
 		for (int element : input) {
 			tree.insert(element);
@@ -32,10 +35,12 @@ public class UnitTest {
 		int position = 0;
 		for (int element : tree) {
 			int exp = expected[position++];
-			assertEquals(exp, element, type + ": Invalid Output at position [" + (position-1) + "]: Expected [" + exp + "], got [" + element + "]");
+			assertEquals(exp, element, type + ": Invalid Output at position [" + (position - 1) + "]: Expected [" + exp
+					+ "], got [" + element + "]");
 		}
 
-		assertEquals(expected.length, position, type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
+		assertEquals(expected.length, position,
+				type + ": Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
 	}
 
 	private static Stream<Arguments> dynamicTests() {
@@ -46,14 +51,12 @@ public class UnitTest {
 				//
 				arguments(
 						"Artemis Example",
-						new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 },
 						new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 }),
 				//
 				// Empty Example
 				//
 				arguments(
 						"Empty Test",
-						new int[] {},
 						new int[] {})
 		// </end-region>
 		);
