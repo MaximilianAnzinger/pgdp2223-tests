@@ -25,13 +25,13 @@ public class UnitTest {
 
 	@Test
 	public void artemisTest() {
-		dynamicTests(new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
+		testArray(new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
 	}
 
 	@ParameterizedTest
 	@DisplayName("Dynamic Test")
 	@MethodSource
-	void dynamicTests(int[] input) {
+	void testArray(int[] input) {
 		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<Integer>();
 		int[] expected = Arrays.copyOf(input, input.length);
 		Arrays.sort(expected);
@@ -52,7 +52,7 @@ public class UnitTest {
 	}
 
 	private static int seedDifference = 0;
-	private static Stream<Arguments> dynamicTests() {
+	private static Stream<Arguments> testArray() {
 		// TODO improve this
 		return Stream.generate(() -> {
 			return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
