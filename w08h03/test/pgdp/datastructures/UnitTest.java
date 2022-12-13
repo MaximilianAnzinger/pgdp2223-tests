@@ -2,6 +2,7 @@ package pgdp.datastructures;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -70,4 +71,25 @@ public class UnitTest {
 	// 		return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
 	// 	}).limit(10);
 	// }
+
+	private String generateString(Random rnd) {
+		StringBuilder s = new StringBuilder();
+		rnd.ints(rnd.nextInt(100), 97, 122).mapToObj(i -> (char) i).forEach(c -> s.append(c));
+		return s.toString();
+	}
+
+	@Test
+	public void stringTest() {
+		IntStream.range(0, 10).forEach(i -> {
+			var args = new String[i];
+			var rnd = new Random(seed + i);
+
+			for (int j = 0; j < args.length; j++) {
+				args[j] = generateString(rnd);
+				// System.out.println(args[j]);
+			}
+
+			testArray(args);
+		});
+	}
 }
