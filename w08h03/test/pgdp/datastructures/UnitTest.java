@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -25,24 +26,21 @@ public class UnitTest {
 
 	@Test
 	public void artemisTest() {
-		testArray(new int[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
+		testArray(new Integer[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
 	}
 
-	@ParameterizedTest
-	@DisplayName("Dynamic Test")
-	@MethodSource
-	void testArray(int[] input) {
-		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<Integer>();
-		int[] expected = Arrays.copyOf(input, input.length);
+	<Type extends Comparable<Type>> void testArray(Type[] input) {
+		QuarternarySearchTree<Type> tree = new QuarternarySearchTree<Type>();
+		Type[] expected = Arrays.copyOf(input, input.length);
 		Arrays.sort(expected);
 
-		for (int element : input) {
+		for (Type element : input) {
 			tree.insert(element);
 		}
 
 		int position = 0;
-		for (int element : tree) {
-			int exp = expected[position++];
+		for (Type element : tree) {
+			Type exp = expected[position++];
 			assertEquals(exp, element, "Invalid Output at position [" + (position - 1) + "]: Expected [" + exp
 					+ "], got [" + element + "]");
 		}
@@ -51,11 +49,25 @@ public class UnitTest {
 				"Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
 	}
 
-	private static int seedDifference = 0;
-	private static Stream<Arguments> testArray() {
-		// TODO improve this
-		return Stream.generate(() -> {
-			return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
-		}).limit(10);
+	@Test
+	public void numericTest() {
+		IntStream.range(0, 10).forEach(i -> {
+			var args = new Integer[i];
+			var rnd = new Random(seed + i);
+
+			for (int j = 0; j < args.length; j++) {
+				args[j] = rnd.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
+			}
+
+			testArray(args);
+		});
 	}
+
+	// private static int seedDifference = 0;
+	// private static Stream<Arguments> testArray() {
+	// 	// TODO improve this
+	// 	return Stream.generate(() -> {
+	// 		return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
+	// 	}).limit(10);
+	// }
 }
