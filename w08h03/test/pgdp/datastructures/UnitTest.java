@@ -1,17 +1,21 @@
 package pgdp.datastructures;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,7 +49,8 @@ public class UnitTest {
 	@Test
 	@DisplayName("should iterate over empty graph")
 	public void emptyTest() {
-		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
+		assertFalse((new QuarternarySearchTree<Integer>()).iterator().hasNext(), "hasNext() should return false on an empty graph");
+		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next(), "next() should throw on an empty graph");
 	}
 
 	@Test
@@ -128,9 +133,66 @@ public class UnitTest {
 		}
 	}
 
+	private class PositionTest implements Comparable<PositionTest> {
+		private int number;
+		private Function<PositionTest, Integer> query = (a) -> this.number - a.number;
+
+		public PositionTest (int n) {
+			number = n;
+		}
+
+		@Override
+		public int compareTo(PositionTest o) {
+			return query.apply(o);
+		}
+
+		public void resetQuery() {
+			// Destroy Query
+			query = (a) -> 0;
+		}
+
+		public int getNumber() {
+			return number;
+		}
+	}
+
+	//
+	// THIS METHOD TESTS WETHER INORDER WORKS WITH OBJECTS WHOSE COMPARABILITY
+	// HAS BEEN DESTROYED AFTER TREE GENERATION
+	//
+	// YOU CAN DISABLE THE TEST BY UNCOMMENT THE DISABLED LINE IF YOU FEEL SO
+	//
+
 	@Test
-	@DisplayName("should return the correct value for hasNext() on empty tree")
-	public void hasNextTestEmpty() {
-		Assertions.assertFalse((new QuarternarySearchTree<Integer>()).iterator().hasNext());
+	@DisplayName("should rely on position of tree instead of comparability")
+	//@Disabled
+	public void doesRelyOnPositionTest() {
+		var artemis = new Integer[] { 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 };
+		var objects_cache = new ArrayList<PositionTest>();
+		var tree = new QuarternarySearchTree<PositionTest>();
+
+		// Add objects to tree and objects_cache
+		for (Integer element : artemis) {
+			var obj = new PositionTest(element);
+			tree.insert(obj);
+			objects_cache.add(obj);
+		}
+
+		// Reset query 
+		for (PositionTest element : objects_cache) {
+			element.resetQuery();
+		}
+
+		int position = 0;
+		for (PositionTest element : tree) {
+			int got = element.getNumber();
+			int exp = position + 1;
+			assertEquals(exp, got, "Invalid Output at position [" + position + "]: Expected [" + exp
+					+ "], got [" + got + "]");
+			position++;
+		}
+
+		assertEquals(15, position,
+				"Invalid Iteration Count. Expected [15] got [" + position + "]");
 	}
 }
