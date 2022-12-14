@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -83,7 +85,7 @@ public class UnitTest {
 
 	private String generateString(Random rnd) {
 		StringBuilder s = new StringBuilder();
-		rnd.ints(rnd.nextInt(100), 97, 122).mapToObj(i -> (char) i).forEach(c -> s.append(c));
+		rnd.ints(rnd.nextInt(100), 97, 122).mapToObj(i -> (char) i).forEach(s::append);
 		return s.toString();
 	}
 
@@ -101,5 +103,34 @@ public class UnitTest {
 
 			testArray(args);
 		});
+	}
+
+	@Test
+	@DisplayName("should return the correct values for hasNext() on full tree")
+	public void hasNextTest() {
+		QuarternarySearchTree<Integer> tree = new QuarternarySearchTree<>();
+		int i = 100;
+
+		// fill the tree with a bunch of numbers
+		for (int j = 0; j <= i; j++) {
+			tree.insert(j);
+		}
+
+		var treeIt = tree.iterator();
+		Assertions.assertTrue(treeIt.hasNext());
+		for (int j = 0; j <= i; j++) {
+			treeIt.next();
+			if(j == i) {
+				Assertions.assertFalse(treeIt.hasNext());
+			} else {
+				Assertions.assertTrue(treeIt.hasNext());
+			}
+		}
+	}
+
+	@Test
+	@DisplayName("should return the correct value for hasNext() on empty tree")
+	public void hasNextTestEmpty() {
+		Assertions.assertFalse((new QuarternarySearchTree<Integer>()).iterator().hasNext());
 	}
 }
