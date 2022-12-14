@@ -1,21 +1,17 @@
 package pgdp.datastructures;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UnitTest {
 	static int seed = 69420;
@@ -150,7 +146,7 @@ public class UnitTest {
 		for (int j = 0; j <= i; j++) {
 			treeIt.next();
 			if(j == i) {
-				Assertions.assertFalse(treeIt.hasNext());
+				assertFalse(treeIt.hasNext());
 			} else {
 				Assertions.assertTrue(treeIt.hasNext());
 			}
@@ -160,6 +156,6 @@ public class UnitTest {
 	@Test
 	@DisplayName("should return the correct value for hasNext() on empty tree")
 	public void hasNextTestEmpty() {
-		Assertions.assertFalse((new QuarternarySearchTree<Integer>()).iterator().hasNext());
+		assertFalse((new QuarternarySearchTree<Integer>()).iterator().hasNext());
 	}
 }
