@@ -11,15 +11,21 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RandomTest {
+    Random intTest = new Random(100);
+    Random doubleTest = new Random(100);
+    Random dateTest = new Random(100);
+    Random stringTest = new Random(100);
+    
+    
     @RepeatedTest(10000) // amount tests
     public void randomlyTestIntValues() {
         ArrayList<Integer> values = new ArrayList<>();
         ArrayList<Integer> solution = new ArrayList<>();
 
-        Random num = new Random();
-        int amountOfValues = num.nextInt(250); //max amount of values the tree should contain
+        
+        int amountOfValues = intTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
-            values.add(num.nextInt());
+            values.add(intTest.nextInt());
             solution = new ArrayList<>(values);
             Collections.sort(solution);
         }
@@ -39,10 +45,10 @@ public class RandomTest {
         ArrayList<Double> values = new ArrayList<>();
         ArrayList<Double> solution = new ArrayList<>();
 
-        Random num = new Random();
-        int amountOfValues = num.nextInt(250); //max amount of values the tree should contain
+        
+        int amountOfValues = doubleTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
-            values.add(num.nextDouble());
+            values.add(doubleTest.nextDouble());
             solution = new ArrayList<>(values);
             Collections.sort(solution);
         }
@@ -62,10 +68,10 @@ public class RandomTest {
         ArrayList<Date> values = new ArrayList<>();
         ArrayList<Date> solution = new ArrayList<>();
 
-        Random num = new Random();
-        int amountOfValues = num.nextInt(250); //max amount of values the tree should contain
+        
+        int amountOfValues = dateTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
-            values.add(new Date(num.nextLong()));
+            values.add(new Date(dateTest.nextLong()));
             solution = new ArrayList<>(values);
             Collections.sort(solution);
         }
@@ -87,11 +93,11 @@ public class RandomTest {
 
         int maxStringLength = 100; //max length of an individual string
 
-        Random num = new Random();
-        int amountOfValues = num.nextInt(100); //max amount of values the tree should contain
+        
+        int amountOfValues = stringTest.nextInt(100); //max amount of values the tree should contain
         byte[] array = new byte[maxStringLength];
         for (int i = 0; i < amountOfValues; i++) {
-            num.nextBytes(array);
+            stringTest.nextBytes(array);
             values.add(new String(array, StandardCharsets.UTF_8));
             solution = new ArrayList<>(values);
             Collections.sort(solution);
