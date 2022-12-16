@@ -88,9 +88,13 @@ public class UnitTest {
 		assertEquals(solution, actual);
 	}
 
+	/*
+	 * This is much faster for lazy implementations than it is for non-lazy ones but should easily be solvable for both.
+	 * A non-lazy implementation will take roughly as long here as for the "Read 1M nodes" test.
+	 */
 	@Test
-	@DisplayName("1M nodes but only read first 1k. Lazy is fast here.")
-	public void testPerformanceForLazy() {
+	@DisplayName("1M nodes but only read first 1k")
+	public void testPerformance1MRead1k() {
 		int amountOfValues = (int) 1e6;
 		int readValues = (int) 1000;
 
