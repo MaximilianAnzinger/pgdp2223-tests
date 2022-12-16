@@ -16,8 +16,10 @@ public class RandomTest {
     Random dateTest = new Random(100);
     Random stringTest = new Random(100);
     
+    int numberOfTests = 1000;
     
-    @RepeatedTest(10000) // amount tests
+    
+    @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestIntValues() {
         ArrayList<Integer> values = new ArrayList<>();
         ArrayList<Integer> solution = new ArrayList<>();
@@ -40,7 +42,7 @@ public class RandomTest {
         assertEquals(actual, solution);
     }
 
-    @RepeatedTest(10000) // amount tests
+    @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestDoubleValues() {
         ArrayList<Double> values = new ArrayList<>();
         ArrayList<Double> solution = new ArrayList<>();
@@ -63,7 +65,7 @@ public class RandomTest {
         assertEquals(actual, solution);
     }
 
-    @RepeatedTest(10000) // amount tests
+    @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestDateValues() {
         ArrayList<Date> values = new ArrayList<>();
         ArrayList<Date> solution = new ArrayList<>();
@@ -86,7 +88,7 @@ public class RandomTest {
         assertEquals(actual, solution);
     }
 
-    @RepeatedTest(10000) // amount tests
+    @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestStringValues() {
         ArrayList<String> values = new ArrayList<>();
         ArrayList<String> solution = new ArrayList<>();
