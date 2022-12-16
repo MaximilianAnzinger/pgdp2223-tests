@@ -44,7 +44,7 @@ public class UnitTest {
 
 	@Test
 	@DisplayName("Read 1M nodes")
-	public void testPerformance10k() {
+	public void testPerformance1M() {
 		int amountOfValues = (int) 1e6;
 
 		List<Integer> values = IntStream.range(0, amountOfValues).boxed().collect(Collectors.toList());
