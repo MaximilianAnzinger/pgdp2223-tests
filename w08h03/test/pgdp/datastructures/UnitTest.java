@@ -4,9 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -34,6 +38,54 @@ public class UnitTest {
 
 		assertEquals(expected.length, position,
 				"Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
+	}
+
+	@Test
+	@DisplayName("Performance. Lazy is fast here.")
+	public void testPerformanceForLazy() {
+		int amountOfValues = 10000;
+		int readValues = 100;
+
+		List<Integer> values = IntStream.range(0, amountOfValues).boxed().collect(Collectors.toList());
+		List<Integer> solution = IntStream.range(0, readValues).boxed().collect(Collectors.toList());
+		Collections.shuffle(values);
+
+		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
+		for (Integer i : values) {
+			n.insert(i);
+		}
+		ArrayList<Integer> actual = new ArrayList<>();
+		for (Integer r : n) {
+			if(r.intValue() >= readValues){
+				break;
+			}
+			actual.add(r);
+		}
+		assertEquals(solution, actual);
+	}
+
+	@Test
+	@DisplayName("Test RAM usage for 10k nodes")
+	public void testRAMUsage10k() {
+		int amountOfValues = 10000;
+		int readValues = 100;
+
+		List<Integer> values = IntStream.range(0, amountOfValues).boxed().collect(Collectors.toList());
+		List<Integer> solution = IntStream.range(0, readValues).boxed().collect(Collectors.toList());
+		Collections.shuffle(values);
+
+		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
+		for (Integer i : values) {
+			n.insert(i);
+		}
+		ArrayList<Integer> actual = new ArrayList<>();
+		for (Integer r : n) {
+			if(r.intValue() >= readValues){
+				break;
+			}
+			actual.add(r);
+		}
+		assertEquals(solution, actual);
 	}
 
 	@Test
@@ -69,14 +121,6 @@ public class UnitTest {
 		});
 	}
 
-	// private static int seedDifference = 0;
-	// private static Stream<Arguments> testArray() {
-	// 	// TODO improve this
-	// 	return Stream.generate(() -> {
-	// 		return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
-	// 	}).limit(10);
-	// }
-
 	private String generateString(Random rnd) {
 		StringBuilder s = new StringBuilder();
 		rnd.ints(rnd.nextInt(100), 97, 122).mapToObj(i -> (char) i).forEach(s::append);
@@ -93,7 +137,8 @@ public class UnitTest {
 		int[] expected = Arrays.copyOf(values, values.length);
 		Arrays.sort(expected);
 
-		for (var v : values) t.insert(v);
+		for (var v : values)
+			t.insert(v);
 
 		var iter1 = t.iterator();
 		var iter2 = t.iterator();
@@ -145,7 +190,7 @@ public class UnitTest {
 		Assertions.assertTrue(treeIt.hasNext());
 		for (int j = 0; j <= i; j++) {
 			treeIt.next();
-			if(j == i) {
+			if (j == i) {
 				assertFalse(treeIt.hasNext());
 			} else {
 				Assertions.assertTrue(treeIt.hasNext());
