@@ -64,13 +64,13 @@ public class UnitTest {
 
 		long startTime = System.nanoTime();
 
-		for (Integer r : n) {
+		for (int r : n) {
 
-			if (r.intValue() == 0) {
+			if (r == 0) {
 				long memUsageMB = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())
 						/ (1024 * 1024);
 				System.out.println("Memory usage at the start of iteration: " + memUsageMB + "MB");
-			} else if (r.intValue() == amountOfValues - 1) {
+			} else if (r == amountOfValues - 1) {
 				long memUsageMB = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())
 						/ (1024 * 1024);
 				System.out.println("Memory usage at the end of iteration: " + memUsageMB + "MB");
