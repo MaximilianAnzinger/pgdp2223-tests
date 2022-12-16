@@ -110,8 +110,8 @@ public class UnitTest {
 
 		long startTime = System.nanoTime();
 
-		for (Integer r : n) {
-			if (r.intValue() >= readValues) {
+		for (int r : n) {
+			if (r >= readValues) {
 				break;
 			}
 			actual.add(r);
