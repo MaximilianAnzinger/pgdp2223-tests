@@ -49,6 +49,15 @@ public class UnitTest {
 	}
 
 	@Test
+	@DisplayName("should iterate over graph where a node can have 'null, a, null b' as children")
+	public void testChildrenContainingNull() {
+		// The value 14 and 15 are the children of the node 13. However, returns
+		// `getChildren` of node 13 in the following order: [null, 14, null,
+		// 15]. Therefore, your implementation should handle this case. 
+		testArray(new Integer[] { 18, 8, 4, 12, 1, 5, 9, 13, 3, 7, 11, 15, 2, 6, 10, 14 });
+	}
+
+	@Test
 	@DisplayName("should iterate over a graph of one repeat element")
 	public void oneElementTest() {
 		testArray(new Integer[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 });
