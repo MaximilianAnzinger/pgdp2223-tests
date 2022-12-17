@@ -13,8 +13,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import javax.xml.stream.events.StartDocument;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -40,90 +38,6 @@ public class UnitTest {
 
 		assertEquals(expected.length, position,
 				"Invalid Iteration Count. Expected [" + expected.length + "] got [" + position + "]");
-	}
-
-	@Test
-	@DisplayName("Read 1M nodes")
-	public void testPerformance1M() {
-		int amountOfValues = (int) 1e6;
-
-		List<Integer> values = IntStream.range(0, amountOfValues).boxed().collect(Collectors.toList());
-		List<Integer> solution = IntStream.range(0, amountOfValues).boxed().collect(Collectors.toList());
-		Collections.shuffle(values);
-
-		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
-		for (Integer i : values) {
-			n.insert(i);
-		}
-
-		ArrayList<Integer> actual = new ArrayList<>();
-
-		System.out.println("Keep in mind the RAM usage and its differences during iteration is not a terribly useful metric here:");
-		long memUsageMBBefore = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())
-				/ (1024 * 1024);
-		System.out.println("Memory usage before iteration: " + memUsageMBBefore + "MB");
-
-		long startTime = System.nanoTime();
-
-		for (Integer r : n) {
-
-			if (r.intValue() == 0) {
-				long memUsageMB = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())
-						/ (1024 * 1024);
-				System.out.println("Memory usage at the start of iteration: " + memUsageMB + "MB");
-			} else if (r.intValue() == amountOfValues - 1) {
-				long memUsageMB = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())
-						/ (1024 * 1024);
-				System.out.println("Memory usage at the end of iteration: " + memUsageMB + "MB");
-			}
-
-			actual.add(r);
-		}
-
-		long endTime = System.nanoTime();
-
-		System.out.println("Time taken to read " + amountOfValues + " nodes from a Tree of " + amountOfValues + ": "
-				+ (endTime - startTime) / 1000000 + "ms");
-
-		assertEquals(solution, actual);
-	}
-
-	/*
-	 * This is much faster for lazy implementations than it is for non-lazy ones but should easily be solvable for both.
-	 * A non-lazy implementation will take roughly as long here as for the "Read 1M nodes" test.
-	 */
-	@Test
-	@DisplayName("1M nodes but only read first 1k")
-	public void testPerformance1MRead1k() {
-		int amountOfValues = (int) 1e6;
-		int readValues = (int) 1000;
-
-		List<Integer> values = IntStream.range(0, amountOfValues).boxed().collect(Collectors.toList());
-		List<Integer> solution = IntStream.range(0, readValues).boxed().collect(Collectors.toList());
-		Collections.shuffle(values);
-
-		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
-		for (Integer i : values) {
-			n.insert(i);
-		}
-
-		ArrayList<Integer> actual = new ArrayList<>();
-
-		long startTime = System.nanoTime();
-
-		for (Integer r : n) {
-			if (r.intValue() >= readValues) {
-				break;
-			}
-			actual.add(r);
-		}
-
-		long endTime = System.nanoTime();
-
-		System.out.println("Time taken to read " + readValues + " nodes from a Tree of " + amountOfValues + ": "
-				+ (endTime - startTime) / 1000000 + "ms");
-
-		assertEquals(solution, actual);
 	}
 
 	@Test
