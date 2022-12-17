@@ -98,7 +98,7 @@ public class UnitTest {
 	public void parallelIteratorsTest() {
 		QuarternarySearchTree<Integer> t = new QuarternarySearchTree<>();
 
-		Random random = new Random(seed);
+		Random random = new Random();
 		int[] values = IntStream.range(0, 20).map(__ -> random.nextInt()).toArray();
 		int[] expected = Arrays.copyOf(values, values.length);
 		Arrays.sort(expected);
