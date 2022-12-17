@@ -19,6 +19,8 @@ package pgdp.pingutrip;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+package pgdp.pingutrip;
+
 import java.util.ArrayList;
 import java.util.List;
 
