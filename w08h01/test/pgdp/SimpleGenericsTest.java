@@ -143,7 +143,7 @@ public class SimpleGenericsTest {
     }
     @Test
     @DisplayName("intersection collections array, with one empty collection")
-    void intersection2() {
+    void intersectionWithEmptyList() {
         Collection<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
