@@ -39,7 +39,8 @@ public class UnitTest {
 	@Test
 	@DisplayName("should iterate over empty graph")
 	public void emptyTest() {
-		assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
+		Exception e = assertThrows(NoSuchElementException.class, () -> (new QuarternarySearchTree<Integer>()).iterator().next());
+		assertEquals(e.getMessage(), "Trying to call next on an empty QuarternarySearchTreeIterator");
 	}
 
 	@Test
@@ -162,6 +163,15 @@ public class UnitTest {
 		}
 	}
 
+	@Test
+	@DisplayName("should be able to handle big tree")
+	public void bigTreeTest() {
+		int size = 10000;
+		Random rand = new Random(seed);
+		Integer[] arr = IntStream.range(0, size).map(i -> rand.nextInt(size)).boxed().toArray(Integer[]::new);
+		testArray(arr);
+	}
+	
 	@Test
 	@DisplayName("should return the correct value for hasNext() on empty tree")
 	public void hasNextTestEmpty() {
