@@ -143,6 +143,23 @@ public class SimpleGenericsTest {
     }
 
     @Test
+    @DisplayName("intersection collections array, with one empty collection")
+    void intersectionWithEmptyList() {
+        Collection<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(2);
+        list.add(4);
+        Collection<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(4);
+        Collection<Integer> list3 = new ArrayList<>();
+        Collection<ArrayList>[] listArray = new Collection[]{list1, list, list3};
+        assertEquals("[]", Arrays.toString(SimpleGenerics.intersection(listArray).toArray()));
+    }
+
+    @Test
     @DisplayName("getValues empty map")
     void getValues1() {
         assertEquals(new HashSet<Integer>(), (SimpleGenerics.getValues(new HashMap<Integer, Integer>())));
