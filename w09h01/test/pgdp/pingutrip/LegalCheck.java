@@ -10,7 +10,7 @@
  * /861199                                                  *
  *                                                          *
  * THIS TEST CHECKS FOR INSTANCES OF KEYWORDS WITHIN YOUR   *
- * CODE. IN THE CASE OF FALSE POSITIVE UNCOMMENT LINE 39    *
+ * CODE. IN THE CASE OF FALSE POSITIVE UNCOMMENT LINE 37    *
  * AT YOUR OWN RISK                                         *
  *                                                          */                                                       
 // ******************************************************* //
