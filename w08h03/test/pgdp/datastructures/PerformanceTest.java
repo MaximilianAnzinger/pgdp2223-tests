@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class PerformanceTest {
+	final int seed = 69420;
 
 	/*
 	 * The ÜL has declined to give us an order of magnitude on Zulip so I went with
@@ -30,7 +32,7 @@ public class PerformanceTest {
 
 		List<Integer> values = IntStream.range(0, NUMBER_OF_VALUES_IN_TREE).boxed().collect(Collectors.toList());
 		List<Integer> solution = IntStream.range(0, NUMBER_OF_VALUES_IN_TREE).boxed().collect(Collectors.toList());
-		Collections.shuffle(values);
+		Collections.shuffle(values, new Random(seed));
 
 		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
 		for (Integer i : values) {
@@ -92,7 +94,7 @@ public class PerformanceTest {
 		List<Integer> values = IntStream.range(0, NUMBER_OF_VALUES_IN_TREE).boxed().collect(Collectors.toList());
 		List<Integer> solution = IntStream.range(0, NUMBER_OF_VALUES_TO_ITERATE_OVER).boxed()
 				.collect(Collectors.toList());
-		Collections.shuffle(values);
+		Collections.shuffle(values, new Random(seed));
 
 		QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
 		for (Integer i : values) {
