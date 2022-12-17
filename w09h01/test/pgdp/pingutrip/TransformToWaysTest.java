@@ -17,5 +17,8 @@ public class TransformToWaysTest {
 
         assertEquals(expected.length, actual.length,
                 "The stream should contain exactly " + expected.length + " values");
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], actual[i], "The " + i + ". element is wrong");
+        }
     }
 }
