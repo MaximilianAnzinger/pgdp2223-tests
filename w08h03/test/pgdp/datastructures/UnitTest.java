@@ -79,14 +79,6 @@ public class UnitTest {
 		});
 	}
 
-	// private static int seedDifference = 0;
-	// private static Stream<Arguments> testArray() {
-	// 	// TODO improve this
-	// 	return Stream.generate(() -> {
-	// 		return arguments((new Random(seed + seedDifference++)).ints(seedDifference, 0, Integer.MAX_VALUE).toArray());
-	// 	}).limit(10);
-	// }
-
 	private String generateString(Random rnd) {
 		StringBuilder s = new StringBuilder();
 		rnd.ints(rnd.nextInt(100), 97, 122).mapToObj(i -> (char) i).forEach(s::append);
@@ -124,7 +116,7 @@ public class UnitTest {
 		Assertions.assertTrue(treeIt.hasNext());
 		for (int j = 0; j <= i; j++) {
 			treeIt.next();
-			if(j == i) {
+			if (j == i) {
 				assertFalse(treeIt.hasNext());
 			} else {
 				Assertions.assertTrue(treeIt.hasNext());
