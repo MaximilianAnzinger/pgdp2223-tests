@@ -26,15 +26,14 @@ public class RandomTest {
     @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestIntValues() {
         ArrayList<Integer> values = new ArrayList<>();
-        ArrayList<Integer> solution = new ArrayList<>();
-
+        ArrayList<Integer> expected = new ArrayList<>();
         
         int amountOfValues = intTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
             values.add(intTest.nextInt());
         }
-        solution = new ArrayList<>(values);
-        Collections.sort(solution);
+        expected = new ArrayList<>(values);
+        Collections.sort(expected);
         QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
         for (Integer i : values) {
             n.insert(i);
@@ -43,21 +42,20 @@ public class RandomTest {
         for (Integer r : n) {
             actual.add(r);
         }
-        assertEquals(actual, solution);
+        assertEquals(expected, actual);
     }
 
     @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestDoubleValues() {
         ArrayList<Double> values = new ArrayList<>();
-        ArrayList<Double> solution = new ArrayList<>();
-
+        ArrayList<Double> expected = new ArrayList<>();
         
         int amountOfValues = doubleTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
             values.add(doubleTest.nextDouble());
         }
-        solution = new ArrayList<>(values);
-        Collections.sort(solution);
+        expected = new ArrayList<>(values);
+        Collections.sort(expected);
         QuarternarySearchTree<Double> n = new QuarternarySearchTree<Double>();
         for (Double i : values) {
             n.insert(i);
@@ -66,21 +64,20 @@ public class RandomTest {
         for (Double r : n) {
             actual.add(r);
         }
-        assertEquals(actual, solution);
+        assertEquals(expected, actual);
     }
 
     @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestDateValues() {
         ArrayList<Date> values = new ArrayList<>();
-        ArrayList<Date> solution = new ArrayList<>();
-
+        ArrayList<Date> expected = new ArrayList<>();
         
         int amountOfValues = dateTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
             values.add(new Date(dateTest.nextLong()));
         }
-        solution = new ArrayList<>(values);
-        Collections.sort(solution);
+        expected = new ArrayList<>(values);
+        Collections.sort(expected);
         QuarternarySearchTree<Date> n = new QuarternarySearchTree<Date>();
         for (Date i : values) {
             n.insert(i);
@@ -89,16 +86,15 @@ public class RandomTest {
         for (Date r : n) {
             actual.add(r);
         }
-        assertEquals(actual, solution);
+        assertEquals(expected, actual);
     }
 
     @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestStringValues() {
         ArrayList<String> values = new ArrayList<>();
-        ArrayList<String> solution = new ArrayList<>();
+        ArrayList<String> expected = new ArrayList<>();
 
         int maxStringLength = 100; //max length of an individual string
-
         
         int amountOfValues = stringTest.nextInt(100); //max amount of values the tree should contain
         byte[] array = new byte[maxStringLength];
@@ -106,8 +102,8 @@ public class RandomTest {
             stringTest.nextBytes(array);
             values.add(new String(array, StandardCharsets.UTF_8));
         }
-        solution = new ArrayList<>(values);
-        Collections.sort(solution);
+        expected = new ArrayList<>(values);
+        Collections.sort(expected);
         QuarternarySearchTree<String> n = new QuarternarySearchTree<String>();
         for (String i : values) {
             n.insert(i);
@@ -116,6 +112,6 @@ public class RandomTest {
         for (String r : n) {
             actual.add(r);
         }
-        assertEquals(actual, solution);
+        assertEquals(expected, actual);
     }
 }
