@@ -10,10 +10,12 @@
  * /861199                                                  *
  *                                                          *
  * THIS TEST CHECKS FOR INSTANCES OF KEYWORDS WITHIN YOUR   *
- * CODE. IN THE CASE OF FALSE POSITIVE UNCOMMENT LINE 37    *
+ * CODE. IN THE CASE OF FALSE POSITIVE UNCOMMENT LINE 39    *
  * AT YOUR OWN RISK                                         *
  *                                                          */                                                       
 // ******************************************************* //
+
+package pgdp.pingutrip;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
