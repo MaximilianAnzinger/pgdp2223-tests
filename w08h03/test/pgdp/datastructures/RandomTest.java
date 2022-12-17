@@ -32,9 +32,9 @@ public class RandomTest {
         int amountOfValues = intTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
             values.add(intTest.nextInt());
-            solution = new ArrayList<>(values);
-            Collections.sort(solution);
         }
+        solution = new ArrayList<>(values);
+        Collections.sort(solution);
         QuarternarySearchTree<Integer> n = new QuarternarySearchTree<Integer>();
         for (Integer i : values) {
             n.insert(i);
@@ -55,9 +55,9 @@ public class RandomTest {
         int amountOfValues = doubleTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
             values.add(doubleTest.nextDouble());
-            solution = new ArrayList<>(values);
-            Collections.sort(solution);
         }
+        solution = new ArrayList<>(values);
+        Collections.sort(solution);
         QuarternarySearchTree<Double> n = new QuarternarySearchTree<Double>();
         for (Double i : values) {
             n.insert(i);
@@ -78,9 +78,9 @@ public class RandomTest {
         int amountOfValues = dateTest.nextInt(250); //max amount of values the tree should contain
         for (int i = 0; i < amountOfValues; i++) {
             values.add(new Date(dateTest.nextLong()));
-            solution = new ArrayList<>(values);
-            Collections.sort(solution);
         }
+        solution = new ArrayList<>(values);
+        Collections.sort(solution);
         QuarternarySearchTree<Date> n = new QuarternarySearchTree<Date>();
         for (Date i : values) {
             n.insert(i);
@@ -105,9 +105,9 @@ public class RandomTest {
         for (int i = 0; i < amountOfValues; i++) {
             stringTest.nextBytes(array);
             values.add(new String(array, StandardCharsets.UTF_8));
-            solution = new ArrayList<>(values);
-            Collections.sort(solution);
         }
+        solution = new ArrayList<>(values);
+        Collections.sort(solution);
         QuarternarySearchTree<String> n = new QuarternarySearchTree<String>();
         for (String i : values) {
             n.insert(i);
