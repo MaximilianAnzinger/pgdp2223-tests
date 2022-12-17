@@ -1,19 +1,39 @@
+// ************* PLEASE READ THIS DISCLAIMER ************* //
+/*                                                          *
+ * Even when there is a test provided by Artemis to test    *
+ * the usage of not allowed things, you could still lose    *
+ * points after the deadline, if you are using not allowed  *
+ * things. See the link below                               *
+ *                                                          *
+ * https://zulip.in.tum.de/#narrow/stream/1503-PGdP-W09H01  *
+ * /topic/Nach.20Deadline.20Abzug.20von.20Punkten/near      *
+ * /861199                                                  *
+ *                                                          *
+ * THIS TEST CHECKS FOR INSTANCES OF KEYWORDS WITHIN YOUR   *
+ * CODE. IN THE CASE OF FALSE POSITIVE UNCOMMENT LINE 37    *
+ * AT YOUR OWN RISK                                         *
+ *                                                          */                                                       
+// ******************************************************* //
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+//@Disabled
 public class LegalCheck {
 
     String[] BANNED_EXPRESSIONS = new String[] {
