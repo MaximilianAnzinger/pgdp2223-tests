@@ -6,9 +6,9 @@ import pgdp.trains.processing.resources.JsonStrings;
 
 public class JsonStringParser {
 
-    private static TrainConnection ice881 = TrainConnection.parseFromJSON(new JSONObject(JsonStrings.ice881));
-    private static TrainConnection re8 = TrainConnection.parseFromJSON(new JSONObject(JsonStrings.re8));
-    private static TrainConnection str29 = TrainConnection.parseFromJSON(new JSONObject(JsonStrings.str29));
+    private static TrainConnection ice881 = parseString(JsonStrings.ice881);
+    private static TrainConnection re8 = parseString(JsonStrings.re8);
+    private static TrainConnection str29 = parseString(JsonStrings.str29);
 
     public static TrainConnection getICE881() {
         return ice881;
@@ -20,5 +20,9 @@ public class JsonStringParser {
 
     public static TrainConnection getStr29() {
         return str29;
+    }
+
+    private static TrainConnection parseString(String json) {
+        return TrainConnection.parseFromJSON(new JSONObject(json));
     }
 }
