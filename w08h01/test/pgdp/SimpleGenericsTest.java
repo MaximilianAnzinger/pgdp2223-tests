@@ -141,6 +141,7 @@ public class SimpleGenericsTest {
         Collection<ArrayList>[] listArray = new Collection[]{list1, list, list3};
         assertEquals("[1, 2, 4]", Arrays.toString(SimpleGenerics.intersection(listArray).toArray()));
     }
+
     @Test
     @DisplayName("intersection collections array, with one empty collection")
     void intersectionWithEmptyList() {
