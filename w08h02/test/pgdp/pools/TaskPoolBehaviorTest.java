@@ -53,7 +53,7 @@ public class TaskPoolBehaviorTest {
 
     @Test
     @DisplayName("Check if Compare works right")
-    void compareCheck(){
+    void compareCheck() {
 
         TaskFunction<Integer, Integer> f = new TaskFunction<>(FunctionLib.SQUARE);
         TaskPool<Integer, Integer> tp = new TaskPool<>();
