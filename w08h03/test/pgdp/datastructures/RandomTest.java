@@ -16,12 +16,12 @@ public class RandomTest {
     Random dateTest = new Random(100);
     Random stringTest = new Random(100);
     
-    final int numberOfTests = 1000;
     // If you want to increase the number of runs per test, simply increase 
     // this number.
     //
     // Please note that the tests might be slow, if you are using VS Code.
     // IntelliJ seems to be much faster.
+    final int numberOfTests = 1000;
     
     @RepeatedTest(numberOfTests) // amount tests
     public void randomlyTestIntValues() {
