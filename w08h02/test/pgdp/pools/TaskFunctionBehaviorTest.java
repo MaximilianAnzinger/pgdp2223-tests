@@ -159,7 +159,6 @@ public class TaskFunctionBehaviorTest {
         }
 
         var func2 = new TaskFunction<Integer, Integer>(SQUARE) {
-            @Override
             // In case TaskFunction::equals uses getID() which changes symmetry of equals
             public int getID() {
                 return idOfFunc1;
