@@ -150,18 +150,16 @@ public class TaskFunctionBehaviorTest {
     void equalsUnderlyingSubclassedFunction() {
         var func1 = new TaskFunction<Integer, Integer>(SQUARE);
         var func2 = new TaskFunction<Integer, Integer>(SQUARE) {
-            private final int ID = func1.getID();
-
             @Override
             // In case TaskFunction::equals uses getID() which changes symmetry of equals
             public int getID() {
-                return ID;
+                return func1.getID();
             }
 
             @Override
             // In case TaskFunction::equals uses hashCode() which changes symmetry of equals
             public int hashCode() {
-                return Objects.hashCode(ID);
+                return func1.hashCode();
             }
         };
 
