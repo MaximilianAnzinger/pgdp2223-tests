@@ -216,4 +216,10 @@ public class TaskBehaviorTest {
         assertNotEquals(task1, task2, "equals should yield false for task with different underlying functions");
     }
 
+    @Test
+    @DisplayName("Should not throw NullPointerException when task function is null")
+    public void nullTest() {
+        var task = new Task<>(null, null);
+        assertNull(task.getResult());
+    }
 }
