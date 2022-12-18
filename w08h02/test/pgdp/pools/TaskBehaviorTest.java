@@ -232,14 +232,15 @@ public class TaskBehaviorTest {
     @DisplayName("equals() should return false for identical input and overwritten hashCode method")
     void equalsDifferentUnderlyingHashCodeMethod() {
         var func1 = new TaskFunction<Integer, Integer>(INC);
-        var func2 = new TaskFunction<Integer, Integer>(INC) {
+        var func2 = new TaskFunction<Integer, Integer>(INC);
+
+        var task1 = new Task<>(1, func1);
+        var task2 = new Task<>(1, func2) {
             @Override
             public int hashCode() {
-                return "I'm Afraid I Can't Do That, Dave.".hashCode();
+                return task1.hashCode();
             }
         };
-        var task1 = new Task<>(1, func1);
-        var task2 = new Task<>(1, func2);
 
         assertNotEquals(task1, task2, "equals should yield false for task with different hashCode method (subclassed)");
     }
