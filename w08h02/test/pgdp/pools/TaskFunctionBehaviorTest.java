@@ -9,6 +9,8 @@ import static pgdp.pools.FunctionLib.SQUARE;
 import static pgdp.pools.FunctionLib.SUM_OF_HALFS;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -148,13 +150,22 @@ public class TaskFunctionBehaviorTest {
     void equalsUnderlyingSubclassedFunction() {
         var func1 = new TaskFunction<Integer, Integer>(SQUARE);
         var func2 = new TaskFunction<Integer, Integer>(SQUARE) {
+            private final int ID = func1.getID();
+
             @Override
+            // In case TaskFunction::equals uses getID() which changes symmetry of equals
             public int getID() {
-                return func1.getID();
+                return ID;
+            }
+
+            @Override
+            // In case TaskFunction::equals uses hashCode() which changes symmetry of equals
+            public int hashCode() {
+                return Objects.hashCode(ID);
             }
         };
 
-        assertFalse(func1.equals(func2), "equals should yield false for task with manipulated underlying getID()");
+        assertFalse(func1.equals(func2), "equals should yield false for task with overwritten methods");
     }
 
 }
