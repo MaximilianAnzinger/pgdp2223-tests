@@ -144,34 +144,17 @@ public class TaskFunctionBehaviorTest {
     }
 
     @Test
-    @DisplayName("equals() should return true for identical input and manipulated subclassed function with the same IDs")
+    @DisplayName("equals() should return false for identical input and manipulated subclassed function")
     void equalsUnderlyingSubclassedFunction() {
         var func1 = new TaskFunction<Integer, Integer>(SQUARE);
         var func2 = new TaskFunction<Integer, Integer>(SQUARE) {
+            @Override
+            public int getID() {
+                return func1.getID();
+            }
         };
 
-        /* As stated: Equals and hashCode should only be dependent on the underlying ID.
-         *
-         * By setting the ID of the anonymous subclass to the ID of func1, we
-         * emulate a method overwrite where ID and hashCode is overwritten in the
-         * anonymous class.
-         *
-         * We can't implement ID and hashCode in func2, because it would expose illegal code.
-         *
-         * The goal of this test is to see if the equals method uses a Class::getClass comparison
-         * thus locking Class::equals to instances of the same class.
-         */
-        Class<?> anon = func2.getClass().getSuperclass();
-        try {
-            Field field = anon.getDeclaredField("ID");
-            field.setAccessible(true);
-            field.set(func2, func1.getID());
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException("Could not find field ID in TaskFunction: " + e);
-        }
-
-
-        assertEquals(func1, func2, "equals should yield true for task with manipulated underlying functions (subclassed) with the same IDs");
+        assertFalse(func1.equals(func2), "equals should yield false for task with manipulated underlying getID()");
     }
 
 }
