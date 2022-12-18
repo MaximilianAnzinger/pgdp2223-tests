@@ -51,6 +51,21 @@ public class TaskPoolBehaviorTest {
         assertEquals(task, pool.getByValue(1, func), "Querying a Task with getByValue which was added before should yield that task.");
     }
 
+    @Test
+    @DisplayName("Check if Compare works right")
+    void compareCheck() {
+
+        TaskFunction<Integer, Integer> f = new TaskFunction<>(FunctionLib.SQUARE);
+        TaskPool<Integer, Integer> tp = new TaskPool<>();
+
+        Task<Integer, Integer> t1 = new Task<>(1, f);
+        Task<Integer, Integer> t2 = new Task<>(1, f);
+
+        assert(t1 == tp.insert(t1));
+        assert(t1 == tp.insert(t2));
+        assert(t1 == tp.getByValue(1, f));
+    }
+
     // Test written by https://github.com/flennart
     // Adjusted for readability and changed assertion a bit
     @Test
