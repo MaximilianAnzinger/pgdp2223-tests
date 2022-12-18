@@ -216,4 +216,33 @@ public class TaskBehaviorTest {
         assertNotEquals(task1, task2, "equals should yield false for task with different underlying functions");
     }
 
+    @Test
+    @DisplayName("equals() should return false for identical input and different subclassed method")
+    void equalsDifferentUnderlyingSubclassedFunction() {
+        var func1 = new TaskFunction<Integer, Integer>(INC);
+        var func2 = new TaskFunction<Integer, Integer>(INC) {
+        };
+        var task1 = new Task<>(1, func1);
+        var task2 = new Task<>(1, func2);
+
+        assertNotEquals(task1, task2, "equals should yield false for task with different underlying methods (subclassed)");
+    }
+
+    @Test
+    @DisplayName("equals() should return false for identical input and overwritten hashCode method")
+    void equalsDifferentUnderlyingHashCodeMethod() {
+        var func1 = new TaskFunction<Integer, Integer>(INC);
+        var func2 = new TaskFunction<Integer, Integer>(INC);
+
+        var task1 = new Task<>(1, func1);
+        var task2 = new Task<>(1, func2) {
+            @Override
+            public int hashCode() {
+                return task1.hashCode();
+            }
+        };
+
+        assertNotEquals(task1, task2, "equals should yield false for task with different hashCode method (subclassed)");
+    }
+
 }
