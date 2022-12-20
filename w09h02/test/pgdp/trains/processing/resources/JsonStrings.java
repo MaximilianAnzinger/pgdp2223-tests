@@ -1737,4 +1737,85 @@ public class JsonStrings {
               }
             """;
 
+    // Arrival is destination time
+    public static final String str42 = """
+                    {
+                        "train": {
+                          "name": "STR 42",
+                          "line": "42",
+                          "admin": "kaiserpingu",
+                          "number": "25367",
+                          "type": "STR",
+                          "operator": {
+                            "name": "Nahreisezug",
+                            "icoX": 21
+                          }
+                        },
+                        "finalDestination": "Willibaldplatz, München",
+                        "jid": "1|1072892|4|80|2112022",
+                        "cancelled": true,
+                        "currentStation": {
+                          "id": "621504",
+                          "title": "Hauptbahnhof Süd, München",
+                          "coordinates": {
+                            "lng": 11.55913,
+                            "lat": 48.139258
+                          },
+                          "products": [
+                            {
+                              "name": "STR 18",
+                              "line": "18",
+                              "type": "STR     "
+                            },
+                            {
+                              "name": "STR 19",
+                              "line": "19",
+                              "type": "STR     "
+                            },
+                            {
+                              "name": "STR 29",
+                              "line": "29",
+                              "type": "STR     "
+                            },
+                            {
+                              "name": "STR N19",
+                              "line": "N19",
+                              "type": "STR     "
+                            }
+                          ]
+                        },
+                        "stops": [
+                          {
+                            "station": {
+                              "id": "373606",
+                              "title": "Willibaldplatz, München",
+                              "coordinates": {
+                                "lng": 11.488664,
+                                "lat": 48.140462
+                              }
+                            },
+                            "departure": {
+                              "scheduledTime": "2022-11-02T19:16:00.000Z",
+                              "time": "2022-11-02T19:16:00.000Z",
+                              "cancelled": true
+                            },
+                            "cancelled": true
+                          }
+                        ],
+                        "messages": [
+                          {
+                            "type": "P",
+                            "code": "",
+                            "icoX": 24,
+                            "txtN": "Fahrt fällt aus"
+                          }
+                        ],
+                        "arrival": {
+                          "scheduledTime": "2022-11-02T19:16:00.000Z",
+                          "time": "2022-11-02T19:16:00.000Z",
+                          "cancelled": true
+                        }
+                      }
+        """;
+
 }
