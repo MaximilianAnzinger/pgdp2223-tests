@@ -2,7 +2,7 @@ package pgdp.trains.processing;
 
 import org.junit.jupiter.api.Test;
 import pgdp.trains.connections.TrainConnection;
-import pgdp.trains.processing.utils.JsonStringParser;
+import pgdp.trains.processing.utils.JSONParser;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,11 +14,11 @@ public class CleanDatasetTest {
     @Test
     void shouldRemoveDuplicates() {
         final var result = DataProcessing.cleanDataset(Stream.of(
-                JsonStringParser.getRe8(),
-                JsonStringParser.getRe8()
+            JSONParser.getRe8BasicParsed(),
+            JSONParser.getRe8BasicParsed()
         )).toList();
 
-        final var expected = List.of(JsonStringParser.getRe8());
+        final var expected = List.of(JSONParser.getRe8BasicParsed());
 
         assertEquals(expected, result);
     }
@@ -26,11 +26,11 @@ public class CleanDatasetTest {
     @Test
     void shouldKeepNonDuplicates() {
         final var result = DataProcessing.cleanDataset(Stream.of(
-                JsonStringParser.getICE881(),
-                JsonStringParser.getRe8()
+            JSONParser.getIceBasicParsed(),
+            JSONParser.getRe8BasicParsed()
         )).toList();
 
-        final var expected = List.of(JsonStringParser.getICE881(), JsonStringParser.getRe8());
+        final var expected = List.of(JSONParser.getIceBasicParsed(), JSONParser.getRe8BasicParsed());
         assertEquals(expected, result);
     }
 
@@ -40,18 +40,18 @@ public class CleanDatasetTest {
     @Test
     void shouldSortByDeparture() {
         final var result = DataProcessing.cleanDataset(Stream.of(
-                JsonStringParser.getRe8(),
-                JsonStringParser.getICE881()
+            JSONParser.getRe8BasicParsed(),
+            JSONParser.getIceBasicParsed()
         )).toList();
 
-        final var expected = List.of(JsonStringParser.getICE881(), JsonStringParser.getRe8());
+        final var expected = List.of(JSONParser.getIceBasicParsed(), JSONParser.getRe8BasicParsed());
         assertEquals(expected, result, "Trains are not sorted by departure.");
     }
 
     @Test
     void shouldRemoveAllStopsThatWereCancelled() {
         final var result = DataProcessing.cleanDataset(Stream.of(
-                JsonStringParser.getStr29()
+            JSONParser.getStr29CanceledParsed()
         )).map(TrainConnection::stops).findFirst().get();
 
         assertEquals(List.of(), result, "Train connection should not include any stops.");
@@ -59,7 +59,7 @@ public class CleanDatasetTest {
 
     @Test
     void shouldNotRemoveStopsThatAreNotCancelled() {
-        final var ice881 = JsonStringParser.getICE881();
+        final var ice881 = JSONParser.getIceBasicParsed();
         final var result = DataProcessing.cleanDataset(Stream.of(
                 ice881
         )).map(TrainConnection::stops);
