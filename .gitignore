@@ -28,3 +28,6 @@ hs_err_pid*
 
 # macOS files
 .DS_Store
+
+# vim
+*.swp
