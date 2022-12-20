@@ -22,7 +22,14 @@ public class ReadWayPointsTest {
             assertEquals(expected[i], actual[i], "The value at index " + i + " is wrong");
         }
     }
-
+    
+    /* Comments:
+    Mac OS may throw IOException lazyly if the directory does not exist.
+    So if you have dealt with IOException on Mac, you still might encounter it.
+    However, this JUnit test will not be executed in Artemis.
+    So if you are sure that you have dealt with IOException, you can ignore this test.
+    (for MacOS) By: BSLK11
+    */
     @Test
     void testReturnsEmptyStreamOnError() {
         Stream<WayPoint> points = PinguTrip.readWayPoints("");
