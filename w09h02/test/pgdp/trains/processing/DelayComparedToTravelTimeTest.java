@@ -29,13 +29,13 @@ public class DelayComparedToTravelTimeTest {
 
   @Test
   void shouldHandleNaN() {
-    var manipulated = DelayComparedToTravelTimeTest.manipulateSTR29();
+    final JSONObject manipulated = DelayComparedToTravelTimeTest.manipulateSTR29();
 
     final Map<String, Double> result = DataProcessing.delayComparedToTotalTravelTimeByTransport(Stream.of(
         JSONParser.getTrainConnectionFromJSON(manipulated)
     ));
 
-    final var expected = 0.0;
+    final double expected = 0.0;
 
     assertEquals(expected, result.get("STR"), "Result must not be NaN");
   }
