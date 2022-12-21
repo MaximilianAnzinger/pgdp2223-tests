@@ -12,7 +12,7 @@
 :owner: MaximilianAnzinger
 :repo: gad2223-tests
 
-![yeet](https://img.shields.io/badge/made%20with-tears-blue)
+image:https://img.shields.io/badge/made%20with-tears-blue?style=svg["Made with ersti tears"]
 
 = PGdP 22/23 - Tests
 
