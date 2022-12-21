@@ -143,4 +143,35 @@ public class TaskFunctionBehaviorTest {
         assertFalse(task1.equals(task2), "equals should yield false for two different TaskFunction instances");
     }
 
+    @Test
+    @DisplayName("equals() should return false for identical input and manipulated subclassed function")
+    void equalsUnderlyingSubclassedFunction() {
+        final int idOfFunc1;
+        var func1 = new TaskFunction<Integer, Integer>(SQUARE);
+
+        Class obj = func1.getClass();
+        try {
+            Field field = obj.getDeclaredField("ID");
+            field.setAccessible(true);
+            idOfFunc1 = field.getInt(func1);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException("ID not found in TaskFunction: " + e);
+        }
+
+        var func2 = new TaskFunction<Integer, Integer>(SQUARE) {
+            // In case TaskFunction::equals uses getID() which changes symmetry of equals
+            public int getID() {
+                return idOfFunc1;
+            }
+
+            @Override
+            // In case TaskFunction::equals uses hashCode() which changes symmetry of equals
+            public int hashCode() {
+                return func1.hashCode();
+            }
+        };
+
+        assertFalse(func1.equals(func2), "equals should yield false for task with overwritten methods");
+    }
+
 }
