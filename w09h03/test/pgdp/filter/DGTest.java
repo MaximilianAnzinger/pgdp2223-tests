@@ -5240,12 +5240,12 @@ public class DGTest {
 
         int length = 100;
 
-        FrameProvider fp = new FrameProvider("./noot.mp4");
-        FrameProvider fp1 = new FrameProvider("./noot.mp4");
+        FrameProvider fp = new FrameProvider("noot.mp4");
+        FrameProvider fp1 = new FrameProvider("noot.mp4");
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
 
-        Object[] array = in1.frameStream.toArray();
+        Object[] array = in1.frameStream.limit(length).toArray();
 
         // limitiere Laufzeit
         in.limit(length);
@@ -5274,7 +5274,7 @@ public class DGTest {
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
 
-        Object[] array = in1.frameStream.toArray();
+        Object[] array = in1.frameStream.limit(length).toArray();
 
         // limitiere Laufzeit
         in.limit(length);
@@ -5303,7 +5303,7 @@ public class DGTest {
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
 
-        Object[] array = in1.frameStream.toArray();
+        Object[] array = in1.frameStream.limit(length).toArray();
 
         // limitiere Laufzeit
         in.limit(length);
@@ -5332,7 +5332,7 @@ public class DGTest {
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
 
-        Object[] array = in1.frameStream.toArray();
+        Object[] array = in1.frameStream.limit(length).toArray();
 
         // limitiere Laufzeit
         in.limit(length);
@@ -5361,8 +5361,6 @@ public class DGTest {
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
 
-        Object[] array = in1.frameStream.toArray();
-
         // limitiere Laufzeit
 
         try{
@@ -5389,8 +5387,6 @@ public class DGTest {
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
 
-        Object[] array = in1.frameStream.toArray();
-
         // limitiere Laufzeit
         try{
             in.limit(length);
@@ -5410,8 +5406,6 @@ public class DGTest {
         FrameProvider fp1 = new FrameProvider("noot.mp4");
         VideoContainer in = new VideoContainer(fp);
         VideoContainer in1 = new VideoContainer(fp1);
-
-        Object[] array = in1.frameStream.toArray();
 
         // limitiere Laufzeit
         try{
