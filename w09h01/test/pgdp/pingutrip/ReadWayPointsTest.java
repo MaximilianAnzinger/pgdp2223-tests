@@ -1,6 +1,6 @@
 package pgdp.pingutrip;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.stream.Stream;
 
@@ -16,11 +16,7 @@ public class ReadWayPointsTest {
         WayPoint[] expected = { new WayPoint(4.0, 11.5), new WayPoint(19.1, 3.2) };
         WayPoint[] actual = points.toArray(WayPoint[]::new);
 
-        assertEquals(expected.length, actual.length,
-                "The stream should contain exactly " + expected.length + " values");
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], actual[i], "The value at index " + i + " is wrong");
-        }
+        assertArrayEquals(expected, actual, "The stream should contain the values from the file");
     }
 
     @Test
