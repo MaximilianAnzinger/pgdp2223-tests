@@ -7,8 +7,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PathLengthTest
-{
+public class PathLengthTest {
 	@Test
 	@DisplayName(value = "normal test")
 	void testPathLengthNormal() {
