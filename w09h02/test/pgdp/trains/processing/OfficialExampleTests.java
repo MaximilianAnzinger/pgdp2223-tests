@@ -118,7 +118,7 @@ class OfficialExampleTests {
     @Test
     void delayComparedToTotalTravelTimeByTransport() {
         Map<String, Double> actual = DataProcessing.delayComparedToTotalTravelTimeByTransport(trainConnections.stream());
-        assertEquals(16.666666666666668, actual.get("ICE"));
+        assertEquals(16.666666666666668, actual.get("ICE"), 0.00001);
     }
 
     @Test
