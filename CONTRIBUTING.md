@@ -11,6 +11,7 @@ start.
 * PR title and description should use a prefix like `[W09H03] Add behavioral tests`
 * Separate your tests logically into small files
 * Don't add tests that are not needed for the exercise
+* Write deterministic tests
 * Use JUnit 5.9.1
 * Format your code
 * Don't depend on changing the code the implementation
@@ -49,6 +50,23 @@ per test class. For example, you can create one test for every sub task.
 Please don't add tests that are not needed for the exercise. For example, if the
 exercise only requires you to implement a method `foo(int a)` and the exercise
 says that `a` is never negative, you don't need to test if `a` is negative.
+
+### Write deterministic tests
+
+Please make sure that your tests are deterministic. For example, if you test a
+method that returns a random number, you should use a fixed seed for the
+random number generator.
+
+**BAD**:
+```java
+Random random = new Random();
+```
+
+**GOOD**:
+```java
+// Use a fixed seed for the random number generator
+Random random = new Random(42);
+```
 
 ### Use JUnit 5.9.1
 
