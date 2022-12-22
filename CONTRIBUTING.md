@@ -14,7 +14,7 @@ start.
 * Write deterministic tests
 * Use JUnit 5.9.1
 * Format your code
-* Don't depend on changing the code the implementation
+* Don't depend on changing the code of the implementation
 * Every test file should end with `Test.java`
 * Follow the package structure of the implementation
 * Only one test case per test method
