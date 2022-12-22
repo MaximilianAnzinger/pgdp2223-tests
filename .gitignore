@@ -28,3 +28,14 @@ hs_err_pid*
 
 # macOS files
 .DS_Store
+
+# vim
+#
+# .swp and .swo files are temporary files created by vim. They are used to store
+# the state of the editor when you are editing a file.
+#
+# More info:
+#  * https://vi.stackexchange.com/questions/177/what-is-the-purpose-of-swap-files
+#  * http://vimdoc.sourceforge.net/htmldoc/recover.html
+*.swp
+*.swo
