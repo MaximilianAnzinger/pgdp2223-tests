@@ -86,7 +86,7 @@ dependencies {
 Make sure that your code is formatted according to the [Google Java Style
 Guide](https://google.github.io/styleguide/javaguide.html).
 
-### Don't depend on changing the code the implementation
+### Don't depend on changing the code of the implementation
 
 The test should not say "you need to change the class `Foo` from `private` to `public`".
 
