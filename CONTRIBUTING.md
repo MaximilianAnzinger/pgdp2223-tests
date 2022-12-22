@@ -10,6 +10,7 @@ start.
 
 * PR title and description should use a prefix like `[W09H03] Add behavioral tests`
 * Separate your tests logically into small files
+* Don't add tests that are not needed for the exercise
 * Use JUnit 5.9.1
 * Format your code
 * Don't depend on changing the code the implementation
