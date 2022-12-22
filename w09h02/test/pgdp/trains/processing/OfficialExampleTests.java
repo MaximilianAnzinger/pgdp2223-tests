@@ -1,4 +1,32 @@
+Last login: Thu Dec 22 11:29:41 on ttys000
+❯ ls
+ Applications   Documents   Library   Music      Public
+ Desktop        Downloads   Movies    Pictures   PycharmProjects
 package pgdp.trains.processing;
+
+import org.junit.jupiter.api.Test;
+import pgdp.trains.connections.Station;
+import pgdp.trains.connections.TrainConnection;
+import pgdp.trains.connections.TrainStop;
+
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+class OfficialExampleTests {
+
+    List<TrainConnection> trainConnections = List.of(
+            new TrainConnection("ICE 2", "ICE", "2", "DB", List.of(
+                    new TrainStop(Station.MUENCHEN_HBF,
+                            LocalDateTime.of(2022, 12, 1, 11, 0),
+                            LocalDateTime.of(2022, 12, 1, 11, 0),
+                            TrainStop.Kind.REGULAR),
+                    new TrainStop(Station.NUERNBERG_HBF,
+                            LocalDateTime.of(2022, 12, 1, 11, 30),
+-- EINFÜGEN --package pgdp.trains.processing;
 
 import org.junit.jupiter.api.Test;
 import pgdp.trains.connections.Station;
