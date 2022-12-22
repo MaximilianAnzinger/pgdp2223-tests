@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OfficialExampleTests {
 
+    // EPSILON of 0.00001 because of https://zulip.in.tum.de/#narrow/stream/1504-PGdP-W09H02/topic/.E2.9C.94.20Rundungsfehler/near/868554
     private final double EPSILON = 0.00001;
 
     List<TrainConnection> trainConnections = List.of(
