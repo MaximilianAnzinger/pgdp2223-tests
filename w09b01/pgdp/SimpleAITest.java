@@ -22,7 +22,7 @@ public class SimpleAITest {
         Move move = ai.makeMove(new Field[3][3], true, new boolean[9], new boolean[9]);
         assertNotNull(move);
         moveCoordinatesInRange(move);
-        assertTrue(move.value() >= 1 && move.value() <= 8);
+        assertTrue(move.value() >= 0 && move.value() <= 8);
     }
 
     @Nested
