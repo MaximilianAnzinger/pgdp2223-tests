@@ -4845,7 +4845,7 @@ public class DGTest {
         //System.out.println(Color.DARK_GRAY.getGreen());
         //System.out.println(Color.DARK_GRAY.getBlue());
 
-        Color gray = new Color(64,64,64);
+        Color gray = new Color(63,63,63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
 
@@ -4882,7 +4882,7 @@ public class DGTest {
         //System.out.println(Color.DARK_GRAY.getGreen());
         //System.out.println(Color.DARK_GRAY.getBlue());
 
-        Color gray = new Color(64,64,64);
+        Color gray = new Color(63,63,63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
 
@@ -4919,7 +4919,7 @@ public class DGTest {
         //System.out.println(Color.DARK_GRAY.getGreen());
         //System.out.println(Color.DARK_GRAY.getBlue());
 
-        Color gray = new Color(64,64,64);
+        Color gray = new Color(63,63,63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
 
@@ -4956,7 +4956,7 @@ public class DGTest {
         //System.out.println(Color.DARK_GRAY.getGreen());
         //System.out.println(Color.DARK_GRAY.getBlue());
 
-        Color gray = new Color(64,64,64);
+        Color gray = new Color(63,63,63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
 
@@ -4993,7 +4993,7 @@ public class DGTest {
         //System.out.println(Color.DARK_GRAY.getGreen());
         //System.out.println(Color.DARK_GRAY.getBlue());
 
-        Color gray = new Color(64,64,64);
+        Color gray = new Color(63,63,63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
 
@@ -5032,7 +5032,7 @@ public class DGTest {
         Color gray1 = new Color(225,225,225);
         Color gray2 = new Color(255,255,255);
         Color gray3 = new Color(198, 198, 198);
-        Color gray4 = new Color(64,64,64);
+        Color gray4 = new Color(63,63,63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
 
