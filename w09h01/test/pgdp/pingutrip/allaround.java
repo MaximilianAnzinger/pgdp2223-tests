@@ -1,5 +1,9 @@
 package pgdp.pingutrip;
-
+//////////////////////////////////////////
+/* Short Disclaimer even if you pass all*/
+/* Tests it does not mean you pass all  */
+/*               Artemis Test           */
+//////////////////////////////////////////
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -7,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AllAround {
+public class SouroundTest {
     @Test
     void pathLengthSimpleTest(){
         Double value = PinguTrip.pathLength(Stream.of(new OneWay(new WayPoint(0.0, 0.0), new WayPoint(1.0, 0.0))));
@@ -22,10 +26,21 @@ public class AllAround {
 
     @Test
     void kidFriendlyTripTest(){
-        List<OneWay> lists = List.of(new OneWay(new WayPoint(0.0, 0.0), new WayPoint(1.0, 0.0)),
-                new OneWay(new WayPoint(1.0, 0.0), new WayPoint(3.0, 0.0)),
-                new OneWay(new WayPoint(3.0, 0.0), new WayPoint(4.0, 0.0)));
-        List<OneWay> result = List.of(new OneWay(new WayPoint(0.0, 0.0), new WayPoint(1.0, 0.0)));
+        List<OneWay> lists = List.of(new OneWay(new WayPoint(0.0, 0.0), new WayPoint(4.0, 0.0)),
+                new OneWay(new WayPoint(0.0, 0.0), new WayPoint(1.0, 0.0)),
+                new OneWay(new WayPoint(1.0, 0.0), new WayPoint(3.0, 0.0)));
+        List<OneWay> result = List.of();
+        assertArrayEquals(PinguTrip.kidFriendlyTrip(lists), result);
+    }
+
+    @Test
+    void kidFriendlyTripTest2(){
+        List<OneWay> lists = List.of(new OneWay(new WayPoint(2.0, 0.0), new WayPoint(4.0, 0.0)),
+                new OneWay(new WayPoint(0.0, 0.0), new WayPoint(2.0, 0.0)),
+                new OneWay(new WayPoint(0.0, 0.0), new WayPoint(2.0, 0.0)));
+        List<OneWay> result = List.of(new OneWay(new WayPoint(2.0, 0.0), new WayPoint(4.0, 0.0)),
+                new OneWay(new WayPoint(0.0, 0.0), new WayPoint(2.0, 0.0)),
+                new OneWay(new WayPoint(0.0, 0.0), new WayPoint(2.0, 0.0)));
         assertArrayEquals(PinguTrip.kidFriendlyTrip(lists), result);
     }
 
@@ -36,16 +51,28 @@ public class AllAround {
     }
 
     @Test
-    void transformToWaysTestVoid(){
-        List<WayPoint> list = List.of();
-        assertArrayEquals(PinguTrip.transformToWays(list).toList(),List.of());
+    void transformToWaysTest2(){
+        List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new WayPoint(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0));
+        assertArrayEquals(PinguTrip.transformToWays(list).toList(), List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0))));
     }
 
     @Test
-    void furthestAWay(){
+    void transformToWaysTest3(){
+        List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new WayPoint(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0), new WayPoint(2.0,3.0));
+        assertArrayEquals(PinguTrip.transformToWays(list).toList(), List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)), new OneWay(new WayPoint(2.0, 2.0), new WayPoint(2.0, 3.0))));
+    }
+    @Test
+    void furthestAWayTest(){
         Stream<WayPoint> path = Stream.of(new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0));
         WayPoint home = new WayPoint(0.0, 0.0);
         assertArrayEquals(PinguTrip.furthestAwayFromHome(path, home), new WayPoint(2.0, 0.0));
+    }
+
+    @Test
+    void furthestAWayTest1(){
+        Stream<WayPoint> path = Stream.of(new WayPoint(3.0, 4.0), new WayPoint(3.0, 4.1) ,new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0));
+        WayPoint home = new WayPoint(0.0, 0.0);
+        assertArrayEquals(PinguTrip.furthestAwayFromHome(path, home), new WayPoint(3.0, 4.1));
     }
 
     private void assertArrayEquals(WayPoint furthestAwayFromHome, WayPoint wayPoint) {
