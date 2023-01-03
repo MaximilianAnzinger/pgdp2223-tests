@@ -16,6 +16,7 @@ public class WorstDelayedTrainTest {
     // The example from the `main` method.
     @Test
     void testExample() {
+        // The list of connections from the example.
         List<TrainConnection> trainConnections = List.of(
                 new TrainConnection("ICE 2", "ICE", "2", "DB", List.of(
                         new TrainStop(Station.MUENCHEN_HBF,
@@ -56,6 +57,7 @@ public class WorstDelayedTrainTest {
 
     @Test
     void testEmpty() {
+        // A list of no train connections.
         List<TrainConnection> trainConnections = List.of();
 
         TrainConnection worstDelayedTrain = DataProcessing.worstDelayedTrain(trainConnections.stream());
@@ -66,6 +68,7 @@ public class WorstDelayedTrainTest {
 
     @Test
     void testMultipleTrainsWithSameWorstDelay() {
+        // A list of train connections where 2 trains have the same worst delay.
         List<TrainConnection> trainConnections = List.of(
                 new TrainConnection("ICE 1", "ICE", "1", "DB", List.of(
                         new TrainStop(Station.MUENCHEN_HBF,
