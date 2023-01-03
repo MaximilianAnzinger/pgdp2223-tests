@@ -13,7 +13,7 @@ start.
 * Don't add tests that are not needed for the exercise
 * Write deterministic tests
 * Use JUnit 5.9.1
-* Format your code
+* Follow the Java Style Guide
 * Don't depend on changing the code the implementation
 * Every test file should end with `Test.java`
 * Follow the package structure of the implementation
