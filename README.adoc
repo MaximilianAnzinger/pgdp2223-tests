@@ -137,7 +137,7 @@ $ ln -s /path/to/test-repository/aufgabe/test/pgdp /path/to/artemis-repository/t
 
 == How to Contribute
 
-. Read our guidlines in our (https://github.com/MaximilianAnzinger/pgdp2223-tests/blob/main/CONTRIBUTING.md[`CONTRIBUTIND.md])
+. Read our guidlines in our (https://github.com/MaximilianAnzinger/pgdp2223-tests/blob/main/CONTRIBUTING.md[CONTRIBUTIND.md])
 . Fork Repository (https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository[GitHub Documentation])
 . Add / edit tests under `<EXERCISE>/test/`
 . *Ensure no solution or homework-code is getting revealed*
