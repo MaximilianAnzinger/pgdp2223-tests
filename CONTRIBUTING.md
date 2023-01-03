@@ -38,7 +38,7 @@ If you don't changed the tests for an exercise, you can use `[*]` as prefix:
 
 #### Description
 
-In the description of your PR, please add a description that helps us to understand what you are doing. For example, when you fix a bug, please add a description of the bug and how you fixed it.
+The description of your PR should help us understand what you are doing: For example, when fixing a bug, provide information on the bug and a brief sentence on how you fixed it.
 
 ### Separate your tests logically into small files
 
