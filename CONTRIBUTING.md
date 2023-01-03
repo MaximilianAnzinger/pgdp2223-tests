@@ -14,7 +14,7 @@ start.
 * Write deterministic tests
 * Use JUnit 5.9.1
 * Follow the Java Style Guide
-* Don't depend on changing the code the implementation
+* Don't depend on changing the code of the implementation
 * Every test file should end with `Test.java`
 * Follow the package structure of the implementation
 * Only one test case per test method
@@ -86,7 +86,7 @@ dependencies {
 Make sure that your code is formatted according to the [Google Java Style
 Guide](https://google.github.io/styleguide/javaguide.html).
 
-### Don't depend on changing the code the implementation
+### Don't depend on changing the code of the implementation
 
 The test should not say "you need to change the class `Foo` from `private` to `public`".
 
