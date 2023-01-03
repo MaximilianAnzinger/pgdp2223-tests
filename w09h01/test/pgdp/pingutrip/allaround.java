@@ -1,9 +1,5 @@
 package pgdp.pingutrip;
-//////////////////////////////////////////
-/* Short Disclaimer even if you pass all*/
-/* Tests it does not mean you pass all  */
-/*               Artemis Test           */
-//////////////////////////////////////////
+
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -73,6 +69,27 @@ public class SouroundTest {
         Stream<WayPoint> path = Stream.of(new WayPoint(3.0, 4.0), new WayPoint(3.0, 4.1) ,new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0));
         WayPoint home = new WayPoint(0.0, 0.0);
         assertArrayEquals(PinguTrip.furthestAwayFromHome(path, home), new WayPoint(3.0, 4.1));
+    }
+
+    @Test
+    void furthestAWayTest2(){
+        Stream<WayPoint> path = Stream.of();
+        WayPoint home = new WayPoint(0.0, 0.0);
+        assertArrayEquals(PinguTrip.furthestAwayFromHome(path, home), new WayPoint(0.0, 0.0));
+    }
+
+    @Test
+    void furthestAWayTest3(){
+        Stream<WayPoint> path = Stream.of(new WayPoint(3.0, 4.1), new WayPoint(3.0, 4.1) ,new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0));
+        WayPoint home = new WayPoint(0.0, 0.0);
+        assertArrayEquals(PinguTrip.furthestAwayFromHome(path, home), new WayPoint(3.0, 4.1));
+    }
+
+    @Test
+    void furthestAWayTest4(){
+        Stream<WayPoint> path = Stream.of(new WayPoint(3.0, 4.1), new WayPoint(4.1, 3.0) ,new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0));
+        WayPoint home = new WayPoint(4.1, 3.0);
+        assertArrayEquals(PinguTrip.furthestAwayFromHome(path, home), new WayPoint(1.0, 0.0));
     }
 
     private void assertArrayEquals(WayPoint furthestAwayFromHome, WayPoint wayPoint) {
