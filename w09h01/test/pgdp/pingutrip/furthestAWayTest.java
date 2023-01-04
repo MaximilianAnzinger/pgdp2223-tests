@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class furthestAWayTest {
+public class FurthestAwayFromHomeTest {
     @Test
     @DisplayName("The Artemis tests")
     void furthestAWayTest(){
