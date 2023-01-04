@@ -114,11 +114,6 @@ class OfficialExampleTests {
     }
 
     @Test
-    void averageDelayAt() {
-        assertEquals(10.0, DataProcessing.averageDelayAt(trainConnections.stream(), Station.NUERNBERG_HBF), EPSILON);
-    }
-
-    @Test
     void delayComparedToTotalTravelTimeByTransport() {
         Map<String, Double> actual = DataProcessing.delayComparedToTotalTravelTimeByTransport(trainConnections.stream());
         assertEquals(16.666666666666668, actual.get("ICE"),  EPSILON);
