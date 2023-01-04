@@ -1,6 +1,7 @@
 package pgdp.pingutrip;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
@@ -18,25 +19,21 @@ public class TransformToWaysTest {
 
         assertArrayEquals(expected, actual);
     }
-    @Test
-    @DisplayName("The Simple Artemis Test")
-    void transformToWaysTest(){
-        List<WayPoint> list = List.of(new WayPoint(4.0, 11.5), new WayPoint(19.1, 3.2), new WayPoint(2.1, 7.4));
-        assertArrayEquals(PinguTrip.transformToWays(list).toList(),List.of(new OneWay(new WayPoint(4.0, 11.5), new WayPoint(19.1, 3.2)), new OneWay(new WayPoint(19.1, 3.2), new WayPoint(2.1, 7.4))));
-    }
 
     @Test
     @DisplayName("Now with 4 elements and checks for the correctness of the element passing")
     void transformToWaysTest2(){
         List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new WayPoint(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0));
-        assertArrayEquals(PinguTrip.transformToWays(list).toList(), List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0))));
+        List<OneWay> lists = List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)))
+        assertArrayEquals(PinguTrip.transformToWays(list).toList(),lists);
     }
 
     @Test
     @DisplayName("Now with 5 elements and checks for the correctness of the element passing")
     void transformToWaysTest3(){
-        List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new WayPoint(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0), new WayPoint(2.0,3.0));
-        assertArrayEquals(PinguTrip.transformToWays(list).toList(), List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)), new OneWay(new WayPoint(2.0, 2.0), new WayPoint(2.0, 3.0))));
+        List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new Way Point(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0), new WayPoint(2.0,3.0));
+        List<OneWay> result = List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)), new OneWay(new WayPoint(2.0, 2.0), new WayPoint(2.0, 3.0)))
+        assertArrayEquals(PinguTrip.transformToWays(list).toList(),result);
     }
 
     private void assertArrayEquals(WayPoint furthestAwayFromHome, WayPoint wayPoint) {

@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class kidFriedlyTripTest {
+public class KidFriedlyTripTest {
     @Test
     @DisplayName("Checks if really stops in kidFriendlyTripTest when the first element is longer then the average ")
     void kidFriendlyTripTest() {
