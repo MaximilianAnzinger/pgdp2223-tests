@@ -10,12 +10,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class kidFriedlyTripTest {
     @Test
     @DisplayName("Checks if really stops in kidFriendlyTripTest when the first element is longer then the average ")
-    void kidFriendlyTripTest(){
+    void kidFriendlyTripTest() {
         List<OneWay> lists = List.of(new OneWay(new WayPoint(0.0, 0.0), new WayPoint(4.0, 0.0)),
                 new OneWay(new WayPoint(0.0, 0.0), new WayPoint(1.0, 0.0)),
                 new OneWay(new WayPoint(1.0, 0.0), new WayPoint(3.0, 0.0)));
-        List<OneWay> result = List.of();
-        assertArrayEquals(PinguTrip.kidFriendlyTrip(lists), result);
+
+        List<OneWay> expected = List.of();
+        List<OneWay> actual = PinguTrip.kidFriendlyTrip(lists);
+
+        assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
     @Test
