@@ -1372,10 +1372,9 @@ public class DGTest {
                                \s
                               No, it's OK. It's fine.
                               I know\s""";
+
+            Assertions.assertEquals(shouldBe, builder.toString());
         }
-        
-        String actual = builder.toString();
-        Assertions.assertEquals(shouldBe, actual);
     }
     
     
