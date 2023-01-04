@@ -21,7 +21,7 @@ public class ReadWayPointsTest {
 
     @Test
     void testReturnsEmptyStreamOnError() {
-        Stream<WayPoint> points = PinguTrip.readWayPoints("");
+        Stream<WayPoint> points = PinguTrip.readWayPoints("not-existing-path");
         assertEquals(0, points.count(), "The stream should be empty");
     }
 }
