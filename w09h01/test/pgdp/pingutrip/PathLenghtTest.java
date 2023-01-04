@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PathLenghtTest {
+public class PathLengthTest {
     @Test
     @DisplayName("A simple Check of the path length")
     void pathLengthSimpleTest() {
