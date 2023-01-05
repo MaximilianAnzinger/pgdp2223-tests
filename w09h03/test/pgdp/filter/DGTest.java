@@ -19,8 +19,6 @@ import java.util.Iterator;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static pgdp.filter.VideoContainer.IllegalVideoFormatException;
-
 /**
  * HINWEISE:
  * <p>
