@@ -1,10 +1,10 @@
 package pgdp.pingutrip;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TransformToWaysTest {
@@ -22,30 +22,30 @@ public class TransformToWaysTest {
 
     @Test
     @DisplayName("Now with 4 elements and checks for the correctness of the element passing")
-    void transformToWaysTest2(){
-        List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new WayPoint(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0));
-        List<OneWay> lists = List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)))
-        assertArrayEquals(PinguTrip.transformToWays(list).toList(),lists);
+    void testTransformToWaysFourElements() {
+        List<WayPoint> wayPoints = List.of(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0),
+                new WayPoint(2.0, 2.0));
+
+        OneWay[] expected = { new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)),
+                new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)),
+                new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)) };
+        OneWay[] actual = PinguTrip.transformToWays(wayPoints).toArray(OneWay[]::new);
+
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     @DisplayName("Now with 5 elements and checks for the correctness of the element passing")
-    void transformToWaysTest3(){
-        List<WayPoint> list = List.of(new WayPoint(0.0,1.0), new Way Point(1.0,1.0), new WayPoint(1.0,2.0), new WayPoint(2.0,2.0), new WayPoint(2.0,3.0));
-        List<OneWay> result = List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)), new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)), new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)), new OneWay(new WayPoint(2.0, 2.0), new WayPoint(2.0, 3.0)))
-        assertArrayEquals(PinguTrip.transformToWays(list).toList(),result);
-    }
+    void testTransformToWaysFiveElements() {
+        List<WayPoint> wayPoints = List.of(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0),
+                new WayPoint(2.0, 2.0), new WayPoint(2.0, 3.0));
 
-    private void assertArrayEquals(WayPoint furthestAwayFromHome, WayPoint wayPoint) {
-        if(!furthestAwayFromHome.equals(wayPoint)) fail("They dont match expected:"+ wayPoint +" but was: "+ furthestAwayFromHome);
-    }
+        OneWay[] expected = List.of(new OneWay(new WayPoint(0.0, 1.0), new WayPoint(1.0, 1.0)),
+                new OneWay(new WayPoint(1.0, 1.0), new WayPoint(1.0, 2.0)),
+                new OneWay(new WayPoint(1.0, 2.0), new WayPoint(2.0, 2.0)),
+                new OneWay(new WayPoint(2.0, 2.0), new WayPoint(2.0, 3.0))).toArray(OneWay[]::new);
+        OneWay[] actual = PinguTrip.transformToWays(wayPoints).toList().toArray(OneWay[]::new);
 
-    private void assertArrayEquals(List<OneWay> kidFriendlyTrip, List<OneWay> result) {
-        if(kidFriendlyTrip.size() != result.size()) fail("Unequal already in size. Expected: "+result.size()+" but were: "+kidFriendlyTrip.size());
-        else{
-            for (int i = 0; i < kidFriendlyTrip.size(); i++) {
-                if(!kidFriendlyTrip.get(i).equals(result.get(i))) fail("Unequal at element: "+i+" your were: "+kidFriendlyTrip.get(i)+" the expectet where: "+result.get(i));
-            }
-        }
+        assertArrayEquals(expected, actual);
     }
 }
