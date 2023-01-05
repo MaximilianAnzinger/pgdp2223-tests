@@ -13,8 +13,10 @@ public class FurthestAwayFromHomeTest {
     void testExample() {
         Stream<WayPoint> path = Stream.of(new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0));
         WayPoint home = new WayPoint(0.0, 0.0);
+        
         WayPoint actual = PinguTrip.furthestAwayFromHome(path, home);
         WayPoint expected = new WayPoint(2.0, 0.0);
+
         assertEquals(expected, actual);
     }
 
