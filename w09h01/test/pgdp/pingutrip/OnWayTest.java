@@ -27,4 +27,16 @@ public class OnWayTest {
 
         assertFalse(isOnWay);
     }
+
+    @Test
+    void testIsOnWayLargeStream() {
+        Stream<OneWay> oneWays = Stream.of(new OneWay(new WayPoint(0.0, 0.0), new WayPoint(1.0, 0.0)),
+                new OneWay(new WayPoint(1.0, 0.0), new WayPoint(2.0, 0.0)),
+                new OneWay(new WayPoint(2.0, 0.0), new WayPoint(3.0, 0.0)));
+        WayPoint visit = new WayPoint(1.5, 0.0);
+
+        boolean isOnWay = PinguTrip.onTheWay(oneWays, visit);
+
+        assertTrue(isOnWay);
+    }
 }
