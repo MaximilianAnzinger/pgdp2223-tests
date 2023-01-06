@@ -1,10 +1,12 @@
-package pgdp.tictactoe;
+package pgdp.tictactoe.ai;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pgdp.tictactoe.ai.SimpleAI;
+import pgdp.tictactoe.Field;
+import pgdp.tictactoe.Move;
+import pgdp.tictactoe.PenguAI;
 
 public class AITests {
 
