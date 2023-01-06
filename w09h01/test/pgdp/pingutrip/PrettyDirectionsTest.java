@@ -22,7 +22,7 @@ public class PrettyDirectionsTest {
     }
 
     @Test
-    void testIsOnWayTestEmpty() {
+    void testIsOnWayEmptyTest() {
         Stream<OneWay> ways = Stream.of();
 
         String output = PinguTrip.prettyDirections(ways);
