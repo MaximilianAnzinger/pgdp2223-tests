@@ -402,7 +402,7 @@ public class DGTest {
         Assertions.assertEquals(number, output.getFrameNumber());
         // encoding path
         for (int i = 0; i < 8; i++) {
-            Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(i, output.getHeight() - 1));
+            Assertions.assertEquals(colorsE[i], output.getPixels().getRGB(i, output.getHeight() - 1));
         }
         // rest
         for (int i = 8; i < frame.getWidth(); i++) {
