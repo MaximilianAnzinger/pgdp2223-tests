@@ -43,10 +43,8 @@ public class DGTest {
     @DisplayName("Test DG 01 Decode Noot first Frame")
     public void test01() throws IOException, IllegalVideoFormatException {
         // read the file
-        VideoContainer in;
         FrameProvider fp = new FrameProvider("noot.mp4");
-        in = new VideoContainer(fp);
-        
+
         Frame first = fp.nextFrame();
         outputFrame("test01.jpg", first, "jpg");
         fp.close();
