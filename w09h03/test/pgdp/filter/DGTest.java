@@ -32,8 +32,12 @@ public class DGTest {
 
     private static void outputFrame(String pathname, Frame output, String PNG) throws IOException {
         if (!outputFiles) return;
-        File outputfile = new File(pathname);
-        ImageIO.write(output.getPixels(), PNG, outputfile);
+
+        File outputfile = new File("DGTest_output/" + pathname);
+
+        if (outputfile.mkdirs()) {
+            ImageIO.write(output.getPixels(), PNG, outputfile);
+        }
     }
 
     // OPERATIONS DECODE TESTS
