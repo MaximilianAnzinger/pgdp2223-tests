@@ -359,6 +359,9 @@ public class DGTest {
         int[] colorsE = new int[]{Color.BLACK.getRGB(), Color.WHITE.getRGB(), Color.WHITE.getRGB(),
                 Color.BLACK.getRGB(), Color.BLACK.getRGB(), Color.WHITE.getRGB(), Color.BLACK.getRGB(), Color.WHITE.getRGB()};
 
+        outputFrame("test20Output.png", output, "PNG");
+        outputFrame("test20Original.png", frame, "PNG");
+
         Assertions.assertEquals(width, output.getWidth());
         Assertions.assertEquals(height, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -375,9 +378,6 @@ public class DGTest {
                 Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test20Output.png", output, "PNG");
-        outputFrame("test20Original.png", frame, "PNG");
     }
 
     @Test
@@ -393,6 +393,9 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.encode("e");
         Frame output = function.apply(frame);
         System.out.println(Color.RED.getRGB());
+
+        outputFrame("test03Output.png", output, "PNG");
+        outputFrame("test03Original.png", frame, "PNG");
 
         Assertions.assertEquals(width, output.getWidth());
         Assertions.assertEquals(height, output.getHeight());
@@ -410,10 +413,6 @@ public class DGTest {
                 Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-
-        outputFrame("test03Output.png", output, "PNG");
-        outputFrame("test03Original.png", frame, "PNG");
     }
 
     @Test
@@ -448,6 +447,8 @@ public class DGTest {
                 A full commitment's wh""");
         Frame output = function.apply(first);
 
+        outputFrame("test04Output.png", output, "PNG");
+
         Assertions.assertEquals(width, output.getWidth());
         Assertions.assertEquals(height, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -463,7 +464,6 @@ public class DGTest {
             }
         }
 
-        outputFrame("test04Output.png", output, "PNG");
         fp.close();
     }
 
@@ -489,6 +489,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.encode("e");
         Frame output = function.apply(first);
 
+        outputFrame("test05Output.png", output, "PNG");
+
         Assertions.assertEquals(width, output.getWidth());
         Assertions.assertEquals(height, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -504,7 +506,6 @@ public class DGTest {
             }
         }
 
-        outputFrame("test05Output.png", output, "PNG");
         fp.close();
     }
 
@@ -748,10 +749,12 @@ public class DGTest {
         for (int i = 0; i < amount; i++) {
             try {
                 output[i] = (Frame) outputObject[i];
+                outputFrame("test31OutputFrame" + i + ".png", output[i], "PNG");
             } catch (Exception e) {
                 Assertions.fail();
             }
         }
+
 
         int[] colorsE = new int[]{Color.BLACK.getRGB(), Color.WHITE.getRGB(), Color.WHITE.getRGB(),
                 Color.BLACK.getRGB(), Color.BLACK.getRGB(), Color.WHITE.getRGB(), Color.BLACK.getRGB(), Color.WHITE.getRGB()};
@@ -781,8 +784,6 @@ public class DGTest {
                     }
                 }
             }
-
-            outputFrame("test31OutputFrame" + i + ".png", output[i], "PNG");
         }
     }
 
@@ -1363,6 +1364,7 @@ public class DGTest {
         for (int i = 0; i < amount; i++) {
             try {
                 output[i] = (Frame) outputObject[i];
+                outputFrame("test31OutputFrame" + i + ".png", output[i], "PNG");
             } catch (Exception e) {
                 Assertions.fail();
             }
@@ -1393,8 +1395,6 @@ public class DGTest {
                     Assertions.assertEquals(Color.YELLOW.getRGB(), output[i].getPixels().getRGB(j, k));
                 }
             }
-
-            outputFrame("test31OutputFrame" + i + ".png", output[i], "PNG");
         }
     }
 
@@ -1570,6 +1570,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test50Output.png", output, "PNG");
+
         Assertions.assertEquals(0, Color.BLACK.getRed());
         Assertions.assertEquals(0, Color.BLACK.getGreen());
         Assertions.assertEquals(0, Color.BLACK.getBlue());
@@ -1603,7 +1605,6 @@ public class DGTest {
             }
         }
 
-        outputFrame("test50Output.png", output, "PNG");
         if (!outputFiles) return;
         File outputfile = new File("test50Original.png");
         outputfile.deleteOnExit();
@@ -1635,6 +1636,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test51Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -1664,7 +1667,6 @@ public class DGTest {
             }
         }
 
-        outputFrame("test51Output.png", output, "PNG");
     }
 
     @Test
@@ -1692,6 +1694,8 @@ public class DGTest {
 
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
+
+        outputFrame("test52Output.png", output, "PNG");
 
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
@@ -1721,8 +1725,6 @@ public class DGTest {
                 Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test52Output.png", output, "PNG");
     }
 
     @Test
@@ -1750,6 +1752,8 @@ public class DGTest {
 
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
+
+        outputFrame("test53Output.png", output, "PNG");
 
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
@@ -1779,8 +1783,6 @@ public class DGTest {
                 Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test53Output.png", output, "PNG");
     }
 
     // beide kürzen
@@ -1826,6 +1828,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test54Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -1841,8 +1845,6 @@ public class DGTest {
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(0, 2));
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(1, 2));
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(2, 2));
-
-        outputFrame("test54Output.png", output, "PNG");
     }
 
     @Test
@@ -1886,6 +1888,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test55Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -1895,8 +1899,6 @@ public class DGTest {
 
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(0, 1));
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(1, 1));
-
-        outputFrame("test55Output.png", output, "PNG");
     }
 
     @Test
@@ -1940,6 +1942,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test56Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -1951,8 +1955,6 @@ public class DGTest {
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(0, 1));
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(1, 1));
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(2, 1));
-
-        outputFrame("test56Output.png", output, "PNG");
     }
 
     @Test
@@ -1996,6 +1998,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test57Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2008,8 +2012,6 @@ public class DGTest {
 
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(0, 2));
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(1, 2));
-
-        outputFrame("test57Output.png", output, "PNG");
     }
 
     // x kürzen, y erweitern
@@ -2055,6 +2057,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test58Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2073,8 +2077,6 @@ public class DGTest {
 
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(0, 4));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(1, 4));
-
-        outputFrame("test58Output.png", output, "PNG");
     }
 
     @Test
@@ -2118,6 +2120,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test59Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2137,8 +2141,6 @@ public class DGTest {
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(0, 3));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(1, 3));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(2, 3));
-
-        outputFrame("test59Output.png", output, "PNG");
     }
 
     @Test
@@ -2182,6 +2184,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test60Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2197,8 +2201,6 @@ public class DGTest {
 
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(0, 3));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(1, 3));
-
-        outputFrame("test60Output.png", output, "PNG");
     }
 
     @Test
@@ -2242,6 +2244,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test61Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2265,8 +2269,6 @@ public class DGTest {
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(0, 4));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(1, 4));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(2, 4));
-
-        outputFrame("test61Output.png", output, "PNG");
     }
 
     // x erweitern, y kürzen
@@ -2312,6 +2314,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test62Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2327,9 +2331,6 @@ public class DGTest {
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(2, 1));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(3, 1));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(4, 1));
-
-
-        outputFrame("test62Output.png", output, "PNG");
     }
 
     @Test
@@ -2373,6 +2374,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test63Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2391,9 +2394,6 @@ public class DGTest {
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(1, 2));
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(2, 2));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(3, 2));
-
-
-        outputFrame("test63Output.png", output, "PNG");
     }
 
     @Test
@@ -2437,6 +2437,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test64Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2458,9 +2460,6 @@ public class DGTest {
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(2, 2));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(3, 2));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(4, 2));
-
-
-        outputFrame("test64Output.png", output, "PNG");
     }
 
     @Test
@@ -2504,6 +2503,8 @@ public class DGTest {
         Function<Frame, Frame> function = Operations.crop(newWidth, newHeight);
         Frame output = function.apply(frame);
 
+        outputFrame("test65Output.png", output, "PNG");
+
         Assertions.assertEquals(newWidth, output.getWidth());
         Assertions.assertEquals(newHeight, output.getHeight());
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2517,9 +2518,6 @@ public class DGTest {
         Assertions.assertEquals(Color.YELLOW.getRGB(), output.getPixels().getRGB(1, 1));
         Assertions.assertEquals(Color.GREEN.getRGB(), output.getPixels().getRGB(2, 1));
         Assertions.assertEquals(Color.BLACK.getRGB(), output.getPixels().getRGB(3, 1));
-
-
-        outputFrame("test65Output.png", output, "PNG");
     }
     // OPERATIONS GRAYSCALE TESTS
 
@@ -2540,6 +2538,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test80Output.png", output, "PNG");
+
         Assertions.assertEquals(number, output.getFrameNumber());
 
         Color gray = new Color(225, 225, 225);
@@ -2549,8 +2549,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test80Output.png", output, "PNG");
     }
 
     @Test
@@ -2570,6 +2568,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test81Output.png", output, "PNG");
+
         Assertions.assertEquals(number, output.getFrameNumber());
 
         Color gray = new Color(198, 198, 198);
@@ -2579,8 +2579,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test81Output.png", output, "PNG");
     }
 
     @Test
@@ -2600,6 +2598,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test82Output.png", output, "PNG");
+
         Assertions.assertEquals(number, output.getFrameNumber());
 
         Color gray = new Color(0, 0, 0);
@@ -2609,8 +2609,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test82Output.png", output, "PNG");
     }
 
     @Test
@@ -2630,6 +2628,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test83Output.png", output, "PNG");
+
         Assertions.assertEquals(number, output.getFrameNumber());
 
         Color gray = new Color(255, 255, 255);
@@ -2639,8 +2639,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test83Output.png", output, "PNG");
     }
 
     @Test
@@ -2660,6 +2658,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test84Output.png", output, "PNG");
+
         Color gray = new Color(63, 63, 63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2669,8 +2669,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test84Output.png", output, "PNG");
     }
 
     @Test
@@ -2690,6 +2688,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test85Output.png", output, "PNG");
+
         Color gray = new Color(63, 63, 63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2699,8 +2699,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test85Output.png", output, "PNG");
     }
 
     @Test
@@ -2720,6 +2718,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test86Output.png", output, "PNG");
+
         Color gray = new Color(63, 63, 63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2729,8 +2729,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test86Output.png", output, "PNG");
     }
 
     @Test
@@ -2750,6 +2748,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test87Output.png", output, "PNG");
+
         Color gray = new Color(63, 63, 63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2759,8 +2759,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test87Output.png", output, "PNG");
     }
 
     @Test
@@ -2780,6 +2778,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test88Output.png", output, "PNG");
+
         Color gray = new Color(63, 63, 63);
 
         Assertions.assertEquals(number, output.getFrameNumber());
@@ -2789,8 +2789,6 @@ public class DGTest {
                 Assertions.assertEquals(gray.getRGB(), output.getPixels().getRGB(i, j));
             }
         }
-
-        outputFrame("test88Output.png", output, "PNG");
     }
 
     @Test
@@ -2809,6 +2807,8 @@ public class DGTest {
 
         Frame output = Operations.grayscale(frame);
 
+        outputFrame("test89Output.png", output, "PNG");
+
         Color gray1 = new Color(225, 225, 225);
         Color gray2 = new Color(255, 255, 255);
         Color gray3 = new Color(198, 198, 198);
@@ -2820,8 +2820,6 @@ public class DGTest {
         Assertions.assertEquals(gray2.getRGB(), output.getPixels().getRGB(1, 0));
         Assertions.assertEquals(gray3.getRGB(), output.getPixels().getRGB(0, 1));
         Assertions.assertEquals(gray4.getRGB(), output.getPixels().getRGB(1, 1));
-
-        outputFrame("test89Output.png", output, "PNG");
     }
 
     // VIDEOCONTAINER KONSTRUKTOR TESTS
