@@ -11,7 +11,7 @@ public class GameTests {
     HINWEISE:
 
     - DIESER TEST BENÖTIGT DIE KLASSE TestAI AUS DEN ANDEREN GITHUB TESTS
-    - STELLE DAS ATTRIBUT board IN Game AUF PUBLIC
+    - Dieser Test erwartet ein attribut board vom typ Field[][] in Game
 
 
     TEST CASES:
@@ -31,6 +31,16 @@ public class GameTests {
     private PenguAI first, second;
     private Move[] movesFirst, movesSecond;
     private PenguAI winner;
+
+    Field[][] getBoard(Game game) {
+        try {
+            java.lang.reflect.Field boardField = Game.class.getDeclaredField("board");
+            boardField.setAccessible(true);
+            return (Field[][]) boardField.get(game);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException("This test expects a field \"board: Field[][]\" as a member of \"Game\"", e);
+        }
+    }
 
     @Test
     @DisplayName("DG Test 01 einfacher sieg für ersten spieler in einer zeile")
@@ -54,22 +64,22 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[2][0].value());
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[2][0].value());
 
-        Assertions.assertFalse(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertFalse(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -96,23 +106,23 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertFalse(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][1].value());
-        Assertions.assertFalse(this.game.board[2][1].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[2][1].value());
+        Assertions.assertFalse(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][1].value());
+        Assertions.assertFalse(getBoard(this.game)[2][1].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[2][1].value());
 
-        Assertions.assertTrue(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[0][2].value());
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertTrue(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[0][2].value());
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -138,22 +148,22 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertTrue(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertTrue(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertTrue(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[0][2].value());
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertTrue(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[0][2].value());
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -180,23 +190,23 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertTrue(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertTrue(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertFalse(this.game.board[1][2].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[1][2].value());
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[2][2].value());
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertFalse(getBoard(this.game)[1][2].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[1][2].value());
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[2][2].value());
 
 
     }
@@ -223,22 +233,22 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[1][0].value());
-        Assertions.assertFalse(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[2][0].value());
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[1][0].value());
+        Assertions.assertFalse(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[2][0].value());
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertTrue(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertTrue(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[2][2].value());
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[2][2].value());
 
     }
 
@@ -265,23 +275,23 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertFalse(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[2][0].value());
+        Assertions.assertFalse(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[2][0].value());
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertTrue(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[0][2].value());
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertFalse(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[2][2].value());
+        Assertions.assertTrue(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[0][2].value());
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertFalse(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[2][2].value());
 
     }
 
@@ -307,22 +317,22 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertFalse(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[2][0].value());
+        Assertions.assertFalse(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[2][0].value());
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertTrue(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertTrue(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertTrue(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][2].value());
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertTrue(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][2].value());
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -349,22 +359,22 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(0, this.game.board[1][0].value());
-        Assertions.assertFalse(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[2][0].value());
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(0, getBoard(this.game)[1][0].value());
+        Assertions.assertFalse(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[2][0].value());
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertFalse(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[0][2].value());
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][2].value());
+        Assertions.assertFalse(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[0][2].value());
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][2].value());
 
     }
 
@@ -387,17 +397,17 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -420,17 +430,17 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -453,17 +463,17 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -486,17 +496,17 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -519,18 +529,18 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -553,18 +563,18 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -587,18 +597,18 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -621,18 +631,18 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -653,17 +663,17 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -684,17 +694,17 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertNull(this.game.board[0][0]);
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertNull(getBoard(this.game)[0][0]);
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -717,18 +727,18 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -751,18 +761,18 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertNull(this.game.board[1][0]);
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertNull(getBoard(this.game)[1][0]);
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -786,19 +796,19 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -823,20 +833,20 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][2].value());
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][2].value());
 
     }
 
@@ -860,19 +870,19 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -897,20 +907,20 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][2].value());
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][2].value());
 
     }
 
@@ -934,19 +944,19 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -971,20 +981,20 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(1, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(1, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][2].value());
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][2].value());
 
     }
 
@@ -1010,20 +1020,20 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(4, this.game.board[2][0].value());
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(4, getBoard(this.game)[2][0].value());
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -1050,20 +1060,20 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertFalse(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(2, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(3, this.game.board[1][0].value());
-        Assertions.assertFalse(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[2][0].value());
+        Assertions.assertFalse(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(2, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(3, getBoard(this.game)[1][0].value());
+        Assertions.assertFalse(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[2][0].value());
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -1103,19 +1113,19 @@ public class GameTests {
         Assertions.assertNull(this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertNull(this.game.board[0][1]);
-        Assertions.assertNull(this.game.board[1][1]);
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertNull(getBoard(this.game)[0][1]);
+        Assertions.assertNull(getBoard(this.game)[1][1]);
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertNull(this.game.board[0][2]);
-        Assertions.assertNull(this.game.board[1][2]);
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertNull(getBoard(this.game)[0][2]);
+        Assertions.assertNull(getBoard(this.game)[1][2]);
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
@@ -1146,26 +1156,26 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[2][0].value());
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[2][0].value());
 
-        Assertions.assertTrue(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][1].value());
-        Assertions.assertFalse(this.game.board[2][1].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[2][1].value());
+        Assertions.assertTrue(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][1].value());
+        Assertions.assertFalse(getBoard(this.game)[2][1].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[2][1].value());
 
-        Assertions.assertFalse(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[0][2].value());
-        Assertions.assertTrue(this.game.board[1][2].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[1][2].value());
-        Assertions.assertFalse(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(4, this.game.board[2][2].value());
+        Assertions.assertFalse(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[0][2].value());
+        Assertions.assertTrue(getBoard(this.game)[1][2].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[1][2].value());
+        Assertions.assertFalse(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(4, getBoard(this.game)[2][2].value());
 
     }
 
@@ -1195,26 +1205,26 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertTrue(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][0].value());
-        Assertions.assertFalse(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[2][0].value());
+        Assertions.assertTrue(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][0].value());
+        Assertions.assertFalse(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[2][0].value());
 
-        Assertions.assertTrue(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][1].value());
-        Assertions.assertFalse(this.game.board[2][1].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[2][1].value());
+        Assertions.assertTrue(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][1].value());
+        Assertions.assertFalse(getBoard(this.game)[2][1].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[2][1].value());
 
-        Assertions.assertFalse(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[0][2].value());
-        Assertions.assertTrue(this.game.board[1][2].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[1][2].value());
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(4, this.game.board[2][2].value());
+        Assertions.assertFalse(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[0][2].value());
+        Assertions.assertTrue(getBoard(this.game)[1][2].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[1][2].value());
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(4, getBoard(this.game)[2][2].value());
 
     }
 
@@ -1252,24 +1262,24 @@ public class GameTests {
         Assertions.assertEquals(this.first, this.winner);
 
         // check board
-        Assertions.assertFalse(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[1][0].value());
-        Assertions.assertNull(this.game.board[2][0]);
+        Assertions.assertFalse(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[1][0].value());
+        Assertions.assertNull(getBoard(this.game)[2][0]);
 
-        Assertions.assertFalse(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][1].value());
-        Assertions.assertNull(this.game.board[2][1]);
+        Assertions.assertFalse(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][1].value());
+        Assertions.assertNull(getBoard(this.game)[2][1]);
 
-        Assertions.assertTrue(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][2].value());
-        Assertions.assertTrue(this.game.board[1][2].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][2].value());
-        Assertions.assertTrue(this.game.board[2][2].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][2].value());
+        Assertions.assertTrue(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][2].value());
+        Assertions.assertTrue(getBoard(this.game)[1][2].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][2].value());
+        Assertions.assertTrue(getBoard(this.game)[2][2].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][2].value());
 
     }
 
@@ -1308,26 +1318,26 @@ public class GameTests {
         Assertions.assertEquals(this.second, this.winner);
 
         // check board
-        Assertions.assertFalse(this.game.board[0][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[0][0].value());
-        Assertions.assertTrue(this.game.board[1][0].firstPlayer());
-        Assertions.assertEquals(5, this.game.board[1][0].value());
-        Assertions.assertTrue(this.game.board[2][0].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][0].value());
+        Assertions.assertFalse(getBoard(this.game)[0][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[0][0].value());
+        Assertions.assertTrue(getBoard(this.game)[1][0].firstPlayer());
+        Assertions.assertEquals(5, getBoard(this.game)[1][0].value());
+        Assertions.assertTrue(getBoard(this.game)[2][0].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][0].value());
 
-        Assertions.assertFalse(this.game.board[0][1].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][1].value());
-        Assertions.assertFalse(this.game.board[1][1].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][1].value());
-        Assertions.assertFalse(this.game.board[2][1].firstPlayer());
-        Assertions.assertEquals(6, this.game.board[2][1].value());
+        Assertions.assertFalse(getBoard(this.game)[0][1].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][1].value());
+        Assertions.assertFalse(getBoard(this.game)[1][1].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][1].value());
+        Assertions.assertFalse(getBoard(this.game)[2][1].firstPlayer());
+        Assertions.assertEquals(6, getBoard(this.game)[2][1].value());
 
 
-        Assertions.assertTrue(this.game.board[0][2].firstPlayer());
-        Assertions.assertEquals(8, this.game.board[0][2].value());
-        Assertions.assertTrue(this.game.board[1][2].firstPlayer());
-        Assertions.assertEquals(7, this.game.board[1][2].value());
-        Assertions.assertNull(this.game.board[2][2]);
+        Assertions.assertTrue(getBoard(this.game)[0][2].firstPlayer());
+        Assertions.assertEquals(8, getBoard(this.game)[0][2].value());
+        Assertions.assertTrue(getBoard(this.game)[1][2].firstPlayer());
+        Assertions.assertEquals(7, getBoard(this.game)[1][2].value());
+        Assertions.assertNull(getBoard(this.game)[2][2]);
 
     }
 
