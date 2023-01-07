@@ -1587,7 +1587,6 @@ public class AITests {
                 true, true, true};
 
         Move move = this.ai.makeMove(this.board, false, this.firstPlayedMoves, this.secondPlayedMoves);
-
         Assertions.assertEquals(1, move.x());
         Assertions.assertEquals(1, move.y());
     }

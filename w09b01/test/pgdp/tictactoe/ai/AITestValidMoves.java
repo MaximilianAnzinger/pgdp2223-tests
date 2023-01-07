@@ -360,6 +360,7 @@ public class AITestValidMoves {
                 false, false, false,
                 false, false, false};
 
+
         Move move = this.ai.makeMove(this.board, true, this.firstPlayedMoves, this.secondPlayedMoves);
 
         Assertions.assertTrue(isvalidf(move,board,firstPlayedMoves));
