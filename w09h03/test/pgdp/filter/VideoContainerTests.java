@@ -34,7 +34,7 @@ public class VideoContainerTests {
         try {
             in.write(fc);
             fail("exception should not get handled within write()");
-        } catch (FrameRecorder.Exception e) {
+        } catch (Exception e) {
             assertEquals(onCloseException, e, "exception should not have been rethrown/wrapped");
         }
 
