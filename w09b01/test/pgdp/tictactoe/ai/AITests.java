@@ -1591,6 +1591,30 @@ public class AITests {
         Assertions.assertEquals(1, move.x());
         Assertions.assertEquals(1, move.y());
     }
+    @Test
+    @DisplayName("DG Test 067 Zug verhinderbar")
+    public void test067() {
+        this.board = new Field[][]{
+                {new Field(7, false), null, new Field(8, true)},
+                {null,null, null},
+                {null, null, new Field(8, false)},
+        };
+        this.firstPlayedMoves = new boolean[]{
+                true, true, false,
+                false,false, false,
+                false,false, true};
+        this.secondPlayedMoves = new boolean[]{
+                true,true, false,
+                false,false, false,
+                false,true, true};
+
+        Move move = this.ai.makeMove(this.board, true, this.firstPlayedMoves, this.secondPlayedMoves);
+        Assertions.assertEquals(1, move.x());
+        Assertions.assertEquals(1, move.y());
+        Assertions.assertTrue(move.value() == 6 );
+
+    }
+
 
 }
 
