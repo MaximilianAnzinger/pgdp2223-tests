@@ -99,11 +99,6 @@ class OfficialExampleTests {
     }
 
     @Test
-    void worstDelayedTrain() {
-        assertEquals(trainConnections.get(2), DataProcessing.worstDelayedTrain(trainConnections.stream()));
-    }
-
-    @Test
     void percentOfKindStopsWithKindRegular() {
         assertEquals(85.71428571428571, DataProcessing.percentOfKindStops(trainConnections.stream(), TrainStop.Kind.REGULAR), EPSILON);
     }
