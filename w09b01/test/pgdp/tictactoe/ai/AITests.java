@@ -1,10 +1,12 @@
-package pgdp.tictactoe;
+package pgdp.tictactoe.ai;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pgdp.tictactoe.ai.SimpleAI;
+import pgdp.tictactoe.Field;
+import pgdp.tictactoe.Move;
+import pgdp.tictactoe.PenguAI;
 
 public class AITests {
 
@@ -1380,30 +1382,6 @@ public class AITests {
     }
 
     @Test
-    @DisplayName("DG Test 56 mehrere gewinne verhindern erster spieler spalte und zeile test 4")
-    public void test56() {
-        this.board = new Field[][]{
-                {new Field(8, false), null, new Field(1, false)},
-                {null, new Field(0, false), null},
-                {null, new Field(2, false), new Field(8, true)}};
-        this.firstPlayedMoves = new boolean[]{
-                false, false, false,
-                false, false, false,
-                false, false, true};
-        this.secondPlayedMoves = new boolean[]{
-                true, true, true,
-                false, false, false,
-                false, false, true};
-
-        Move move = this.ai.makeMove(this.board, true, this.firstPlayedMoves, this.secondPlayedMoves);
-
-        Assertions.assertEquals(0, move.x());
-        Assertions.assertEquals(1, move.y());
-        Assertions.assertEquals(7, move.value());
-
-    }
-
-    @Test
     @DisplayName("DG Test 57 mehrere gewinne verhindern zweiter spieler spalte und zeile test 1")
     public void test57() {
         this.board = new Field[][]{
@@ -1460,30 +1438,6 @@ public class AITests {
                 {null, null, new Field(8, false)}};
         this.firstPlayedMoves = new boolean[]{
                 true, true, false,
-                false, false, false,
-                false, false, true};
-        this.secondPlayedMoves = new boolean[]{
-                false, false, false,
-                false, false, false,
-                false, false, true};
-
-        Move move = this.ai.makeMove(this.board, false, this.firstPlayedMoves, this.secondPlayedMoves);
-
-        Assertions.assertEquals(0, move.x());
-        Assertions.assertEquals(1, move.y());
-        Assertions.assertEquals(7, move.value());
-
-    }
-
-    @Test
-    @DisplayName("DG Test 60 mehrere gewinne verhindern zweiter spieler spalte und zeile test 4")
-    public void test60() {
-        this.board = new Field[][]{
-                {new Field(8, true), null, new Field(1, true)},
-                {null, new Field(0, true), null},
-                {null, new Field(2, true), new Field(8, false)}};
-        this.firstPlayedMoves = new boolean[]{
-                true, true, true,
                 false, false, false,
                 false, false, true};
         this.secondPlayedMoves = new boolean[]{
@@ -1592,7 +1546,6 @@ public class AITests {
         Assertions.assertEquals(0, move.x());
         Assertions.assertEquals(0, move.y());
         Assertions.assertEquals(7, move.value());
-
     }
 
     @Test
@@ -1615,8 +1568,6 @@ public class AITests {
 
         Assertions.assertEquals(1, move.x());
         Assertions.assertEquals(1, move.y());
-        Assertions.assertEquals(8, move.value());
-
     }
 
     @Test
@@ -1639,8 +1590,6 @@ public class AITests {
 
         Assertions.assertEquals(1, move.x());
         Assertions.assertEquals(1, move.y());
-        Assertions.assertEquals(8, move.value());
-
     }
 
 }

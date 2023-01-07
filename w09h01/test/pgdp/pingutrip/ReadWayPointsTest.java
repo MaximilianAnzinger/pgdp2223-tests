@@ -1,6 +1,7 @@
 package pgdp.pingutrip;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
@@ -21,7 +22,7 @@ public class ReadWayPointsTest {
 
     @Test
     void testReturnsEmptyStreamOnError() {
-        Stream<WayPoint> points = PinguTrip.readWayPoints("");
+        Stream<WayPoint> points = PinguTrip.readWayPoints("not-existing-path");
         assertEquals(0, points.count(), "The stream should be empty");
     }
 }

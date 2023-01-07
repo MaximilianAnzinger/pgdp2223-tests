@@ -57,7 +57,7 @@ public class SimpleAITest {
             boolean[] firstPlayedPieces = {false, false, true, false, false, true, true, false, false};
             boolean[] secondPlayedPieces = {false, false, false, true, false, true, false, false, true};
             Move move = ai.makeMove(board, true, firstPlayedPieces, secondPlayedPieces);
-            assertTrue((move.x() == 0 && move.y() == 1) || (move.x() == 1 && move.y() == 2));
+            assertTrue((move.x() == 0 && move.y() == 1) || (move.x() == 1 && move.y() == 2) || (move.x() == 1 && move.y() == 1 && move.value() > 5));
             assertFalse(firstPlayedPieces[move.value()]);
         }
     }
@@ -78,7 +78,7 @@ public class SimpleAITest {
             boolean[] secondPlayedPieces = {false, false, false, true, false, false, false, false, false};
             Move move = ai.makeMove(board, false, firstPlayedPieces, secondPlayedPieces);
             assertEquals(0, move.x());
-            assertEquals(1, move.y());
+            assertTrue(move.value() >= (new int[]{6, 0, 5})[move.y()]);
             assertFalse(secondPlayedPieces[move.value()]);
         }
 

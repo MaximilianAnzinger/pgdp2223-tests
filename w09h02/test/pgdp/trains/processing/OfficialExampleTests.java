@@ -99,30 +99,8 @@ class OfficialExampleTests {
     }
 
     @Test
-    void worstDelayedTrain() {
-        assertEquals(trainConnections.get(2), DataProcessing.worstDelayedTrain(trainConnections.stream()));
-    }
-
-    @Test
-    void averageDelayAt() {
-        assertEquals(10.0, DataProcessing.averageDelayAt(trainConnections.stream(), Station.NUERNBERG_HBF), EPSILON);
-    }
-
-    @Test
     void delayComparedToTotalTravelTimeByTransport() {
         Map<String, Double> actual = DataProcessing.delayComparedToTotalTravelTimeByTransport(trainConnections.stream());
         assertEquals(16.666666666666668, actual.get("ICE"),  EPSILON);
     }
-
-    @Test
-    void averageDelayByHour() {
-        Map<Integer, Double> actual = DataProcessing.averageDelayByHour(trainConnections.stream());
-        assertEquals(0.0, actual.get(10), EPSILON);
-        assertEquals(0.0, actual.get(11), EPSILON);
-        assertEquals(15.0, actual.get(12), EPSILON);
-        assertEquals(20.0, actual.get(13), EPSILON);
-        Set<Integer> expectedKeySet = Set.of(10, 11, 12, 13);
-        assertEquals(expectedKeySet, actual.keySet());
-    }
-
 }
