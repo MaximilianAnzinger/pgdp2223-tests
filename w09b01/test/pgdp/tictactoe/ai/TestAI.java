@@ -1,4 +1,4 @@
-package pgdp;
+package pgdp.tictactoe.ai;
 
 import pgdp.tictactoe.Field;
 import pgdp.tictactoe.Move;
