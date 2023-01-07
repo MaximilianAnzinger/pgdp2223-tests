@@ -41,8 +41,8 @@ public class SeamCarvingTest {
     class Test_compute_gradient_magnitude {
         @ParameterizedTest
         @MethodSource
-        void testing_compute_gradient_magnitude(int v1, int v2, int res) {
-            assertEquals((new SeamCarving()).computeGradientMagnitude(v1, v2), res);
+        void testing_compute_gradient_magnitude(int v1, int v2, int expected) {
+            assertEquals(expected, new SeamCarving().computeGradientMagnitude(v1, v2));
         }
 
         static Stream<Arguments> testing_compute_gradient_magnitude() {
@@ -64,9 +64,9 @@ public class SeamCarvingTest {
     class Test_to_gradient_magnitude {
         @ParameterizedTest
         @MethodSource
-        void testing_to_gradient_magnitude(int[] image, int[] gradientMagnitude, int width, int height, int[] res) {
-            (new SeamCarving()).toGradientMagnitude(image, gradientMagnitude, width, height);
-            assertArrayEquals(gradientMagnitude, res);
+        void testing_to_gradient_magnitude(int[] image, int[] gradientMagnitude, int width, int height, int[] expected) {
+            new SeamCarving().toGradientMagnitude(image, gradientMagnitude, width, height);
+            assertArrayEquals(expected, gradientMagnitude);
         }
 
         static Stream<Arguments> testing_to_gradient_magnitude() {
@@ -105,9 +105,9 @@ public class SeamCarvingTest {
     class Test_combine_magnitude_with_mask {
         @ParameterizedTest
         @MethodSource
-        void testing_combine_magnitude_with_mask(int[] gradientMagnitude, int[] mask, int width, int height, int[] res) {
-            (new SeamCarving()).combineMagnitudeWithMask(gradientMagnitude, mask, width, height);
-            assertArrayEquals(gradientMagnitude, res);
+        void testing_combine_magnitude_with_mask(int[] gradientMagnitude, int[] mask, int width, int height, int[] expected) {
+            new SeamCarving().combineMagnitudeWithMask(gradientMagnitude, mask, width, height);
+            assertArrayEquals(expected, gradientMagnitude);
         }
 
         static Stream<Arguments> testing_combine_magnitude_with_mask() {
@@ -151,35 +151,58 @@ public class SeamCarvingTest {
     class Test_build_seam {
         @ParameterizedTest
         @MethodSource
-        void testing_build_seams_seamsArray(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, int[][] res) {
-            (new SeamCarving()).buildSeams(seams, seamWeights, gradientMagnitude, width, height);
-            assertArrayEquals(seams, res);
+        void testing_build_seams_seamsArray(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, int[][] expected) {
+            new SeamCarving().buildSeams(seams, seamWeights, gradientMagnitude, width, height);
+            assertArrayEquals(expected, seams);
         }
 
         static Stream<Arguments> testing_build_seams_seamsArray() {
             return Stream.of(
-                    arguments(
-                            new int[6][5],
-                            new long[6],
-                            new int[]{
-                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
-                                    1, 1, 1, 1, 1, 1,
-                                    69, 420, 42, 42, 42, 1337,
-                                    100, 10, 666, 20, 3, 10,
-                                    Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE
-                            },
-                            6,
-                            5,
-                            new int[][]{new int[]{0, 0, 0, 1, 1}, new int[]{1, 1, 2, 1, 1}, new int[]{2, 2, 2, 1, 1}, new int[]{3, 3, 3, 4, 4}, new int[]{4, 4, 4, 4, 4}, new int[]{5, 5, 4, 4, 4}}
-                    )
+                arguments(
+                    new int[6][5],
+                    new long[6],
+                    new int[] {
+                        Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                        Integer.MAX_VALUE,
+                        1, 1, 1, 1, 1, 1,
+                        69, 420, 42, 42, 42, 1337,
+                        100, 10, 666, 20, 3, 10,
+                        Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE,
+                        Integer.MAX_VALUE
+                    },
+                    6,
+                    5,
+                    new int[][] {
+                        {0, 0, 0, 1, 1},
+                        {1, 1, 2, 1, 1},
+                        {2, 2, 2, 1, 1},
+                        {3, 3, 3, 4, 4},
+                        {4, 4, 4, 4, 4},
+                        {5, 5, 4, 4, 4}
+                    }
+                ),
+                arguments(
+                    new int[2][2],
+                    new long[2],
+                    new int[] {
+                        Integer.MAX_VALUE, Integer.MAX_VALUE,
+                        Integer.MAX_VALUE, Integer.MAX_VALUE,
+                    },
+                    2,
+                    2,
+                    new int[][] {
+                        {0, 0},
+                        {1, 1}
+                    }
+                )
             );
         }
 
         @ParameterizedTest
         @MethodSource
-        void testing_build_seams_seamWeights(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, long[] res) {
-            (new SeamCarving()).buildSeams(seams, seamWeights, gradientMagnitude, width, height);
-            assertArrayEquals(seamWeights, res);
+        void testing_build_seams_seamWeights(int[][] seams, long[] seamWeights, int[] gradientMagnitude, int width, int height, long[] expected) {
+            new SeamCarving().buildSeams(seams, seamWeights, gradientMagnitude, width, height);
+            assertArrayEquals(expected, seamWeights);
         }
 
         static Stream<Arguments> testing_build_seams_seamWeights() {
@@ -207,11 +230,11 @@ public class SeamCarvingTest {
     class Test_remove_seam {
         @ParameterizedTest
         @MethodSource
-        void testing_remove_seam(int[] image, int[] seam, int width, int height, int[] res) {
-            (new SeamCarving()).removeSeam(seam, image, height, width);
+        void testing_remove_seam(int[] image, int[] seam, int width, int height, int[] expected) {
+            new SeamCarving().removeSeam(seam, image, height, width);
             int[] newImage = new int[25];
             System.arraycopy(image, 0, newImage, 0, 25);
-            assertArrayEquals(newImage, res);
+            assertArrayEquals(expected, newImage);
         }
 
         static Stream<Arguments> testing_remove_seam() {
@@ -247,8 +270,9 @@ public class SeamCarvingTest {
         @ParameterizedTest
         @MethodSource
         void testing_image(int[] input, int[] mask, int width, int height, int newWidth, int[] expected, String name) {
-            int[] shrinkResult = (new SeamCarving()).shrink(input, mask, width, height, newWidth);
+            int[] shrinkResult = new SeamCarving().shrink(input, mask, width, height, newWidth);
             saveImage("./" + name + "_test-output.png", shrinkResult, newWidth, height);
+
             outputDiffImage(expected, shrinkResult, "./" + name + "_test-diff.png", newWidth, height);
             assertArrayEquals(expected, shrinkResult);
         }
@@ -310,13 +334,18 @@ public class SeamCarvingTest {
             }));
         }
 
+        static void removeAlpha(int[] img) {
+            for (int i = 0; i < img.length; i++) {
+                img[i] = img[i] & 0xFFFFFF;
+            }
+        }
+
         static int[] imageToArray(String filePath, int width, int height) throws IOException {
-            BufferedImage in = ImageIO.read(new FileImageInputStream(new File(PATH_TEST_RESOURCES + filePath)));
-            BufferedImage image = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
-            Graphics graphic = image.getGraphics();
-            graphic.drawImage(in, 0, 0, null);
-            graphic.dispose();
-            return image.getRGB(0, 0, width, height, null, 0, width);
+            BufferedImage inputImage = ImageIO.read(new File(PATH_TEST_RESOURCES + filePath));
+            int[] input = inputImage.getRGB(0, 0, width, height, null, 0, width);
+            removeAlpha(input);
+
+            return input;
         }
 
         void saveImage(String filePath, int[] image, int width, int height) {

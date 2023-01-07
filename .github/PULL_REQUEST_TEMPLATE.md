@@ -1,4 +1,2 @@
-<!-- Danke, dass du deine Tests mit deinen Kommilitonen teilst. -->
-<!-- Beschreibe doch kurz hier drin, was deine Tests überprüfen und ob du dir eventuell bei etwas unsicher bist. -->
-<!-- Denk dran, dass deine Kommilitonen auch schon die Tests sehen, bevor dieser PR gemergt wird, pass also auf, was du an Code pusht! 
--->
+<!-- Thanks for sharing your tests with your fellow students. -->
+<!-- Important: Before submitting your PR, please read our CONTRIBUTING.md file: https://github.com/MaximilianAnzinger/pgdp2223-tests/blob/main/CONTRIBUTING.md --->
