@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public class CropTest {
   @Test
-  void testCrop_exactSize() {
+  void testCropExactSize() {
     BufferedImage img = ImageGenerator.generateSMTPEColorBars(8, 6);
     Frame frame = new Frame(img, 0);
     Function<Frame, Frame> cropFunc = Operations.crop(8, 6);
@@ -20,7 +20,7 @@ public class CropTest {
   }
 
   @Test
-  void testCrop_correctlyCentered() {
+  void testCropCorrectlyCentered() {
     var img = ImageGenerator.generateSMTPEColorBars(8, 6);
     // Create a subImage with an x offset of '2' (As we have cropped this area)
     var expected = ImageGenerator.deepCopy(img).getSubimage(2, 0, 4, 6);
@@ -35,7 +35,7 @@ public class CropTest {
   }
 
   @Test
-  public void testCrop_cropHeightBy10Pixel() {
+  public void testCropHeightBy10Pixel() {
     final int width = 8;
     final int height = 20;
     final int cropHeight = 10;
@@ -51,7 +51,7 @@ public class CropTest {
   }
 
   @Test
-  void testCrop_1x1() {
+  void testCrop1x1() {
     BufferedImage img = ImageGenerator.generateSMTPEColorBars(480, 480);
     BufferedImage expectedImage = ImageGenerator.deepCopy(img).getSubimage(239, 239, 1, 1);
     Frame testFrame = new Frame(img, 0);
