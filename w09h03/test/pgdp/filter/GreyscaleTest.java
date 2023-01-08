@@ -1,14 +1,12 @@
 package pgdp.filter;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.awt.image.BufferedImage;
 
-public class GreyscaleTest {
+import org.junit.jupiter.api.Test;
 
+public class GreyscaleTest {
   @Test
-  void testGrayscale_basic() {
+  void testGrayscaleBasic() {
     // Test a single-pixel image
     BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
     image.setRGB(0, 0, 0xFFFFFF);
@@ -20,6 +18,4 @@ public class GreyscaleTest {
     expected.setRGB(0, 0, 0xFFFFFF);
     ImageGenerator.compareBufferedImages(expected, Operations.grayscale(frame).getPixels());
   }
-
-
 }
