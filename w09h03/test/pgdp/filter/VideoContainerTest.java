@@ -1,16 +1,15 @@
 package pgdp.filter;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
-
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class VideoContainerTest {
 
   @Test
-  public void testConstructor_fileNotFound() {
+  public void testConstructorFileNotFound() {
     // Create an invalid frameProvider
     FrameProvider fp = new MockFrameProvider(new BufferedImage[0]) {
       @Override
