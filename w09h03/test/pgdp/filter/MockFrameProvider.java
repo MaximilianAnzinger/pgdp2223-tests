@@ -43,15 +43,23 @@ public class MockFrameProvider extends FrameProvider {
 
   @Override
   public Frame nextFrame() throws FFmpegFrameGrabber.Exception {
+    if (testFrames.length == 0) {
+      throw new FFmpegFrameGrabber.Exception("Video feed is empty");
+    }
+
     BufferedImage currentImage = testFrames[currentFrame];
 
     Frame frame = new Frame(currentImage, currentFrame);
     currentFrame++;
-    if (currentFrame >= testFrames.length) {
+    if (currentFrame > testFrames.length) {
       throw new FFmpegFrameGrabber.Exception("Reached the end of the video.");
     }
 
     return frame;
+  }
+
+  public BufferedImage[] getTestFrames() {
+    return testFrames;
   }
 
   @Override

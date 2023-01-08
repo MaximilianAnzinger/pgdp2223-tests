@@ -1,6 +1,5 @@
 package pgdp.filter;
 
-import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FrameGrabber;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
