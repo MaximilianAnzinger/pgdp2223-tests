@@ -16,7 +16,7 @@ public class CropTest {
     Frame cropped = cropFunc.apply(frame);
 
     BufferedImage actual = cropped.getPixels();
-    Assertions.assertEquals(img, actual);
+    ImageGenerator.compareBufferedImages(img, cropped.getPixels());
   }
 
   @Test
