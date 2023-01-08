@@ -19,12 +19,10 @@ public class DecodeTest {
   @DisplayName("Decode first frame of noot")
   public void testDecodeFirstFrame() {
     // read the file
-    VideoContainer in;
     FrameProvider fp = new FrameProvider("noot.mp4");
 
     Frame first = null;
     try {
-      in = new VideoContainer(fp);
       first = fp.nextFrame();
     } catch (Exception e) {
       Assertions.fail(e);
