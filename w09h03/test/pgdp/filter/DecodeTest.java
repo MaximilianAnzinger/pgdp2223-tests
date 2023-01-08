@@ -17,7 +17,7 @@ public class DecodeTest {
 
   @Test
   @DisplayName("Decode first frame of noot")
-  public void testDecode_firstFrame() {
+  public void testDecodeFirstFrame() {
     // read the file
     VideoContainer in;
     FrameProvider fp = new FrameProvider("noot.mp4");
