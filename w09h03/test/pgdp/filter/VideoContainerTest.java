@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class VideoContainerTests {
+public class VideoContainerTest {
 
     @Test
     void doesWriteCallFrameConsumerClose() throws FileNotFoundException, IllegalVideoFormatException, FrameRecorder.Exception {
