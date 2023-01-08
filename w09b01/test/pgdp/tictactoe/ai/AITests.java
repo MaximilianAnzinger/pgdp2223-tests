@@ -88,7 +88,7 @@ public class AITests {
 
         Move move = this.ai.makeMove(this.board, false, this.firstPlayedMoves, this.secondPlayedMoves);
 
-        Assertions.assertFalse(move.x() == 2 && move.y() == 2);
+        Assertions.assertFalse(move.x() == 0 && move.y() == 0);
         Assertions.assertTrue(move.x() >= 0 && move.x() < 3);
         Assertions.assertTrue(move.y() >= 0 && move.y() < 3);
         Assertions.assertTrue(move.value() >= 0 && move.value() < 9);
@@ -137,7 +137,7 @@ public class AITests {
 
         Move move = this.ai.makeMove(this.board, false, this.firstPlayedMoves, this.secondPlayedMoves);
 
-        Assertions.assertFalse(move.x() == 2 && move.y() == 2);
+        Assertions.assertFalse(move.x() == 0 && move.y() == 0);
         Assertions.assertTrue(move.x() >= 0 && move.x() < 3);
         Assertions.assertTrue(move.y() >= 0 && move.y() < 3);
         Assertions.assertEquals(1, move.value());
