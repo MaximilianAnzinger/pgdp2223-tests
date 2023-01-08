@@ -35,7 +35,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 //@Disabled
-public class LegalCheck {
+public class LegalCheckTest {
 
     String[] BANNED_EXPRESSIONS = new String[] {
             "if", "else", "for", "do", "while", "forEach"
