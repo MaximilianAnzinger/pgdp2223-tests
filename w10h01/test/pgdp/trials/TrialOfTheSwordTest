@@ -23,7 +23,7 @@ public class TrialOfTheSwordTest {
     }
 
     @Test
-    @DisplayName("4 - dimensinal test")
+    @DisplayName("4-dimensinal test")
     void testFourDimensional() {
         TrialOfTheSword.FlatArray<Integer> fa = new TrialOfTheSword.FlatArray<>(Integer.class, 5, 8, 7, 12);
         assertEquals(1694, fa.computeIndex(2, 4, 1, 2));
