@@ -42,14 +42,9 @@ public class UnitTest {
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
-
-        assertEquals(4, attackers.size());
+        
+        assertEquals(Set.of(glen, fatjon, jani, koco), attackers);
         assertEquals(0, defenders.size());
         assertEquals(0, supporters.size());
-
-        assertTrue(attackers.contains(glen));
-        assertTrue(attackers.contains(fatjon));
-        assertTrue(attackers.contains(jani));
-        assertTrue(attackers.contains(koco));
     }
 }
