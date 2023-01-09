@@ -57,6 +57,7 @@ public class Lib {
     public static Penguin cedric = new Penguin("Cedric", 5, 0, 0);
     public static Penguin jakov = new Penguin("Jakov", 5, 0, 0);
     public static Penguin yassine = new Penguin("Yassine", 0, 5, 5);
+    public static Penguin malek = new Penguin("Malekoks", 0, 0, 10);
 
     public static Penguin glen = new Penguin("Glen", 101, 606, 101);
     public static Penguin fatjon = new Penguin("Fatjon", 0, 404, 1011);
@@ -65,6 +66,7 @@ public class Lib {
 
     public static Penguin shrek = new Penguin("Shrek", 20, 15, 0);
     public static Penguin rick = new Penguin("Rick Astley", 20, 15, 0);
+    public static Penguin guenther = new Penguin("Günther", -1, 100, -100);
 
     // Artemis Examples
     static {
