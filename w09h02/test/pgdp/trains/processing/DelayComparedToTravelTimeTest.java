@@ -83,6 +83,19 @@ public class DelayComparedToTravelTimeTest {
 
     // Source:
     // https://zulip.in.tum.de/#narrow/stream/1504-PGdP-W09H02/topic/.E2.9C.94.20Zug.20kommt.20zu.20fr.C3.BCh.3F/near/880712
+    //
+    // Why is 9.09% is the correct answer? The following explanation is a
+    // summary from the Zulip post:
+    //
+    // ICE 1 is scheduled for 7 hours but only needs 6 hours. However, this
+    // would be a negative delay and we should ignore negative delays. ICE 2 is
+    // scheduled for 3 hours but needs 4 hours (1 hours late).
+    //
+    // This results into the following calculation:
+    // Time scheduled: 7 + 3 = 10
+    // Time actually needed: 7 + 4 = 11 (we ignore that ICE 1 is 1 hours too
+    // early)
+    // Result = (11 - 10) / 11 = 0.0909... 
     final Map<String, Double> expected = Map.of("ICE", 9.090909090909092);
     final Map<String, Double> actual = DataProcessing.delayComparedToTotalTravelTimeByTransport(trainConnections);
 
