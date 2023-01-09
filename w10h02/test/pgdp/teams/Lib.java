@@ -20,7 +20,7 @@ public class Lib {
     // Artemis Example 1
     public static Penguin jonas = new Penguin("Jonas", 10, 0, 0);
     public static Penguin anatoly = new Penguin("Anatoly", 10, 10, 0);
-    public static Penguin julian = new Penguin("Juilan", 10, 10, 0);
+    public static Penguin julian = new Penguin("Julian", 10, 10, 0);
     public static Penguin simon = new Penguin("Simon", 0, 0, 10);
 
     // Artemis Example 2
