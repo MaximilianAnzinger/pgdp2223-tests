@@ -41,14 +41,9 @@ public class ArtemisTest {
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
 
-        assertEquals(2, attackers.size());
-        assertEquals(1, defenders.size());
-        assertEquals(1, supporters.size());
-
-        assertTrue(attackers.contains(nils));
-        assertTrue(attackers.contains(eric));
-        assertTrue(defenders.contains(felix));
-        assertTrue(supporters.contains(thomas));
+        assertEquals(Set.of(nils, eric), attackers);
+        assertEquals(Set.of(felix), defenders);
+        assertEquals(Set.of(thomas), supporters);
     }
 
     @Test
@@ -70,20 +65,13 @@ public class ArtemisTest {
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
 
-        assertEquals(2, attackers.size());
+        assertEquals(Set.of(), attackers);
         assertEquals(3, defenders.size());
         assertEquals(5, supporters.size());
 
-        assertTrue(attackers.contains(max));
-        assertTrue(attackers.contains(georg));
-        assertTrue(defenders.contains(jan));
-        assertTrue(defenders.contains(anton));
-        assertTrue(defenders.contains(konrad));
-        assertTrue(supporters.contains(lukas));
-        assertTrue(supporters.contains(laura));
-        assertTrue(supporters.contains(johannes));
-        assertTrue(supporters.contains(oliver));
-        assertTrue(supporters.contains(robin));
+        assertEquals(Set.of(max, georg), attackers);
+        assertEquals(Set.of(jan, anton, konrad), defenders);
+        assertEquals(Set.of(lukas, laura, johannes, oliver, robin), supporters);
     }
 
     @Test
