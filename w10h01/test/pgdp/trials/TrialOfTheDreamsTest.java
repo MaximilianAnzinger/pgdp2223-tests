@@ -24,7 +24,11 @@ public class TrialOfTheDreamsTest {
             }
         };
 
-        assertEquals(combination, TrialOfTheDreams.lockPick(lock));
+        byte[] result = TrialOfTheDreams.lockPick(lock);
+
+        for (int i = 0; i < combination.length; i++) {
+            assertEquals(combination[i], result[i]);
+        }
     }
 
     @Test
@@ -43,7 +47,11 @@ public class TrialOfTheDreamsTest {
             }
         };
 
-        assertEquals(combination, TrialOfTheDreams.lockPick(lock));
+        byte[] result = TrialOfTheDreams.lockPick(lock);
+
+        for (int i = 0; i < combination.length; i++) {
+            assertEquals(combination[i], result[i]);
+        }
     }
 
     @Test
@@ -62,6 +70,10 @@ public class TrialOfTheDreamsTest {
             }
         };
 
-        assertEquals(combination, TrialOfTheDreams.lockPick(lock));
+        byte[] result = TrialOfTheDreams.lockPick(lock);
+
+        for (int i = 0; i < combination.length; i++) {
+            assertEquals(combination[i], result[i]);
+        }
     }
 }
