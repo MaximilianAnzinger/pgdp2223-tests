@@ -32,6 +32,29 @@ public class TrialOfTheDreamsTest {
     }
 
     @Test
+    @DisplayName("Combination of Length 2")
+    void TestLengthTwo() {
+        byte[] combination = {25, 8};
+        Function<byte[], Boolean> lock = new Function<byte[], Boolean>() {
+            @Override
+            public Boolean apply(byte[] bytes) {
+                if (bytes.length != combination.length) {return false;}
+                for (int i = 0; i < bytes.length; i++) {
+                    if (bytes[i] != combination[i]) {return false;}
+                }
+
+                return true;
+            }
+        };
+
+        byte[] result = TrialOfTheDreams.lockPick(lock);
+
+        for (int i = 0; i < combination.length; i++) {
+            assertEquals(combination[i], result[i]);
+        }
+    }
+
+    @Test
     @DisplayName("Combination of Length 3")
     void TestLengthThree() {
         byte[] combination = {25, 8, 30};
