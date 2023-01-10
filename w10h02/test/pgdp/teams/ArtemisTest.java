@@ -65,10 +65,6 @@ public class ArtemisTest {
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
 
-        assertEquals(Set.of(), attackers);
-        assertEquals(3, defenders.size());
-        assertEquals(5, supporters.size());
-
         assertEquals(Set.of(max, georg), attackers);
         assertEquals(Set.of(jan, anton, konrad), defenders);
         assertEquals(Set.of(lukas, laura, johannes, oliver, robin), supporters);
