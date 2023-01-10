@@ -3,8 +3,8 @@ package pgdp.teams;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
 import java.util.Set;
-import static pgdp.teams.Lib.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,5 +46,15 @@ public class UnitTest {
         assertEquals(Set.of(glen, fatjon, jani, koco), attackers);
         assertEquals(0, defenders.size());
         assertEquals(0, supporters.size());
+    }
+
+    @Test
+    @DisplayName("Score near Integer.MAX_VALUE")
+    public void scoresNearOverflow() throws NoSuchFieldException, IllegalAccessException {
+        var lineup = new Lineup(Set.of(marcel), Set.of(hansuwe), new HashSet<>());
+
+        assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE");
+        assertEquals(147_483_647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE");
+        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "\"Wrong TeamScore near Integer.MAX_VALUE\"");
     }
 }

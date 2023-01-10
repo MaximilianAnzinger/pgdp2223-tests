@@ -68,6 +68,9 @@ public class Lib {
     public static Penguin rick = new Penguin("Rick Astley", 20, 15, 0);
     public static Penguin guenther = new Penguin("Günther", -1, 100, -100);
 
+    public static Penguin marcel = new Penguin("Marcel", 65_991_266, 710, 500);
+    public static Penguin hansuwe = new Penguin("Hans-Uwe", 3, 81_492_381, -456);
+
     // Artemis Examples
     static {
         Penguin.setSynergy(jonas, anatoly, 10);
@@ -101,5 +104,7 @@ public class Lib {
         Penguin.setSynergy(glen, fatjon, 50);
         Penguin.setSynergy(glen, jani, 140);
         Penguin.setSynergy(jani, koco, 200);
+
+        Penguin.setSynergy(marcel, hansuwe, 2_000_000_000);
     }
 }
