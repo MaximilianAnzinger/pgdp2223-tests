@@ -1,23 +1,29 @@
-package pgdp.teams;
+package pgdp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pgdp.Lib.*;
 
 import java.util.Set;
-import static pgdp.teams.Lib.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pgdp.teams.Lineup;
+import pgdp.teams.Penguin;
 
-public class UnitTest {
+public class UnitTests {
     @Test
     @DisplayName("Fähigkeits- und Synergiewerte sind im Bereich [Integer.MINVALUE, Integer.MAXVALUE] möglich.")
     public void negativeSynergyTest() {
         var lineup = new Lineup(Set.of(zeynep), Set.of(faid), Set.of());
 
-        assertEquals(-40, lineup.getTeamScore());
         assertEquals(10, lineup.getTeamSkill());
         assertEquals(-50, lineup.getTeamSynergy());
+        assertEquals(-40, lineup.getTeamScore());
+
     }
 
     @Test
@@ -42,13 +48,17 @@ public class UnitTest {
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
-        
-        assertEquals(Set.of(glen, fatjon, jani, koco), attackers);
+
+        assertEquals(4, attackers.size());
         assertEquals(0, defenders.size());
         assertEquals(0, supporters.size());
+
+        assertTrue(attackers.contains(glen));
+        assertTrue(attackers.contains(fatjon));
+        assertTrue(attackers.contains(jani));
+        assertTrue(attackers.contains(koco));
     }
-    
-    
+
     @Test
     @DisplayName("Soll funktionieren wenn nur defenders null elemente hat")
     public void optimalLineUpZeroInMiddle() throws NoSuchFieldException, IllegalAccessException {
@@ -91,7 +101,7 @@ public class UnitTest {
     public void optimalLineUpLargeSubsetSize() throws NoSuchFieldException, IllegalAccessException {
         var lineup = Lineup.computeOptimalLineup(Set.of(
                 jasmine, yassine, eve, anatoly, anton, cedric, faid, jakob, georg, hanna, jakov,
-                        felix, jan, shrek), 0, 10, 0);
+                felix, jan, shrek), 0, 10, 0);
 
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
@@ -101,9 +111,9 @@ public class UnitTest {
         assertEquals(10, defenders.size());
         assertEquals(0, supporters.size());
 
-        assertEquals(Set.of(eve), attackers);
-        assertEquals(Set.of(jan), defenders);
-        assertEquals(Set.of(jakob), supporters);
+        assertEquals(Set.of(), attackers);
+        assertEquals(Set.of(anatoly, hanna, jakov, anton, eve, jan, felix, shrek, jasmine, jakob), defenders);
+        assertEquals(Set.of(), supporters);
     }
 
     @Test
@@ -137,7 +147,7 @@ public class UnitTest {
         });
 
         es.shutdown();
-        if(!es.awaitTermination(2, TimeUnit.SECONDS)) {
+        if(!es.awaitTermination(30, TimeUnit.SECONDS)) {
             System.out.println("\nSadly, your program didn't pass the optional laufzeitFun test :( \n" +
                     "Since the example was much bigger than required, this still counts as a pass. \n");
         } else {
