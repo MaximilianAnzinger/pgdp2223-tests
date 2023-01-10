@@ -19,7 +19,7 @@ public class TrialOfTheDreamsTest {
     @Test
     @DisplayName("Basic Example")
     void testBasicExample() {
-        Function<Byte[], Boolean> testFunction = new Function<Byte[], Boolean>() {
+        var testFunction = createTestFunction(bytes -> (bytes.length == 2 && bytes[0] == -97 && bytes [1] == 37))
             @Override
             public Boolean apply(Byte[] bytes) {
                 return (bytes.length == 2 && bytes[0] == -97 && bytes [1] == 37);
