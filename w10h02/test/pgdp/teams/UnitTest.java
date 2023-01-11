@@ -50,12 +50,32 @@ public class UnitTest {
     }
 
     @Test
-    @DisplayName("Score near Integer.MAX_VALUE")
-    public void scoresNearOverflow() throws NoSuchFieldException, IllegalAccessException {
+    @DisplayName("computeScore() near Integer.MAX_VALUE")
+    public void scoresNearOverflow() {
         var lineup = new Lineup(Set.of(marcel), Set.of(hansuwe), new HashSet<>());
 
         assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE");
         assertEquals(147_483_647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE");
-        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "\"Wrong TeamScore near Integer.MAX_VALUE\"");
+        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE");
+    }
+
+    @Test
+    @DisplayName("computeScore() near Integer.MIN_VALUE")
+    public void scoresNearUnderflow() {
+        var lineup = new Lineup(new HashSet<>(), Set.of(hansuwe), Set.of(thorsten));
+
+        assertEquals(-2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MIN_VALUE");
+        assertEquals(-147483648, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MIN_VALUE");
+        assertEquals(Integer.MIN_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MIN_VALUE");
+    }
+
+    @Test
+    @DisplayName("computeScore() double synergy near Integer.MAX_VALUE")
+    public void doubleSynergyNearOverflow() {
+        var lineup = new Lineup(new HashSet<>(), Set.of(marcel, thorsten), new HashSet<>());
+
+        assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE in same team");
+        assertEquals(147483647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE in same team");
+        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE in same team");
     }
 }
