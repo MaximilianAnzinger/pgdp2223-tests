@@ -8,18 +8,21 @@ import java.util.function.Function;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TrialOfTheDreamsTest {
-    @Test
-    @DisplayName("Combination of Length 1")
-    void TestLengthOne() {
-        byte[] combination = {Byte.MAX_VALUE};
-        Function<byte[], Boolean> lock = (byte[] bytes) -> {
+    private Function<byte[], Boolean> getLock() {
+        return (byte[] bytes) -> {
             if (bytes.length != combination.length) {return false;}
             for (int i = 0; i < bytes.length; i++) {
                 if (bytes[i] != combination[i]) {return false;}
             }
-  
-            return true;
-        };
+            return true; 
+        }
+    }
+
+    @Test
+    @DisplayName("Combination of Length 1")
+    void TestLengthOne() {
+        byte[] combination = {Byte.MAX_VALUE};
+        Function<byte[], Boolean> lock = getLock();
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
 
@@ -32,14 +35,7 @@ public class TrialOfTheDreamsTest {
     @DisplayName("Combination of Length 2")
     void TestLengthTwo() {
         byte[] combination = {-128, 127};
-        Function<byte[], Boolean> lock = (byte[] bytes) -> {
-            if (bytes.length != combination.length) {return false;}
-            for (int i = 0; i < bytes.length; i++) {
-                if (bytes[i] != combination[i]) {return false;}
-            }
-
-            return true;
-        };
+        Function<byte[], Boolean> lock = getLock();
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
 
@@ -52,17 +48,7 @@ public class TrialOfTheDreamsTest {
     @DisplayName("Combination of Length 3")
     void TestLengthThree() {
         byte[] combination = {25, 8, 30};
-        Function<byte[], Boolean> lock = new Function<byte[], Boolean>() {
-            @Override
-            public Boolean apply(byte[] bytes) {
-                if (bytes.length != combination.length) {return false;}
-                for (int i = 0; i < bytes.length; i++) {
-                    if (bytes[i] != combination[i]) {return false;}
-                }
-
-                return true;
-            }
-        };
+        Function<byte[], Boolean> lock = getLock();
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
 
@@ -75,16 +61,7 @@ public class TrialOfTheDreamsTest {
     @DisplayName("Combination of Length 3 with negative numbers")
     void testLengthThreeNegative() {
         byte[] combination = {25, -8, 30};
-        Function<byte[], Boolean> lock = new Function<byte[], Boolean>() {
-            @Override
-            public Boolean apply(byte[] bytes) {
-                if (bytes.length != combination.length) {return false;}
-                for (int i = 0; i < bytes.length; i++) {
-                    if (bytes[i] != combination[i]) {return false;}
-                }
-
-                return true;
-            }
+        Function<byte[], Boolean> lock = getLock();
         };
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
@@ -98,17 +75,7 @@ public class TrialOfTheDreamsTest {
     @DisplayName("Empty Array")
     void testEmpty() {
         byte[] combination = new byte[0];
-        Function<byte[], Boolean> lock = new Function<byte[], Boolean>() {
-            @Override
-            public Boolean apply(byte[] bytes) {
-                if (bytes.length != combination.length) {return false;}
-                for (int i = 0; i < bytes.length; i++) {
-                    if (bytes[i] != combination[i]) {return false;}
-                }
-
-                return true;
-            }
-        };
+        Function<byte[], Boolean> lock = getLock();
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
 
