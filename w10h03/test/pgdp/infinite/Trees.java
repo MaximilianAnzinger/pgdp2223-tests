@@ -17,4 +17,7 @@ public class Trees {
 
     public static Supplier<InfiniteTree<String>> libraryOfBabel = () ->
             new InfiniteTree<>(Lambdas.libraryOfBabel);
+
+    public static Supplier<InfiniteTree<Integer>> countUpDown = () ->
+            new InfiniteTree<>(Lambdas.countUpDown);
 }

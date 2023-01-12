@@ -1,10 +1,14 @@
 package pgdp.infinite;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class InfiniteTreeTest {
     @Test
@@ -21,12 +25,45 @@ public class InfiniteTreeTest {
         assertEquals("", node.getValue());
     }
 
-    @Test
-    public void depthTest() {
-        var tree = Trees.binaryCounter.get();
-        var optimizable = new OptimizableComparable<Integer>(8);
-        tree.withRoot(1);
-        assertEquals(8, tree.find(0, 5, optimizable));
+    @ParameterizedTest(name = "{5}")
+    @MethodSource
+    public void findTest(int from, int depth, int searchVal, int expected, String message, String name) {
+        var tree = Trees.countUpDown.get();
+        var optimizable = new OptimizableComparable<>(searchVal) {
+            @Override
+            public boolean process(Integer t) {
+                // System.out.printf("%s, %s, %s\n", expectedBest.compareTo(t), expectedBest, t);
+                if (expectedBest.equals(t)) {
+                    best = t;
+                    return true;
+                } else if (best == null) {
+                    best = 0;
+                } else if (Math.abs(expectedBest - t) < Math.abs(expectedBest - best)) {
+                    best = t;
+                }
+                return false;
+            }
+        };
+        assertEquals(expected, tree.find(from, depth, optimizable), message);
+    }
+
+    private static Stream<Arguments> findTest() {
+        return Stream.of(
+                arguments(
+                        0, 420, 420, 420,
+                        "Your implementation does not search deep enough!",
+                        "searches deep enough"
+                ),
+                arguments(
+                        0, 419, 420, 419,
+                        "Your implementation searches to deep!",
+                        "does not exceed search depth"
+                ),
+                arguments(-1, 420, 420, 0,
+                        "Your implementation should not have found anything but did not return the optimum value!",
+                        "returns optimum if no element found"
+                )
+        );
     }
 
     @Test

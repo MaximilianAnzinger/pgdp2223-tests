@@ -43,4 +43,15 @@ public class Lambdas {
     public static final Function<String, Iterator<String>> libraryOfBabel = i -> {
         return "abcdefghijklmnopqrstuvwxyz".chars().mapToObj(j -> i + (char) j).iterator();
     };
+
+    /**
+     * @name Count up/down
+     * @description Generates tree with child [parent + 1] or [parent - 1] depending on the parents sign. Node with value 0 has children -1 and 1.
+     */
+    public static final Function<Integer, Iterator<Integer>> countUpDown = i -> {
+        if (i == 0)
+            return List.of(-1, 1).iterator();
+        else
+            return List.of(i < 0 ? i - 1 : i + 1).iterator();
+    };
 }
