@@ -1,0 +1,8 @@
+ShuttleComputerTests
+ShuttleCheckerTests
+
+wait/notify tests for: TaskDistributor, ShuttleProcessor
+
+interrupt during/before shutdown tests
+
+edge cases: 0 shuttle processors?, 0 tasks to generate
