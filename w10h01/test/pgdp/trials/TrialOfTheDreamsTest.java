@@ -1,7 +1,7 @@
 package pgdp.trials;
 
 import java.util.function.Function;
-import java.security.SecureRandom;
+import java.util.Random;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Disabled;
@@ -64,7 +64,7 @@ public class TrialOfTheDreamsTest {
 		private final byte[] generatedArray;
 
 		public ByteArrayGenerator(int length) {
-			SecureRandom random = new SecureRandom(seed);
+			Random random = new Random(seed);
 			generatedArray = new byte[length];
 			random.nextBytes(generatedArray);
 
