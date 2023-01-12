@@ -1,4 +1,4 @@
-package w10h01.test.pgdp.trials;
+package pgdp.trials;
 
 import java.util.function.Function;
 import java.security.SecureRandom;
