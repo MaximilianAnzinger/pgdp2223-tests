@@ -2,6 +2,8 @@ package pgdp.trials;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,26 +24,28 @@ public class TrialOfTheDreamsTest {
         };
     }
 
-    @ParameterizedTest
-    @MethodSource
-    public void combinationsTest(combination) {
-        Function<byte[], Boolean> lock = getLock(combination);
+    @Test
+    public void combinationsTest() {
 
-        byte[] result = TrialOfTheDreams.lockPick(lock);
+        combinationsTestValues().forEach(combination -> {
+            Function<byte[], Boolean> lock = getLock(combination);
+            String msg = "For combination: " + Arrays.toString(combination);
 
-        for (int i = 0; i < combination.length; i++) {
-            assertEquals(combination[i], result[i]);
-        }
+            byte[] result = TrialOfTheDreams.lockPick(lock);
+
+            for (int i = 0; i < combination.length; i++) {
+                assertEquals(combination[i], result[i], msg);
+            }
+        });
     }
-    
-    private static Stream<Arguments> combinationsTest {
+
+    private static Stream<byte[]> combinationsTestValues () {
         return Stream.of(
-                arguments(
                     new byte[] {Byte.MAX_VALUE},
                     new byte[] {-128, 127},
                     new byte[] {25, 8, 30},
                     new byte[] {25, -8, 30},
                     new byte[0]
-                ));
+                );
     }
 }
