@@ -22,7 +22,7 @@ public class TrialOfTheDreamsTest {
     @DisplayName("Combination of Length 1")
     void TestLengthOne() {
         byte[] combination = {Byte.MAX_VALUE};
-        Function<byte[], Boolean> lock = getLock();
+        Function<byte[], Boolean> lock = getLock(combination);
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
 
