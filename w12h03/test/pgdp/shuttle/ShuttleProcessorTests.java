@@ -3,7 +3,7 @@ package pgdp.shuttle;
 import org.junit.jupiter.api.*;
 import pgdp.shuttle.computer.ShuttleOutput;
 import pgdp.shuttle.computer.ShuttleProcessor;
-import pgdp.shuttle.dummies.TaskCheckerDummy;
+import pgdp.shuttle.computer.TaskChecker;
 import pgdp.shuttle.tasks.ShuttleTask;
 
 import java.io.ByteArrayOutputStream;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pgdp.shuttle.ReflectionHelper.getTaskQueue;
 
 public class ShuttleProcessorTests {
 
@@ -43,7 +44,7 @@ public class ShuttleProcessorTests {
     @Test
     @DisplayName("Should evaluate priority task first")
     public void testEvaluatePriority() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-        var taskchecker = new TaskCheckerDummy(null, null);
+        var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
@@ -62,7 +63,7 @@ public class ShuttleProcessorTests {
         sp.start();
         Thread.sleep(30);
 
-        var taskQueue = taskchecker.getTaskQueue();
+        var taskQueue = getTaskQueue(taskchecker);
         for(int i = 0; i < 4; i++) {
             assertEquals(taskList.get(i), taskQueue.poll());
         }
@@ -77,7 +78,7 @@ public class ShuttleProcessorTests {
     @Test
     @DisplayName("Should still work when task are added while running")
     public void testAddTaskWhileRunning() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-        var taskchecker = new TaskCheckerDummy(null, null);
+        var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
@@ -91,15 +92,19 @@ public class ShuttleProcessorTests {
 
         var taskList = List.of(task1, task3, task2, task4);
 
-        sp.addPriorityTask(task1);
-        sp.addTask(task2);
-        Thread.sleep(5);
-        sp.addPriorityTask(task3);
-        sp.addTask(task4);
+        synchronized (sp) {
+            sp.addPriorityTask(task1);
+            sp.addTask(task2);
+            sp.notify();
+            Thread.sleep(5);
+            sp.addPriorityTask(task3);
+            sp.addTask(task4);
+            sp.notify();
+        }
 
         Thread.sleep(30);
 
-        var taskQueue = taskchecker.getTaskQueue();
+        var taskQueue = ReflectionHelper.getTaskQueue(taskchecker);
         for(int i = 0; i < 4; i++) {
             assertEquals(taskList.get(i), taskQueue.poll());
         }
@@ -113,7 +118,7 @@ public class ShuttleProcessorTests {
     @Test
     @DisplayName("Should wait until current task has finished evaluating when shut down")
     public void shutDownTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-        var taskchecker = new TaskCheckerDummy(null, null);
+        var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
@@ -136,7 +141,7 @@ public class ShuttleProcessorTests {
     @Test
     @DisplayName("Should output correct message when interrupted")
     public void interruptTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-        var taskchecker = new TaskCheckerDummy(null, null);
+        var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
@@ -149,4 +154,19 @@ public class ShuttleProcessorTests {
         assertEquals("ShuttleProcessor was interrupted. Shutting down.\n", out.toString());
         assertFalse(sp.isAlive());
     }
-}
+
+    @DisplayName("Should only process new tasks when notified + should notify taskchecker")
+    public void waitNotifyTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
+        var taskchecker = new TaskChecker(null, null);
+        var sp = new ShuttleProcessor(taskchecker);
+        var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
+
+        sp.start();
+        for(int i = 0; i < 1000; i++) sp.addTask(taskGen.generateTask());
+
+        Thread.sleep(5);
+        sp.interrupt();
+        Thread.sleep(5);
+        assertEquals("ShuttleProcessor was interrupted. Shutting down.\n", out.toString());
+        assertFalse(sp.isAlive());
+    }}

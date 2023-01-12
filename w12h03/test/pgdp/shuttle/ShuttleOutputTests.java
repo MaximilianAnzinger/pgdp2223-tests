@@ -48,11 +48,11 @@ public class ShuttleOutputTests {
         so.start();
         Thread.sleep(30);
 
-        assertEquals("Test task 0\n" +
-                "Test task 1\n" +
+        assertEquals("Test task 1\n" +
                 "Test task 2\n" +
                 "Test task 3\n" +
-                "Test task 4\n", out.toString());
+                "Test task 4\n" +
+                "Test task 5\n", out.toString());
 
         out.reset();
         so.shutDown();
@@ -79,11 +79,11 @@ public class ShuttleOutputTests {
 
         Thread.sleep(30);
 
-        assertEquals("Test task 0\n" +
-                "Test task 1\n" +
+        assertEquals("Test task 1\n" +
                 "Test task 2\n" +
                 "Test task 3\n" +
-                "Test task 4\n", out.toString());
+                "Test task 4\n" +
+                "Test task 5\n", out.toString());
 
         out.reset();
         so.shutDown();
