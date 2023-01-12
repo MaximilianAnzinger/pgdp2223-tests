@@ -22,10 +22,9 @@ public class TrialOfTheDreamsTest {
         };
     }
 
-    @Test
-    @DisplayName("Combination of Length 1")
-    void TestLengthOne() {
-        byte[] combination = {Byte.MAX_VALUE};
+    @ParameterizedTest
+    @MethodSource
+    public void combinationsTest(combination) {
         Function<byte[], Boolean> lock = getLock(combination);
 
         byte[] result = TrialOfTheDreams.lockPick(lock);
@@ -34,56 +33,15 @@ public class TrialOfTheDreamsTest {
             assertEquals(combination[i], result[i]);
         }
     }
-
-    @Test
-    @DisplayName("Combination of Length 2")
-    void TestLengthTwo() {
-        byte[] combination = {-128, 127};
-        Function<byte[], Boolean> lock = getLock(combination);
-
-        byte[] result = TrialOfTheDreams.lockPick(lock);
-
-        for (int i = 0; i < combination.length; i++) {
-            assertEquals(combination[i], result[i]);
-        }
-    }
-
-    @Test
-    @DisplayName("Combination of Length 3")
-    void TestLengthThree() {
-        byte[] combination = {25, 8, 30};
-        Function<byte[], Boolean> lock = getLock(combination);
-
-        byte[] result = TrialOfTheDreams.lockPick(lock);
-
-        for (int i = 0; i < combination.length; i++) {
-            assertEquals(combination[i], result[i]);
-        }
-    }
-
-    @Test
-    @DisplayName("Combination of Length 3 with negative numbers")
-    void testLengthThreeNegative() {
-        byte[] combination = {25, -8, 30};
-        Function<byte[], Boolean> lock = getLock(combination);
-
-        byte[] result = TrialOfTheDreams.lockPick(lock);
-
-            for(int i = 0; i < combination.length; i++) {
-            assertEquals(combination[i], result[i]);
-        }
-}
-
-    @Test
-    @DisplayName("Empty Array")
-    void testEmpty() {
-        byte[] combination = new byte[0];
-        Function<byte[], Boolean> lock = getLock(combination);
-
-        byte[] result = TrialOfTheDreams.lockPick(lock);
-
-        for (int i = 0; i < combination.length; i++) {
-            assertEquals(combination[i], result[i]);
-        }
+    
+    private static Stream<Arguments> combinationsTest {
+        return Stream.of(
+                arguments(
+                    new byte[] {Byte.MAX_VALUE},
+                    new byte[] {-128, 127},
+                    new byte[] {25, 8, 30},
+                    new byte[] {25, -8, 30},
+                    new byte[0]
+                ));
     }
 }
