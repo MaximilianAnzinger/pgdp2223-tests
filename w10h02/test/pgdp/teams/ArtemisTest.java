@@ -58,8 +58,10 @@ public class ArtemisTest {
 
         long timeAfter = System.currentTimeMillis();
         long elapsedTime = timeAfter - timeBefore;
+		long usedMemory = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
 
         System.out.printf("Test `computeOptimalLineupLarge()` took %sms to execute.\n", elapsedTime);
+		System.out.printf("Test `computeOptimalLineupLarge() took %sMB to execute.\n", usedMemory);
 
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
