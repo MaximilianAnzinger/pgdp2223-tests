@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pgdp.shuttle.ReflectionHelper.getPrioTaskQueue;
 import static pgdp.shuttle.ReflectionHelper.getTaskQueue;
 
 public class ShuttleProcessorTests {
@@ -55,10 +56,10 @@ public class ShuttleProcessorTests {
 
         var taskList = List.of(task1, task3, task2, task4);
 
-        sp.addPriorityTask(task1);
-        sp.addTask(task2);
-        sp.addPriorityTask(task3);
-        sp.addTask(task4);
+        getPrioTaskQueue(sp).add(task1);
+        getTaskQueue(sp).add(task2);
+        getPrioTaskQueue(sp).add(task3);
+        getTaskQueue(sp).add(task4);
 
         sp.start();
         Thread.sleep(30);
@@ -93,12 +94,12 @@ public class ShuttleProcessorTests {
         var taskList = List.of(task1, task3, task2, task4);
 
         synchronized (sp) {
-            sp.addPriorityTask(task1);
-            sp.addTask(task2);
+            getPrioTaskQueue(sp).add(task1);
+            getTaskQueue(sp).add(task2);
             sp.notify();
             Thread.sleep(5);
-            sp.addPriorityTask(task3);
-            sp.addTask(task4);
+            getPrioTaskQueue(sp).add(task3);
+            getTaskQueue(sp).add(task4);
             sp.notify();
         }
 
@@ -123,7 +124,7 @@ public class ShuttleProcessorTests {
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
         sp.start();
-        sp.addTask(taskGen.generateSlowTask());
+        getTaskQueue(sp).add(taskGen.generateSlowTask()); // slow task takes 50ms to evaluate
 
         Thread.sleep(10);
         sp.shutDown();
@@ -133,7 +134,7 @@ public class ShuttleProcessorTests {
         assertEquals("ShuttleProcessor shutting down.\n", out.toString());
         assertTrue(sp.isAlive(), "Should have waited for slow task to finish evaluating.");
 
-        Thread.sleep(35);
+        Thread.sleep(35); //enough time to finish evaluating slow task
 
         assertFalse(sp.isAlive(), "Slow task finished, the thread should have shut down by now.");
     }
@@ -146,7 +147,7 @@ public class ShuttleProcessorTests {
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
         sp.start();
-        for(int i = 0; i < 1000; i++) sp.addTask(taskGen.generateTask());
+        for(int i = 0; i < 1000; i++) getTaskQueue(sp).add(taskGen.generateTask());
 
         Thread.sleep(5);
         sp.interrupt();
@@ -165,7 +166,7 @@ public class ShuttleProcessorTests {
         sp.start();
         Thread.sleep(5);
 
-        sp.addTask(taskGen.generateTask());
+        getTaskQueue(sp).add(taskGen.generateTask());
         Thread.sleep(5);
 
         assertEquals("", out.toString(), "Processor should have waited until notified before processing new tasks!");
