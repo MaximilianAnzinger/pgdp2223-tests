@@ -78,4 +78,26 @@ public class UnitTest {
         assertEquals(147483647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE in same team");
         assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE in same team");
     }
+
+    @Test
+    @DisplayName("computeOptimalLineup: kleines Beispiel mit weniger Spieler im Feld als verfügbare Spieler")
+    public void computeLessThanPlayer() throws NoSuchFieldException, IllegalAccessException {
+        var lineup = Lineup.computeOptimalLineup(Set.of(lester, levi, roman, thomas,zeynep,malek), 1, 1, 1);
+
+        var attackers = getField(lineup, "attackers");
+        var defenders = getField(lineup, "defenders");
+        var supporters = getField(lineup, "supporters");
+
+        assertEquals(Set.of(lester), attackers);
+        assertEquals(Set.of(roman), defenders);
+        assertEquals(Set.of(levi), supporters);
+    }
+
+    @Test
+    @DisplayName("computeScores: rechnet falsch nach aufruf von computeOptimalLineup")
+    public void computeTwice(){
+        Lineup lineup = Lineup.computeOptimalLineup(Set.of(lester, levi, roman, thomas,zeynep,malek), 1, 1, 1);
+        assertEquals(60,lineup.getTeamSynergy());
+        assertEquals(90,lineup.getTeamScore());
+    }
 }
