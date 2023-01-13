@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 public class TrialOfTheDreamsTest {
 
 	// change for harder decoding
-	static final int keyLen = 16;
+	static final int keyLen = 5;
 	// change to test expected code duration in seconds (Artemis times out after 5s)
 	static final int expectedTime = 5;
 	// change to test a specific key with "test_not_random_LockPick"
@@ -45,7 +45,7 @@ public class TrialOfTheDreamsTest {
 			Thread.sleep(500);
 		});
 	}
-	//Remove @Disabled if you don't want time limit
+	//Remove @Disabled if you want to test random lock without a time limit
 	@Disabled
 	@Test
 	public void testRandomLockPickInfinite() {
@@ -57,8 +57,6 @@ public class TrialOfTheDreamsTest {
 		assertArrayEquals(keyExpected, keyActual);
 	}
 
-	
-	// This class provides a cryptographically strong random numbergenerator
 
 	public class ByteArrayGenerator implements Function<byte[], Boolean> {
 		private final byte[] generatedArray;
