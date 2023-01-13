@@ -155,18 +155,25 @@ public class ShuttleProcessorTests {
         assertFalse(sp.isAlive());
     }
 
-    @DisplayName("Should only process new tasks when notified + should notify taskchecker")
+    @Test
+    @DisplayName("Should only process new tasks when notified")
     public void waitNotifyTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
         var taskGen = new TestTaskGenerator(new Random(69), 0, 5);
 
         sp.start();
-        for(int i = 0; i < 1000; i++) sp.addTask(taskGen.generateTask());
+        Thread.sleep(5);
+
+        sp.addTask(taskGen.generateTask());
+        Thread.sleep(5);
+
+        assertEquals("", out.toString(), "Processor should have waited until notified before processing new tasks!");
+        synchronized (sp) {
+            sp.notify();
+        }
 
         Thread.sleep(5);
-        sp.interrupt();
-        Thread.sleep(5);
-        assertEquals("ShuttleProcessor was interrupted. Shutting down.\n", out.toString());
-        assertFalse(sp.isAlive());
+        assertEquals(1, getTaskQueue(taskchecker).size());
+        sp.shutDown();
     }}

@@ -118,5 +118,21 @@ public class TaskDistributorTests {
         assertTrue(output.endsWith(" tasks!\n"));
     }
 
+    @Test
+    @DisplayName("Should quit immediately when there are to tasks to distribute")
+    public void testZeroTasks() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
+        var td = new TaskDistributer(0,
+                List.of(new ShuttleProcessor(null), new ShuttleProcessor(null),
+                        new ShuttleProcessor(null), new ShuttleProcessor(null)), null);
 
+        try {
+            td.run();
+        } catch(NullPointerException e) {
+            fail("Called generateTask was called even though there was no task to generate");
+        }
+
+        assertEquals("TaskDistributer starting to generate tasks.\n" +
+                "TaskDistributer finished generating 0/0 tasks. Shutting down.\n", out.toString());
+        assertFalse(td.isAlive());
+    }
 }
