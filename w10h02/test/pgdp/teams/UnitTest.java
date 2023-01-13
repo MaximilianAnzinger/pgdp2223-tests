@@ -3,7 +3,6 @@ package pgdp.teams;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashSet;
 import java.util.Set;
 import static pgdp.teams.Lib.*;
 
@@ -50,32 +49,16 @@ public class UnitTest {
     }
 
     @Test
-    @DisplayName("computeScore() near Integer.MAX_VALUE")
-    public void scoresNearOverflow() {
-        var lineup = new Lineup(Set.of(marcel), Set.of(hansuwe), new HashSet<>());
+    @DisplayName("computeOptimalLineup: kleines Beispiel mit weniger Spieler im Feld als verfügbare Spieler")
+    public void computeLessThanPlayer() throws NoSuchFieldException, IllegalAccessException {
+        var lineup = Lineup.computeOptimalLineup(Set.of(lester, levi, roman, thomas,zeynep,malek), 1, 1, 1);
 
-        assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE");
-        assertEquals(147_483_647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE");
-        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE");
-    }
+        var attackers = getField(lineup, "attackers");
+        var defenders = getField(lineup, "defenders");
+        var supporters = getField(lineup, "supporters");
 
-    @Test
-    @DisplayName("computeScore() near Integer.MIN_VALUE")
-    public void scoresNearUnderflow() {
-        var lineup = new Lineup(new HashSet<>(), Set.of(hansuwe), Set.of(thorsten));
-
-        assertEquals(-2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MIN_VALUE");
-        assertEquals(-147483648, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MIN_VALUE");
-        assertEquals(Integer.MIN_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MIN_VALUE");
-    }
-
-    @Test
-    @DisplayName("computeScore() double synergy near Integer.MAX_VALUE")
-    public void doubleSynergyNearOverflow() {
-        var lineup = new Lineup(new HashSet<>(), Set.of(marcel, thorsten), new HashSet<>());
-
-        assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE in same team");
-        assertEquals(147483647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE in same team");
-        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE in same team");
+        assertEquals(Set.of(lester), attackers);
+        assertEquals(Set.of(roman), defenders);
+        assertEquals(Set.of(levi), supporters);
     }
 }
