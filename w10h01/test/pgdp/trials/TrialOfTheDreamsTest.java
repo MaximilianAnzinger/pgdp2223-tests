@@ -38,14 +38,19 @@ public class TrialOfTheDreamsTest {
             }
         });
     }
+    @Test
+    public void zeroLengthTest() {
+        byte[] combination = new byte[0];
+        Function<byte[], Boolean> lock = getLock(combination);
+        assert Arrays.equals(combination, TrialOfTheDreams.lockPick(lock));
+    }
 
     private static Stream<byte[]> combinationsTestValues () {
         return Stream.of(
-                    new byte[] {Byte.MAX_VALUE},
-                    new byte[] {-128, 127},
-                    new byte[] {25, 8, 30},
-                    new byte[] {25, -8, 30},
-                    new byte[0]
-                );
+                new byte[] {Byte.MAX_VALUE},
+                new byte[] {-128, 127},
+                new byte[] {25, 8, 30},
+                new byte[] {25, -8, 30}
+        );
     }
 }
