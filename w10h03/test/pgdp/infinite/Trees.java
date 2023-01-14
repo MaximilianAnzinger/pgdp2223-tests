@@ -23,4 +23,7 @@ public class Trees {
     
     public static Supplier<InfiniteTree<String[]>> makeHeavyChildren = () ->
             new InfiniteTree<>(Lambdas.makeHeavyChildren);
+    
+    public static Supplier<InfiniteTree<Integer>> makeManyChildren = () ->
+            new InfiniteTree<>(Lambdas.makeManyChildren);
 }
