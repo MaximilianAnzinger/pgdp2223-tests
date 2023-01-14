@@ -20,4 +20,7 @@ public class Trees {
 
     public static Supplier<InfiniteTree<Integer>> countUpDown = () ->
             new InfiniteTree<>(Lambdas.countUpDown);
+    
+    public static Supplier<InfiniteTree<String[]>> makeHeavyChildren = () ->
+            new InfiniteTree<>(Lambdas.makeHeavyChildren);
 }
