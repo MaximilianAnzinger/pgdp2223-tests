@@ -61,4 +61,17 @@ public class Lambdas {
      */
     public static final Function<String[], Iterator<String[]>> makeHeavyChildren = S ->
             List.of(new String[S.length * 2], new String[S.length * 3]).iterator();
+    
+    /**
+     * @name Nodes with many nodes
+     * @description Generates tree with nodes that each have 100k nodes
+     */
+    public static final Function<Integer, Iterator<Integer>> makeManyChildren = n -> {
+        int size = 100000;
+        List<Integer> bigList = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            bigList.add(n);
+        }
+        return bigList.iterator();
+    };
 }
