@@ -96,7 +96,7 @@ public class UnitTest {
     @Test
     @DisplayName("computeOptimalLineup: empty Player")
     public void emptyPlayers() throws NoSuchFieldException, IllegalAccessException {
-        var lineup = Lineup.computeOptimalLineup(Set.of(), 1, 1, 1);
+        var lineup = Lineup.computeOptimalLineup(Set.of(), 0, 0, 0);
 
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
