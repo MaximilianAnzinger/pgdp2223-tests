@@ -54,4 +54,11 @@ public class Lambdas {
         else
             return List.of(i < 0 ? i - 1 : i + 1).iterator();
     };
+    
+    /**
+     * @name Big String Arrays
+     * @description Generates tree with heavy children
+     */
+    public static final Function<String[], Iterator<String[]>> makeHeavyChildren = S ->
+            List.of(new String[S.length * 2], new String[S.length * 3]).iterator();
 }
