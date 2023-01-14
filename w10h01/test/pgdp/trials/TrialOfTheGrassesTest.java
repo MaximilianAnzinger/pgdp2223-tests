@@ -6,17 +6,14 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
-public class TrailOfTheGrassesTest {
+public class TrialOfTheGrassesTest {
     @Test
     void testExample() {
         // Example from main() of TrialOfTheGrasses.java
         TrialOfTheGrasses.TreeNode<Integer> nodes = new TrialOfTheGrasses.TreeNode<>(1,
-                new TrialOfTheGrasses.TreeNode<>(2,
-                        new TrialOfTheGrasses.TreeNode<>(3, new TrialOfTheGrasses.TreeNode<>(4),
-                                new TrialOfTheGrasses.TreeNode<>(5))),
+                new TrialOfTheGrasses.TreeNode<>(2, new TrialOfTheGrasses.TreeNode<>(3, new TrialOfTheGrasses.TreeNode<>(4), new TrialOfTheGrasses.TreeNode<>(5))),
                 new TrialOfTheGrasses.TreeNode<>(5),
-                new TrialOfTheGrasses.TreeNode<>(6, new TrialOfTheGrasses.TreeNode<>(7),
-                        new TrialOfTheGrasses.TreeNode<>(8)));
+                new TrialOfTheGrasses.TreeNode<>(6, new TrialOfTheGrasses.TreeNode<>(7), new TrialOfTheGrasses.TreeNode<>(8)));
 
         Stream<TrialOfTheGrasses.TreeNode<Integer>> stream = nodes.flatten();
         int[] actual = stream.mapToInt(TrialOfTheGrasses.TreeNode::getLabel).toArray();
