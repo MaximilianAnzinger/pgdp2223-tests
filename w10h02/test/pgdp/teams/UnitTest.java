@@ -92,4 +92,18 @@ public class UnitTest {
         assertEquals(Set.of(roman), defenders);
         assertEquals(Set.of(levi), supporters);
     }
+    
+    @Test
+    @DisplayName("computeOptimalLineup: empty Player")
+    public void emptyPlayers() throws NoSuchFieldException, IllegalAccessException {
+        var lineup = Lineup.computeOptimalLineup(Set.of(), 1, 1, 1);
+
+        var attackers = getField(lineup, "attackers");
+        var defenders = getField(lineup, "defenders");
+        var supporters = getField(lineup, "supporters");
+
+        assertEquals(Set.of(), attackers);
+        assertEquals(Set.of(), defenders);
+        assertEquals(Set.of(), supporters);
+    }
 }
