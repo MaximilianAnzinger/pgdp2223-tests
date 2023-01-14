@@ -59,8 +59,42 @@ public class InfiniteNodeTest {
 
         node.calculateAllChildren();
         node.resetChildren();
-
+        assertFalse(node.isFullyCalculated());
         assertEquals(0, node.getChildren().size());
+
+        node.calculateAllChildren();
+        assertEquals(26, node.getChildren().size());
+
+        node.resetChildren();
+        node.calculateNextChild();
+        assertEquals(1, node.getChildren().size());
+
+        node.calculateNextChild();
+        assertEquals(2, node.getChildren().size());
+
+        node.resetChildren();
+        assertEquals(0, node.getChildren().size());
+    }
+    
+    @Test
+    @DisplayName("isFullyCalculated works properly")
+    public void fullyCalculatedTest() {
+        var tree = Trees.libraryOfBabel.get();
+        var node = tree.withRoot("");
+
+    //test should only work with correct calculateNextChild & calculateAllChildren method
+
+        node.calculateAllChildren();
+        assertTrue(node.isFullyCalculated());
+
+        node.resetChildren();
+        assertFalse(node.isFullyCalculated());
+
+        node.calculateNextChild();
+        assertFalse(node.isFullyCalculated());
+
+        node.calculateAllChildren();
+        assertTrue(node.isFullyCalculated());
     }
     
     @Test
