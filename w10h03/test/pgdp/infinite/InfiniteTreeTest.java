@@ -120,6 +120,31 @@ public class InfiniteTreeTest {
     }
     
     @Test
+    @DisplayName("Test to see if InfiniteTree with \"heavy\" objects can be searched")
+    /**
+     * This Test creates an Iterator over a List of String Arrays with a starting length of 100k and growing
+     * This Test should run without Problems for 2048MB RAM
+     * (add maxHeapSize = "2048m" to "test {}" in your build.gradle)
+     * if you don't delete your nodes it will throw an "OutOfMemoryError" and it'll be shown as an "ignored Test"
+     */
+    public void heavyTreeTest() {
+
+        // A tree with heavy objects (Objects that take up a lot of memory)
+        var heavyTree = Trees.makeHeavyChildren.get();
+
+        // Optimizable that finds the longest Array in the tree
+        var optimizableLongest = new OptimizableLongest(new String[0]);
+
+        long treeLength = heavyTree.find(new String[100000], 5, optimizableLongest).length;
+        long expectedLength = 24300000L;
+
+        long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+        System.out.println("Used: " + l + "MB of RAM for heavy tree");
+
+        assertEquals(expectedLength, treeLength);
+    }
+    
+    @Test
     @DisplayName("Test to see if InfiniteTree with many children can be searched")
     /**
      * This Test creates an Iterator over a List of 100k Integers (every node has 100k children)
