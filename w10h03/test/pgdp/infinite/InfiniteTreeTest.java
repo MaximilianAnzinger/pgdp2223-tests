@@ -118,4 +118,30 @@ public class InfiniteTreeTest {
 
         assertFalse(root.getChildren().get(1).isFullyCalculated());
     }
+    
+    @Test
+    @DisplayName("Test to see if InfiniteTree with many children can be searched")
+    /**
+     * This Test creates an Iterator over a List of 100k Integers (every node has 100k children)
+     * You should delete every child after checking it
+     * This Test should run without Problems for 2048MB RAM
+     * (add maxHeapSize = "2048m" to your build.gradle)
+     * if you don't delete your nodes it will throw an "OutOfMemoryError" and it'll be shown as an "ignored Test"
+     */
+    public void manyChildrenTreeTest() {
+
+        // A tree with heavy objects (Objects that take up a lot of memory)
+        var manyChildrenTree = Trees.makeManyChildren.get();
+
+        // Optimizable that finds the longest Array in the tree
+        var anyOptimizable = new pgdp.infinite.OptimizableComparable<>(2);
+
+        int result = manyChildrenTree.find(1, 1, anyOptimizable);
+        int expected = 1;
+
+        long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+        System.out.println("Used: " + l + "MB of RAM for tree with many children");
+
+        assertEquals(expected, result);
+    }
 }
