@@ -155,10 +155,10 @@ public class InfiniteTreeTest {
      */
     public void manyChildrenTreeTest() {
 
-        // A tree with heavy objects (Objects that take up a lot of memory)
+        // A tree with 100k children
         var manyChildrenTree = Trees.makeManyChildren.get();
 
-        // Optimizable that finds the longest Array in the tree
+        // Optimizable that finds the number closes to 2 (unimportant since we wanna test if the test runs)
         var anyOptimizable = new pgdp.infinite.OptimizableComparable<>(2);
 
         int result = manyChildrenTree.find(1, 1, anyOptimizable);
