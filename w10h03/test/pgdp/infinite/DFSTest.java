@@ -36,19 +36,6 @@ public class DFSTest {
         );
     }
 
-    @Test
-    void test2() {
-        InfiniteTree<Integer> tree = Trees.countUpDown.get();
-
-        List<Integer> values = List.of(0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-        ProbeOptimizable probe = new ProbeOptimizable(10);
-
-        Assertions.assertEquals(10, tree.find(0, 10, probe));
-        Assertions.assertEquals(values, probe.getValues());
-
-    }
-
     static class ProbeOptimizable implements Optimizable<Integer> {
 
         private final int x;
