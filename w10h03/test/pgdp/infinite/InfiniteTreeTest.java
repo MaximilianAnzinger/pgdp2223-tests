@@ -244,20 +244,26 @@ public class InfiniteTreeTest {
      * if you don't delete your nodes it will throw an "OutOfMemoryError" and it'll be shown as an "ignored Test"
      */
     public void heavyTreeTest() {
+        try {
+            // A tree with heavy objects (Objects that take up a lot of memory)
+            var heavyTree = Trees.makeHeavyChildren.get();
 
-        // A tree with heavy objects (Objects that take up a lot of memory)
-        var heavyTree = Trees.makeHeavyChildren.get();
+            // Optimizable that finds the longest Array in the tree
+            var optimizableLongest = new OptimizableLongest(new String[0]);
 
-        // Optimizable that finds the longest Array in the tree
-        var optimizableLongest = new OptimizableLongest(new String[0]);
-
-        long treeLength = heavyTree.find(new String[100000], 5, optimizableLongest).length;
-        long expectedLength = 24300000L;
+            long treeLength = heavyTree.find(new String[100000], 5, optimizableLongest).length;
+            long expectedLength = 24300000L;
 
         long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
         System.out.println("Used: " + l + "MB of RAM for heavy tree");
 
-        assertEquals(expectedLength, treeLength);
+            assertEquals(expectedLength, treeLength);
+
+        } catch (OutOfMemoryError e) {
+            long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+            System.out.println("Used: " + l + "MB of RAM");
+            fail(e);
+        }
     }
     
     @Test
@@ -271,18 +277,25 @@ public class InfiniteTreeTest {
      */
     public void manyChildrenTreeTest() {
 
-        // A tree with 100k children
-        var manyChildrenTree = Trees.makeManyChildren.get();
+        try {
+            // A tree with 100k children
+            var manyChildrenTree = Trees.makeManyChildren.get();
 
-        // Optimizable that finds the number closes to 2 (unimportant since we wanna test if the test runs)
-        var anyOptimizable = new pgdp.infinite.OptimizableComparable<>(2);
+            // Optimizable that finds the number closes to 2 (unimportant since we wanna test if the test runs)
+            var anyOptimizable = new pgdp.infinite.OptimizableComparable<>(2);
 
-        int result = manyChildrenTree.find(1, 1, anyOptimizable);
-        int expected = 1;
+            int result = manyChildrenTree.find(1, 1, anyOptimizable);
+            int expected = 1;
 
-        long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
-        System.out.println("Used: " + l + "MB of RAM for tree with many children");
+            long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+            System.out.println("Used: " + l + "MB of RAM for tree with many children");
 
-        assertEquals(expected, result);
+            assertEquals(expected, result);
+
+        } catch (OutOfMemoryError e) {
+            long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+            System.out.println("Used: " + l + "MB of RAM");
+            fail(e);
+        }
     }
 }

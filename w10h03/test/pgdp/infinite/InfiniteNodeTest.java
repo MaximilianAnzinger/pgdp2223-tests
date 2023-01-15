@@ -1,11 +1,9 @@
 package pgdp.infinite;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InfiniteNodeTest {
     @Test
@@ -107,15 +105,26 @@ public class InfiniteNodeTest {
      */
     public void heavyTreeTest() {
 
-        // A tree with heavy objects (Objects that take up a lot of memory)
-        var heavyTree = Trees.makeHeavyChildren.get();
+        try {
+            // A tree with heavy objects (Objects that take up a lot of memory)
+            var heavyTree = Trees.makeHeavyChildren.get();
 
-        // Optimizable that finds the longest Array in the tree
-        var optimizableLongest = new OptimizableLongest(new String[0]);
+            // Optimizable that finds the longest Array in the tree
+            var optimizableLongest = new OptimizableLongest(new String[0]);
 
-        long treeLength = heavyTree.find(new String[100000], 5, optimizableLongest).length;
-        long expectedLength = 24300000L;
+            long treeLength = heavyTree.find(new String[100000], 5, optimizableLongest).length;
+            long expectedLength = 24300000L;
 
-        assertEquals(expectedLength, treeLength);
+            long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+            System.out.println("Used: " + l + "MB of RAM for tree with many children");
+
+            assertEquals(expectedLength, treeLength);
+
+        } catch (OutOfMemoryError e) {
+            long l = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000;
+            System.out.println("Used: " + l + "MB of RAM");
+            fail(e);
+        }
+
     }
 }
