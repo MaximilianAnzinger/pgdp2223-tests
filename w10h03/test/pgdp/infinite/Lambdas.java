@@ -67,6 +67,11 @@ public class Lambdas {
      * @description Generates tree with nodes that each have 100k nodes
      */
     public static final Function<Integer, Iterator<Integer>> makeManyChildren = n -> {
-        return IntStream.range(0, 100000).iterator();
+        int size = 100000;
+        List<Integer> bigList = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            bigList.add(n);
+        }
+        return bigList.iterator();
     };
 }
