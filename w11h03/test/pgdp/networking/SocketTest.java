@@ -23,7 +23,7 @@ import static pgdp.networking.ReflectUtils.*;
  */
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class SocketTests {
+public class SocketTest {
     // Timeout for sockets in ms
     private static final int SOCKET_TIMEOUT = 1000;
     private final DataHandler dataHandler = new DataHandler();

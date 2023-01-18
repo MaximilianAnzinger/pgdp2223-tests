@@ -17,7 +17,7 @@ import static pgdp.networking.ReflectUtils.*;
  * If something is wrong with my tests, feel free to chat me up on Zulip :)
  * @author Bjarne Hansen
  */
-public class HTTPTests {
+public class HTTPTest {
     private static final String error = """
                         {
                           "detail": [
