@@ -70,6 +70,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("connect() – successful")
     void testConnectSuccess() throws IOException {
         warnConnect();
 
@@ -117,6 +118,7 @@ public class SocketTest {
         assertTrue(dataHandler.connected);
     }
 
+    @DisplayName("connect() – no response")
     @Test
      void testConnectNoResponse() throws IOException {
         warnConnect();
@@ -138,6 +140,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("connect() – incorrect version")
     void testConnectWrongVersion() throws IOException {
         warnConnect();
 
@@ -160,6 +163,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("connect() – incorrect first byte")
     void testConnectWrongServerHelloFirstByte() throws IOException {
         warnConnect();
 
@@ -182,6 +186,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("connect() – incorrect second byte")
     void testConnectWrongServerHelloSecondByte() throws IOException {
         warnConnect();
 
@@ -204,6 +209,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("connect() – authentication failure")
     void testConnectAuthenticationFailure() throws IOException {
         warnConnect();
 
@@ -230,6 +236,7 @@ public class SocketTest {
     // However, using getResponse() is still required. This is tested for.
     // (https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Server.20switchConnection.20ack/near/907721)
     @Test
+    @DisplayName("switchConnection(int) – successful")
     void testSwitchConnectionSuccess() throws IOException, InterruptedException {
         warnConnect();
         var handshakeMutex = new HandshakeMutex();
@@ -264,6 +271,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("sendMessage() – short")
     void testMessages() throws IOException, InterruptedException {
         String message = """
                     I tell you what, this has been really fun.
@@ -301,6 +309,7 @@ public class SocketTest {
     }
 
     @Test
+    @DisplayName("sendMessage() – huge")
     void testMessagesHuge() throws IOException, InterruptedException {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
         String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt"));
@@ -434,7 +443,7 @@ public class SocketTest {
 
     private static class HandshakeMutex extends LinkedList<Byte> {
         boolean wasDequeued = false;
-        
+
         @Override
         public Byte remove() {
             if (this.size() == 1)
