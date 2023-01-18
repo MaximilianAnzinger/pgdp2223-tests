@@ -232,6 +232,8 @@ public class SocketTest {
     @Test
     void testSwitchConnectionSuccess() throws IOException, InterruptedException {
         warnConnect();
+        var handshakeMutex = new HandshakeMutex();
+        setField(dataHandler, "handshakeMutex", handshakeMutex);
         // Execute method and read socket output
         Thread clientThread = new Thread(() -> {
             try {
@@ -251,6 +253,7 @@ public class SocketTest {
         client.getOutputStream().write(SERVER_ACK);
         client.getOutputStream().flush();
         var buffer = getAllBytes(clientThread, client);
+        assertTrue(handshakeMutex.wasDequeued, "The handshakeMutex was not empty. This is likely because you did not use getResponse().");
         assertNull(lastThrowable, "switchConnection() threw an exception when it wasn't supposed to.");
         byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
         long id = bufferToLong(copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id"));
@@ -258,8 +261,6 @@ public class SocketTest {
 
         // Assert end of output
         assertEquals(1 + idSize, buffer.length, "Transferred bytes did not end after PartnerSwitch.");
-        Queue<Byte> handshakeMutex = getField(dataHandler, "handshakeMutex");
-        assertTrue(handshakeMutex.isEmpty(), "The handshakeMutex was not empty. This is likely because you did not use getResponse().");
     }
 
     @Test
@@ -304,7 +305,6 @@ public class SocketTest {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
         String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt"));
         String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt"));
-
         Thread connectThread = new Thread(this::connect);
         connectThread.start();
         Socket client = server.accept();
@@ -430,5 +430,17 @@ public class SocketTest {
         } catch (InvocationTargetException e) {
             lastThrowable = e.getCause();
         }
+    }
+
+    private static class HandshakeMutex extends LinkedList<Byte> {
+        boolean wasDequeued = false;
+        
+        @Override
+        public Byte remove() {
+            if (this.size() == 1)
+                wasDequeued = true;
+            return super.remove();
+        }
+
     }
 }
