@@ -226,6 +226,9 @@ public class SocketTest {
         assertFalse(dataHandler.connected);
     }
 
+    // For switchConnection, we can assume that the server always responds with an ACKNOWLEDGE.
+    // However, using getResponse() is still required. This is tested for.
+    // (https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Server.20switchConnection.20ack/near/907721)
     @Test
     void testSwitchConnectionSuccess() throws IOException, InterruptedException {
         warnConnect();
@@ -255,111 +258,8 @@ public class SocketTest {
 
         // Assert end of output
         assertEquals(1 + idSize, buffer.length, "Transferred bytes did not end after PartnerSwitch.");
-    }
-
-    /**
-     * This test is currently disabled, because I do not yet know if and how to handle this edge case
-     * (https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Server.20switchConnection.20ack/near/907428)
-     */
-    @Test
-    @Disabled
-    void testSwitchConnectionTimeout() throws IOException, InterruptedException {
-        warnConnect();
-        // Execute method and read socket output
-        Thread clientThread = new Thread(() -> {
-            try {
-                dataHandler.switchConnection(2346123);
-            } catch (DataHandler.ConnectionException e) {
-                lastThrowable = e;
-            }
-        });
-        // Send Server Hello
-        clientThread.start();
-        Socket client = server.accept();
-        client.getOutputStream().write(SERVER_HELLO);
-        client.getOutputStream().flush();
-        Thread.sleep(SOCKET_TIMEOUT);
-        awaitPartnerSwitch(client);
-        // Write Timeout
-        client.getOutputStream().write(SERVER_TIMEOUT);
-        client.getOutputStream().flush();
-        var buffer = getAllBytes(clientThread, client);
-        byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
-        long id = bufferToLong(copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id"));
-        assertEquals(2346123, id, "Client sent incorrect id.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "switchConnection() didn't throw an exception when it was supposed to.");
-
-        // Assert end of output
-        assertEquals(1 + idSize, buffer.length, "Transferred bytes did not end after PartnerSwitch.");
-    }
-
-    /**
-     * This test is currently disabled, because I do not yet know if and how to handle this edge case
-     * (https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Server.20switchConnection.20ack/near/907428)
-     */
-    @Test
-    @Disabled
-    void testSwitchConnectionGarbage() throws IOException, InterruptedException {
-        warnConnect();
-        // Execute method and read socket output
-        Thread clientThread = new Thread(() -> {
-            try {
-                dataHandler.switchConnection(2346123);
-            } catch (DataHandler.ConnectionException e) {
-                lastThrowable = e;
-            }
-        });
-        // Send Server Hello
-        clientThread.start();
-        Socket client = server.accept();
-        client.getOutputStream().write(SERVER_HELLO);
-        client.getOutputStream().flush();
-        Thread.sleep(SOCKET_TIMEOUT);
-        awaitPartnerSwitch(client);
-        // Write Garbage
-        client.getOutputStream().write(new byte[]{(byte) 0xca, 0x2});
-        client.getOutputStream().flush();
-        var buffer = getAllBytes(clientThread, client);
-        byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
-        long id = bufferToLong(copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id"));
-        assertEquals(2346123, id, "Client sent incorrect id.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "switchConnection() didn't throw an exception when it was supposed to.");
-
-        // Assert end of output
-        assertEquals(1 + idSize, buffer.length, "Transferred bytes did not end after PartnerSwitch.");
-    }
-
-    /**
-     * This test is currently disabled, because I do not yet know if and how to handle this edge case
-     * (https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Server.20switchConnection.20ack/near/907428)
-     */
-    @Test
-    @Disabled
-    void testSwitchConnectionNoResponse() throws IOException, InterruptedException {
-        warnConnect();
-        // Execute method and read socket output
-        Thread clientThread = new Thread(() -> {
-            try {
-                dataHandler.switchConnection(2346123);
-            } catch (DataHandler.ConnectionException e) {
-                lastThrowable = e;
-            }
-        });
-        // Send Server Hello
-        clientThread.start();
-        Socket client = server.accept();
-        client.getOutputStream().write(SERVER_HELLO);
-        client.getOutputStream().flush();
-        Thread.sleep(SOCKET_TIMEOUT);
-        awaitPartnerSwitch(client);
-        var buffer = getAllBytes(clientThread, client);
-        byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
-        long id = bufferToLong(copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id"));
-        assertEquals(2346123, id, "Client sent incorrect id.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "switchConnection() didn't throw an exception when it was supposed to.");
-
-        // Assert end of output
-        assertEquals(1 + idSize, buffer.length, "Transferred bytes did not end after PartnerSwitch.");
+        Queue<Byte> handshakeMutex = getField(dataHandler, "handshakeMutex");
+        assertTrue(handshakeMutex.isEmpty(), "The handshakeMutex was not empty. This is likely because you did not use getResponse().");
     }
 
     @Test
@@ -403,6 +303,7 @@ public class SocketTest {
     void testMessagesHuge() throws IOException, InterruptedException {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
         String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt"));
+        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt"));
 
         Thread connectThread = new Thread(this::connect);
         connectThread.start();
@@ -420,18 +321,11 @@ public class SocketTest {
         // Write ACK
         var buffer = getAllBytes(clientThread, client);
         assertEquals(0x01, buffer[0], "First byte");
-        assertEquals(0xffff, bufferToInt(copyOf(buffer, 1, 3, "Message length")), "Message length");
-
-        var expected = new byte[3 + 0xffff];
-        expected[0] = 0x01;
-        expected[1] = (byte) 0xff;
-        expected[2] = (byte) 0xff;
-        byte[] lipsumBuffer = StandardCharsets.UTF_8.encode(lipsum).array();
-        System.arraycopy(lipsumBuffer, 0, expected, 3, expected.length - 3);
-        assertArrayEquals(expected, buffer);
-
+        int messageLength = bufferToInt(copyOf(buffer, 1, 3, "Message length"));
+        assertEquals(0xffff, messageLength, "Message length was incorrect.");
+        assertEquals(lipsumTruncated, new String(buffer).substring(3), "Text message was incorrect.");
         // Assert end of output
-        assertEquals(expected.length, buffer.length, "Transferred bytes did not end after expected message.");
+        assertEquals(65538, buffer.length, "Transferred too many or too few bytes.");
     }
 
     @AfterAll
