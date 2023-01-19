@@ -16,7 +16,7 @@ Authorization: Bearer ACCESS_TOKEN
 
 ##################### GET USER BY ID #####################
 
-# Replace {user_id} with the integer id of the other user.
+# Replace {user_id} with the integer id of the user.
 
 GET http://131.159.47.114/api/user/id/{user_id}
 Content-Type: application/json
