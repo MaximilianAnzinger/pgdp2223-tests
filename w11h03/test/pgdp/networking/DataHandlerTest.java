@@ -65,7 +65,7 @@ public class DataHandlerTest {
 
     @Test
     public void registerSuccessTest() {
-        Pair<Boolean, Request> result = testEndpoint("/api/users/register", 200, "", () -> dataHandler.register(USERNAME, ID)); // TODO: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Definition.20erfolgreiche.20Anfragen
+        Pair<Boolean, Request> result = testEndpoint("/api/user/register", 200, "", () -> dataHandler.register(USERNAME, ID)); // TODO: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Definition.20erfolgreiche.20Anfragen
         registerRequestTest(result.getRight(), USERNAME, ID);
         assertTrue(result.getLeft());
     }
