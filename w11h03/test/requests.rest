@@ -16,7 +16,9 @@ Authorization: Bearer ACCESS_TOKEN
 
 ##################### GET USER BY ID #####################
 
-GET http://131.159.47.114/api/user/id/0
+# Replace {user_id} with the integer id of the other user.
+
+GET http://131.159.47.114/api/user/id/{user_id}
 Content-Type: application/json
 Authorization: Bearer ACCESS_TOKEN
 
@@ -62,6 +64,8 @@ Authorization: Bearer ACCESS_TOKEN
 
 ################### SEND CHAT MESSAGES ######################
 
+# Replace {other_id} with the integer id of the other user.
+
 POST http://131.159.47.114/api/messages/sendto/{other_id}
 Content-Type: application/json
 Authorization: Bearer ACCESS_TOKEN
@@ -71,6 +75,8 @@ Authorization: Bearer ACCESS_TOKEN
 }
 
 ################### LOGIN ######################
+
+# Replace {other_id} with the integer id of the other user.
 
 POST http://131.159.47.114/api/messages/sendto/{other_id}
 Content-Type: application/json
