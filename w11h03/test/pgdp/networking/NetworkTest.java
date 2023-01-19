@@ -1,23 +1,14 @@
 package pgdp.networking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,8 +16,6 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-
-import pgdp.networking.ViewController.User;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NetworkTest {
@@ -37,8 +26,11 @@ public class NetworkTest {
     private static String kennung;
     private static String username;
     private static String password;
-    private static String token;
     private static int id;
+
+    // Don't send NSFW kthx
+
+    private static final int ANATOLYS_ID = 361563966;
 
     //
     // Register the first possible not reserved kennung.
@@ -102,26 +94,43 @@ public class NetworkTest {
     // BEHAVIOUR TEST
     //
 
+    //
+    // FLAGS
+    //
+    // [A] - Test that should <A>lawys pass and not be affected by code.
+    // [P] - Test in <P>ublic environment.
+    //
+
     @Test
     @Order(1)
+    @DisplayName("should request token")
     public void requestTokenTest() {
-        token = dataHandler.requestToken();
-        assertNotNull(token);
+        assertNotNull(dataHandler.requestToken());
     }
 
     @Test
     @Order(2)
+    @DisplayName("should set visibility to private")
+    public void setVisibilityToPrivate() throws Exception {
+        assertTrue(Lib.makePublic(dataHandler, false));
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("should login with credentials")
     public void loginTest() throws Exception {
         assertTrue(dataHandler.login(username, password));
 
         id = (int) Lib.getField(dataHandler, "id").get(dataHandler);
+        System.out.println(id);
 
         assertNotNull(id);
         assertTrue(id > 0);
     }
 
     @Test
-    @Order(3)
+    @Order(4)
+    @DisplayName("should get contacts")
     public void getContactsTest() throws Exception {
         var users = dataHandler.getContacts();
 
@@ -130,13 +139,15 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
+    @DisplayName("should get messages with user zero")
     public void getMessagesWithUserTest() throws Exception {
         assertNotNull(dataHandler.getMessagesWithUser(0, 0, 0));
     }
 
     @Test
-    @Order(5)
+    @Order(6)
+    @DisplayName("should connect")
     public void connectTest() throws Exception {
         //
         // TODO check if `Input Handler started` was printed into console?
@@ -150,25 +161,76 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(6)
-    @DisplayName("This test will always pass, don't get hope")
+    @Order(7)
+    @DisplayName("[A] should switch partner")
     public void partnerSwitchTest() throws Exception {
         // If not crash -> Test went good?
         dataHandler.switchConnection(id);
     }
 
     @Test
-    @Order(7)
-    @DisplayName("This test will always pass, don't get hope")
+    @Order(8)
+    @DisplayName("[A] should send message")
     public void sendMessageTest() throws Exception {
         // If not crash -> Test went good?
         dataHandler.sendMessage("Hello, Pingu!");
     }
 
     @Test
-    @Order(8)
-    @DisplayName("Checks `sendMessageTest` by actually checking if messages were updated")
+    @Order(9)
+    @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
+        var _todo = dataHandler.getMessagesWithUser(0, 0, 0);
+        System.out.println(_todo);
+    }
+
+    @Test
+    @Order(10)
+    @DisplayName("[A] should set visibility to public")
+    public void setVisibilityToPublic() throws Exception {
+        assertTrue(Lib.makePublic(dataHandler, true));
+    }
+
+    @Test
+    @Order(11)
+    @DisplayName("[P] should get contacts")
+    public void getContactsPublicTest() throws Exception {
+        // TODO
+        var users = dataHandler.getContacts();
+
+        assertTrue(users.containsKey(id));
+        assertEquals(username, users.get(id).name());
+    }
+
+    @Test
+    @Order(12)
+    @DisplayName("[P] should get messages with user zero")
+    public void getMessagesWithUserPublicTest() throws Exception {
+        // TODO
+        assertNotNull(dataHandler.getMessagesWithUser(0, 0, 0));
+    }
+
+    @Test
+    @Order(13)
+    @DisplayName("[P] [A] should switch partner to anatoly")
+    public void partnerSwitchPublicTest() throws Exception {
+        // TODO
+        dataHandler.switchConnection(ANATOLYS_ID);
+    }
+
+    @Test
+    @Order(14)
+    @DisplayName("[P] [A] should send message")
+    public void sendMessagePublicTest() throws Exception {
+        // TODO
+        dataHandler.sendMessage("Hello, Pingu!");
+    }
+
+    @Test
+    @Order(15)
+    @DisplayName("[P] should check `sendMessageTest` by actually checking if messages were updated")
+    public void updatedMessagesPublicTest() throws Exception {
+        // TODO
         var _todo = dataHandler.getMessagesWithUser(0, 0, 0);
         System.out.println(_todo);
     }
