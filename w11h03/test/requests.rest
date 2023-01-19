@@ -1,6 +1,7 @@
 #
 # REST API FOR http://131.159.47.114/docs
-# It’s like postman pretty much.
+# You can use the VS Code extension "REST Client" to make and 
+# debug the following requests.
 #
 
 #
