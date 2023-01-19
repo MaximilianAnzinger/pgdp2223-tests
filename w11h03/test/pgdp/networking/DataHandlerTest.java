@@ -59,7 +59,7 @@ public class DataHandlerTest {
     void registerRequestTest(Request actual, String username, String id) {
         assertEquals("POST", actual.requestMethod());
         assertEquals(List.of("application/json"), actual.requestHeaders().get("Content-Type"));
-        assertEquals(URI.create("http://carol.sse.cit.tum.de/api/users/register"), actual.requestURI());
+        assertEquals(URI.create("http://carol.sse.cit.tum.de/api/user/register"), actual.requestURI());
         assertEquals("{\"username\": \"" + username + "\",\"tum_kennung\": \"" + id + "\"}", actual.getBodyUTF8());
     }
 
