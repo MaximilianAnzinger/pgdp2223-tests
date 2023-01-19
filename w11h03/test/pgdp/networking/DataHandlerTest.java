@@ -112,7 +112,10 @@ public class DataHandlerTest {
 
         server.removeContext(endpoint);
 
-        return Pair.of(result, Objects.requireNonNull(req.get(), "provided function did not send request to specified endpoint"));
+        Request request;
+        assertNotNull(request = req.get(), "provided function did not send request to specified endpoint");
+
+        return Pair.of(result, request);
     }
 
     private String callRequestToken(DataHandler dh, String username, String password) {
