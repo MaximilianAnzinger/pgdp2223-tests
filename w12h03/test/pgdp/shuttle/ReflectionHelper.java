@@ -1,5 +1,6 @@
 package pgdp.shuttle;
 
+import pgdp.shuttle.computer.ShuttleOutput;
 import pgdp.shuttle.computer.ShuttleProcessor;
 import pgdp.shuttle.computer.TaskChecker;
 import pgdp.shuttle.computer.TaskDistributer;
@@ -17,6 +18,18 @@ public class ReflectionHelper {
 
     public static LinkedBlockingQueue<ShuttleTask<?, ?>> getTaskQueue(ShuttleProcessor sp) throws NoSuchFieldException, IllegalAccessException {
         var f = ShuttleProcessor.class.getDeclaredField("taskQueue");
+        f.setAccessible(true);
+        return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(sp);
+    }
+
+    public static LinkedBlockingQueue<ShuttleTask<?, ?>> getTaskQueue(ShuttleOutput so) throws NoSuchFieldException, IllegalAccessException {
+        var f = ShuttleOutput.class.getDeclaredField("taskQueue");
+        f.setAccessible(true);
+        return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(so);
+    }
+
+    public static LinkedBlockingQueue<ShuttleTask<?, ?>> getPrioTaskQueue(ShuttleProcessor sp) throws NoSuchFieldException, IllegalAccessException {
+        var f = ShuttleProcessor.class.getDeclaredField("priorityTaskQueue");
         f.setAccessible(true);
         return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(sp);
     }
