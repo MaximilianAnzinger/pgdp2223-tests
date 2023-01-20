@@ -50,11 +50,14 @@ public class NetworkTest {
 
     @BeforeAll
     public static void init() throws Exception {
-        var config = Files
-                .lines(Path.of("test/config.env"))
-                .filter(i -> i.trim().length() != 0)
-                .filter(i -> !i.startsWith("#"))
-                .collect(Collectors.toMap(i -> i.split("=")[0].trim(), i -> i.split("=")[1].trim()));
+        Map<String, String> config;
+        try (Stream<String> lines = Files.lines(Path.of("test/config.env"))) {
+            config = lines.filter(i -> i.trim().length() != 0)
+                    .filter(i -> !i.startsWith("#"))
+                    .collect(Collectors.toMap(i -> i.split("=")[0].trim(), i -> i.split("=")[1].trim()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         kennung = config.get("kennung");
         username = config.get("username");
