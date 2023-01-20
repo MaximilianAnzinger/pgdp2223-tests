@@ -1,0 +1,87 @@
+#
+# REST API FOR http://131.159.47.114/docs
+# You can use the VS Code extension "REST Client" to make and 
+# debug the following requests.
+#
+
+#
+# Replace `ACCESS_TOKEN` with your token
+#
+
+####################### GET USERS ########################
+
+GET http://131.159.47.114/api/users
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+##################### GET USER BY ID #####################
+
+# Replace {user_id} with the integer id of the user.
+
+GET http://131.159.47.114/api/user/id/{user_id}
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+######################## GET SELF ########################
+
+GET http://131.159.47.114/api/user/me
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+###################### DELETE SELF #######################
+
+DELETE http://131.159.47.114/api/user/me
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+###################### DELETE SELF #######################
+
+POST http://131.159.47.114/api/user/register
+Content-Type: application/json
+
+{
+  "username": "test-user",
+  "tum_kennung": "kennung"
+}
+
+################## SET SELF TO PUBLIC ####################
+
+PATCH http://131.159.47.114/api/user/me/setpublic/true
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+################## SET SELF TO PRIVATE ####################
+
+PATCH http://131.159.47.114/api/user/me/setpublic/false
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+################## RECEIVE CHAT MESSAGES ####################
+
+GET http://131.159.47.114/api/messages/with/{other_id}
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+################### SEND CHAT MESSAGES ######################
+
+# Replace {other_id} with the integer id of the other user.
+
+POST http://131.159.47.114/api/messages/sendto/{other_id}
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+{
+  "text": "Hello, World!"
+}
+
+################### LOGIN ######################
+
+# Replace {other_id} with the integer id of the other user.
+
+POST http://131.159.47.114/api/messages/sendto/{other_id}
+Content-Type: application/json
+Authorization: Bearer ACCESS_TOKEN
+
+{
+  "text": "Hello, World!"
+}
