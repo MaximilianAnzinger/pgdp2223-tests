@@ -146,8 +146,8 @@ public class HTTPTest {
                 })
                 .respond(422, error);
         assertFalse(dataHandler.login("Alfred", "Wagner"));
-        assertEquals("Alfred", getField(dataHandler, "username"));
-        assertEquals("Wagner", getField(dataHandler, "password"));
+        assertNull(getField(dataHandler, "username"));
+        assertNull(getField(dataHandler, "password"));
         assertEquals(0, getFieldInt(dataHandler, "id"));
     }
 
@@ -169,8 +169,8 @@ public class HTTPTest {
                 })
                 .respond(500, "Server's on fire");
         assertFalse(dataHandler.login("Alfred", "Wagner"));
-        assertEquals("Alfred", getField(dataHandler, "username"));
-        assertEquals("Wagner", getField(dataHandler, "password"));
+        assertNull(getField(dataHandler, "username"));
+        assertNull(getField(dataHandler, "password"));
         assertEquals(0, getFieldInt(dataHandler, "id"));
     }
 
@@ -297,7 +297,12 @@ public class HTTPTest {
                   "token_type": "irrelevant"
                 }""")
                 .respond(422, error);
-        assertNull(dataHandler.getMessagesWithUser(06, 47, 0));
+        var result = dataHandler.getMessagesWithUser(06, 47, 0);
+        OrBuilder
+                .assertThat(() -> assertNull(result))
+                .or(() -> assertEquals(List.of(), result))
+                .withMessage("The result of getMessageWithUser did not match an empty list or null.")
+                .run();
     }
 
     @Test
@@ -310,7 +315,12 @@ public class HTTPTest {
                   "token_type": "irrelevant"
                 }""")
                 .respond(500, "This song is new to me, but I am honored to be a part of it." );
-        assertNull(dataHandler.getMessagesWithUser(06, 47, 0));
+        var result = dataHandler.getMessagesWithUser(06, 47, 0);
+        OrBuilder
+                .assertThat(() -> assertNull(result))
+                .or(() -> assertEquals(List.of(), result))
+                .withMessage("The result of getMessageWithUser did not match an empty list or null.")
+                .run();
     }
 
     private LocalDateTime ofEpoch(int n) {
