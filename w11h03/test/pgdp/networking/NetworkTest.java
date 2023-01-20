@@ -109,22 +109,6 @@ public class NetworkTest {
 
     @Test
     @Order(1)
-    @DisplayName("should request token")
-    public void requestTokenTest() {
-        var token = dataHandler.requestToken();
-        assertNotNull(token);
-        System.out.println("TOKEN: " + token);
-    }
-
-    @Test
-    @Order(2)
-    @DisplayName("should set visibility to public")
-    public void setVisibilityToPublic() throws Exception {
-        assertTrue(Lib.makePublic(dataHandler, true));
-    }
-
-    @Test
-    @Order(3)
     @DisplayName("should be able to login with credentials")
     public void loginTest() throws Exception {
         assertTrue(dataHandler.login(username, password));
@@ -137,6 +121,22 @@ public class NetworkTest {
 
         assertEquals(username, (String) Lib.getField(dataHandler, "username").get(dataHandler));
         assertEquals(password, (String) Lib.getField(dataHandler, "password").get(dataHandler));
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("should request token")
+    public void requestTokenTest() {
+        var token = dataHandler.requestToken();
+        assertNotNull(token);
+        System.out.println("TOKEN: " + token);
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("should set visibility to public")
+    public void setVisibilityToPublic() throws Exception {
+        assertTrue(Lib.makePublic(dataHandler, true));
     }
 
     //
