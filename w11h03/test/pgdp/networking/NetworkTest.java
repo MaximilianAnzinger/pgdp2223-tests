@@ -25,14 +25,20 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import pgdp.networking.ViewController.Message;
+import pgdp.networking.ViewController.User;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NetworkTest {
 
     private static boolean executeTests = false;
     private static DataHandler dataHandler = new DataHandler();
+    private static Map<Integer, User> users;
 
     private static String kennung;
     private static String username;
@@ -160,39 +166,35 @@ public class NetworkTest {
 
     @Test
     @Order(6)
-    @DisplayName("[P] should contain youself in contacts")
+    @DisplayName("[P] should access in contacts")
     public void getContactsTest() throws Exception {
-        var users = dataHandler.getContacts();
+        users = dataHandler.getContacts();
 
+        // Last time I checked there were 228 users, > 100
         assertNotNull(users);
-
-        // Last time I checked there were 228
-
         assertTrue(users.size() > 100);
+    }
 
-        // Should contain self
+    @ParameterizedTest
+    @Order(7)
+    @MethodSource
+    @DisplayName("[P] should contain youself in contacts")
+    public void scanContacts(int uid, String name) {
+        assertTrue(users.containsKey(uid));
+        assertEquals(name, users.get(uid).name());
+    }
 
-        assertTrue(users.containsKey(id));
-        assertEquals(username, users.get(id).name());
-
-        // Should contain User 1
-
-        assertTrue(users.containsKey(2032346041));
-        assertEquals("faid", users.get(2032346041).name());
-
-        // Should contain User 2
-
-        assertTrue(users.containsKey(1259660950));
-        assertEquals("nilsreichardt", users.get(1259660950).name());
-
-        // Should contain User 3
-
-        assertTrue(users.containsKey(361563966));
-        assertEquals("The One and Only", users.get(361563966).name());
+    public static Stream<Arguments> scanContacts () {
+        return Stream.of(
+            arguments(id, users.get(id).name()),
+            arguments(2032346041, "faid"),
+            arguments(1259660950, "nilsreichardt"),
+            arguments(361563966, "The One and Only")
+        );
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     @DisplayName("[P] [T] should get messages from general channel")
     @Disabled
     public void getMessagesGeneralChatTest() throws Exception {
@@ -234,7 +236,7 @@ public class NetworkTest {
     //
 
     @Test
-    @Order(8)
+    @Order(9)
     @DisplayName("should connect")
     public void connectTest() throws Exception {
         Lib.getMethod(dataHandler, "connect").invoke(dataHandler);
@@ -252,7 +254,7 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(9)
+    @Order(10)
     @DisplayName("[A] should switch partner to faid")
     public void partnerSwitchToFaidTest() throws Exception {
         dataHandler.switchConnection(recipient);
@@ -264,7 +266,7 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(10)
+    @Order(11)
     @DisplayName("[A] should send message")
     public void sendMessageTest() throws Exception {
         dataHandler.sendMessage(msg);
@@ -276,7 +278,7 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(11)
+    @Order(12)
     @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
         // Ensure we see the messages from last page.
@@ -298,7 +300,7 @@ public class NetworkTest {
     //
 
     @Test
-    @Order(12)
+    @Order(13)
     @DisplayName("[A] should switch partner to general channel")
     public void partnerSwitchTest() throws Exception {
         dataHandler.switchConnection(1);
@@ -310,7 +312,7 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(13)
+    @Order(14)
     @DisplayName("[A] should send message")
     public void spamGeneralTest() throws Exception {
         dataHandler.sendMessage("Hallo, ich bin ein Network Bot von " + username);
