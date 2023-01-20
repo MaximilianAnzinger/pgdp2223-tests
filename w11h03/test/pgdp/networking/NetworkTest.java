@@ -163,6 +163,17 @@ public class NetworkTest {
 
     @Test
     @Order(7)
+    @DisplayName("[P] should contain youself in contacts")
+    public void getContactsPublicTest() throws Exception {
+        var users = dataHandler.getContacts();
+
+        assertNotNull(users);
+        assertTrue(users.containsKey(id));
+        assertEquals("The One and Only", users.get(id).name());
+    }
+
+    @Test
+    @Order(8)
     @DisplayName("[P] should get messages from general channel")
     public void getMessagesGeneralChatPublicTest() throws Exception {
         var messages = dataHandler.getMessagesWithUser(1, 10, 0);
@@ -259,14 +270,4 @@ public class NetworkTest {
     //
     // </end-region>
     //
-
-    // @Test
-    // @Order(26)
-    // @DisplayName("[P] should contain contacted user")
-    // public void getContactsPublicTest() throws Exception {
-    //     var users = dataHandler.getContacts();
-
-    //     assertTrue(users.containsKey(PENGUIN_ID));
-    //     assertEquals("The One and Only", users.get(PENGUIN_ID).name());
-    // }
 }
