@@ -144,8 +144,25 @@ public class NetworkTest {
         var users = dataHandler.getContacts();
 
         assertNotNull(users);
+
+        // Last time I checked there were 228
+
+        assertTrue(users.size() > 100);
+
+        // Should contain self
+
         assertTrue(users.containsKey(id));
-        assertEquals("The One and Only", users.get(id).name());
+        assertEquals(username, users.get(id).name());
+
+        // Should contain Faid
+
+        assertTrue(users.containsKey(2032346041));
+        assertEquals("faid", users.get(2032346041).name());
+
+        // Should contain Nils
+
+        assertTrue(users.containsKey(1259660950));
+        assertEquals("nilsreichardt", users.get(1259660950).name());
     }
 
     @Test
