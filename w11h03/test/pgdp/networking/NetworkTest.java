@@ -308,7 +308,7 @@ public class NetworkTest {
     @Order(13)
     @DisplayName("[A] should send message")
     public void spamGeneralTest() throws Exception {
-        dataHandler.sendMessage("Hallo, ich bin ein Network Bot von " + username + " und mein Passwort ist: " + Lib.generateString(new Random()));
+        dataHandler.sendMessage("Hallo, ich bin ein Network Bot von " + username);
 
         //
         // TODO System.err catch -> if this method throws, there was a problem with connect.
