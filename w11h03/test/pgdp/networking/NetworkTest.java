@@ -6,13 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,7 +52,7 @@ public class NetworkTest {
     //
 
     @BeforeAll
-    public static void init() throws Exception {
+    public static void init() throws IOException {
         Map<String, String> config;
         try (Stream<String> lines = Files.lines(Path.of("test/config.env"))) {
             config = lines.filter(i -> i.trim().length() != 0)
