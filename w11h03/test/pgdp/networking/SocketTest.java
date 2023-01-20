@@ -122,6 +122,7 @@ public class SocketTest {
                 .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x06, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
                 .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
                 .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .withMessage("ClientIdentification did not match any of the correct variants.")
                 .run();
 
         // Assert ClientAuthentication
@@ -237,6 +238,7 @@ public class SocketTest {
         client.getOutputStream().write(SERVER_HELLO);
         client.getOutputStream().flush();
         Thread.sleep(SOCKET_TIMEOUT);
+        // Removes the two first bytes from the buffer
         awaitPartnerSwitch(client);
         // Write ACK
         client.getOutputStream().write(SERVER_ACK);
@@ -245,14 +247,14 @@ public class SocketTest {
         assertTrue(handshakeMutex.wasDequeued, "The handshakeMutex was not empty. This is likely because you did not use getResponse().");
         assertNull(lastThrowable, "switchConnection() threw an exception when it wasn't supposed to.");
         byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
-        byte[] idBuffer = copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id");
         OrBuilder
-                .assertThat(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x03, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x04, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x05, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x06, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x07, 0x00, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .assertThat(() -> assertArrayEquals(new byte[]{0x03, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
+                .or(() -> assertArrayEquals(new byte[]{0x04, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
+                .or(() -> assertArrayEquals(new byte[]{0x05, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
+                .or(() -> assertArrayEquals(new byte[]{0x06, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
+                .or(() -> assertArrayEquals(new byte[]{0x07, 0x00, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
+                .or(() -> assertArrayEquals(new byte[]{0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
+                .withMessage("SwitchConnection did not match any of the correct variants.")
                 .run();
 
         // Assert end of output
