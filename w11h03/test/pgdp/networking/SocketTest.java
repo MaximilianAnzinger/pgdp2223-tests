@@ -1,5 +1,6 @@
 package pgdp.networking;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +23,7 @@ import static pgdp.networking.ReflectUtils.*;
  * @author Bjarne Hansen
  */
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SocketTest {
     // Timeout for sockets in ms
     private static final int SOCKET_TIMEOUT = 1000;
@@ -70,10 +71,30 @@ public class SocketTest {
     }
 
     @Test
+    @Order(0)
+    @DisplayName("-----READ ME-----")
+    void readmeMessage() {
+        System.out.println("""
+                If a test in SocketTest doesn't finish, it's likely because you are using the address of the server (carol.sse.cit.tum.de) directly.
+                Instead, please use the variable DataHandler.serverAddress when creating your client socket.
+                Make sure to use port 1337.
+                """);
+        System.out.println("""
+                If a test prints an exception but neither succeeds nor fails, some method called System.exit().
+                This is likely because you threw an Exception which was not DataHandler.ConnectionException.
+                """);
+        System.out.println("""
+                Occasionally, the handleInput thread might crash with an EOFException and terminate the tests.
+                I believe this is caused by a race condition between the termination of the client socket in handleInput() and the server socket.
+                There is no good solution to this as far as I'm aware.
+                If this happens, just rerun the program.
+                """);
+    }
+
+    @Test
+    @Order(1)
     @DisplayName("connect() – successful")
     void testConnectSuccess() throws IOException {
-        warnConnect();
-
         // Execute method and read socket output
         Thread clientThread = new Thread(this::connect);
         clientThread.start();
@@ -95,8 +116,14 @@ public class SocketTest {
         byte[] actualIdentification = copyOf(buffer, 2, 4, "ClientIdentification");
         assertArrayEquals(clientIdentification, actualIdentification, "Did not receive ClientIdentification as expected.");
         byte idSize = copyOf(buffer, 4, 5, "ClientIdentification k")[0];
-        int id = bufferToInt(copyOf(buffer, 5, 5 + idSize, "ClientIdentification id"));
-        assertEquals(84342, id, "Client sent incorrect id.");
+        byte[] idBuffer = copyOf(buffer, 5, 5 + idSize, "ClientIdentification id");
+        OrBuilder.create(() -> assertArrayEquals(new byte[]{0x03, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x04, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x05, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x06, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .run();
 
         // Assert ClientAuthentication
         int authentication = 5 + idSize;
@@ -118,11 +145,11 @@ public class SocketTest {
         assertTrue(dataHandler.connected);
     }
 
-    @DisplayName("connect() – no response")
     @Test
+    @Order(2)
+    @DisplayName("connect() – no response")
      void testConnectNoResponse() throws IOException {
-        warnConnect();
-
+        
         // Execute method and read socket output
         Thread clientThread = new Thread(this::connect);
         clientThread.start();
@@ -140,10 +167,10 @@ public class SocketTest {
     }
 
     @Test
+    @Order(3)
     @DisplayName("connect() – incorrect version")
     void testConnectWrongVersion() throws IOException {
-        warnConnect();
-
+        
         // Execute method and read socket output
         Thread clientThread = new Thread(this::connect);
         clientThread.start();
@@ -163,10 +190,10 @@ public class SocketTest {
     }
 
     @Test
+    @Order(4)
     @DisplayName("connect() – incorrect first byte")
     void testConnectWrongServerHelloFirstByte() throws IOException {
-        warnConnect();
-
+        
         // Execute method and read socket output
         Thread clientThread = new Thread(this::connect);
         clientThread.start();
@@ -186,10 +213,10 @@ public class SocketTest {
     }
 
     @Test
+    @Order(5)
     @DisplayName("connect() – incorrect second byte")
     void testConnectWrongServerHelloSecondByte() throws IOException {
-        warnConnect();
-
+        
         // Execute method and read socket output
         Thread clientThread = new Thread(this::connect);
         clientThread.start();
@@ -209,10 +236,10 @@ public class SocketTest {
     }
 
     @Test
+    @Order(6)
     @DisplayName("connect() – authentication failure")
     void testConnectAuthenticationFailure() throws IOException {
-        warnConnect();
-
+        
         // Execute method and read socket output
         Thread clientThread = new Thread(this::connect);
         clientThread.start();
@@ -236,10 +263,10 @@ public class SocketTest {
     // However, using getResponse() is still required. This is tested for.
     // (https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Server.20switchConnection.20ack/near/907721)
     @Test
+    @Order(7)
     @DisplayName("switchConnection(int) – successful")
     void testSwitchConnectionSuccess() throws IOException, InterruptedException {
-        warnConnect();
-        var handshakeMutex = new HandshakeMutex();
+                var handshakeMutex = new HandshakeMutex();
         setField(dataHandler, "handshakeMutex", handshakeMutex);
         // Execute method and read socket output
         Thread clientThread = new Thread(() -> {
@@ -271,6 +298,7 @@ public class SocketTest {
     }
 
     @Test
+    @Order(8)
     @DisplayName("sendMessage() – short")
     void testMessages() throws IOException, InterruptedException {
         String message = """
@@ -309,6 +337,7 @@ public class SocketTest {
     }
 
     @Test
+    @Order(9)
     @DisplayName("sendMessage() – huge")
     void testMessagesHuge() throws IOException, InterruptedException {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
