@@ -101,6 +101,7 @@ public class NetworkTest {
     //
     // [A] - Test that should <A>lawys pass and not be affected by code.
     // [P] - Test in <P>ublic environment.
+    // [T] - <T>emplate can be broken, ensure this.
     //
 
     //
@@ -109,7 +110,7 @@ public class NetworkTest {
 
     @Test
     @Order(1)
-    @DisplayName("should be able to login with credentials")
+    @DisplayName("[T] should be able to login with credentials")
     public void loginTest() throws Exception {
         assertTrue(dataHandler.login(username, password));
 
@@ -174,7 +175,7 @@ public class NetworkTest {
 
     @Test
     @Order(7)
-    @DisplayName("[P] should get messages from general channel")
+    @DisplayName("[P] [T] should get messages from general channel")
     public void getMessagesGeneralChatTest() throws Exception {
         var messages = dataHandler.getMessagesWithUser(1, 10, 0);
 
