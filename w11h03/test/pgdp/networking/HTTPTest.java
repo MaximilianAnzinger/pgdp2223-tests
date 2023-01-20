@@ -252,37 +252,37 @@ public class HTTPTest {
                             "to_id": 47,
                             "text": "Don't you remember his name? You know this. Deep down, you know. What was his name?",
                             "id": 438,
-                            "time": "2022-01-13T10:39:10.000Z"
+                            "time": "2022-01-13T10:39:10.808342"
                           },
                           {
                             "from_id": 47,
                             "to_id": 06,
                             "text": "Subject 6. Your name is 6.",
                             "id": 439,
-                            "time": "2022-01-13T10:40:10.000Z"
+                            "time": "2022-01-13T10:40:10.234983"
                           },
                           {
                             "from_id": 06,
                             "to_id": 47,
                             "text": "And what is our purpose?",
                             "id": 440,
-                            "time": "2022-01-13T10:40:20.000Z"
+                            "time": "2022-01-13T10:40:20.584023"
                           },
                           {
                             "from_id": 47,
                             "to_id": 06,
                             "text": "To take them all down.",
                             "id": 441,
-                            "time": "2022-01-13T10:40:43.000Z"
+                            "time": "2022-01-13T10:40:43.349201"
                           }
                         ]
                         """);
         var actual = dataHandler.getMessagesWithUser(06, 47, 0);
         var expected = List.of(
-                new ViewController.Message(ofEpoch(1642070350), "Don't you remember his name? You know this. Deep down, you know. What was his name?", false, 438),
-                new ViewController.Message(ofEpoch(1642070410), "Subject 6. Your name is 6.", true, 439),
-                new ViewController.Message(ofEpoch(1642070420), "And what is our purpose?", false, 440),
-                new ViewController.Message(ofEpoch(1642070443), "To take them all down.", true, 441)
+                new ViewController.Message(ofEpoch(1642070350, 808342000), "Don't you remember his name? You know this. Deep down, you know. What was his name?", false, 438),
+                new ViewController.Message(ofEpoch(1642070410, 234983000), "Subject 6. Your name is 6.", true, 439),
+                new ViewController.Message(ofEpoch(1642070420, 584023000), "And what is our purpose?", false, 440),
+                new ViewController.Message(ofEpoch(1642070443, 349201000), "To take them all down.", true, 441)
         );
         assertEquals(expected, actual);
     }
@@ -323,8 +323,8 @@ public class HTTPTest {
                 .run();
     }
 
-    private LocalDateTime ofEpoch(int n) {
-        return LocalDateTime.ofEpochSecond(n, 0, ZoneOffset.UTC);
+    private LocalDateTime ofEpoch(long es, int ns) {
+        return LocalDateTime.ofEpochSecond(es, ns, ZoneOffset.UTC);
     }
 
     private String requestToken(String username, String password) {
