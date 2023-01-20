@@ -158,8 +158,7 @@ public class SocketTest {
         client.getOutputStream().write(new byte[]{0x00, 0x00, 0x2b});
         client.getOutputStream().flush();
         var buffer = getAllBytes(clientThread, client);
-        assertNotNull(lastThrowable, "connect() did not throw an exception when it was supposed to.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "connect() threw wrong Exception.");
+        assertThrowsExactly(DataHandler.ConnectionException.class);
         assertEquals(0, buffer.length, "Sent unexpected bytes to socket.");
 
         // Assert DataHandler attributes
@@ -181,7 +180,7 @@ public class SocketTest {
         client.getOutputStream().write(new byte[]{0x01, 0x00, 0x2a});
         client.getOutputStream().flush();
         var buffer = getAllBytes(clientThread, client);
-        assertNotNull(lastThrowable, "connect() did not throw an exception when it was supposed to.");
+        assertThrowsExactly(DataHandler.ConnectionException.class);
         assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "connect() threw wrong Exception.");
         assertEquals(0, buffer.length, "Sent unexpected bytes to socket.");
 
@@ -204,8 +203,7 @@ public class SocketTest {
         client.getOutputStream().write(new byte[]{0x00, 0x01, 0x2a});
         client.getOutputStream().flush();
         var buffer = getAllBytes(clientThread, client);
-        assertNotNull(lastThrowable, "connect() did not throw an exception when it was supposed to.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "connect() threw wrong Exception.");
+        assertThrowsExactly(DataHandler.ConnectionException.class);
         assertEquals(0, buffer.length, "Sent unexpected bytes to socket.");
 
         // Assert DataHandler attributes
@@ -245,7 +243,7 @@ public class SocketTest {
         client.getOutputStream().flush();
         var buffer = getAllBytes(clientThread, client);
         assertTrue(handshakeMutex.wasDequeued, "The handshakeMutex was not empty. This is likely because you did not use getResponse().");
-        assertNull(lastThrowable, "switchConnection() threw an exception when it wasn't supposed to.");
+        assertDoesNotThrow();
         byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
         OrBuilder
                 .assertThat(() -> assertArrayEquals(new byte[]{0x03, 0x23, (byte) 0xcc, (byte) 0x8b}, buffer))
@@ -407,6 +405,27 @@ public class SocketTest {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             lastThrowable = e.getCause();
+        }
+    }
+
+    private void assertDoesNotThrow() {
+        if (lastThrowable != null) {
+            System.err.println("connect() threw an exception when it wasn't supposed to.");
+            lastThrowable.printStackTrace();
+        }
+        assertNull(lastThrowable);
+    }
+
+    private void assertThrowsExactly(Class<?> exception) {
+        if (lastThrowable == null) {
+            System.err.println("connect() did not throw an exception when it was supposed to.");
+            assertEquals(exception, null);
+        } else if (!lastThrowable.getClass().equals(exception)) {
+            System.err.println("connect() threw an incorrect exception.");
+            System.err.println("Expected: <" + exception.getName() + ">.");
+            System.err.println("Was:");
+            lastThrowable.printStackTrace();
+            assertEquals(exception, lastThrowable.getClass());
         }
     }
 
