@@ -1,6 +1,5 @@
 package pgdp.networking;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,8 +48,6 @@ public class SocketTest {
                             + "Error:\n" + e
             );
         }
-        System.out.println("""
-                If you are using a slower device and your SocketTests keep failing for no reason, try increasing the SOCKET_TIMEOUT.""");
     }
 
     @BeforeEach
@@ -82,6 +79,9 @@ public class SocketTest {
         System.out.println("""
                 If a test prints an exception but neither succeeds nor fails, some method called System.exit().
                 This is likely because you threw an Exception which was not DataHandler.ConnectionException.
+                """);
+        System.out.println("""
+                If you are using a slower device and your SocketTests keep failing for no reason, try increasing the SOCKET_TIMEOUT.
                 """);
         System.out.println("""
                 Occasionally, the handleInput thread might crash with an EOFException and terminate the tests.
@@ -116,13 +116,14 @@ public class SocketTest {
         byte[] actualIdentification = copyOf(buffer, 2, 4, "ClientIdentification");
         assertArrayEquals(clientIdentification, actualIdentification, "Did not receive ClientIdentification as expected.");
         byte idSize = copyOf(buffer, 4, 5, "ClientIdentification k")[0];
-        byte[] idBuffer = copyOf(buffer, 5, 5 + idSize, "ClientIdentification id");
-        OrBuilder.create(() -> assertArrayEquals(new byte[]{0x03, 0x01, 0x49, 0x76}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x04, 0x00, 0x01, 0x49, 0x76}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x05, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x06, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
-                .or(() -> assertArrayEquals(new byte[]{0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+        byte[] idBuffer = copyOf(buffer, 2, 5 + idSize, "ClientIdentification id");
+        OrBuilder
+                .assertThat(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x03, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x04, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x05, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x06, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x02, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x49, 0x76}, idBuffer))
                 .run();
 
         // Assert ClientAuthentication
@@ -130,12 +131,13 @@ public class SocketTest {
         byte[] expectedAuthentication = new byte[] {0x00, 0x03};
         byte[] actualAuthentication = copyOf(buffer, authentication, authentication + 2, "ClientAuthentication");
         assertArrayEquals(actualAuthentication, expectedAuthentication);
-        int tokenLength = bufferToInt(copyOf(buffer, authentication + 2, authentication + 4, "ClientAuthentication k"));
-        String token = new String(copyOf(buffer, authentication + 4, authentication + 4 + tokenLength, "ClientAuthentication token"), StandardCharsets.UTF_8);
+        byte[] lengthBuffer = copyOf(buffer, authentication + 2, authentication + 4, "ClientAuthentication k");
+        assertArrayEquals(new byte[] {0, 12}, lengthBuffer, "Incorrect length");
+        String token = new String(copyOf(buffer, authentication + 4, authentication + 16, "ClientAuthentication token"), StandardCharsets.UTF_8);
         assertEquals("exampleToken", token);
 
         // Assert end of output
-        assertEquals(authentication + 4 + tokenLength, buffer.length, "Transferred bytes did not end after ClientAuthentication.");
+        assertEquals(authentication + 16, buffer.length, "Transferred bytes did not end after ClientAuthentication.");
 
         // Assert DataHandler attributes
         // This doesn't check if they were set correctly, only if they were set at all.
@@ -290,8 +292,15 @@ public class SocketTest {
         assertTrue(handshakeMutex.wasDequeued, "The handshakeMutex was not empty. This is likely because you did not use getResponse().");
         assertNull(lastThrowable, "switchConnection() threw an exception when it wasn't supposed to.");
         byte idSize = copyOf(buffer, 0, 1, "PartnerSwitch k")[0];
-        long id = bufferToLong(copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id"));
-        assertEquals(2346123, id, "Client sent incorrect id.");
+        byte[] idBuffer = copyOf(buffer, 1, 1 + idSize, "PartnerSwitch id");
+        OrBuilder
+                .assertThat(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x03, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x04, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x05, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x06, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x07, 0x00, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .or(() -> assertArrayEquals(new byte[]{0x00, 0x04, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x23, (byte) 0xcc, (byte) 0x8b}, idBuffer))
+                .run();
 
         // Assert end of output
         assertEquals(1 + idSize, buffer.length, "Transferred bytes did not end after PartnerSwitch.");
@@ -306,7 +315,6 @@ public class SocketTest {
                     And I got to help make something pretty cool, so I’ve got no complaints.
                     I mean, not me, exactly, but close enough.
                     It’s the kind of thing that makes you glad you stopped and smelled the pine trees along the way, you know?""";
-        byte[] messageBuffer = StandardCharsets.UTF_8.encode(message).array();
         Thread connectThread = new Thread(this::connect);
         connectThread.start();
         Socket client = server.accept();
@@ -322,18 +330,29 @@ public class SocketTest {
         Thread.sleep(SOCKET_TIMEOUT);
         // Write ACK
         var buffer = getAllBytes(clientThread, client);
-        assertEquals(0x01, buffer[0], "First byte");
-        assertEquals(messageBuffer.length, bufferToInt(copyOf(buffer, 1, 3, "Message length")), "Message length");
+        assertEquals(0x01, buffer[0], "Incorrect first byte");
+        var actualLength = copyOf(buffer, 1, 3, "Message length");
 
-        var expected = new byte[3 + messageBuffer.length];
-        expected[0] = 0x01;
-        expected[1] = (byte) 1;
-        expected[2] = (byte) 35;
-        System.arraycopy(messageBuffer, 0, expected, 3, expected.length - 3);
-        assertArrayEquals(expected, buffer);
+        // See below
+        OrBuilder
+                .assertThat(() -> assertArrayEquals(new byte[]{0x01, 0x23}, actualLength))
+                .or(() -> assertArrayEquals(new byte[]{0x01, 0x0D}, actualLength))
+                .withMessage("Incorrect message length")
+                .run();
+
+        String actualMessage = new String(buffer, StandardCharsets.UTF_8).substring(3);
+        int messageLength = actualMessage.length();
+
+        // THIS REMOVES NULL-BYTES AT THE END OF THE STRING AND DELIBERATELY ALLOWS FOR A FAULTY REPRESENTATION OF THE MESSAGE
+        // This is because the transformation into a byte-array is done incorrectly in the template
+        // https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/StandardCharsets.2EUTF_8.2Eencode.28message.29.2Earray.28.29/near/909726
+        if (buffer.length == 294) {
+            actualMessage = actualMessage.replace("\00", "");
+        }
+        assertEquals(message, actualMessage, "Incorrect message content.");
 
         // Assert end of output
-        assertEquals(expected.length, buffer.length, "Transferred bytes did not end after expected message.");
+        assertEquals(messageLength + 7, buffer.length, "Transferred bytes did not end after expected message.");
     }
 
     @Test
@@ -359,8 +378,8 @@ public class SocketTest {
         // Write ACK
         var buffer = getAllBytes(clientThread, client);
         assertEquals(0x01, buffer[0], "First byte");
-        int messageLength = bufferToInt(copyOf(buffer, 1, 3, "Message length"));
-        assertEquals(0xffff, messageLength, "Message length was incorrect.");
+        byte[] actualLength = copyOf(buffer, 1, 3, "Message length");
+        assertArrayEquals(new byte[] {(byte) 0xff, (byte) 0xff}, actualLength, "Message length was incorrect.");
         assertEquals(lipsumTruncated, new String(buffer).substring(3), "Text message was incorrect.");
         // Assert end of output
         assertEquals(65538, buffer.length, "Transferred too many or too few bytes.");
@@ -407,40 +426,6 @@ public class SocketTest {
                     + from + " up to index " + to + " (exclusive).\nWas: " + Arrays.toString(bytes));
         }
         return out;
-    }
-
-    private void warnConnect() {
-        System.out.println("""
-                If this test doesn't finish, it's likely because you are using the address of the server (carol.sse.cit.tum.de) directly.
-                Instead, please use the variable DataHandler.serverAddress.
-                """);
-        System.out.println("""
-                If this method does not finish, you likely threw an Exception that was not DataHandler.ConnectionException or your client is trying to read bytes which are never being sent.
-                """);
-    }
-
-    private static int bufferToInt(byte[] bytes) {
-        if (bytes.length > 4) throw new IllegalArgumentException("`bytes.length` may not be larger than 4.");
-        int n = 0;
-        for (int i = 0; i < bytes.length; i++) {
-            int shift = (bytes.length - i - 1) * 8;
-            int b = bytes[i];
-            if (b < 0) b = 256 + b;
-            n |= b << shift;
-        }
-        return n;
-    }
-
-    private static long bufferToLong(byte[] bytes) {
-        if (bytes.length > 8) throw new IllegalArgumentException("`bytes.length` may not be larger than 8.");
-        long n = 0;
-        for (int i = 0; i < bytes.length; i++) {
-            int shift = (bytes.length - i - 1) * 8;
-            long b = bytes[i];
-            if (b < 0) b = 256 + b;
-            n |= b << shift;
-        }
-        return n;
     }
 
     /**
