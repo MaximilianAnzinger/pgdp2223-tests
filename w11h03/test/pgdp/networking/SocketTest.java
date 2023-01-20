@@ -335,7 +335,7 @@ public class SocketTest {
         assertEquals(0x01, buffer[0], "First byte");
         byte[] actualLength = copyOf(buffer, 1, 3, "Message length");
         assertArrayEquals(new byte[] {(byte) 0xff, (byte) 0xff}, actualLength, "Message length was incorrect.");
-        assertEquals(lipsumTruncated, new String(buffer).substring(3), "Text message was incorrect.");
+        assertEquals(lipsumTruncated, new String(buffer, StandardCharsets.UTF_8).substring(3), "Text message was incorrect.");
         // Assert end of output
         assertEquals(65538, buffer.length, "Transferred too many or too few bytes.");
     }
