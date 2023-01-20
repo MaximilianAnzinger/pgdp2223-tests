@@ -1,12 +1,14 @@
 package pgdp.networking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -27,10 +29,6 @@ public class NetworkTest {
     private static String username;
     private static String password;
     private static int id;
-
-    // Don't send NSFW kthx
-
-    private static final int ANATOLYS_ID = 361563966;
 
     //
     // Register the first possible not reserved kennung.
@@ -101,11 +99,17 @@ public class NetworkTest {
     // [P] - Test in <P>ublic environment.
     //
 
+    //
+    // <region structural tests>
+    //
+
     @Test
     @Order(1)
     @DisplayName("should request token")
     public void requestTokenTest() {
-        assertNotNull(dataHandler.requestToken());
+        var token = dataHandler.requestToken();
+        assertNotNull(token);
+        System.out.println("TOKEN: " + token);
     }
 
     @Test
@@ -117,12 +121,12 @@ public class NetworkTest {
 
     @Test
     @Order(3)
-    @DisplayName("should login with credentials")
+    @DisplayName("should be able to login with credentials")
     public void loginTest() throws Exception {
         assertTrue(dataHandler.login(username, password));
 
         id = (int) Lib.getField(dataHandler, "id").get(dataHandler);
-        System.out.println(id);
+        System.out.println("ID: " + id);
 
         assertNotNull(id);
         assertTrue(id > 0);
@@ -140,13 +144,64 @@ public class NetworkTest {
 
     @Test
     @Order(5)
-    @DisplayName("should get messages with user zero")
+    @DisplayName("should get messages in general")
     public void getMessagesWithUserTest() throws Exception {
-        assertNotNull(dataHandler.getMessagesWithUser(0, 0, 0));
+        assertNotNull(dataHandler.getMessagesWithUser(1, 0, 0));
     }
+
+    //
+    // </end-region>
+    // <region behaviour tests>
+    //
 
     @Test
     @Order(6)
+    @DisplayName("[P] [A] should set visibility to public")
+    public void setVisibilityToPublic() throws Exception {
+        assertTrue(Lib.makePublic(dataHandler, true));
+    }
+
+    @Test
+    @Order(7)
+    @DisplayName("[P] should get messages from general channel")
+    public void getMessagesGeneralChatPublicTest() throws Exception {
+        var messages = dataHandler.getMessagesWithUser(1, 10, 0);
+
+        assertNotNull(messages);
+        assertEquals(10, messages.size());
+
+        //
+        // Konrad's message
+        //
+
+        assertEquals(LocalDateTime.parse("2023-01-19T02:08:41.226077"), messages.get(0).date());
+
+        assertEquals("Konrad: Hallo zusammen :)\u0000", messages.get(0).content());
+
+        // https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/self.20Parameter.20der.20Message/near/906780
+        // The average user is not Konrad.
+        assertFalse(messages.get(0).self());
+
+        assertEquals(2591, messages.get(0).id());
+
+        //
+        // Possible Edge Case: Last Message
+        //
+
+        assertEquals(LocalDateTime.parse("2023-01-19T02:19:04.687715"), messages.get(9).date());
+        assertEquals("bulbasaur: Guna", messages.get(9).content());
+        // If you are bulbasaur this test will fail
+        assertFalse(messages.get(9).self());
+        assertEquals(2603, messages.get(9).id());
+    }
+
+    //
+    // </end-region>
+    // <region socket tests>
+    //
+
+    @Test
+    @Order(20)
     @DisplayName("should connect")
     public void connectTest() throws Exception {
         //
@@ -161,77 +216,57 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(7)
+    @Order(21)
     @DisplayName("[A] should switch partner")
     public void partnerSwitchTest() throws Exception {
-        // If not crash -> Test went good?
+        // TODO If not crash -> Test went good?
         dataHandler.switchConnection(id);
     }
 
     @Test
-    @Order(8)
+    @Order(22)
     @DisplayName("[A] should send message")
     public void sendMessageTest() throws Exception {
-        // If not crash -> Test went good?
+        // TODO If not crash -> Test went good?
         dataHandler.sendMessage("Hello, Pingu!");
     }
 
     @Test
-    @Order(9)
+    @Order(23)
     @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
-        var _todo = dataHandler.getMessagesWithUser(0, 0, 0);
+        // TODO
+        var _todo = dataHandler.getMessagesWithUser(id, 10, 0);
         System.out.println(_todo);
     }
 
     @Test
-    @Order(10)
-    @DisplayName("[A] should set visibility to public")
-    public void setVisibilityToPublic() throws Exception {
-        assertTrue(Lib.makePublic(dataHandler, true));
-    }
-
-    @Test
-    @Order(11)
-    @DisplayName("[P] should get contacts")
-    public void getContactsPublicTest() throws Exception {
-        // TODO
-        var users = dataHandler.getContacts();
-
-        assertTrue(users.containsKey(id));
-        assertEquals(username, users.get(id).name());
-    }
-
-    @Test
-    @Order(12)
-    @DisplayName("[P] should get messages with user zero")
-    public void getMessagesWithUserPublicTest() throws Exception {
-        // TODO
-        assertNotNull(dataHandler.getMessagesWithUser(0, 0, 0));
-    }
-
-    @Test
-    @Order(13)
-    @DisplayName("[P] [A] should switch partner to anatoly")
+    @Order(24)
+    @DisplayName("[P] [A] should switch partner to general chat")
     public void partnerSwitchPublicTest() throws Exception {
         // TODO
-        dataHandler.switchConnection(ANATOLYS_ID);
+        dataHandler.switchConnection(1);
     }
 
     @Test
-    @Order(14)
-    @DisplayName("[P] [A] should send message")
+    @Order(25)
+    @DisplayName("[P] [A] should send message to switched-to user")
     public void sendMessagePublicTest() throws Exception {
         // TODO
         dataHandler.sendMessage("Hello, Pingu!");
     }
 
-    @Test
-    @Order(15)
-    @DisplayName("[P] should check `sendMessageTest` by actually checking if messages were updated")
-    public void updatedMessagesPublicTest() throws Exception {
-        // TODO
-        var _todo = dataHandler.getMessagesWithUser(0, 0, 0);
-        System.out.println(_todo);
-    }
+    //
+    // </end-region>
+    //
+
+    // @Test
+    // @Order(26)
+    // @DisplayName("[P] should contain contacted user")
+    // public void getContactsPublicTest() throws Exception {
+    //     var users = dataHandler.getContacts();
+
+    //     assertTrue(users.containsKey(PENGUIN_ID));
+    //     assertEquals("The One and Only", users.get(PENGUIN_ID).name());
+    // }
 }
