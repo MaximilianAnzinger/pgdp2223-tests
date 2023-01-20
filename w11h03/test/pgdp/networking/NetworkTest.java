@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -19,6 +20,8 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import pgdp.networking.ViewController.Message;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class NetworkTest {
@@ -206,7 +209,7 @@ public class NetworkTest {
     //
 
     @Test
-    @Order(20)
+    @Order(8)
     @DisplayName("should connect")
     public void connectTest() throws Exception {
         Lib.getMethod(dataHandler, "connect").invoke(dataHandler);
@@ -224,35 +227,63 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(21)
+    @Order(9)
     @DisplayName("[A] should switch partner to general channel")
     public void partnerSwitchTest() throws Exception {
         dataHandler.switchConnection(1);
+
+        //
+        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        //
+        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
 
     @Test
-    @Order(22)
+    @Order(10)
     @DisplayName("[A] should switch partner to faid")
     public void partnerSwitchToFaidTest() throws Exception {
         dataHandler.switchConnection(2032346041);
+
+        //
+        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        //
+        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
 
     @Test
-    @Order(23)
+    @Order(11)
     @DisplayName("[A] should send message")
-    public void sendMessageTest() {
-        // TODO If not crash -> Test went good?
+    public void sendMessageTest() throws Exception {
         dataHandler.sendMessage("Hello, Pingu!");
+
+        //
+        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        //
+        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
 
     @Test
-    @Order(24)
+    @Order(12)
     @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
-        // TODO
-        var _todo = dataHandler.getMessagesWithUser(id, 10, 0);
-        System.out.println(_todo);
+        // Ensure we see the messages from last page.
+        List<Message> messages;
+        do {
+            messages = dataHandler.getMessagesWithUser(2032346041, 10, 0);
+        } while (messages.size() == 10);
+
+        // Get last message from last page.
+        var lastMessage = messages.get(messages.size() - 1);
+
+        System.out.println(lastMessage);
     }
+
+    //
+    // </end-region>
+    // <region interaction test>
+    //
+
+    // TODO
 
     //
     // </end-region>
