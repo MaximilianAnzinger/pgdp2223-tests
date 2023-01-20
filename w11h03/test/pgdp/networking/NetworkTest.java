@@ -35,6 +35,12 @@ public class NetworkTest {
     private static String password;
     private static int id;
     
+    //
+    // I gave you my id.
+    // Behave.
+    //
+    
+    private static int recipient = 361563966;
     private static String msg = "Hello, Pingu! (" + Lib.generateString(new Random()) + ")";
 
     //
@@ -162,15 +168,20 @@ public class NetworkTest {
         assertTrue(users.containsKey(id));
         assertEquals(username, users.get(id).name());
 
-        // Should contain Faid
+        // Should contain User 1
 
         assertTrue(users.containsKey(2032346041));
         assertEquals("faid", users.get(2032346041).name());
 
-        // Should contain Nils
+        // Should contain User 2
 
         assertTrue(users.containsKey(1259660950));
         assertEquals("nilsreichardt", users.get(1259660950).name());
+
+        // Should contain User 3
+
+        assertTrue(users.containsKey(361563966));
+        assertEquals("The One and Only", users.get(361563966).name());
     }
 
     @Test
@@ -246,7 +257,7 @@ public class NetworkTest {
     @Order(10)
     @DisplayName("[A] should switch partner to faid")
     public void partnerSwitchToFaidTest() throws Exception {
-        dataHandler.switchConnection(2032346041);
+        dataHandler.switchConnection(recipient);
 
         //
         // TODO System.err catch -> if this method throws, there was a problem with connect.
@@ -273,7 +284,7 @@ public class NetworkTest {
         // Ensure we see the messages from last page.
         List<Message> messages;
         do {
-            messages = dataHandler.getMessagesWithUser(2032346041, 50, 0);
+            messages = dataHandler.getMessagesWithUser(recipient, 50, 0);
         } while (messages.size() == 10);
 
         // Get last message from last page.
