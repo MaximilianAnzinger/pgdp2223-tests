@@ -243,18 +243,6 @@ public class NetworkTest {
 
     @Test
     @Order(9)
-    @DisplayName("[A] should switch partner to general channel")
-    public void partnerSwitchTest() throws Exception {
-        dataHandler.switchConnection(1);
-
-        //
-        // TODO System.err catch -> if this method throws, there was a problem with connect.
-        //
-        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
-    }
-
-    @Test
-    @Order(10)
     @DisplayName("[A] should switch partner to faid")
     public void partnerSwitchToFaidTest() throws Exception {
         dataHandler.switchConnection(recipient);
@@ -266,7 +254,7 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(11)
+    @Order(10)
     @DisplayName("[A] should send message")
     public void sendMessageTest() throws Exception {
         dataHandler.sendMessage(msg);
@@ -278,7 +266,7 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(12)
+    @Order(11)
     @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
         // Ensure we see the messages from last page.
@@ -299,7 +287,29 @@ public class NetworkTest {
     // <region interaction test>
     //
 
-    // TODO
+    @Test
+    @Order(12)
+    @DisplayName("[A] should switch partner to general channel")
+    public void partnerSwitchTest() throws Exception {
+        dataHandler.switchConnection(1);
+
+        //
+        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        //
+        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
+    }
+
+    @Test
+    @Order(13)
+    @DisplayName("[A] should send message")
+    public void spamGeneralTest() throws Exception {
+        dataHandler.sendMessage("Hallo, ich bin ein Network Bot von " + username + " und mein Passwort ist: " + Lib.generateString(new Random()));
+
+        //
+        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        //
+        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
+    }
 
     //
     // </end-region>
