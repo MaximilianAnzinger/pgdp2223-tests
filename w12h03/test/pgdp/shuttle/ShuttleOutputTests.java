@@ -10,6 +10,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static pgdp.shuttle.ReflectionHelper.getTaskQueue;
 
 public class ShuttleOutputTests {
 
@@ -48,11 +49,11 @@ public class ShuttleOutputTests {
         so.start();
         Thread.sleep(30);
 
-        assertEquals("Test task 1\n" +
-                "Test task 2\n" +
-                "Test task 3\n" +
-                "Test task 4\n" +
-                "Test task 5\n", out.toString());
+        assertEquals("Result: Test task 1\n" +
+                "Result: Test task 2\n" +
+                "Result: Test task 3\n" +
+                "Result: Test task 4\n" +
+                "Result: Test task 5\n", out.toString());
 
         out.reset();
         so.shutDown();
@@ -63,14 +64,14 @@ public class ShuttleOutputTests {
 
     @Test
     @DisplayName("Should output and shut down correctly when tasks are added after starting")
-    public void testOutput2() throws InterruptedException {
+    public void testOutput2() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var so = new ShuttleOutput();
         var taskGen = new TestTaskGenerator(new Random(69), 4, 5);
 
         so.start();
         for(int i = 0; i < 5; i++) {
             Thread.sleep(5);
-            so.addTask(taskGen.generateTask());
+            getTaskQueue(so).add(taskGen.generateTask());
 
             synchronized (so) {
                 so.notify();
@@ -79,11 +80,11 @@ public class ShuttleOutputTests {
 
         Thread.sleep(30);
 
-        assertEquals("Test task 1\n" +
-                "Test task 2\n" +
-                "Test task 3\n" +
-                "Test task 4\n" +
-                "Test task 5\n", out.toString());
+        assertEquals("Result: Test task 1\n" +
+                "Result: Test task 2\n" +
+                "Result: Test task 3\n" +
+                "Result: Test task 4\n" +
+                "Result: Test task 5\n", out.toString());
 
         out.reset();
         so.shutDown();
@@ -110,14 +111,14 @@ public class ShuttleOutputTests {
 
     @Test
     @DisplayName("Should wait when idle and only process new tasks when notified")
-    public void testWaitWhenIdle() throws InterruptedException {
+    public void testWaitWhenIdle() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var so = new ShuttleOutput();
 
         so.start();
         Thread.sleep(5);
 
         assertEquals(Thread.State.WAITING, so.getState());
-        so.addTask(new TestTaskGenerator(new Random(69), 4, 5).generateTask());
+        getTaskQueue(so).add(new TestTaskGenerator(new Random(69), 4, 5).generateTask());
 
         Thread.sleep(5);
         assertEquals("", out.toString(), "Should have waited until notified of a change.");
@@ -127,7 +128,7 @@ public class ShuttleOutputTests {
         }
 
         Thread.sleep(5);
-        assertEquals("Test task 1\n", out.toString(), "Should have processed task after being notified.");
+        assertEquals("Result: Test task 1\n", out.toString(), "Should have processed task after being notified.");
         so.shutDown();
     }
 }
