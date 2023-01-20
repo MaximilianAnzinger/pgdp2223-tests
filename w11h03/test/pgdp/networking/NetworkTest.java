@@ -3,7 +3,6 @@ package pgdp.networking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -11,7 +10,6 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -228,23 +226,15 @@ public class NetworkTest {
     @Test
     @Order(21)
     @DisplayName("[A] should switch partner to general channel")
-    public void partnerSwitchTest() {
-        try {
-            dataHandler.switchConnection(1);
-        } catch (Exception e) {
-            fail();
-        }
+    public void partnerSwitchTest() throws Exception {
+        dataHandler.switchConnection(1);
     }
 
     @Test
     @Order(22)
     @DisplayName("[A] should switch partner to faid")
-    public void partnerSwitchToFaidTest() {
-        try {
-            dataHandler.switchConnection(2032346041);
-        } catch (Exception e) {
-            fail();
-        }
+    public void partnerSwitchToFaidTest() throws Exception {
+        dataHandler.switchConnection(2032346041);
     }
 
     @Test
