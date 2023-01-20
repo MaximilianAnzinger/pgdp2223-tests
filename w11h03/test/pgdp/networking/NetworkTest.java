@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -33,6 +34,8 @@ public class NetworkTest {
     private static String username;
     private static String password;
     private static int id;
+    
+    private static String msg = "Hello, Pingu! (" + Lib.generateString(new Random()) + ")";
 
     //
     // Register the first possible not reserved kennung.
@@ -78,9 +81,6 @@ public class NetworkTest {
                     """);
             return;
         }
-
-        Lib.getField(dataHandler, "username").set(dataHandler, username);
-        Lib.getField(dataHandler, "password").set(dataHandler, password);
 
         executeTests = true;
         System.out.println("RUNNING TESTS...");
@@ -134,6 +134,9 @@ public class NetworkTest {
 
         assertNotNull(id);
         assertTrue(id > 0);
+
+        assertEquals(username, (String) Lib.getField(dataHandler, "username").get(dataHandler));
+        assertEquals(password, (String) Lib.getField(dataHandler, "password").get(dataHandler));
     }
 
     //
@@ -254,7 +257,7 @@ public class NetworkTest {
     @Order(11)
     @DisplayName("[A] should send message")
     public void sendMessageTest() throws Exception {
-        dataHandler.sendMessage("Hello, Pingu!");
+        dataHandler.sendMessage(msg);
 
         //
         // TODO System.err catch -> if this method throws, there was a problem with connect.
@@ -269,13 +272,14 @@ public class NetworkTest {
         // Ensure we see the messages from last page.
         List<Message> messages;
         do {
-            messages = dataHandler.getMessagesWithUser(2032346041, 10, 0);
+            messages = dataHandler.getMessagesWithUser(2032346041, 50, 0);
         } while (messages.size() == 10);
 
         // Get last message from last page.
         var lastMessage = messages.get(messages.size() - 1);
 
-        System.out.println(lastMessage);
+        // Check if the message equals to the one sent in `sendMessageTest()`
+        assertEquals(msg, lastMessage.content().substring(0, msg.length()));
     }
 
     //
