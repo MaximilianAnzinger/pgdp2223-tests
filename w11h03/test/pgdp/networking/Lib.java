@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Random;
 
 public class Lib {
     //
@@ -33,6 +34,16 @@ public class Lib {
         method.setAccessible(true);
         return method;
     }
+
+    //
+    // https://github.com/MaximilianAnzinger/pgdp2223-tests/pull/166/commits/17eff9398b48df73f6e5d3133055fe267da387f9
+    //
+
+    public static String generateString(Random rnd) {
+		StringBuilder s = new StringBuilder();
+		rnd.ints(rnd.nextInt(255), 97, 122).mapToObj(i -> (char) i).forEach(c -> s.append(c));
+		return s.toString();
+	}
 
     //
     // Set user private/ public
