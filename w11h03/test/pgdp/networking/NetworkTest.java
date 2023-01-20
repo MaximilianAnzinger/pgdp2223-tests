@@ -114,9 +114,9 @@ public class NetworkTest {
 
     @Test
     @Order(2)
-    @DisplayName("should set visibility to private")
-    public void setVisibilityToPrivate() throws Exception {
-        assertTrue(Lib.makePublic(dataHandler, false));
+    @DisplayName("should set visibility to public")
+    public void setVisibilityToPublic() throws Exception {
+        assertTrue(Lib.makePublic(dataHandler, true));
     }
 
     @Test
@@ -132,23 +132,6 @@ public class NetworkTest {
         assertTrue(id > 0);
     }
 
-    @Test
-    @Order(4)
-    @DisplayName("should get contacts")
-    public void getContactsTest() throws Exception {
-        var users = dataHandler.getContacts();
-
-        assertTrue(users.containsKey(id));
-        assertEquals(username, users.get(id).name());
-    }
-
-    @Test
-    @Order(5)
-    @DisplayName("should get messages in general")
-    public void getMessagesWithUserTest() throws Exception {
-        assertNotNull(dataHandler.getMessagesWithUser(1, 0, 0));
-    }
-
     //
     // </end-region>
     // <region behaviour tests>
@@ -156,15 +139,8 @@ public class NetworkTest {
 
     @Test
     @Order(6)
-    @DisplayName("[P] [A] should set visibility to public")
-    public void setVisibilityToPublic() throws Exception {
-        assertTrue(Lib.makePublic(dataHandler, true));
-    }
-
-    @Test
-    @Order(7)
     @DisplayName("[P] should contain youself in contacts")
-    public void getContactsPublicTest() throws Exception {
+    public void getContactsTest() throws Exception {
         var users = dataHandler.getContacts();
 
         assertNotNull(users);
@@ -173,9 +149,9 @@ public class NetworkTest {
     }
 
     @Test
-    @Order(8)
+    @Order(7)
     @DisplayName("[P] should get messages from general channel")
-    public void getMessagesGeneralChatPublicTest() throws Exception {
+    public void getMessagesGeneralChatTest() throws Exception {
         var messages = dataHandler.getMessagesWithUser(1, 10, 0);
 
         assertNotNull(messages);
@@ -249,22 +225,6 @@ public class NetworkTest {
         // TODO
         var _todo = dataHandler.getMessagesWithUser(id, 10, 0);
         System.out.println(_todo);
-    }
-
-    @Test
-    @Order(24)
-    @DisplayName("[P] [A] should switch partner to general chat")
-    public void partnerSwitchPublicTest() throws Exception {
-        // TODO
-        dataHandler.switchConnection(1);
-    }
-
-    @Test
-    @Order(25)
-    @DisplayName("[P] [A] should send message to switched-to user")
-    public void sendMessagePublicTest() throws Exception {
-        // TODO
-        dataHandler.sendMessage("Hello, Pingu!");
     }
 
     //
