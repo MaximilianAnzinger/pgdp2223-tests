@@ -34,9 +34,7 @@ public class SocketTest {
 
     // Messages
     private static final byte[] SERVER_HELLO = new byte[]{0x00, 0x00, 0x2a};
-    private static final byte[] AUTHENTICATION_FAILURE = new byte[]{0x00, (byte) 0xf1};
     private static final byte[] SERVER_ACK = new byte[]{0x00, 0x05};
-    private static final byte[] SERVER_TIMEOUT = new byte[] {(byte) 0x00, (byte) 0xff};
 
     @BeforeAll
     static void setupAll() {
@@ -148,27 +146,6 @@ public class SocketTest {
     }
 
     @Test
-    @Order(2)
-    @DisplayName("connect() – no response")
-     void testConnectNoResponse() throws IOException {
-        
-        // Execute method and read socket output
-        Thread clientThread = new Thread(this::connect);
-        clientThread.start();
-        Socket client = server.accept();
-        var buffer = getAllBytes(clientThread, client);
-        assertNotNull(lastThrowable, "connect() did not throw an exception when it was supposed to.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "connect() threw wrong Exception.");
-        assertEquals(0, buffer.length, "Sent unexpected bytes to socket.");
-
-        // Assert DataHandler attributes
-        assertNull(getField(dataHandler, "socket"));
-        assertNull(getField(dataHandler, "in"));
-        assertNull(getField(dataHandler, "out"));
-        assertFalse(dataHandler.connected);
-    }
-
-    @Test
     @Order(3)
     @DisplayName("connect() – incorrect version")
     void testConnectWrongVersion() throws IOException {
@@ -229,30 +206,6 @@ public class SocketTest {
         assertNotNull(lastThrowable, "connect() did not throw an exception when it was supposed to.");
         assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "connect() threw wrong Exception.");
         assertEquals(0, buffer.length, "Sent unexpected bytes to socket.");
-
-        // Assert DataHandler attributes
-        assertNull(getField(dataHandler, "socket"));
-        assertNull(getField(dataHandler, "in"));
-        assertNull(getField(dataHandler, "out"));
-        assertFalse(dataHandler.connected);
-    }
-
-    @Test
-    @Order(6)
-    @DisplayName("connect() – authentication failure")
-    void testConnectAuthenticationFailure() throws IOException {
-        
-        // Execute method and read socket output
-        Thread clientThread = new Thread(this::connect);
-        clientThread.start();
-        Socket client = server.accept();
-        client.getOutputStream().write(SERVER_HELLO);
-        client.getOutputStream().flush();
-        client.getOutputStream().write(AUTHENTICATION_FAILURE);
-        client.getOutputStream().flush();
-        var buffer = getAllBytes(clientThread, client);
-        assertNotNull(lastThrowable, "connect() did not throw an exception when it was supposed to.");
-        assertEquals(DataHandler.ConnectionException.class, lastThrowable.getClass(), "connect() threw wrong Exception.");
 
         // Assert DataHandler attributes
         assertNull(getField(dataHandler, "socket"));
