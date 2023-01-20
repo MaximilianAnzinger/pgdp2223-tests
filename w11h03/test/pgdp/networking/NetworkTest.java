@@ -196,6 +196,8 @@ public class NetworkTest {
     @DisplayName("[P] [T] should get messages from general channel")
     @Disabled
     public void getMessagesGeneralChatTest() throws Exception {
+        // TODO
+        
         var messages = dataHandler.getMessagesWithUser(1, 10, 0);
 
         assertNotNull(messages);
