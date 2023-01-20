@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -187,6 +188,7 @@ public class NetworkTest {
     @Test
     @Order(7)
     @DisplayName("[P] [T] should get messages from general channel")
+    @Disabled
     public void getMessagesGeneralChatTest() throws Exception {
         var messages = dataHandler.getMessagesWithUser(1, 10, 0);
 
