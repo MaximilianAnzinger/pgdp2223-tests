@@ -13,7 +13,7 @@ import static pgdp.networking.Util.*;
 public class DataHandlerTest {
 
     private static final String USERNAME = "TestUser123";
-    private static final String ID = "geXYZtup";
+    private static final String ID = "ge69sex";
     private static final String PASSWORD = "verySecurePassw0rd";
     private static final String DUMMY_TOKEN = "ijd3948rzjsdfgbß9834z";
 
