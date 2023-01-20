@@ -273,7 +273,7 @@ public class NetworkTest {
         List<Message> messages;
         do {
             messages = dataHandler.getMessagesWithUser(recipient, 50, 0);
-        } while (messages.size() == 10);
+        } while (messages.size() >= 50);
 
         // Get last message from last page.
         var lastMessage = messages.get(messages.size() - 1);
