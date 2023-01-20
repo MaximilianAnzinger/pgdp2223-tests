@@ -17,4 +17,13 @@ public class Trees {
 
     public static Supplier<InfiniteTree<String>> libraryOfBabel = () ->
             new InfiniteTree<>(Lambdas.libraryOfBabel);
+
+    public static Supplier<InfiniteTree<Integer>> countUpDown = () ->
+            new InfiniteTree<>(Lambdas.countUpDown);
+    
+    public static Supplier<InfiniteTree<String[]>> makeHeavyChildren = () ->
+            new InfiniteTree<>(Lambdas.makeHeavyChildren);
+    
+    public static Supplier<InfiniteTree<Integer>> makeManyChildren = () ->
+            new InfiniteTree<>(Lambdas.makeManyChildren);
 }

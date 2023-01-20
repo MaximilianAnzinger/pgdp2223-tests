@@ -1,29 +1,24 @@
-package pgdp;
+package pgdp.teams;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pgdp.Lib.*;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import static pgdp.teams.Lib.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pgdp.teams.Lineup;
-import pgdp.teams.Penguin;
 
-public class UnitTests {
+public class UnitTest {
     @Test
     @DisplayName("Fähigkeits- und Synergiewerte sind im Bereich [Integer.MINVALUE, Integer.MAXVALUE] möglich.")
     public void negativeSynergyTest() {
         var lineup = new Lineup(Set.of(zeynep), Set.of(faid), Set.of());
 
+        assertEquals(-40, lineup.getTeamScore());
         assertEquals(10, lineup.getTeamSkill());
         assertEquals(-50, lineup.getTeamSynergy());
-        assertEquals(-40, lineup.getTeamScore());
-
     }
 
     @Test
@@ -48,113 +43,67 @@ public class UnitTests {
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
-
-        assertEquals(4, attackers.size());
+        
+        assertEquals(Set.of(glen, fatjon, jani, koco), attackers);
         assertEquals(0, defenders.size());
         assertEquals(0, supporters.size());
-
-        assertTrue(attackers.contains(glen));
-        assertTrue(attackers.contains(fatjon));
-        assertTrue(attackers.contains(jani));
-        assertTrue(attackers.contains(koco));
     }
 
     @Test
-    @DisplayName("Soll funktionieren wenn nur defenders null elemente hat")
-    public void optimalLineUpZeroInMiddle() throws NoSuchFieldException, IllegalAccessException {
-        var lineup = Lineup.computeOptimalLineup(Set.of(jasmine, yassine), 1, 0, 1);
+    @DisplayName("computeScore() near Integer.MAX_VALUE")
+    public void scoresNearOverflow() {
+        var lineup = new Lineup(Set.of(marcel), Set.of(hansuwe), new HashSet<>());
+
+        assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE");
+        assertEquals(147_483_647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE");
+        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE");
+    }
+
+    @Test
+    @DisplayName("computeScore() near Integer.MIN_VALUE")
+    public void scoresNearUnderflow() {
+        var lineup = new Lineup(new HashSet<>(), Set.of(hansuwe), Set.of(thorsten));
+
+        assertEquals(-2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MIN_VALUE");
+        assertEquals(-147483648, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MIN_VALUE");
+        assertEquals(Integer.MIN_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MIN_VALUE");
+    }
+
+    @Test
+    @DisplayName("computeScore() double synergy near Integer.MAX_VALUE")
+    public void doubleSynergyNearOverflow() {
+        var lineup = new Lineup(new HashSet<>(), Set.of(marcel, thorsten), new HashSet<>());
+
+        assertEquals(2_000_000_000, lineup.getTeamSynergy(), "Wrong Synergy near Integer.MAX_VALUE in same team");
+        assertEquals(147483647, lineup.getTeamSkill(), "Wrong TeamSkill near Integer.MAX_VALUE in same team");
+        assertEquals(Integer.MAX_VALUE, lineup.getTeamScore(), "Wrong TeamScore near Integer.MAX_VALUE in same team");
+    }
+
+    @Test
+    @DisplayName("computeOptimalLineup: kleines Beispiel mit weniger Spieler im Feld als verfügbare Spieler")
+    public void computeLessThanPlayer() throws NoSuchFieldException, IllegalAccessException {
+        var lineup = Lineup.computeOptimalLineup(Set.of(lester, levi, roman, thomas,zeynep,malek), 1, 1, 1);
 
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
 
-        assertEquals(1, attackers.size());
-        assertEquals(0, defenders.size());
-        assertEquals(1, supporters.size());
-
-        assertTrue(attackers.contains(yassine));
-        assertTrue(supporters.contains(jasmine));
-        assertEquals(0, defenders.size());
+        assertEquals(Set.of(lester), attackers);
+        assertEquals(Set.of(roman), defenders);
+        assertEquals(Set.of(levi), supporters);
     }
-
+    
     @Test
-    @DisplayName("Soll funktionieren wenn attackers + defenders + supporters < players.size()")
-    public void optimalLineUpSubsetsDontSumUpToTotalSetSize() throws NoSuchFieldException, IllegalAccessException {
-        var lineup = Lineup.computeOptimalLineup(Set.of(jasmine, yassine, eve, anatoly, anton, cedric, faid, jakob, georg),
-                2, 2, 3);
+    @DisplayName("computeOptimalLineup: empty Player")
+    public void emptyPlayers() throws NoSuchFieldException, IllegalAccessException {
+        var lineup = Lineup.computeOptimalLineup(Set.of(), 0, 0, 0);
 
         var attackers = getField(lineup, "attackers");
         var defenders = getField(lineup, "defenders");
         var supporters = getField(lineup, "supporters");
-
-        assertEquals(2, attackers.size());
-        assertEquals(2, defenders.size());
-        assertEquals(3, supporters.size());
-
-        assertEquals(Set.of(eve, georg), attackers);
-        assertEquals(Set.of(jasmine, anton), defenders);
-        assertEquals(Set.of(jakob, yassine, faid), supporters);
-    }
-
-    @Test
-    @DisplayName("Soll funktionieren wenn defenders \"groß\" ist")
-    public void optimalLineUpLargeSubsetSize() throws NoSuchFieldException, IllegalAccessException {
-        var lineup = Lineup.computeOptimalLineup(Set.of(
-                jasmine, yassine, eve, anatoly, anton, cedric, faid, jakob, georg, hanna, jakov,
-                felix, jan, shrek), 0, 10, 0);
-
-        var attackers = getField(lineup, "attackers");
-        var defenders = getField(lineup, "defenders");
-        var supporters = getField(lineup, "supporters");
-
-        assertEquals(0, attackers.size());
-        assertEquals(10, defenders.size());
-        assertEquals(0, supporters.size());
 
         assertEquals(Set.of(), attackers);
-        assertEquals(Set.of(anatoly, hanna, jakov, anton, eve, jan, felix, shrek, jasmine, jakob), defenders);
+        assertEquals(Set.of(), defenders);
         assertEquals(Set.of(), supporters);
-    }
-
-    @Test
-    @DisplayName("OPTIONAL - berechnet großes Lineup und printed die Laufzeit. Timeout nach 30 sekunden, " +
-            "allerdings wird der test nur als failed gewertet wenn er nicht timeouted aber das ergebnis falsch ist.")
-    public void laufzeitFunTest() throws InterruptedException {
-        long t1 = System.currentTimeMillis();
-        ExecutorService es = Executors.newSingleThreadExecutor();
-        es.submit(() -> {
-            var lineup = Lineup.computeOptimalLineup(Set.of(
-                    jasmine, yassine, eve, anatoly, anton, cedric, faid, jakob, georg, hanna,
-                    felix, jan, zeynep, shrek), 4, 4, 4);
-
-
-            try {
-                var attackers = getField(lineup, "attackers");
-                var defenders = getField(lineup, "defenders");
-                var supporters = getField(lineup, "supporters");
-
-                assertEquals(4, attackers.size());
-                assertEquals(4, defenders.size());
-                assertEquals(4, supporters.size());
-
-                assertEquals(Set.of(hanna, eve, georg, shrek), attackers);
-                assertEquals(Set.of(anatoly, anton, jan, jasmine), defenders);
-                assertEquals(Set.of(yassine, faid, felix, jakob), supporters);
-
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        });
-
-        es.shutdown();
-        if(!es.awaitTermination(30, TimeUnit.SECONDS)) {
-            System.out.println("\nSadly, your program didn't pass the optional laufzeitFun test :( \n" +
-                    "Since the example was much bigger than required, this still counts as a pass. \n");
-        } else {
-            long diff = System.currentTimeMillis() - t1;
-            System.out.println("Nice, you have passed the optional laufzeitFunTest. \n" +
-                    "Your execution time for roughly 3 million combinations was: " + diff + "ms." +
-                    "(For reference, the largest Artemis test was about 2500 combinations)!");
-        }
     }
 }
