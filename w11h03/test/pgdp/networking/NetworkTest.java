@@ -3,12 +3,15 @@ package pgdp.networking;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -208,35 +211,52 @@ public class NetworkTest {
     @Order(20)
     @DisplayName("should connect")
     public void connectTest() throws Exception {
-        //
-        // TODO check if `Input Handler started` was printed into console?
-        //
         Lib.getMethod(dataHandler, "connect").invoke(dataHandler);
 
         assertTrue(dataHandler.connected);
-        assertNotNull(Lib.getField(dataHandler, "socket").get(dataHandler));
+        var socket = (Socket) Lib.getField(dataHandler, "socket").get(dataHandler);
+        assertNotNull(socket);
         assertNotNull(Lib.getField(dataHandler, "in").get(dataHandler));
         assertNotNull(Lib.getField(dataHandler, "out").get(dataHandler));
+
+        //
+        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        //
+        var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
 
     @Test
     @Order(21)
-    @DisplayName("[A] should switch partner")
-    public void partnerSwitchTest() throws Exception {
-        // TODO If not crash -> Test went good?
-        dataHandler.switchConnection(id);
+    @DisplayName("[A] should switch partner to general channel")
+    public void partnerSwitchTest() {
+        try {
+            dataHandler.switchConnection(1);
+        } catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
     @Order(22)
+    @DisplayName("[A] should switch partner to faid")
+    public void partnerSwitchToFaidTest() {
+        try {
+            dataHandler.switchConnection(2032346041);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    @Order(23)
     @DisplayName("[A] should send message")
-    public void sendMessageTest() throws Exception {
+    public void sendMessageTest() {
         // TODO If not crash -> Test went good?
         dataHandler.sendMessage("Hello, Pingu!");
     }
 
     @Test
-    @Order(23)
+    @Order(24)
     @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
         // TODO
