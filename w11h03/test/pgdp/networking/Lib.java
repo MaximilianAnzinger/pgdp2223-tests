@@ -27,6 +27,13 @@ public class Lib {
         return method;
     }
 
+    public static <T, F> Method getIntMethod(T obj, String fieldName)
+            throws NoSuchMethodException, IllegalAccessException {
+        Method method = obj.getClass().getDeclaredMethod(fieldName, int.class);
+        method.setAccessible(true);
+        return method;
+    }
+
     //
     // Set user private/ public
     //
