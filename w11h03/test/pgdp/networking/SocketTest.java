@@ -311,8 +311,8 @@ public class SocketTest {
     @DisplayName("sendMessage() – huge")
     void testMessagesHuge() throws IOException, InterruptedException {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
-        String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt"));
-        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt"));
+        String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt")).replace("\r", "");
+        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt")).replace("\r", "");
         Thread connectThread = new Thread(this::connect);
         connectThread.start();
         Socket client = server.accept();
@@ -379,22 +379,6 @@ public class SocketTest {
         return out;
     }
 
-    /**
-     * @return All bytes sent to a socket
-     */
-    private static byte[] getAllBytes(Thread clientThread, Socket client) {
-        try {
-            clientThread.join();
-        } catch (InterruptedException ignored) {}
-        try {
-            byte[] out = new byte[client.getInputStream().available()];
-            client.getInputStream().read(out);
-            return out;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void connect() {
         try {
             connect.invoke(dataHandler);
@@ -403,6 +387,29 @@ public class SocketTest {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             lastThrowable = e.getCause();
+        }
+    }
+
+    /**
+     * @return All bytes sent to a socket
+     */
+    private static byte[] getAllBytes(Thread clientThread, Socket client) {
+        try {
+            clientThread.join();
+        } catch (InterruptedException ignored) {}
+        try {
+            byte[] out = new byte[0];
+            int available = client.getInputStream().available();
+            while (available > 0) {
+                int offset = out.length;
+                out = Arrays.copyOf(out, out.length + available);
+                client.getInputStream().read(out, offset, available);
+                Thread.sleep(SOCKET_TIMEOUT);
+                available = client.getInputStream().available();
+            }
+            return out;
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
