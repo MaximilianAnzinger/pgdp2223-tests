@@ -283,16 +283,21 @@ public class SocketTest {
         var buffer = getAllBytes(clientThread, client);
         assertEquals(0x01, buffer[0], "Incorrect first byte");
         var actualLength = copyOf(buffer, 1, 3, "Message length");
-
-        // See below
-        OrBuilder
-                .assertThat(() -> assertArrayEquals(new byte[]{0x01, 0x23}, actualLength))
-                .or(() -> assertArrayEquals(new byte[]{0x01, 0x0D}, actualLength))
-                .withMessage("Incorrect message length")
-                .run();
-
         String actualMessage = new String(buffer, StandardCharsets.UTF_8).substring(3);
         int actualMessageLength = actualMessage.length();
+
+        // See below
+        if (actualLength[0] < 0x01 || actualLength[0] == 1 && actualLength[1] < 0x0D) {
+            assertTrue(actualLength[1] >= 0x0D, "Message length too small. Expected (270 <= length).");
+        }
+        if (actualLength[0] != 0x01 || actualLength[1] != 0x0D) {
+            System.err.println("[WARNING] The length bytes of your message might be incorrect.");
+            System.err.println("[WARNING] Due to the restrictions placed on me by the Übungsleitung, I cannot dynamically check whether your message size actually matches.");
+            System.err.println("[WARNING] Messages may end with a series of null-bytes. How many bytes there are, and consequently, how long your message is, is dependent on your implementation and OS.");
+            System.err.println("[WARNING] Bytes received: " + Arrays.toString(actualLength) + ", Actual length: " + actualMessageLength);
+            System.err.println("[WARNING] You will need to check if these values match by hand. Sorry :(");
+        }
+
 
         // THIS REMOVES NULL-BYTES AT THE END OF THE STRING AND DELIBERATELY ALLOWS FOR A FAULTY REPRESENTATION OF THE MESSAGE
         // This is because the transformation into a byte-array is done incorrectly in the template
