@@ -298,16 +298,12 @@ public class SocketTest {
             System.err.println("[WARNING] You will need to check if these values match by hand. Sorry :(");
         }
 
-
         // THIS REMOVES NULL-BYTES AT THE END OF THE STRING AND DELIBERATELY ALLOWS FOR A FAULTY REPRESENTATION OF THE MESSAGE
         // This is because the transformation into a byte-array is done incorrectly in the template
         // https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/StandardCharsets.2EUTF_8.2Eencode.28message.29.2Earray.28.29/near/909726
         String trimmedMessage = actualMessage.substring(0, message.length());
         assertTrue(actualMessage.substring(message.length()).matches("\\x00*"), "Message did not terminate with 0 or more null-bytes.");
         assertEquals(message, trimmedMessage, "Incorrect message content.");
-
-        // Assert end of output
-        assertEquals(actualMessageLength + 7, buffer.length, "Transferred bytes did not end after expected message.");
     }
 
     @Test
