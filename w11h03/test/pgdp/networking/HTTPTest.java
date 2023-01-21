@@ -217,7 +217,14 @@ public class HTTPTest {
                           "token_type": "irrelevant"
                         }""")
                 .respond(422, error);
-        assertNull(dataHandler.getContacts());
+        // See:
+
+        // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/.E2.9C.94.20getContacts.28.29.20return.20type/near/902467
+        var contacts = dataHandler.getContacts();
+        OrBuilder
+                .assertThat(() -> assertNull(contacts))
+                .or(() -> assertEquals(Map.of(), contacts))
+                .run();
     }
 
     @Test
@@ -233,7 +240,12 @@ public class HTTPTest {
                         }""")
                 .respond(500,
                         "The stars! They’re all dying! There’ve been too many supernovae for it to be anything else! We’re next, do you understand?! Our sun! By Hearth’s name, we’re next!");
-        assertNull(dataHandler.getContacts());
+        // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/.E2.9C.94.20getContacts.28.29.20return.20type/near/902467
+        var contacts = dataHandler.getContacts();
+        OrBuilder
+                .assertThat(() -> assertNull(contacts))
+                .or(() -> assertEquals(Map.of(), contacts))
+                .run();
     }
 
     @Test
