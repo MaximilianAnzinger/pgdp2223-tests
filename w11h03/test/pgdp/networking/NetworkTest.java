@@ -40,16 +40,24 @@ public class NetworkTest {
     private static DataHandler dataHandler = new DataHandler();
     private static Map<Integer, User> users;
 
+    private static enum State {
+        Init,
+        LoggedIn, IsPublic
+    }
+
+    private static State state = State.Init;
+    private static String ensureOrder = "This test failed because it was run separately from others. These tests need a strict execution order, please run all tests together.";
+
     private static String kennung;
     private static String username;
     private static String password;
     private static int id;
-    
+
     //
     // I gave you my id.
     // Behave.
     //
-    
+
     private static int recipient = 361563966;
     private static String msg = "Hello, Pingu! (" + Lib.generateString(new Random()) + ")";
 
@@ -141,12 +149,16 @@ public class NetworkTest {
 
         assertEquals(username, (String) Lib.getField(dataHandler, "username").get(dataHandler));
         assertEquals(password, (String) Lib.getField(dataHandler, "password").get(dataHandler));
+
+        state = State.LoggedIn;
     }
 
     @Test
     @Order(2)
     @DisplayName("should request token")
     public void requestTokenTest() {
+        assertEquals(State.LoggedIn, state, ensureOrder);
+
         var token = dataHandler.requestToken();
         assertNotNull(token);
         System.out.println("TOKEN: " + token);
@@ -156,7 +168,11 @@ public class NetworkTest {
     @Order(3)
     @DisplayName("should set visibility to public")
     public void setVisibilityToPublic() throws Exception {
+        assertEquals(State.LoggedIn, state, ensureOrder);
+
         assertTrue(Lib.makePublic(dataHandler, true));
+
+        state = State.IsPublic;
     }
 
     //
@@ -168,6 +184,8 @@ public class NetworkTest {
     @Order(6)
     @DisplayName("[P] should access in contacts")
     public void getContactsTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         users = dataHandler.getContacts();
 
         // Last time I checked there were 228 users, > 100
@@ -180,17 +198,18 @@ public class NetworkTest {
     @MethodSource
     @DisplayName("[P] should contain youself in contacts")
     public void scanContacts(int uid, String name) {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         assertTrue(users.containsKey(uid));
         assertEquals(name, users.get(uid).name());
     }
 
-    public static Stream<Arguments> scanContacts () {
+    public static Stream<Arguments> scanContacts() {
         return Stream.of(
-            arguments(id, users.get(id).name()),
-            arguments(2032346041, "faid"),
-            arguments(1259660950, "nilsreichardt"),
-            arguments(361563966, "The One and Only")
-        );
+                arguments(id, users.get(id).name()),
+                arguments(2032346041, "faid"),
+                arguments(1259660950, "nilsreichardt"),
+                arguments(361563966, "The One and Only"));
     }
 
     @Test
@@ -198,8 +217,10 @@ public class NetworkTest {
     @DisplayName("[P] [T] should get messages from general channel")
     @Disabled
     public void getMessagesGeneralChatTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         // TODO
-        
+
         var messages = dataHandler.getMessagesWithUser(1, 10, 0);
 
         assertNotNull(messages);
@@ -239,6 +260,8 @@ public class NetworkTest {
     @Order(9)
     @DisplayName("should connect")
     public void connectTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         Lib.getMethod(dataHandler, "connect").invoke(dataHandler);
 
         assertTrue(dataHandler.connected);
@@ -248,7 +271,8 @@ public class NetworkTest {
         assertNotNull(Lib.getField(dataHandler, "out").get(dataHandler));
 
         //
-        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        // TODO System.err catch -> if this method throws, there was a problem with
+        // connect.
         //
         var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
@@ -257,10 +281,13 @@ public class NetworkTest {
     @Order(10)
     @DisplayName("[A] should switch partner to faid")
     public void partnerSwitchToFaidTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         dataHandler.switchConnection(recipient);
 
         //
-        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        // TODO System.err catch -> if this method throws, there was a problem with
+        // connect.
         //
         var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
@@ -269,10 +296,13 @@ public class NetworkTest {
     @Order(11)
     @DisplayName("[A] should send message")
     public void sendMessageTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         dataHandler.sendMessage(msg);
 
         //
-        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        // TODO System.err catch -> if this method throws, there was a problem with
+        // connect.
         //
         var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
@@ -281,6 +311,8 @@ public class NetworkTest {
     @Order(12)
     @DisplayName("should check `sendMessageTest` by actually checking if messages were updated")
     public void updatedMessagesTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         // Ensure we see the messages from last page.
         List<Message> messages;
         do {
@@ -303,10 +335,13 @@ public class NetworkTest {
     @Order(13)
     @DisplayName("[A] should switch partner to general channel")
     public void partnerSwitchTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         dataHandler.switchConnection(1);
 
         //
-        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        // TODO System.err catch -> if this method throws, there was a problem with
+        // connect.
         //
         var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
@@ -315,10 +350,13 @@ public class NetworkTest {
     @Order(14)
     @DisplayName("[A] should send message")
     public void spamGeneralTest() throws Exception {
+        assertEquals(State.IsPublic, state, ensureOrder);
+
         dataHandler.sendMessage("Hallo, ich bin ein Network Bot von " + username);
 
         //
-        // TODO System.err catch -> if this method throws, there was a problem with connect.
+        // TODO System.err catch -> if this method throws, there was a problem with
+        // connect.
         //
         var bytes = (byte[]) Lib.getIntMethod(dataHandler, "getResponse").invoke(dataHandler, 0);
     }
