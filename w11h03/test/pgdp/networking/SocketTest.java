@@ -65,9 +65,7 @@ public class SocketTest {
         setField(dataHandler, "id", 84342);
     }
 
-    @Test
-    @Order(0)
-    @DisplayName("-----READ ME-----")
+    @BeforeEach
     void readmeMessage() {
         System.out.println("""
                 If a test in SocketTest doesn't finish, it's likely because you are using the address of the server (carol.sse.cit.tum.de) directly.
