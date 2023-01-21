@@ -145,6 +145,8 @@ public class HTTPTest {
                     assertEquals("Bearer aG93IGxvbmcgYXJlIHlvdSBnb25uYSBrZWVwIGRvaW5nIHRoaXM=", authorization.get(0));
                 })
                 .respond(422, error);
+              
+        // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/login.20Methode.20Attribute/near/909604
         assertFalse(dataHandler.login("Alfred", "Wagner"));
         assertNull(getField(dataHandler, "username"));
         assertNull(getField(dataHandler, "password"));
@@ -168,6 +170,7 @@ public class HTTPTest {
                     assertEquals("Bearer SSdtIG5vdCBoaWRpbmcgYW55dGhpbmcgaGVyZSB5J2tub3c=", authorization.get(0));
                 })
                 .respond(500, "Server's on fire");
+        // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/login.20Methode.20Attribute/near/909604
         assertFalse(dataHandler.login("Alfred", "Wagner"));
         assertNull(getField(dataHandler, "username"));
         assertNull(getField(dataHandler, "password"));
@@ -217,7 +220,6 @@ public class HTTPTest {
                           "token_type": "irrelevant"
                         }""")
                 .respond(422, error);
-        // See:
 
         // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/.E2.9C.94.20getContacts.28.29.20return.20type/near/902467
         var contacts = dataHandler.getContacts();
@@ -310,6 +312,7 @@ public class HTTPTest {
                 }""")
                 .respond(422, error);
         var result = dataHandler.getMessagesWithUser(06, 47, 0);
+        // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Was.20bei.20.60getMessagesWithUser.20.60.20!.3D.20200.20returnen.3F/near/909580
         OrBuilder
                 .assertThat(() -> assertNull(result))
                 .or(() -> assertEquals(List.of(), result))
@@ -328,6 +331,7 @@ public class HTTPTest {
                 }""")
                 .respond(500, "This song is new to me, but I am honored to be a part of it." );
         var result = dataHandler.getMessagesWithUser(06, 47, 0);
+        // See: https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/Was.20bei.20.60getMessagesWithUser.20.60.20!.3D.20200.20returnen.3F/near/909580
         OrBuilder
                 .assertThat(() -> assertNull(result))
                 .or(() -> assertEquals(List.of(), result))
