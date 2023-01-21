@@ -287,7 +287,7 @@ public class SocketTest {
         int actualMessageLength = actualMessage.length();
 
         // See below
-        if (actualLength[0] < 0x01 || actualLength[0] == 1 && actualLength[1] < 0x0D) {
+        if (actualLength[0] == 0x00 || actualLength[0] == 1 && actualLength[1] > 0 && actualLength[1] < 0x0D) {
             assertTrue(actualLength[1] >= 0x0D, "Message length too small. Expected (270 <= length).");
         }
         if (actualLength[0] != 0x01 || actualLength[1] != 0x0D) {
