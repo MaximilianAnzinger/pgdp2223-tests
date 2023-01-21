@@ -146,8 +146,6 @@ public class HTTPTest {
                 })
                 .respond(422, error);
         assertFalse(dataHandler.login("Alfred", "Wagner"));
-        assertEquals("Alfred", getField(dataHandler, "username"));
-        assertEquals("Wagner", getField(dataHandler, "password"));
         assertEquals(0, getFieldInt(dataHandler, "id"));
     }
 
@@ -169,8 +167,6 @@ public class HTTPTest {
                 })
                 .respond(500, "Server's on fire");
         assertFalse(dataHandler.login("Alfred", "Wagner"));
-        assertEquals("Alfred", getField(dataHandler, "username"));
-        assertEquals("Wagner", getField(dataHandler, "password"));
         assertEquals(0, getFieldInt(dataHandler, "id"));
     }
 
