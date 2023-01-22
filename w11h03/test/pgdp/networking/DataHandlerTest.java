@@ -26,7 +26,10 @@ public class DataHandlerTest {
 
     @Test
     public void registerSuccessTest() throws IOException {
-        Pair<Boolean, Request> result = inspectEndpoint("/api/user/register", 200, "", dataHandler -> dataHandler.register(USERNAME, ID));
+        Pair<Boolean, Request> result = inspectEndpoint("/api/user/register", 200, "{\n" +
+                "  \"username\": \"" + USERNAME + "\",\n" +
+                "  \"id\": " + ID + "\n" +
+                "}", dataHandler -> dataHandler.register(USERNAME, ID));
         registerRequestTest(result.getRight(), USERNAME, ID);
         assertTrue(result.getLeft());
     }
