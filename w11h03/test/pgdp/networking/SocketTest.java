@@ -311,8 +311,8 @@ public class SocketTest {
     @DisplayName("sendMessage() – huge")
     void testMessagesHuge() throws IOException, InterruptedException {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
-        String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt")).replace("\r", "");
-        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt")).replace("\r", "");
+        String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt")).replaceAll("\\r\\n?", "\n");
+        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt")).replaceAll("\\r\\n?", "\n");
         Thread connectThread = new Thread(this::connect);
         connectThread.start();
         Socket client = server.accept();
