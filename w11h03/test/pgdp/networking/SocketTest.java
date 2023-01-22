@@ -283,27 +283,27 @@ public class SocketTest {
         var buffer = getAllBytes(clientThread, client);
         assertEquals(0x01, buffer[0], "Incorrect first byte");
         var actualLength = copyOf(buffer, 1, 3, "Message length");
+        String actualMessage = new String(buffer, StandardCharsets.UTF_8).substring(3);
+        int actualMessageLength = actualMessage.length();
 
         // See below
-        OrBuilder
-                .assertThat(() -> assertArrayEquals(new byte[]{0x01, 0x23}, actualLength))
-                .or(() -> assertArrayEquals(new byte[]{0x01, 0x0D}, actualLength))
-                .withMessage("Incorrect message length")
-                .run();
-
-        String actualMessage = new String(buffer, StandardCharsets.UTF_8).substring(3);
-        int messageLength = actualMessage.length();
+        if (actualLength[0] == 0x00 || actualLength[0] == 1 && actualLength[1] > 0 && actualLength[1] < 0x0D) {
+            assertTrue(actualLength[1] >= 0x0D, "Message length too small. Expected (270 <= length).");
+        }
+        if (actualLength[0] != 0x01 || actualLength[1] != 0x0D) {
+            System.err.println("[WARNING] The length bytes of your message might be incorrect.");
+            System.err.println("[WARNING] Due to the restrictions placed on me by the Übungsleitung, I cannot dynamically check whether your message size actually matches.");
+            System.err.println("[WARNING] Messages may end with a series of null-bytes. How many bytes there are, and consequently, how long your message is, is dependent on your implementation and OS.");
+            System.err.println("[WARNING] Bytes received: " + Arrays.toString(actualLength) + ", Actual length: " + actualMessageLength);
+            System.err.println("[WARNING] You will need to check if these values match by hand. Sorry :(");
+        }
 
         // THIS REMOVES NULL-BYTES AT THE END OF THE STRING AND DELIBERATELY ALLOWS FOR A FAULTY REPRESENTATION OF THE MESSAGE
         // This is because the transformation into a byte-array is done incorrectly in the template
         // https://zulip.in.tum.de/#narrow/stream/1525-PGdP-W11H03/topic/StandardCharsets.2EUTF_8.2Eencode.28message.29.2Earray.28.29/near/909726
-        if (buffer.length == 294) {
-            actualMessage = actualMessage.replace("\00", "");
-        }
-        assertEquals(message, actualMessage, "Incorrect message content.");
-
-        // Assert end of output
-        assertEquals(messageLength + 7, buffer.length, "Transferred bytes did not end after expected message.");
+        String trimmedMessage = actualMessage.substring(0, message.length());
+        assertTrue(actualMessage.substring(message.length()).matches("\\x00*"), "Message did not terminate with 0 or more null-bytes.");
+        assertEquals(message, trimmedMessage, "Incorrect message content.");
     }
 
     @Test
@@ -311,8 +311,8 @@ public class SocketTest {
     @DisplayName("sendMessage() – huge")
     void testMessagesHuge() throws IOException, InterruptedException {
         // Ideally, we would use resources here, but that seems difficult with the current tests setup
-        String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt"));
-        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt"));
+        String lipsum = Files.readString(Path.of("./test/pgdp/networking/lipsum.txt")).replaceAll("\\r\\n?", "\n");
+        String lipsumTruncated = Files.readString(Path.of("./test/pgdp/networking/lipsum_truncated.txt")).replaceAll("\\r\\n?", "\n");
         Thread connectThread = new Thread(this::connect);
         connectThread.start();
         Socket client = server.accept();
@@ -379,22 +379,6 @@ public class SocketTest {
         return out;
     }
 
-    /**
-     * @return All bytes sent to a socket
-     */
-    private static byte[] getAllBytes(Thread clientThread, Socket client) {
-        try {
-            clientThread.join();
-        } catch (InterruptedException ignored) {}
-        try {
-            byte[] out = new byte[client.getInputStream().available()];
-            client.getInputStream().read(out);
-            return out;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void connect() {
         try {
             connect.invoke(dataHandler);
@@ -403,6 +387,29 @@ public class SocketTest {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             lastThrowable = e.getCause();
+        }
+    }
+
+    /**
+     * @return All bytes sent to a socket
+     */
+    private static byte[] getAllBytes(Thread clientThread, Socket client) {
+        try {
+            clientThread.join();
+        } catch (InterruptedException ignored) {}
+        try {
+            byte[] out = new byte[0];
+            int available = client.getInputStream().available();
+            while (available > 0) {
+                int offset = out.length;
+                out = Arrays.copyOf(out, out.length + available);
+                client.getInputStream().read(out, offset, available);
+                Thread.sleep(SOCKET_TIMEOUT);
+                available = client.getInputStream().available();
+            }
+            return out;
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
