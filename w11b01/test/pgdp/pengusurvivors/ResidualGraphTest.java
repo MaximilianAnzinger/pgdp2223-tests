@@ -79,7 +79,7 @@ public class ResidualGraphTest {
                         s -> b (0/1);
                         a -> c (1/1);
                         b -> c (0/1);
-                        """, "s", "c", List.of(List.of("s", "b", "c"))),
+                        """, "s", "c", List.of(List.of("s", "b", "c"), List.of("s", "a", "c"))),
                 Arguments.of(
                         """
                                 s -> a;
