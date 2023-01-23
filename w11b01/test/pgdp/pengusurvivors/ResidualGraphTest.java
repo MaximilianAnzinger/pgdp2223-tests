@@ -52,6 +52,9 @@ public class ResidualGraphTest {
         var vertices = graphResult.vertices();
         graph.generateResidualGraph();
         var path = graph.findPathInResidual();
+
+        System.out.println("Your path was: " + (path == null ? "None found" : GraphUtils.stringifyPath(path)));
+
         var matchingPaths = 0;
         if (expectedPaths.isEmpty()) {
             if (path != null)
