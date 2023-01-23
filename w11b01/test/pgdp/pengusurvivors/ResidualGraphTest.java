@@ -75,10 +75,10 @@ public class ResidualGraphTest {
     static Stream<Arguments> findPathArguments() {
         return Stream.of(
                 Arguments.of("""
-                        s -> a (1/1);
-                        s -> b (0/1);
-                        a -> c (1/1);
-                        b -> c (0/1);
+                        s -> a;
+                        s -> b;
+                        a -> c;
+                        b -> c;
                         """, "s", "c", List.of(List.of("s", "b", "c"), List.of("s", "a", "c"))),
                 Arguments.of(
                         """
