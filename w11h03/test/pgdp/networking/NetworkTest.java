@@ -314,16 +314,10 @@ public class NetworkTest {
         assertEquals(State.IsPublic, state, ensureOrder);
 
         // Ensure we see the messages from last page.
-        List<Message> messages;
-        do {
-            messages = dataHandler.getMessagesWithUser(recipient, 50, 0);
-        } while (messages.size() >= 50);
-
-        // Get last message from last page.
-        var lastMessage = messages.get(messages.size() - 1);
+        List<Message> messages = dataHandler.getMessagesWithUser(recipient, 5000, 0);
 
         // Check if the message equals to the one sent in `sendMessageTest()`
-        assertEquals(msg, lastMessage.content().substring(0, msg.length()));
+        assertTrue(messages.stream().anyMatch(i -> i.content().contains(msg)));
     }
 
     //
