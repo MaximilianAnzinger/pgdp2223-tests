@@ -71,7 +71,7 @@ public class ResidualGraphTest {
             }
             matchingPaths++;
         }
-        assertEquals(1, matchingPaths, "No matching path was found. Your path was: " + (path == null ? "None found" : GraphUtils.stringifyPath(path)));
+        assertEquals(1, matchingPaths, "No matching path was found.");
 
     }
 
