@@ -178,7 +178,7 @@ public class ResidualGraphTest {
                                 b -> c (2/6);
                                 """,
                         "a", "c",
-                        6
+                        8
                 )
         );
     }
