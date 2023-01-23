@@ -107,8 +107,8 @@ public class ResidualGraphTest {
                 ),
                 Arguments.of(
                         """
-                                a -> b (1/1);
-                                b -> (0/2);
+                                a -> b (0/1);
+                                b -> (0/0);
                                 """,
                         "a", "c", List.of()
                 ),
