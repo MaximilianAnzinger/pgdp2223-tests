@@ -42,7 +42,7 @@ public class ShuttleOutputTests {
     @DisplayName("Should output and shut down correctly when all tasks are added before starting")
     public void testOutput1() throws InterruptedException {
         var so = new ShuttleOutput();
-        var taskGen = new TestTaskGenerator(new Random(69), 4, 5);
+        var taskGen = new TestTaskGenerator(new Random(69), 4, 5, 0);
 
         for(int i = 0; i < 5; i++) so.addTask(taskGen.generateTask());
 
@@ -66,7 +66,7 @@ public class ShuttleOutputTests {
     @DisplayName("Should output and shut down correctly when tasks are added after starting")
     public void testOutput2() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var so = new ShuttleOutput();
-        var taskGen = new TestTaskGenerator(new Random(69), 4, 5);
+        var taskGen = new TestTaskGenerator(new Random(69), 4, 5, 0);
 
         so.start();
         for(int i = 0; i < 5; i++) {
@@ -118,7 +118,7 @@ public class ShuttleOutputTests {
         Thread.sleep(5);
 
         assertEquals(Thread.State.WAITING, so.getState());
-        getTaskQueue(so).add(new TestTaskGenerator(new Random(69), 4, 5).generateTask());
+        getTaskQueue(so).add(new TestTaskGenerator(new Random(69), 4, 5, 0).generateTask());
 
         Thread.sleep(5);
         assertEquals("", out.toString(), "Should have waited until notified of a change.");

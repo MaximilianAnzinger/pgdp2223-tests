@@ -1,6 +1,0 @@
-ShuttleComputerTests
-ShuttleCheckerTests
-
-interrupt during/before shutdown tests
-
-edge cases: 0 shuttle processors? (ask on zulip if this is possible)

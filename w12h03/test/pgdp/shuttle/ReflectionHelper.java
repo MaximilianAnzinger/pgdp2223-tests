@@ -4,39 +4,43 @@ import pgdp.shuttle.computer.ShuttleOutput;
 import pgdp.shuttle.computer.ShuttleProcessor;
 import pgdp.shuttle.computer.TaskChecker;
 import pgdp.shuttle.computer.TaskDistributer;
+import pgdp.shuttle.tasks.ErrorProneTaskGenerator;
 import pgdp.shuttle.tasks.ShuttleTask;
 
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ReflectionHelper {
 
     public static LinkedBlockingQueue<ShuttleTask<?, ?>> getTaskQueue(TaskChecker tc) throws NoSuchFieldException, IllegalAccessException {
-        var f = TaskChecker.class.getDeclaredField("taskQueue");
-        f.setAccessible(true);
-        return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(tc);
+        return getField(tc, TaskChecker.class, "taskQueue");
     }
 
     public static LinkedBlockingQueue<ShuttleTask<?, ?>> getTaskQueue(ShuttleProcessor sp) throws NoSuchFieldException, IllegalAccessException {
-        var f = ShuttleProcessor.class.getDeclaredField("taskQueue");
-        f.setAccessible(true);
-        return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(sp);
+        return getField(sp, ShuttleProcessor.class, "taskQueue");
     }
 
     public static LinkedBlockingQueue<ShuttleTask<?, ?>> getTaskQueue(ShuttleOutput so) throws NoSuchFieldException, IllegalAccessException {
-        var f = ShuttleOutput.class.getDeclaredField("taskQueue");
-        f.setAccessible(true);
-        return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(so);
+        return getField(so, ShuttleOutput.class, "taskQueue");
     }
 
     public static LinkedBlockingQueue<ShuttleTask<?, ?>> getPrioTaskQueue(ShuttleProcessor sp) throws NoSuchFieldException, IllegalAccessException {
-        var f = ShuttleProcessor.class.getDeclaredField("priorityTaskQueue");
-        f.setAccessible(true);
-        return (LinkedBlockingQueue<ShuttleTask<?, ?>>) f.get(sp);
+        return getField(sp, ShuttleProcessor.class, "priorityTaskQueue");
     }
 
     public static long getCurrentTaskCount(TaskDistributer td) throws NoSuchFieldException, IllegalAccessException {
-        var f = TaskDistributer.class.getDeclaredField("currentTaskCount");
+        return getField(td, TaskDistributer.class, "currentTaskCount");
+    }
+
+    public static <R> List<R> getResults(ShuttleTask<?,?> task) throws NoSuchFieldException, IllegalAccessException {
+        return getField(task, ShuttleTask.class, "computedResults");
+    }
+
+
+    private static <T> T getField(Object obj, Class clazz, String name) throws NoSuchFieldException, IllegalAccessException {
+        var f = clazz.getDeclaredField(name);
         f.setAccessible(true);
-        return (long) f.get(td);
+        return (T) f.get(obj);
     }
 }

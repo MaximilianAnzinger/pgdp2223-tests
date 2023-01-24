@@ -45,7 +45,7 @@ public class TaskDistributorTests {
         ShuttleProcessor ps2 = new ShuttleProcessor(null);
         var td = new TaskDistributer(5,
                 List.of(ps1, ps2),
-                new TestTaskGenerator(new Random(69), 0, 1));
+                new TestTaskGenerator());
 
         td.start();
 
@@ -69,10 +69,10 @@ public class TaskDistributorTests {
     @DisplayName("Should shut down correctly")
     public void testShutDown() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
 
-        var td = new TaskDistributer(1000,
+        var td = new TaskDistributer(10000,
                 List.of(new ShuttleProcessor(null), new ShuttleProcessor(null),
                         new ShuttleProcessor(null), new ShuttleProcessor(null)),
-                new TestTaskGenerator(new Random(69), 0, 1));
+                new TestTaskGenerator());
 
         td.start();
 
@@ -84,11 +84,11 @@ public class TaskDistributorTests {
 
         Thread.sleep(10);
         long taskCount = getCurrentTaskCount(td);
-        assertTrue(0 < taskCount && taskCount <= 1000); //Sollte irgendwo im dreistelligen bereich sein
+        assertTrue(0 < taskCount && taskCount <= 10000); //Sollte irgendwo im dreistelligen bereich sein
 
         String output = out.toString();
         assertTrue(output.startsWith("TaskDistributer finished generating "));
-        assertTrue(output.endsWith("/1000 tasks. Shutting down.\n"));
+        assertTrue(output.endsWith("/10000 tasks. Shutting down.\n"));
     }
 
 
@@ -99,7 +99,7 @@ public class TaskDistributorTests {
         var td = new TaskDistributer(10000,
                 List.of(new ShuttleProcessor(null), new ShuttleProcessor(null),
                         new ShuttleProcessor(null), new ShuttleProcessor(null)),
-                new TestTaskGenerator(new Random(69), 0, 1));
+                new TestTaskGenerator());
 
         td.start();
 
