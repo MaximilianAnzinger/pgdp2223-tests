@@ -122,7 +122,7 @@ public class ResidualGraphTest {
                                 b -> t;
                                 c -> t;
                                 """,
-                        "s", "t", List.of(List.of("s", "a", "b", "t"), List.of("s", "a", "t"), List.of("s", "a", "b", "t"), List.of("s", "a", "b", "c", "t"))
+                        "s", "t", List.of(List.of("s", "a", "b", "t"), List.of("s", "a", "t"), List.of("s", "a", "b", "c", "t"))
                 )
         );
     }
