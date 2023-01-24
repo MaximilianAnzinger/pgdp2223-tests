@@ -174,11 +174,11 @@ public class ResidualGraphTest {
         return Stream.of(
                 Arguments.of(
                         """
-                                a -> b (4/10);
-                                b -> c (2/6);
+                                a -> b (0/10);
+                                b -> c (0/6);
                                 """,
                         "a", "c",
-                        8
+                        6
                 )
         );
     }
