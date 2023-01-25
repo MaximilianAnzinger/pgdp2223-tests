@@ -269,7 +269,7 @@ public class MultiStackTest {
         for (int i = 0; i < expected.size(); i++) {
             int value = stack.pop();
             assertTrue(expected.contains(value));
-            expected.remove(value);
+            expected.remove(Integer.valueOf(value));
         }
     }
 
