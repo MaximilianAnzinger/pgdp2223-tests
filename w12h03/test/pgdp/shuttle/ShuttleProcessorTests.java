@@ -47,7 +47,7 @@ public class ShuttleProcessorTests {
     public void testEvaluatePriority() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator(0, 5, 0);
 
         var task1 = taskGen.generateTask();
         var task2 = taskGen.generateTask();
@@ -81,7 +81,7 @@ public class ShuttleProcessorTests {
     public void testAddTaskWhileRunning() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator(0, 5, 0);
 
         sp.start();
         Thread.sleep(10);
@@ -121,7 +121,7 @@ public class ShuttleProcessorTests {
     public void shutDownTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator(0, 5, 0);
 
         sp.start();
         getTaskQueue(sp).add(taskGen.generateSlowTask()); // slow task takes 50ms to evaluate
@@ -144,10 +144,10 @@ public class ShuttleProcessorTests {
     public void interruptTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator(0, 5, 0);
 
         sp.start();
-        for(int i = 0; i < 1000; i++) sp.addTask(taskGen.generateTask());
+        for(int i = 0; i < 100000; i++) sp.addTask(taskGen.generateTask());
 
         Thread.sleep(5);
         sp.interrupt();
@@ -161,7 +161,7 @@ public class ShuttleProcessorTests {
     public void waitNotifyTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var taskchecker = new TaskChecker(null, null);
         var sp = new ShuttleProcessor(taskchecker);
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator(0, 5, 0);
 
         sp.start();
         Thread.sleep(5);

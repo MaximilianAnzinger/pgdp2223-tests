@@ -43,7 +43,7 @@ public class TaskCheckerTests {
     @Test
     @DisplayName("Check single task successful")
     public void testSingleTaskSuccessful() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-        TestTaskGenerator gen = new TestTaskGenerator(new Random(69), 4, 5, 0);
+        TestTaskGenerator gen = new TestTaskGenerator(4, 5, 0);
         ShuttleOutput so = new ShuttleOutput();
         TaskChecker tc = new TaskChecker(null, so);
 
@@ -86,7 +86,7 @@ public class TaskCheckerTests {
     @Test
     @DisplayName("Check single task fail.")
     public void testSingleTaskFail() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-        TestTaskGenerator gen = new TestTaskGenerator(new Random(69), 2, 3, 0);
+        TestTaskGenerator gen = new TestTaskGenerator(2, 3, 0);
         var list = List.of(new ShuttleProcessor(null), new ShuttleProcessor(null));
         TaskChecker tc = new TaskChecker(list, null);
 
@@ -111,7 +111,7 @@ public class TaskCheckerTests {
     @DisplayName("Should output correct message when interrupted")
     public void interruptTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var tc = new TaskChecker(null, new ShuttleOutput());
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator( 0, 5, 0);
 
         tc.start();
         for(int i = 0; i < 1000; i++) tc.addTask(taskGen.generateTask());
@@ -127,7 +127,7 @@ public class TaskCheckerTests {
     @DisplayName("Should only check new tasks when notified")
     public void waitNotifyTest() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
         var tc = new TaskChecker(null, new ShuttleOutput());
-        var taskGen = new TestTaskGenerator(new Random(69), 0, 5, 0);
+        var taskGen = new TestTaskGenerator( 0, 5, 0);
 
         tc.start();
         Thread.sleep(5);

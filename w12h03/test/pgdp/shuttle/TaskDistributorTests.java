@@ -57,8 +57,8 @@ public class TaskDistributorTests {
         var tq2 =  getTaskQueue(ps2);
 
         for(int i = 1; i <= 5; i++) {
-            assertEquals("Test Task Nr. " + i, tq1.poll().toString());
-            assertEquals("Test Task Nr. " + i, tq2.poll().toString());
+            assertEquals("Test Task " + i, tq1.poll().toString());
+            assertEquals("Test Task " + i, tq2.poll().toString());
         }
 
         assertTrue(tq1.isEmpty());
@@ -69,7 +69,7 @@ public class TaskDistributorTests {
     @DisplayName("Should shut down correctly")
     public void testShutDown() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
 
-        var td = new TaskDistributer(10000,
+        var td = new TaskDistributer(100000,
                 List.of(new ShuttleProcessor(null), new ShuttleProcessor(null),
                         new ShuttleProcessor(null), new ShuttleProcessor(null)),
                 new TestTaskGenerator());
@@ -84,11 +84,11 @@ public class TaskDistributorTests {
 
         Thread.sleep(10);
         long taskCount = getCurrentTaskCount(td);
-        assertTrue(0 < taskCount && taskCount <= 10000); //Sollte irgendwo im dreistelligen bereich sein
+        assertTrue(0 < taskCount && taskCount <= 100000); //Sollte irgendwo im drei bis vierstelligen bereich sein
 
         String output = out.toString();
         assertTrue(output.startsWith("TaskDistributer finished generating "));
-        assertTrue(output.endsWith("/10000 tasks. Shutting down.\n"));
+        assertTrue(output.endsWith("/100000 tasks. Shutting down.\n"));
     }
 
 
@@ -96,7 +96,7 @@ public class TaskDistributorTests {
     @DisplayName("Should shut down correctly when interrupted")
     public void testInterrupt() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
 
-        var td = new TaskDistributer(10000,
+        var td = new TaskDistributer(100000,
                 List.of(new ShuttleProcessor(null), new ShuttleProcessor(null),
                         new ShuttleProcessor(null), new ShuttleProcessor(null)),
                 new TestTaskGenerator());
@@ -111,7 +111,7 @@ public class TaskDistributorTests {
 
         Thread.sleep(10);
         long taskCount = getCurrentTaskCount(td);
-        assertTrue(0 < taskCount && taskCount <= 10000); //Sollte irgendwo im dreistelligen bereich sein
+        assertTrue(0 < taskCount && taskCount <= 100000); //Sollte irgendwo im dreistelligen bereich sein
         assertFalse(td.isAlive());
         String output = out.toString();
         assertTrue(output.startsWith("TaskDistributer was interrupted after "));

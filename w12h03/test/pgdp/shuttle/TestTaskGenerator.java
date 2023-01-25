@@ -30,33 +30,35 @@ public class TestTaskGenerator implements TaskGenerator {
      * @param lower
      * @param upper
      */
-    public TestTaskGenerator(Random rand, int lower, int upper, int errorProb) {
-        this.rand = rand;
+    public TestTaskGenerator(int lower, int upper, int errorProb) {
+        this.rand = new Random(69);
         this.lower = lower;
         this.upper = upper;
         this.errorProb = errorProb;
     }
 
     public TestTaskGenerator() {
-        this(null, 0, 0, 0);
+        this(0, 0, 0);
     }
 
     @Override
     public ShuttleTask<?, ?> generateTask() {
-        if(this.errorProb > 0) return generateErrorTask();
+        boolean errorTask = this.rand.nextInt(100) + 1 < errorProb;
 
-        int evaluationNumber = this.rand == null ? 0 : this.rand.nextInt(upper - lower) + lower;
+        int evaluationNumber = (upper <= 1) ? 0 : this.rand.nextInt(upper - lower) + lower;
         final int idx = index++;
 
         var task = new ShuttleTask<>(idx, TEST_TASK) {
             @Override
             public String toString() {
-                return "Test Task Nr. " + idx;
+                if(errorTask) {
+                    return "Error Task";
+                }
+                return "Test Task " + idx;
             }
         };
 
         for(int i = 0; i < evaluationNumber; i++) task.evaluate();
-        task.computationSuccessfull();
         return task;
     }
 
@@ -71,18 +73,4 @@ public class TestTaskGenerator implements TaskGenerator {
 
         return task;
     }
-
-    public ShuttleTask<?, ?> generateErrorTask() {
-        var l = this.rand.nextLong();
-        final Random taskRand = new Random(l);
-        ShuttleTask<Random, String> task = new ShuttleTask<>(taskRand, (r) -> r.nextInt(100) + 1 < errorProb ? "Error" : "No Error") {
-            @Override
-            public String toString() {
-                return "Error Task";
-            }
-        };
-
-        return task;
-    }
-
 }

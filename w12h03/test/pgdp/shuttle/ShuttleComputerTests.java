@@ -12,8 +12,6 @@ import java.io.PrintStream;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pgdp.shuttle.ReflectionHelper.getRandom;
-import static pgdp.shuttle.ReflectionHelper.getTaskQueue;
 
 public class ShuttleComputerTests {
 
@@ -111,9 +109,9 @@ public class ShuttleComputerTests {
 
 
     @Test
-    @DisplayName("Errorless Shuttle Computer test")
+    @DisplayName("Errorprone Shuttle Computer test")
     public void testShuttleComputerErrorprone() throws InterruptedException, NoSuchFieldException, IllegalAccessException {
-         ShuttleComputer sc = new ShuttleComputer(69, new TestTaskGenerator(new Random(0xB00B1E5), 0, 1, 30), 100);
+        ShuttleComputer sc = new ShuttleComputer(69, new TestTaskGenerator(0, 1, 30), 100);
         sc.start();
 
         Thread.sleep(150);
@@ -142,7 +140,7 @@ public class ShuttleComputerTests {
                 foundTDShutdownSequence = true;
             } else if (l.equals("Result: Error")) {
                 error++;
-            } else if (l.equals("Result: No Error")) {
+            } else if (l.startsWith("Result: Test task")) {
                 noError++;
             } else if (l.equals("ShuttleOutput shutting down.")) {
                 foundSOShutdownSequence = true;
