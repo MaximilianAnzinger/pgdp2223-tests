@@ -72,8 +72,6 @@ public class RingBufferBlockingTests {
             consumerPool.submit(() -> {
                 try {
                     for(int j = 0; j < iterations; j++) assertNotEquals(Integer.MIN_VALUE, rb.get());
-
-                    System.out.println("done getting");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -82,8 +80,6 @@ public class RingBufferBlockingTests {
             producerPool.submit(() -> {
                 try {
                     for(int j = 0; j < iterations; j++) rb.put(ii);
-
-                    System.out.println("done putting");
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
