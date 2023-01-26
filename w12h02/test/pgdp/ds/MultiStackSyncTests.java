@@ -1,4 +1,4 @@
-package ds;
+package pgdp.ds;
 
 import org.junit.jupiter.api.Test;
 import pgdp.ds.MultiStack;
