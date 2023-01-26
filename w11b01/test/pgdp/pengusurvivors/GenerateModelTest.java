@@ -141,4 +141,6 @@ public class GenerateModelTest {
         int maxPairs = graph.computeMaxFlowValue();
         assertEquals(0, maxPairs);
     }
+
+
 }
