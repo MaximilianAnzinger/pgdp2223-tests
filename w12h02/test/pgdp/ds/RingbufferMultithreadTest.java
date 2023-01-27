@@ -171,7 +171,7 @@ public class RingbufferMultithreadTest {
         TimeoutChecker t1 = new TimeoutChecker(100, futures, false);
 
         try{Thread.sleep(200);}catch(InterruptedException e){}
-        boolean b = t1.isTimeoutReached(false);
+        boolean b = t1.isTimeoutReached();
         System.out.println(b);
         assertTrue(b, "Does not wait");
 
