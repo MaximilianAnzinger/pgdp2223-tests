@@ -44,6 +44,7 @@ public class TimeoutChecker extends Thread{
                     f.cancel(true);
                 }
                 timeoutReached = true;
+                active = false;
             }
             try{
                 Thread.sleep(dt);
