@@ -18,13 +18,18 @@ public class TimeoutChecker extends Thread{
     private Future<?>[] futures;
     private boolean active = true;
     private boolean timeoutReached = false;
+    private boolean cancelFuturesOnTimeout;
     private long startTime;
     private int dt = 20;
-    public TimeoutChecker(long timeout, Future<?>[] futures) {
+    public TimeoutChecker(long timeout, Future<?>[] futures, boolean cancelFuturesOnTimeout) {
         this.timeout = timeout;
         this.futures = futures;
+        this.cancelFuturesOnTimeout = cancelFuturesOnTimeout;
         this.startTime = System.currentTimeMillis();
         this.start();
+    }
+    public TimeoutChecker(long timeout, Future<?>[] futures) {
+        this(timeout, futures, true);
     }
     @Override
     public void run() {
@@ -40,7 +45,7 @@ public class TimeoutChecker extends Thread{
             }
             if(System.currentTimeMillis() - startTime > timeout) {
                 timeoutReached = true;
-                for(Future<?> f : futures) {
+                if (this.cancelFuturesOnTimeout) for(Future<?> f : futures) {
                     f.cancel(true);
                 }
                 timeoutReached = true;
@@ -53,8 +58,11 @@ public class TimeoutChecker extends Thread{
             }
         }
     }
-    public boolean isTimeoutReached() {
-        while(active){
+    public boolean isTimeoutReached(){
+        return isTimeoutReached(true);
+    }
+    public boolean isTimeoutReached(boolean wait) {
+        while(wait && active){
             try {
                 Thread.sleep(dt);
             } catch (InterruptedException e) {
