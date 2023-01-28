@@ -1,16 +1,12 @@
 package pgdp.shuttle;
 
 import org.junit.jupiter.api.*;
-import pgdp.shuttle.computer.ShuttleOutput;
 import pgdp.shuttle.computer.ShuttleProcessor;
 import pgdp.shuttle.computer.TaskChecker;
-import pgdp.shuttle.tasks.ShuttleTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pgdp.shuttle.ReflectionHelper.getPrioTaskQueue;
@@ -105,7 +101,7 @@ public class ShuttleProcessorTests {
 
         Thread.sleep(30);
 
-        var taskQueue = ReflectionHelper.getTaskQueue(taskchecker);
+        var taskQueue = getTaskQueue(taskchecker);
         for(int i = 0; i < 4; i++) {
             assertEquals(taskList.get(i), taskQueue.poll());
         }
@@ -114,6 +110,7 @@ public class ShuttleProcessorTests {
         Thread.sleep(30);
 
         assertEquals("ShuttleProcessor shutting down.\n", out.toString());
+        assertFalse(sp.isAlive());
     }
 
     @Test

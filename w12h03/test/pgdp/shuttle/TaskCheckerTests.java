@@ -8,7 +8,6 @@ import pgdp.shuttle.computer.TaskChecker;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pgdp.shuttle.ReflectionHelper.getTaskQueue;
@@ -51,7 +50,7 @@ public class TaskCheckerTests {
         tc.start();
 
         Thread.sleep(10);
-        var task = ReflectionHelper.getTaskQueue(so).poll();
+        var task = getTaskQueue(so).poll();
         assertNotNull(task);
 
         tc.shutDown();
@@ -81,6 +80,8 @@ public class TaskCheckerTests {
 
         Thread.sleep(10);
         assertEquals("TaskChecker shutting down.\n", out.toString());
+        assertFalse(tc.isAlive());
+
     }
 
     @Test
@@ -105,6 +106,8 @@ public class TaskCheckerTests {
 
         Thread.sleep(10);
         assertEquals("TaskChecker shutting down.\n", out.toString());
+        assertFalse(tc.isAlive());
+
     }
 
     @Test

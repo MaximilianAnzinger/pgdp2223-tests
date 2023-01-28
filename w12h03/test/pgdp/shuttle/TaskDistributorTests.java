@@ -6,7 +6,6 @@ import pgdp.shuttle.computer.TaskDistributer;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pgdp.shuttle.ReflectionHelper.getCurrentTaskCount;
@@ -89,6 +88,7 @@ public class TaskDistributorTests {
         String output = out.toString();
         assertTrue(output.startsWith("TaskDistributer finished generating "));
         assertTrue(output.endsWith("/100000 tasks. Shutting down.\n"));
+        assertFalse(td.isAlive());
     }
 
 

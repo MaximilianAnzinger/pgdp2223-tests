@@ -2,11 +2,9 @@ package pgdp.shuttle;
 
 import org.junit.jupiter.api.*;
 import pgdp.shuttle.computer.ShuttleOutput;
-import pgdp.shuttle.tasks.ErrorlessTaskGenerator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -63,6 +61,7 @@ public class ShuttleOutputTests {
         so.shutDown();
         Thread.sleep(30);
 
+        assertFalse(so.isAlive());
         assertEquals("ShuttleOutput shutting down.\n", out.toString());
     }
 
