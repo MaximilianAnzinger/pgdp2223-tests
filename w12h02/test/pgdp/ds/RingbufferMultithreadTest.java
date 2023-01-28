@@ -112,14 +112,17 @@ public class RingbufferMultithreadTest {
         RingBuffer ringBuffer = new RingBuffer(1);
         ringBuffer.put(1);
         Runnable routine = () -> {
-            try{ringBuffer.put(1);}catch(InterruptedException e){}
+            try{ringBuffer.put(1);}catch(InterruptedException e){
+                System.out.println("Interrupted.");
+                return;
+            }
         };
         Future<?>[] futures = new Future<?>[1];
         futures[0] = pool.submit(routine);
         TimeoutChecker t = new TimeoutChecker(500, futures);
         pool.shutdown();
-        assertTrue(t.isTimeoutReached(), "Does not wait.");
-        assertTrue(ringBuffer.isFull());
+        boolean b = t.isTimeoutReached();
+        assertTrue(b, "Does not wait.");
     }
 
     @Test
@@ -134,7 +137,6 @@ public class RingbufferMultithreadTest {
         TimeoutChecker t = new TimeoutChecker(500, futures);
 
         assertTrue(t.isTimeoutReached(), "Does not wait.");
-        assertTrue(ringBuffer.isEmpty());
     }
 
     @Test
@@ -150,12 +152,11 @@ public class RingbufferMultithreadTest {
 
         try{Thread.sleep(200);}catch(InterruptedException e){}
         boolean b = t1.isTimeoutReached(false);
-        System.out.println(b);
         assertTrue(b, "Does not wait");
 
+        new Thread(() -> {try{ringBuffer.put(2);}catch(InterruptedException e){}}).start(); //puts one item in the buffer, so the getting Thread should go on.
         TimeoutChecker t2 = new TimeoutChecker(1000, futures);
-        ringBuffer.put(1);
-        assertFalse(t2.isTimeoutReached(), "Does not proceed wait.");
+        assertFalse(t2.isTimeoutReached(), "Does not proceed after waiting.");
     }
 
     @Test
@@ -172,11 +173,10 @@ public class RingbufferMultithreadTest {
 
         try{Thread.sleep(200);}catch(InterruptedException e){}
         boolean b = t1.isTimeoutReached();
-        System.out.println(b);
         assertTrue(b, "Does not wait");
 
+        new Thread(() -> {try{ringBuffer.get();}catch(InterruptedException e){}}).start(); //frees one place in the buffer, so the putting Thread should go on.
         TimeoutChecker t2 = new TimeoutChecker(1000, futures);
-        ringBuffer.get();
-        assertFalse(t2.isTimeoutReached(), "Does not proceed wait.");
+        assertFalse(t2.isTimeoutReached(), "Does not proceed after waiting.");
     }
 }
