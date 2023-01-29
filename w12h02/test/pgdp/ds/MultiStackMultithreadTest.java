@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,6 @@ public class MultiStackMultithreadTest {
     private static final int NUM_TESTCASES = 10000;
     private static String task = "";
     private static String lastTask = "";
-
 
     @DisplayName("Forgotten Locks")
     @Test
@@ -62,6 +60,7 @@ public class MultiStackMultithreadTest {
             lastTask = task;
             task = "done.";
         };
+        
         var pool = Executors.newFixedThreadPool(1);
         Future<?>[] futures = new Future<?>[1];
         futures[0] = pool.submit(routine);
@@ -70,6 +69,7 @@ public class MultiStackMultithreadTest {
         String msg = "Timeout reached, while '" + task + "' after having done '" + lastTask + "'.";
         assertFalse(timeoutChecker.isTimeoutReached(), msg);
     }
+    
     @Test
     void testDualThreadDeadlocks(){
         final int timeOutMS = 500;
@@ -104,7 +104,7 @@ public class MultiStackMultithreadTest {
             testDualThreadDeadlocks();
         }
     }
-
+    
     @Test
     void testRaceConditionsPush(){
         // two Threads, each pushing 1000 elements

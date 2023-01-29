@@ -112,10 +112,7 @@ public class RingbufferMultithreadTest {
         RingBuffer ringBuffer = new RingBuffer(1);
         ringBuffer.put(1);
         Runnable routine = () -> {
-            try{ringBuffer.put(1);}catch(InterruptedException e){
-                System.out.println("Interrupted.");
-                return;
-            }
+            try{ringBuffer.put(1);}catch(InterruptedException e){}
         };
         Future<?>[] futures = new Future<?>[1];
         futures[0] = pool.submit(routine);
