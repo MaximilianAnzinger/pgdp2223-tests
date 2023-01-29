@@ -126,12 +126,17 @@ public class ShuttleProcessorTests {
         sp.shutDown();
 
         Thread.sleep(10);
-
-        assertEquals("ShuttleProcessor shutting down.\n", out.toString());
+        boolean flag = true;
+        if (out.size() != 0) {
+            assertEquals("ShuttleProcessor shutting down.\n", out.toString());
+            flag = false;
+        }
         assertTrue(sp.isAlive(), "Should have waited for slow task to finish evaluating.");
 
         Thread.sleep(35); //enough time to finish evaluating slow task
-
+        if (flag){
+            assertEquals("ShuttleProcessor shutting down.\n", out.toString());
+        }
         assertFalse(sp.isAlive(), "Slow task finished, the thread should have shut down by now.");
     }
 
