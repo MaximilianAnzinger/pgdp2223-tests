@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,37 +15,6 @@ public class MultiStackMultithreadTest {
     private static String task = "";
     private static String lastTask = "";
 
-    private class TimeoutCheck implements Runnable {
-        private final int timeOutMS;
-        private final Thread threadToStop;
-        private boolean active = true;
-        private boolean timeouted = false;
-        public TimeoutCheck(int timeOutMS, Thread threadToStop) {
-            this.timeOutMS = timeOutMS;
-            this.threadToStop = threadToStop;
-        }
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(timeOutMS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (active) timeout();
-        }
-        public void timeout() {
-            System.out.println("Timeout reached, while '" + task + "' after having done '" + lastTask + "'.");
-            threadToStop.stop();
-            timeouted = true;
-        }
-
-        public boolean hasTimeouted(){
-            return timeouted;
-        }
-        public void deactivate(){
-            active = false;
-        }
-    }
 
     @DisplayName("Forgotten Locks")
     @Test
@@ -90,22 +62,49 @@ public class MultiStackMultithreadTest {
             lastTask = task;
             task = "done.";
         };
-        Thread t1 = new Thread(routine);
-        TimeoutCheck timeoutChecker = new TimeoutCheck(timeOutMS, t1);
-        Thread timeoutThread = new Thread(timeoutChecker);
-        timeoutThread.start();
-        t1.start();
-        try{
-            t1.join();
-            timeoutChecker.deactivate();
-            timeoutThread.join();
-            String msg = "Timeout reached, while '" + task + "' after having done '" + lastTask + "'.";
-            System.out.println(msg);
-            assertFalse(timeoutChecker.hasTimeouted(), msg);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        var pool = Executors.newFixedThreadPool(1);
+        Future<?>[] futures = new Future<?>[1];
+        futures[0] = pool.submit(routine);
+        TimeoutChecker timeoutChecker = new TimeoutChecker(timeOutMS, futures);
+
+        String msg = "Timeout reached, while '" + task + "' after having done '" + lastTask + "'.";
+        assertFalse(timeoutChecker.isTimeoutReached(), msg);
+    }
+    @Test
+    void testDualThreadDeadlocks(){
+        final int timeOutMS = 500;
+        MultiStack stack = new MultiStack();
+        Runnable routine = () -> {
+            assertEquals(stack.pop(), Integer.MIN_VALUE);
+            assertEquals(stack.top(), Integer.MIN_VALUE);
+            assertEquals(stack.size(), 0);
+            assertEquals(stack.search(0), -1);
+            stack.push(69);
+            assertEquals(stack.top(), 69);
+            assertEquals(stack.size(), 1);
+            assertEquals(stack.pop(), 69);
+            assertEquals(stack.size(), 0);
+            lastTask = task;
+            task = "done.";
+        };
+        var pool = Executors.newFixedThreadPool(2);
+        Future<?>[] futures = new Future<?>[2];
+        futures[0] = pool.submit(routine);
+        futures[1] = pool.submit(routine);
+        TimeoutChecker timeoutChecker = new TimeoutChecker(timeOutMS, futures);
+
+        String msg = "Timeout reached, while '" + task + "' after having done '" + lastTask + "'.";
+        assertFalse(timeoutChecker.isTimeoutReached(), msg);
+    }
+    @Test
+    @DisplayName("This will take a long time.")
+    void testDeadlocksOften(){
+        for (int i=0; i<100; i++){
+            testSimpleDeadlockForgottenUnlocks();
+            testDualThreadDeadlocks();
         }
     }
+
     @Test
     void testRaceConditionsPush(){
         // two Threads, each pushing 1000 elements

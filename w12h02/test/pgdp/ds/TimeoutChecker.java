@@ -50,8 +50,8 @@ public class TimeoutChecker extends Thread{
                 }
                 timeoutReached = true;
                 active = false;
-            }
-            try{
+                synchronized(this){this.notify();}
+            } else try{
                 Thread.sleep(dt);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -62,13 +62,7 @@ public class TimeoutChecker extends Thread{
         return isTimeoutReached(true);
     }
     public boolean isTimeoutReached(boolean wait) {
-        while(wait && active){
-            try {
-                Thread.sleep(dt);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        if(wait&&active) synchronized(this){try{this.wait();}catch(InterruptedException e){}}
         return timeoutReached;
     }
     public void deactivate() {
