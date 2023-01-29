@@ -2,6 +2,10 @@ package pgdp.shuttle;
 
 import org.junit.jupiter.api.*;
 import pgdp.shuttle.computer.ShuttleComputer;
+import pgdp.shuttle.computer.ShuttleProcessor;
+import pgdp.shuttle.computer.TaskDistributer;
+import pgdp.shuttle.tasks.ErrorProneTaskGenerator;
+import pgdp.shuttle.tasks.ErrorlessTaskGenerator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

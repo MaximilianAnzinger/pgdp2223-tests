@@ -122,7 +122,6 @@ public class ShuttleProcessorTests {
 
         getTaskQueue(sp).add(taskGen.generateSlowTask()); // slow task takes 50ms to evaluate
         sp.start();
-
         Thread.sleep(10);
         sp.shutDown();
 

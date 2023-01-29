@@ -30,7 +30,7 @@ public class TestTaskGenerator implements TaskGenerator {
      * @param lower
      * @param upper
      */
-    public  TestTaskGenerator(int lower, int upper, int errorProb) {
+    public TestTaskGenerator(int lower, int upper, int errorProb) {
         this.rand = new Random(69);
         this.lower = lower;
         this.upper = upper;
