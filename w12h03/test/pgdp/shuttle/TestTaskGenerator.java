@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 public class TestTaskGenerator implements TaskGenerator {
 
-    private static final Function<Integer, String> TEST_TASK = (i) -> "Test task " + i;
+    private static final Function<Integer, String> TEST_TASK = (i) -> "Test Task Nr. " + i + " completed successfully!";
     private static final Function<Integer, String> SLOW_TASK = (i) -> {
         try {
             Thread.sleep(50);
@@ -54,7 +54,7 @@ public class TestTaskGenerator implements TaskGenerator {
                 if(errorTask) {
                     return "Error Task";
                 }
-                return "Test Task " + idx;
+                return "Test Task Nr. " + idx;
             }
         };
 

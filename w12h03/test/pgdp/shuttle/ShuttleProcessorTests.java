@@ -143,7 +143,7 @@ public class ShuttleProcessorTests {
         var taskGen = new TestTaskGenerator(0, 5, 0);
 
         sp.start();
-        for(int i = 0; i < 100000; i++) sp.addTask(taskGen.generateTask());
+        for(int i = 0; i < 1000000; i++) sp.addTask(taskGen.generateTask());
 
         Thread.sleep(5);
         sp.interrupt();

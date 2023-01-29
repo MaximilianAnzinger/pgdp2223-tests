@@ -51,7 +51,6 @@ public class ShuttleComputerTests {
         Thread.sleep(150);
         String[] lines = out.toString().split("\n");
 
-        stdOut.println(Arrays.toString(lines));
         assertEquals("ShuttleComputer booting up.", lines[0]);
         assertEquals("TaskDistributer starting to generate tasks.", lines[1]);
 
@@ -73,13 +72,13 @@ public class ShuttleComputerTests {
             String l = lines[i];
             if (l.equals("TaskDistributer finished generating 4/4 tasks. Shutting down.")) {
                 foundTDShutdownSequence = true;
-            } else if (l.equals("Result: Test task 1")) {
+            } else if (l.equals("Result: Test Task Nr. 1 completed successfully!")) {
                 task1++;
-            } else if (l.equals("Result: Test task 2")) {
+            } else if (l.equals("Result: Test Task Nr. 2 completed successfully!")) {
                 task2++;
-            } else if (l.equals("Result: Test task 3")) {
+            } else if (l.equals("Result: Test Task Nr. 3 completed successfully!")) {
                 task3++;
-            } else if (l.equals("Result: Test task 4")) {
+            } else if (l.equals("Result: Test Task Nr. 4 completed successfully!")) {
                 task4++;
             } else if (l.equals("ShuttleOutput shutting down.")) {
                 foundSOShutdownSequence = true;
@@ -117,7 +116,6 @@ public class ShuttleComputerTests {
         Thread.sleep(150);
         String[] lines = out.toString().split("\n");
 
-        stdOut.println(Arrays.toString(lines));
         assertEquals("ShuttleComputer booting up.", lines[0]);
         assertEquals("TaskDistributer starting to generate tasks.", lines[1]);
 
@@ -140,7 +138,7 @@ public class ShuttleComputerTests {
                 foundTDShutdownSequence = true;
             } else if (l.equals("Result: Error")) {
                 error++;
-            } else if (l.startsWith("Result: Test task")) {
+            } else if (l.startsWith("Result: Test Task Nr. ")) {
                 noError++;
             } else if (l.equals("ShuttleOutput shutting down.")) {
                 foundSOShutdownSequence = true;

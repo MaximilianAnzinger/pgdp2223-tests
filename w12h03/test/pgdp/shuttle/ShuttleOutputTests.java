@@ -51,11 +51,11 @@ public class ShuttleOutputTests {
         so.start();
         Thread.sleep(30);
 
-        assertEquals("Result: Test task 1\n" +
-                "Result: Test task 2\n" +
-                "Result: Test task 3\n" +
-                "Result: Test task 4\n" +
-                "Result: Test task 5\n", out.toString());
+        assertEquals("Result: Test Task Nr. 1 completed successfully!\n" +
+                "Result: Test Task Nr. 2 completed successfully!\n" +
+                "Result: Test Task Nr. 3 completed successfully!\n" +
+                "Result: Test Task Nr. 4 completed successfully!\n" +
+                "Result: Test Task Nr. 5 completed successfully!\n", out.toString());
 
         out.reset();
         so.shutDown();
@@ -86,11 +86,11 @@ public class ShuttleOutputTests {
 
         Thread.sleep(30);
 
-        assertEquals("Result: Test task 1\n" +
-                "Result: Test task 2\n" +
-                "Result: Test task 3\n" +
-                "Result: Test task 4\n" +
-                "Result: Test task 5\n", out.toString());
+        assertEquals("Result: Test Task Nr. 1 completed successfully!\n" +
+                "Result: Test Task Nr. 2 completed successfully!\n" +
+                "Result: Test Task Nr. 3 completed successfully!\n" +
+                "Result: Test Task Nr. 4 completed successfully!\n" +
+                "Result: Test Task Nr. 5 completed successfully!\n", out.toString());
 
         out.reset();
         so.shutDown();
@@ -136,7 +136,7 @@ public class ShuttleOutputTests {
         }
 
         Thread.sleep(5);
-        assertEquals("Result: Test task 1\n", out.toString(), "Should have processed task after being notified.");
+        assertEquals("Result: Test Task Nr. 1 completed successfully!\n", out.toString(), "Should have processed task after being notified.");
         so.shutDown();
     }
 }
