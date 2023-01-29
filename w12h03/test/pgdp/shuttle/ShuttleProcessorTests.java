@@ -120,8 +120,8 @@ public class ShuttleProcessorTests {
         var sp = new ShuttleProcessor(taskchecker);
         var taskGen = new TestTaskGenerator(0, 5, 0);
 
-        sp.start();
         getTaskQueue(sp).add(taskGen.generateSlowTask()); // slow task takes 50ms to evaluate
+        sp.start();
 
         Thread.sleep(10);
         sp.shutDown();
@@ -144,7 +144,7 @@ public class ShuttleProcessorTests {
         var taskGen = new TestTaskGenerator(0, 5, 0);
 
         sp.start();
-        for(int i = 0; i < 100000; i++) sp.addTask(taskGen.generateTask());
+        for(int i = 0; i < 1000000; i++) sp.addTask(taskGen.generateTask());
 
         Thread.sleep(5);
         sp.interrupt();

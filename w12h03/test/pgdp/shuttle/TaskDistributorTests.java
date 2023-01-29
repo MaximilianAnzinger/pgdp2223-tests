@@ -56,8 +56,8 @@ public class TaskDistributorTests {
         var tq2 =  getTaskQueue(ps2);
 
         for(int i = 1; i <= 5; i++) {
-            assertEquals("Test Task " + i, tq1.poll().toString());
-            assertEquals("Test Task " + i, tq2.poll().toString());
+            assertEquals("Test Task Nr. " + i, tq1.poll().toString());
+            assertEquals("Test Task Nr. " + i, tq2.poll().toString());
         }
 
         assertTrue(tq1.isEmpty());

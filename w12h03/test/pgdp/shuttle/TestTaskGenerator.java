@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 public class TestTaskGenerator implements TaskGenerator {
 
-    private static final Function<Integer, String> TEST_TASK = (i) -> "Test task " + i;
+    private static final Function<Integer, String> TEST_TASK = (i) -> "Test Task Nr. " + i + " completed successfully!";
     private static final Function<Integer, String> SLOW_TASK = (i) -> {
         try {
             Thread.sleep(50);
@@ -30,7 +30,7 @@ public class TestTaskGenerator implements TaskGenerator {
      * @param lower
      * @param upper
      */
-    public TestTaskGenerator(int lower, int upper, int errorProb) {
+    public  TestTaskGenerator(int lower, int upper, int errorProb) {
         this.rand = new Random(69);
         this.lower = lower;
         this.upper = upper;
@@ -54,7 +54,7 @@ public class TestTaskGenerator implements TaskGenerator {
                 if(errorTask) {
                     return "Error Task";
                 }
-                return "Test Task " + idx;
+                return "Test Task Nr. " + idx;
             }
         };
 
