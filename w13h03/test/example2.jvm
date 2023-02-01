@@ -1,0 +1,17 @@
+alloc 1
+true
+const 1
+store 0
+fjump combine
+
+false
+store 0
+
+combine:
+
+const 5
+read
+mul
+write
+halt
+jump combine
