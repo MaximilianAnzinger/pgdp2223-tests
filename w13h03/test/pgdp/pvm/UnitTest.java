@@ -20,9 +20,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class UnitTest {
     @ParameterizedTest
     @MethodSource
-    public void executor(String description, List<String> lines, String ioCommands)
+    public void executor(String description, String file_name, List<String> lines, String ioCommands)
             throws URISyntaxException, IOException {
-        new PVMParser(lines.stream()).run(getIO(ioCommands));
+        try {
+            new PVMParser(lines.stream()).run(getIO(ioCommands));
+        } catch (RuntimeException e) {
+            fail(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
+        }
     }
 
     private static Stream<Arguments> executor() throws IOException {
@@ -42,7 +46,7 @@ public class UnitTest {
                         break;
 
                     case "//#!":
-                        args.add(arguments(description, Files.readAllLines(file_name.toPath()), line.substring(4)));
+                        args.add(arguments(description, file_name.toString(), Files.readAllLines(file_name.toPath()), line.substring(4)));
                         break;
 
                     default:
