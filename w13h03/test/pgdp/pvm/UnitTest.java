@@ -34,10 +34,7 @@ public class UnitTest {
             var description = "";
             var lines = Files.readAllLines(file_name.toPath()).stream().filter(i -> i.startsWith("//#")).toList();
 
-            System.out.println(lines);
-
             for (String line : lines) {
-                System.out.println(line.substring(0, 4));
                 switch (line.substring(0, 4)) {
                     case "//#D":
                         description = line.substring(4);
