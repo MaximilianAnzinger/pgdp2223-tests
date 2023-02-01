@@ -1,7 +1,0 @@
-//#D should allocate
-//#! R0
-
-alloc 1
-load 0
-read
-halt
