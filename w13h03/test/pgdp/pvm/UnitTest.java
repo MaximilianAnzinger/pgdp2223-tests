@@ -21,7 +21,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class UnitTest {
     @ParameterizedTest
     @MethodSource
-    public void executor(String description, String file_name, List<String> lines, String ioCommands)
+    public void executor(
+            String description,
+            String file_name,
+            List<String> lines,
+            String ioCommands,
+            boolean shouldThrow)
             throws URISyntaxException, IOException {
         try {
             new PVMParser(lines.stream())
@@ -98,7 +103,8 @@ public class UnitTest {
                         description,
                         file_name.toString(),
                         lines,
-                        execution));
+                        execution,
+                        false));
             }
         }
 
@@ -116,9 +122,7 @@ public class UnitTest {
                 .toList();
         var rwOrder = commands
                 .stream()
-                .map(i -> i
-                        .substring(0, 1)
-                        .equals("R"))
+                .map(i -> i.substring(0, 1).toLowerCase())
                 .iterator();
         var intOrder = commands
                 .stream()
@@ -134,10 +138,10 @@ public class UnitTest {
                         fail("Received READ call when no more calls were expected");
                     }
                     // If next is true = read
-                    if (rwOrder.next()) {
+                    if (rwOrder.next().equals("r")) {
                         return intOrder.next();
                     }
-                    fail("Received READ call when WRITE was expected");
+                    fail("Received wrong call when WRITE was expected");
                     return 0;
                 },
                 i -> {
@@ -145,10 +149,11 @@ public class UnitTest {
                         fail("Received WRITE call when no more calls were expected");
                     }
                     // if next is false = write
-                    if (rwOrder.next()) {
-                        fail("Received WRITE call when READ was expected");
+                    if (rwOrder.next().equals("w")) {
+                        assertEquals(intOrder.next(), i);
+                        return;
                     }
-                    assertEquals(intOrder.next(), i);
+                    fail("Received wrong call when READ was expected");
                 });
     }
 }
