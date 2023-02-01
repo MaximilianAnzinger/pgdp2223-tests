@@ -1,0 +1,12 @@
+//#D should add correctly
+//#! W15
+
+// Die Größe dieses Speicherbereichs ist konstant und muss, WENN UNGLEICH
+// 0 mit der pseudo Instruktion alloc als erste Instruktion deklariert werden.
+// - Docs
+
+const 5
+const 10
+add
+write
+halt
