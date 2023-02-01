@@ -43,7 +43,6 @@ public class UnitTest {
             if (ioCommands.contains("ERR")) {
                 var expectedMessage = ioCommands.substring(ioCommands.indexOf("ERR") + 3).trim();
                 String actualMessage = e.getMessage();
-                System.out.println(actualMessage);
                 assertTrue(actualMessage.contains(expectedMessage));
             }
             //
