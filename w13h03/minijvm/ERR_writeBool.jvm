@@ -1,0 +1,9 @@
+//#D should throw argument error for writing bool
+//#! ERR Error in line 8: First Argument must be INT at WRITE
+
+alloc 1
+true
+store 0
+load 0
+write
+halt

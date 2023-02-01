@@ -1,0 +1,10 @@
+//#D should throw argument error for FJUMP with INT
+//#! ERR Error in line 8: First Argument must be BOOL at FJUMP
+
+alloc 1
+const 1
+store 0
+load 0
+fjump here
+here:
+halt

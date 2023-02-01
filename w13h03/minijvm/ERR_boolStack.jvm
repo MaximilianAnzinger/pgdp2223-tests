@@ -1,0 +1,11 @@
+//#D should throw stack size error for boolean operation
+//#! ERR Error in line 10: Not enough variables on the stack for AND
+
+alloc 2
+true
+store 0
+false
+store 1
+load 0
+and
+halt

@@ -1,0 +1,9 @@
+//#D should throw argument error for using NEG with bool
+//#! ERR Error in line 8: First Argument must be INT at NEG
+
+alloc 1
+true
+store 0
+load 0
+neg
+halt

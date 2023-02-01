@@ -1,0 +1,14 @@
+//#D should throw error when trying to load undefined value
+//#! ERR
+
+// EDITOR'S NOTE:
+// there is no preset message for this scenario in the template
+// for this reason, the test doesn't check for a specific error message
+// however, this case should NOT be allowed according to the docs
+// thanks, and happy bugfixing!
+
+alloc 2
+const 1
+store 0
+load 1
+halt
