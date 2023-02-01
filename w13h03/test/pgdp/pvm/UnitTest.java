@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class UnitTest {
@@ -31,9 +33,13 @@ public class UnitTest {
         try {
             new PVMParser(lines.stream())
                     .run(getIO(ioCommands));
+        } catch (PVMError e) {
+            assertTrue(shouldThrow, "execution should throw flag");
+            return;
         } catch (RuntimeException e) {
             fail(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
         }
+        assertFalse(shouldThrow, "execution did not throw when it should");
     }
 
     private static Stream<Arguments> executor() throws IOException {
@@ -104,7 +110,7 @@ public class UnitTest {
                         file_name.toString(),
                         lines,
                         execution,
-                        false));
+                        execution.contains("ERR")));
             }
         }
 
