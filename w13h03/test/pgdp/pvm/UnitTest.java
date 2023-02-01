@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class UnitTest {
@@ -23,7 +24,8 @@ public class UnitTest {
     public void executor(String description, String file_name, List<String> lines, String ioCommands)
             throws URISyntaxException, IOException {
         try {
-            new PVMParser(lines.stream()).run(getIO(ioCommands));
+            new PVMParser(lines.stream())
+                    .run(getIO(ioCommands));
         } catch (RuntimeException e) {
             fail(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
         }
@@ -32,21 +34,36 @@ public class UnitTest {
     private static Stream<Arguments> executor() throws IOException {
         var directory = new File("test/pgdp/pvm/scripts");
         var files = Arrays.stream(directory.listFiles());
+        var disabled = 0;
 
         var args = new ArrayList<Arguments>();
 
-        for (File file_name : files.toList()) {
+        file_loop: for (File file_name : files.toList()) {
             var description = "";
-            var lines = Files.readAllLines(file_name.toPath()).stream().filter(i -> i.startsWith("//#")).toList();
+            var specialLines = Files
+                    .readAllLines(file_name.toPath())
+                    .stream()
+                    .filter(i -> i.startsWith("//#"))
+                    .toList();
+            var executions = new ArrayList<String>();
 
-            for (String line : lines) {
+            for (String line : specialLines) {
+                if (line.startsWith("//#DISABLED")) {
+                    disabled++;
+                    continue file_loop;
+                }
+
                 switch (line.substring(0, 4)) {
                     case "//#D":
-                        description = line.substring(4);
+                        description = line.substring(5);
                         break;
 
                     case "//#!":
-                        args.add(arguments(description, file_name.toString(), Files.readAllLines(file_name.toPath()), line.substring(4)));
+                        executions.add(line.substring(5));
+                        break;
+
+                    case "//#M":
+                        // MACRO SYSTEM FOR SCALABLE TESTS
                         break;
 
                     default:
@@ -54,15 +71,62 @@ public class UnitTest {
                                 "There was a problem with the tests! " + file_name.getAbsolutePath() + " " + line);
                 }
             }
+
+            for (String execution : executions) {
+                var lines = Files.readAllLines(file_name.toPath());
+
+                var macros = Arrays.stream(execution.split("\\s+")).filter(i -> i.startsWith("M")).toList();
+
+                for (String macro : macros) {
+                    var indexOf = lines.indexOf("//#M");
+                    assertNotEquals(-1, "There was an error with the tests: Less macros than specified.");
+                    switch (macro) {
+                        case "MT":
+                            lines.set(indexOf, "TRUE // MACRO GENERATED");
+                            break;
+
+                        case "MF":
+                            lines.set(indexOf, "FALSE // MACRO GENERATED");
+                            break;
+
+                        default:
+                            throw new RuntimeException("There was a problem with the tests: Invalid macro.");
+                    }
+                }
+
+                args.add(arguments(
+                        description,
+                        file_name.toString(),
+                        lines,
+                        execution));
+            }
         }
+
+        if (disabled > 0)
+            System.err.println(disabled + " tests have been disabled. ");
 
         return args.stream();
     }
 
     private IO getIO(String ioCommands) {
-        var commands = Arrays.stream(ioCommands.split("\\s+")).filter(i -> i.length() > 0).toList();
-        var rwOrder = commands.stream().map(i -> i.substring(0, 1).equals("R")).iterator();
-        var intOrder = commands.stream().map(i -> Integer.parseInt(i.substring(1))).iterator();
+        var commands = Arrays
+                .stream(ioCommands.split("\\s+"))
+                .filter(i -> i.length() > 0)
+                .filter(i -> !i.startsWith("M"))
+                .toList();
+        var rwOrder = commands
+                .stream()
+                .map(i -> i
+                        .substring(0, 1)
+                        .equals("R"))
+                .iterator();
+        var intOrder = commands
+                .stream()
+                .map(i -> Integer.parseInt(i
+                        .substring(1)))
+                .iterator();
+
+        // System.out.println(commands);
 
         return IO.of(
                 () -> {

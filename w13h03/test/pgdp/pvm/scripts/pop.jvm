@@ -1,0 +1,8 @@
+//#D should correctly pop
+//#! W1234567
+
+const 1234567
+const 7654321
+pop
+write
+halt
