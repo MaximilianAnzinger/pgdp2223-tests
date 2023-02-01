@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class UnitTest {
     @ParameterizedTest
@@ -62,23 +63,24 @@ public class UnitTest {
         return IO.of(
                 () -> {
                     if (!intOrder.hasNext()) {
-                        throw new RuntimeException("Received READ call when no more calls were expected");
+                        fail("Received READ call when no more calls were expected");
                     }
                     // If next is true = read
                     if (rwOrder.next()) {
                         return intOrder.next();
                     }
-                    throw new RuntimeException("Received READ call when WRITE was expected");
+                    fail("Received READ call when WRITE was expected");
+                    return 0;
                 },
                 i -> {
                     if (!intOrder.hasNext()) {
-                        throw new RuntimeException("Received READ call when no more calls were expected");
+                        fail("Received READ call when no more calls were expected");
                     }
                     // if next is false = write
                     if (!rwOrder.next()) {
                         assertEquals(intOrder.next(), i);
                     }
-                    throw new RuntimeException("Received WRITE call when READ was expected");
+                    fail("Received WRITE call when READ was expected");
                 });
     }
 }
