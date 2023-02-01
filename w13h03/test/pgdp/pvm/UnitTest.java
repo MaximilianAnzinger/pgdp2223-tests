@@ -74,7 +74,7 @@ public class UnitTest {
                 },
                 i -> {
                     if (!intOrder.hasNext()) {
-                        fail("Received READ call when no more calls were expected");
+                        fail("Received WRITE call when no more calls were expected");
                     }
                     // if next is false = write
                     if (!rwOrder.next()) {
