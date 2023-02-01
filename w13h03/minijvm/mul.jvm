@@ -1,0 +1,8 @@
+//#D should multiply correctly
+//#! W50
+
+const 10
+const 5
+mul
+write
+halt

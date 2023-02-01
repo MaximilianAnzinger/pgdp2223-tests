@@ -57,7 +57,7 @@ public class UnitTest {
     }
 
     private static Stream<Arguments> executor() throws IOException {
-        var directory = new File("test/scripts");
+        var directory = new File("minijvm");
         var files = Arrays.stream(directory.listFiles());
         var disabled = 0;
 

@@ -1,0 +1,10 @@
+//#D should read and write correctly
+//#! R0 W0
+//#! R5 W5
+//#! R69 W69
+//#! R420 W420
+//#! R1337 W1337
+
+read
+write
+halt

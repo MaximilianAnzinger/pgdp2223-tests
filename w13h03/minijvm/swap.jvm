@@ -1,0 +1,8 @@
+//#D should swap
+//#! W1234567
+
+const 1234567
+const 7654321
+swap
+write
+halt
