@@ -77,10 +77,10 @@ public class UnitTest {
                         fail("Received WRITE call when no more calls were expected");
                     }
                     // if next is false = write
-                    if (!rwOrder.next()) {
-                        assertEquals(intOrder.next(), i);
+                    if (rwOrder.next()) {
+                        fail("Received WRITE call when READ was expected");
                     }
-                    fail("Received WRITE call when READ was expected");
+                    assertEquals(intOrder.next(), i);
                 });
     }
 }
