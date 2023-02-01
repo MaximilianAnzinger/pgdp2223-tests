@@ -35,6 +35,21 @@ public class UnitTest {
                     .run(getIO(ioCommands));
         } catch (PVMError e) {
             assertTrue(shouldThrow, "execution should throw flag");
+
+            //
+            // THIS IS HEAVILY COPIED FROM @FLAMING LEO
+            // https://github.com/FlamingLeo/pgdp2223-tests/blob/main/w13h03/test/PinguJVMVerifyTest.java
+            //
+            if (ioCommands.contains("ERR")) {
+                var expectedMessage = ioCommands.substring(ioCommands.indexOf("ERR") + 3).trim();
+                String actualMessage = e.getMessage();
+                System.out.println(actualMessage);
+                assertTrue(actualMessage.contains(expectedMessage));
+            }
+            //
+            //
+            //
+
             return;
         } catch (RuntimeException e) {
             fail(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
@@ -121,6 +136,11 @@ public class UnitTest {
     }
 
     private IO getIO(String ioCommands) {
+        if (ioCommands.contains("ERR")) {
+            // Ignore everything after ERR
+            ioCommands = ioCommands.substring(0, ioCommands.indexOf("ERR"));
+        }
+
         var commands = Arrays
                 .stream(ioCommands.split("\\s+"))
                 .filter(i -> i.length() > 0)
