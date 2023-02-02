@@ -1,0 +1,8 @@
+//#D should throw stack size error for DUP
+//#! ERR Error in line 7: Not enough variables on the stack for DUP
+
+alloc 1
+const 1
+store 0
+dup
+halt

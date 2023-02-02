@@ -1,0 +1,11 @@
+//#D should throw stack size error for arithmetic operation
+//#! ERR Error in line 10: Not enough variables on the stack for ADD
+
+alloc 2
+const 0
+store 0
+const 1
+store 1
+load 0
+add
+halt
