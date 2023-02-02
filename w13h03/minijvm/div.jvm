@@ -1,7 +1,7 @@
 //#D should divide correctly
-//#! R15 R7 W2
-//#! R30 R5 W6
-//#! R100 R1 W100
+//#! R7 R15 W2
+//#! R5 R30 W6
+//#! R1 R100 W100
 
 read
 read
