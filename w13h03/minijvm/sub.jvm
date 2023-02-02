@@ -1,0 +1,8 @@
+//#D should subtract correctly
+//#! W5
+
+const 5
+const 10
+sub
+write
+halt

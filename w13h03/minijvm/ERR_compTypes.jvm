@@ -1,0 +1,12 @@
+//#D should throw argument error for comparison type mismatch
+//#! ERR Error in line 11: First Argument must be INT at NEQ
+
+alloc 2
+true
+store 0
+const 3
+store 1
+load 0
+load 1
+neq
+halt

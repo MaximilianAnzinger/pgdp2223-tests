@@ -1,0 +1,13 @@
+//#D should dup and pop
+//#! R7 W7 W9 W7
+//#! R0 W0 W9 W0
+
+read
+dup
+write
+const 9
+dup
+pop
+write
+write
+halt

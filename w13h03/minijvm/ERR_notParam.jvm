@@ -1,0 +1,9 @@
+//#D should throw argument error for NOT with int
+//#! ERR Error in line 8: First Argument must be BOOL at NOT
+
+alloc 2
+const 3
+store 0
+load 0
+not
+halt

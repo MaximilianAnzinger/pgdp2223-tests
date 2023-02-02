@@ -1,0 +1,11 @@
+//#D should throw stack size error for comparison
+//#! ERR Error in line 10: Not enough variables on the stack for EQ
+
+alloc 2
+const 1
+store 0
+const 2
+store 1
+load 0
+eq
+halt

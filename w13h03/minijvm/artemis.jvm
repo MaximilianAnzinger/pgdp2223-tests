@@ -1,0 +1,28 @@
+//#D should do the Artemis Task successfully
+//#! R1 R2 W2
+//#! R5 R8 W40
+
+alloc 2
+
+//variable constant for line #19
+//example.jvm -> 1
+//example2.jvm -> 5
+read
+store 1
+
+true
+const 1
+store 0
+fjump combine
+
+false
+store 0
+
+combine:
+
+load 1
+read
+mul
+write
+halt
+jump combine

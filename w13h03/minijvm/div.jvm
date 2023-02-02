@@ -1,0 +1,10 @@
+//#D should divide correctly
+//#! R7 R15 W2
+//#! R5 R30 W6
+//#! R1 R100 W100
+
+read
+read
+div
+write
+halt

@@ -1,0 +1,24 @@
+//#D should and. This test implements macros to test if the logic behaves accordingly.
+//#! MT MT W1
+//#! MT MF W0
+//#! MF MT W0
+//#! MF MF W0
+
+//#M
+//#M
+
+and
+
+fjump end
+
+const 1
+write
+
+halt
+
+end:
+
+const 0
+write
+
+halt

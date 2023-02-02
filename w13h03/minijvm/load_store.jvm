@@ -1,0 +1,17 @@
+//#D should load correctly
+//#! R10 W0 W10
+//#! R0 W0 W0
+//#! R1005 W0 W1005
+
+alloc 1
+
+read
+store 0
+
+const 0
+write
+
+load 0
+write
+
+halt

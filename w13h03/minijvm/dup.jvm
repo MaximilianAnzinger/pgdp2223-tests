@@ -1,0 +1,8 @@
+//#D should correctly dup
+//#! W1234567 W1234567
+
+const 1234567
+dup
+write
+write
+halt

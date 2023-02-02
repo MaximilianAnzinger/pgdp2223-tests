@@ -1,0 +1,21 @@
+//#D should not
+//#! MT W0
+//#! MF W1
+
+//#M
+
+not
+
+fjump end
+
+const 1
+write
+
+halt
+
+end:
+
+const 0
+write
+
+halt

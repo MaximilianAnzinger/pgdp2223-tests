@@ -1,0 +1,24 @@
+//#D should compare leq 
+//#! R1 R0 W1
+//#! R100 R0 W1
+//#! R1 R1 W1
+//#! R0 R1 W0
+
+read
+read
+
+leq
+
+fjump end
+
+const 1
+write
+
+halt
+
+end:
+
+const 0
+write
+
+halt

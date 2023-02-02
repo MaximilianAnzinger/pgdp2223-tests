@@ -1,0 +1,10 @@
+//#D should modulo correctly
+//#! R7 R15 W1
+//#! R5 R30 W0
+//#! R1 R100 W0
+
+read
+read
+mod
+write
+halt

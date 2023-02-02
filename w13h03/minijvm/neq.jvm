@@ -1,0 +1,25 @@
+//#D should check for inequality
+//#! R0 R1 W1
+//#! R0 R100 W1
+//#! R1 R1 W0
+//#! R100 R100 W0
+//#! R1 R0 W1
+
+read
+read
+
+neq
+
+fjump end
+
+const 1
+write
+
+halt
+
+end:
+
+const 0
+write
+
+halt
