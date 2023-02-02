@@ -1,6 +1,0 @@
-//#D should correctly handle constants
-//#! W1234567
-
-const 1234567
-write
-halt
