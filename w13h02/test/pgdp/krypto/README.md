@@ -51,9 +51,8 @@ dependencies {
 ├── pgdp2223w13h02-xxnnxxx
 │   ├── src
 │   │   └── pgdp.krypto
-│   │       ├── Fragment.java
-│   │       ├── fragment.jvm
-│   │       └── lcm.jvm
+│   │       ├── cryption.jvm
+│   │       └── eea.jvm
 │   │── test
 │   │   └── pgdp.krypto
 │   │       ├── cryptionTest.java

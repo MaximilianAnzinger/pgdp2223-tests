@@ -57,10 +57,10 @@ dependencies {
 │   │── test
 │   │   └── pgdp.minijvm
 │   │       ├── BonusByteToJavaTest.java
-│   │       ├── JavaToByteTest.jvm
+│   │       ├── JavaToByteTest.java
 │   │       └── README.md (this file)
 │   └ build.gradle (the file you changed in step 1.)
-├── pgdp2223w13h03-xxnnnxxx
+├── pgdp2223w13h03-xxnnxxx
 │   └── src
 │       └── pgdp.pvm
 │           ├── IO.java
