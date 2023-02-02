@@ -1,7 +1,7 @@
 //#D should modulo correctly
-//#! R15 R7 W1
-//#! R30 R5 W0
-//#! R100 R1 W0
+//#! R7 R15 W1
+//#! R5 R30 W0
+//#! R1 R100 W0
 
 read
 read
