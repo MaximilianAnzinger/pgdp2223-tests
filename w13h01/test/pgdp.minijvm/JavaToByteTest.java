@@ -4,10 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import pgdp.pvm.IO;
 import pgdp.pvm.PVMParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +22,24 @@ public class JavaToByteTest {
 
     public JavaToByteTest() {
         try {
-            parser = new pgdp.pvm.PVMParser(Path.of("src/pgdp/minijvm/lcm.jvm"));
+            String[] swaps = new String[] {"sub", "div", "mod", "less", "leq"};
+            Stream<String> lines = Files.lines(Path.of("src/pgdp/minijvm/lcm.jvm")).flatMap(
+                    instruction -> {
+                        // Adding swap in front of commands listed in swaps
+
+                        String temp = instruction;
+                        if (temp.contains("//")) temp = temp.split("//")[0];
+
+                        for (String swap : swaps) {
+                            if (temp.toLowerCase().contains(swap)) {
+                                // Instruction found
+                                return Stream.of("swap", instruction);
+                            }
+                        }
+                        return Stream.of(instruction);
+                    }
+            );
+            parser = new pgdp.pvm.PVMParser(lines);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
