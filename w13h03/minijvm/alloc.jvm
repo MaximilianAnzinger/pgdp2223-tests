@@ -1,5 +1,5 @@
-//#D should allocate
-//#! R0
+//#D should allocate but not load undefined variable
+//#! R0 ERR
 
 alloc 1
 load 0

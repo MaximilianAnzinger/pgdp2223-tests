@@ -1,7 +1,8 @@
 //#D should correctly dup
-//#! R1234567
+//#! W1234567 W1234567
 
 const 1234567
 dup
-read
+write
+write
 halt
