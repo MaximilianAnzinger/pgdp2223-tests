@@ -38,7 +38,7 @@ public class BonusByteToJavaTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         fragment.fragment();
-        assertEquals(o, Integer.parseInt(out.toString().split("\n")[0]));
+        assertEquals(o, Integer.parseInt(out.toString().split("\n?\r")[0]));
     }
 
 }
