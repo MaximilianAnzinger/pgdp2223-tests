@@ -51,7 +51,7 @@ public class UnitTest {
 
             return;
         } catch (RuntimeException e) {
-            fail(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
+            throw new RuntimeException(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
         }
         assertFalse(shouldThrow, "execution did not throw when it should");
     }
