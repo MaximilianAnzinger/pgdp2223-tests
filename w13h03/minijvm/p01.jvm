@@ -1,0 +1,26 @@
+//#D should calculate the quadrature of an integer
+//#! R0 W0
+//#! R1 W1
+//#! R2 W4
+//#! R3 W9
+//#! R4 W16
+//#! R5 W25
+//#! R6 W36
+//#! R7 W49
+//#! R8 W64
+//#! R9 W81
+//#! R10 W100
+
+//
+// THIS CODE IS FROM THE PRAESENZAUFGABEN
+// https://bitbucket.ase.in.tum.de/projects/PGDP2223W13P01/repos/pgdp2223w13p01-solution/browse/src/pgdp/asm/assignment.jvm
+//
+
+ALLOC 1
+READ
+STORE 0
+LOAD 0
+LOAD 0
+MUL
+WRITE
+HALT
