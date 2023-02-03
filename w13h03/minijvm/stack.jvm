@@ -1,0 +1,11 @@
+//#D should handle stack operations
+//#! R1 R2 R3 W2 W4
+
+read
+read
+read
+swap
+write
+add
+write
+halt

@@ -1,0 +1,72 @@
+//#D should write out collatz series
+// Test Data: READ - ITERATIONS - ITERATION COUNT
+//#! R4 W2 W1 W3
+//#! R7 W22 W11 W34 W17 W52 W26 W13 W40 W20 W10 W5 W16 W8 W4 W2 W1 W17
+//#! R5 W16 W8 W4 W2 W1 W6
+
+//
+// THIS CODE IS FROM THE PRAESENZAUFGABEN
+// https://bitbucket.ase.in.tum.de/projects/PGDP2223W13P03/repos/pgdp2223w13p03-solution/browse/src/pgdp/asm/assignment.jvm
+//
+
+ALLOC 2
+
+READ
+STORE 0
+
+CONST 0
+LOAD 0
+SWAP // Translate to dialect
+LESS
+FJUMP program_end
+
+        CONST 1
+    STORE 1
+
+    while_cond:
+    CONST 1
+    LOAD 0
+    SWAP // Translate to dialect
+    LESS
+    FJUMP while_end
+
+            LOAD 0
+    CONST 2
+    SWAP // Translate to dialect
+    MOD
+    CONST 0
+    EQ
+    FJUMP else_body
+
+        LOAD 0
+    CONST 2
+    SWAP // Translate to dialect
+    DIV
+    STORE 0
+    JUMP cond_end
+
+else_body:
+        LOAD 0
+    CONST 3
+    MUL
+    CONST 1
+    ADD
+    STORE 0
+
+cond_end:
+    // <THIS WAS CHANGED>
+        LOAD 0
+        WRITE
+    // </THIS WAS CHANGED>
+    LOAD 1
+    CONST 1
+    ADD
+    STORE 1
+    JUMP while_cond
+
+while_end:
+        LOAD 1
+    WRITE
+
+program_end:
+HALT

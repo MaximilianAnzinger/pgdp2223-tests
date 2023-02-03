@@ -14,11 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class UnitTest {
     @ParameterizedTest
@@ -30,9 +28,10 @@ public class UnitTest {
             String ioCommands,
             boolean shouldThrow)
             throws URISyntaxException, IOException {
+        var io = new TestIO(ioCommands);
         try {
             new PVMParser(lines.stream())
-                    .run(getIO(ioCommands));
+                    .run(io);
         } catch (PVMError e) {
             assertTrue(shouldThrow, "execution should throw flag");
 
@@ -51,9 +50,10 @@ public class UnitTest {
 
             return;
         } catch (RuntimeException e) {
-            throw new RuntimeException(file_name + "\n[" + description.trim() + "]\nthrew exception:\n" + e);
+            throw new RuntimeException(e);
         }
         assertFalse(shouldThrow, "execution did not throw when it should");
+        assertTrue(io.close(), "JVM halted while there were still expected read and write calls.");
     }
 
     private static Stream<Arguments> executor() throws IOException {
@@ -132,53 +132,5 @@ public class UnitTest {
             System.err.println(disabled + " tests have been disabled. ");
 
         return args.stream();
-    }
-
-    private IO getIO(String ioCommands) {
-        if (ioCommands.contains("ERR")) {
-            // Ignore everything after ERR
-            ioCommands = ioCommands.substring(0, ioCommands.indexOf("ERR"));
-        }
-
-        var commands = Arrays
-                .stream(ioCommands.split("\\s+"))
-                .filter(i -> i.length() > 0)
-                .filter(i -> !i.startsWith("M"))
-                .toList();
-        var rwOrder = commands
-                .stream()
-                .map(i -> i.substring(0, 1).toLowerCase())
-                .iterator();
-        var intOrder = commands
-                .stream()
-                .map(i -> Integer.parseInt(i
-                        .substring(1)))
-                .iterator();
-
-        // System.out.println(commands);
-
-        return IO.of(
-                () -> {
-                    if (!intOrder.hasNext()) {
-                        fail("Received READ call when no more calls were expected");
-                    }
-                    // If next is true = read
-                    if (rwOrder.next().equals("r")) {
-                        return intOrder.next();
-                    }
-                    fail("Received wrong call when WRITE was expected");
-                    return 0;
-                },
-                i -> {
-                    if (!intOrder.hasNext()) {
-                        fail("Received WRITE call when no more calls were expected");
-                    }
-                    // if next is false = write
-                    if (rwOrder.next().equals("w")) {
-                        assertEquals(intOrder.next(), i);
-                        return;
-                    }
-                    fail("Received wrong call when READ was expected");
-                });
     }
 }

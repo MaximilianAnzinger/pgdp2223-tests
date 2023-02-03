@@ -1,0 +1,66 @@
+//#D should detect prime number, this adopted version returns the number if it is prime, otherwise zero
+//#! R2 W2
+//#! R3 W3
+//#! R4 W0
+//#! R5 W5
+//#! R6 W0
+//#! R7 W7
+//#! R8 W0
+//#! R9 W0
+
+//
+// THIS CODE IS FROM THE PRAESENZAUFGABEN
+// https://bitbucket.ase.in.tum.de/projects/PGDP2223W13P02/repos/pgdp2223w13p02-solution/browse/src/pgdp/asm/assignment.jvm
+//
+
+ALLOC 3
+
+READ
+STORE 0
+
+CONST 2
+STORE 1
+
+LOAD 0 // THIS WAS CHANGED
+STORE 2
+
+while_begin:
+        LOAD 1
+    LOAD 1
+    MUL
+    LOAD 0
+    SWAP // Translate to dialect
+    LEQ
+    FJUMP while_end
+
+        LOAD 0
+    LOAD 1
+    SWAP // Translate to dialect
+    MOD
+    CONST 0
+    EQ
+    FJUMP while_inc
+        CONST 0 // THIS WAS CHANGED
+        STORE 2
+while_inc:
+        LOAD 1
+    CONST 1
+    ADD
+    STORE 1
+
+        JUMP while_begin
+
+while_end:
+LOAD 0
+CONST 1
+SWAP // Translate to dialect
+LEQ
+FJUMP write_prim
+    CONST 0 // THIS WAS CHANGED
+    STORE 2
+
+write_prim:
+LOAD 2
+WRITE
+
+HALT
