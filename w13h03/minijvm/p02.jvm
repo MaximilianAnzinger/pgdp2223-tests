@@ -29,11 +29,13 @@ while_begin:
     LOAD 1
     MUL
     LOAD 0
+    SWAP // Translate to dialect
     LEQ
     FJUMP while_end
 
         LOAD 0
     LOAD 1
+    SWAP // Translate to dialect
     MOD
     CONST 0
     EQ
@@ -51,6 +53,7 @@ while_inc:
 while_end:
 LOAD 0
 CONST 1
+SWAP // Translate to dialect
 LEQ
 FJUMP write_prim
     CONST 0 // THIS WAS CHANGED
