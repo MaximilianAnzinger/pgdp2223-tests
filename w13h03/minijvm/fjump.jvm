@@ -1,0 +1,19 @@
+//#D should jump conditionally
+//#! MF W1
+//#! MT W0
+
+//#M
+
+fjump end
+
+const 0
+write
+
+halt
+
+end:
+
+const 1
+write
+
+halt

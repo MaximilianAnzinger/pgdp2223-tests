@@ -1,0 +1,13 @@
+//#D should jump
+//#! W0
+
+jump end
+
+halt
+
+end:
+
+const 0
+write
+
+halt
