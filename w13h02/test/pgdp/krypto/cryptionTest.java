@@ -1,10 +1,9 @@
-package pgdp.minijvm;
+package pgdp.krypto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import pgdp.pvm.IO;
 import pgdp.pvm.PVMParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,13 +16,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class JavaToByteTest {
-    private pgdp.pvm.PVMParser parser;
+public class cryptionTest {
+    private final pgdp.pvm.PVMParser parser;
 
-    public JavaToByteTest() {
+    public cryptionTest() {
         try {
             String[] swaps = new String[] {"sub", "div", "mod", "less", "leq"};
-            Stream<String> lines = Files.lines(Path.of("src/pgdp/minijvm/lcm.jvm")).flatMap(
+            Stream<String> lines = Files.lines(Path.of("src/pgdp/krypto/cryption.jvm")).flatMap(
                     instruction -> {
                         // Adding swap in front of commands listed in swaps
 
@@ -43,58 +42,39 @@ public class JavaToByteTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private static Stream<Arguments> inputs() {
         int[][] inputs = new int[][] {
-                {5, 9},
-                {8, 37},
-                {38, 3},
-                {9, 7},
-                {-8, -16},
-                {-5, 10},
+                {1, 1, 0},
+                {5, 14, 7, 0},
+                {5, 28, 7, 32, 0},
+                {19, 28, 2, 0},
         };
-        return Arrays.stream(inputs).map(Arguments::of);
+
+        Integer[][] outputs = new Integer[][] {
+                {},
+                {7},
+                {7, 16},
+                {16}
+        };
+        Arguments[] args = new Arguments[inputs.length];
+        for (int i = 0; i < args.length; i++) {
+            args[i] = Arguments.of(inputs[i], outputs[i]);
+        }
+        return Arrays.stream(args);
     }
 
     @ParameterizedTest(name = "Input: {0}")
-    @DisplayName("Compare to Java code")
+    @DisplayName("Compare to evaluated values")
     @MethodSource("inputs")
-    public void compare(int[] input) {
+    public void compare(int[] input, Integer[] output) {
         Iterator<Integer> iterator = Arrays.stream(input).iterator();
 
         List<Integer> outputs = new ArrayList<>();
 
         parser.run(pgdp.pvm.IO.of(iterator::next, outputs::add));
-        assertEquals(run(input), outputs);
+        assertEquals(Arrays.asList(output), outputs);
     }
-
-    private List<Integer> run(int[] input) {
-        ArrayList<Integer> output = new ArrayList<>();
-        int a, b, r;
-        a = input[0];
-        b = input[1];
-        if (a <= 0) {
-            a = -a;
-        }
-        if (b <= 0) {
-            b = -b;
-        }
-        r = a * b;
-        while (a != b) {
-            if (b < a) {
-                a = a - b;
-            } else {
-                b = b - a;
-            }
-        }
-
-        r = r / a;
-        output.add(r);
-        return output;
-    }
-
-
 }
 

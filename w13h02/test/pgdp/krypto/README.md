@@ -1,4 +1,4 @@
-# Tests for W13H01
+# Tests for W13H02
 
 **WARNING:** The tests only execute with a working simulator in W13H03 (solve W13H03 before using this tests)
 
@@ -13,14 +13,14 @@ repositories {
     mavenCentral()
 }
 
-def h03 = new File(System.getProperty("user.dir").replace("pgdp2223w13h01-", "pgdp2223w13h03-") + '/src')
+def h03 = new File(System.getProperty("user.dir").replace("pgdp2223w13h02-", "pgdp2223w13h03-") + '/src')
 
 def dirs = ['src']
 
 if (h03.exists()) {
     dirs.add(h03.path)
 } else {
-    throw new FileNotFoundException("Couldn't find W13H03 at the expected location, please follow the steps in ".toUpperCase() + System.getProperty("user.dir") + "/test/pgdp.minijvm/README.md")
+    throw new FileNotFoundException("Couldn't find W13H03 at the expected location, please follow the steps in ".toUpperCase() + System.getProperty("user.dir") + "/test/pgdp/krypto/README.md")
 }
 
 sourceSets {
@@ -48,16 +48,15 @@ dependencies {
 2. Your files should be structured like this:
 ```
 .
-├── pgdp2223w13h01-xxnnxxx
+├── pgdp2223w13h02-xxnnxxx
 │   ├── src
-│   │   └── pgdp.minijvm
-│   │       ├── Fragment.java
-│   │       ├── fragment.jvm
-│   │       └── lcm.jvm
+│   │   └── pgdp.krypto
+│   │       ├── cryption.jvm
+│   │       └── eea.jvm
 │   │── test
-│   │   └── pgdp.minijvm
-│   │       ├── BonusByteToJavaTest.java
-│   │       ├── JavaToByteTest.java
+│   │   └── pgdp.krypto
+│   │       ├── cryptionTest.java
+│   │       ├── eeaTest.java
 │   │       └── README.md (this file)
 │   └ build.gradle (the file you changed in step 1.)
 ├── pgdp2223w13h03-xxnnxxx
@@ -71,6 +70,6 @@ dependencies {
 3. Change this 
 
 
-    System.getProperty("user.dir").replace("pgdp2223w13h01-", "pgdp2223w13h03-") + '/src'
+    System.getProperty("user.dir").replace("pgdp2223w13h02-", "pgdp2223w13h03-") + '/src'
 
 to the absolute path of your w13h03 `src` folder
