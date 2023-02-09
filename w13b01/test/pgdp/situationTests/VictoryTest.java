@@ -3,6 +3,7 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
@@ -15,6 +16,7 @@ import static pgdp.GameReflectionUtils.setFigureAttributes;
 public class VictoryTest {
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Victory, New round query, wrong input (artemis example #11)")
 	void vicNewRoundQWITest() {
 		String expected = """
@@ -91,6 +93,7 @@ public class VictoryTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Victory while capturing enemy figure")
 	void vicWithCaptureTest() {
 		String expected = """

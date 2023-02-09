@@ -3,6 +3,7 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
@@ -14,6 +15,7 @@ import static pgdp.GameReflectionUtils.setFigureAttributes;
 
 public class CaptureTest {
 	@Test
+	@Timeout(2)
 	@DisplayName("First player captures Piece 3 of Player 2")
 	void standardCaptureTest() {
 		String expected = """
@@ -70,6 +72,7 @@ public class CaptureTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Capture has priority over ordinary move")
 	void capturePrioTest() {
 		String expected = """
@@ -129,6 +132,7 @@ public class CaptureTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Figure is captured during ordinary move (artemis example #7)")
 	void captureOrdinaryTest() {
 		String expected = "Willkommen zu \"Pingu ärgere dich nicht\"!\n" +

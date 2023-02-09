@@ -3,6 +3,7 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
@@ -15,6 +16,7 @@ import static pgdp.GameReflectionUtils.setFigureAttributes;
 public class ReachGoalTest {
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First Player reaching goal by rolling 6, but can't move after next roll (artemis example #10")
 	void reachGoalCantMoveTest() {
 		String expected = """
@@ -79,6 +81,7 @@ public class ReachGoalTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First player reaching goal by capturing figure (artemis example #9)")
 	void reachGoalByCaptureTest() {
 		String expected = """
@@ -135,6 +138,7 @@ public class ReachGoalTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Reaching the goal should have priority over capturing enemy figure")
 	void reachGoalPrioTest() {
 		String expected = """
@@ -193,6 +197,7 @@ public class ReachGoalTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Can every Player reach their Goal?")
 	void everyGoalReachTest() {
 		String expected = """

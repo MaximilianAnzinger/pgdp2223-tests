@@ -3,6 +3,7 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
@@ -15,6 +16,7 @@ import static pgdp.GameReflectionUtils.setFigureAttributes;
 public class AITest {
 
 	@Test
+	@Timeout(2)
 	@DisplayName("AI should always choose figure with lowest ID, even when able to leave home with other figure")
 	void aiLowestChoiceTest() {
 		String expected = """
@@ -69,6 +71,7 @@ public class AITest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("AI start of game and first move (artemis example #12)")
 	void startFirstMoveTest() {
 		String expected = """

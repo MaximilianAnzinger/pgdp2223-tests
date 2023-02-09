@@ -3,6 +3,7 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
@@ -14,6 +15,7 @@ import static pgdp.GameReflectionUtils.*;
 public class LeaveHomeTest {
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First Player didn't roll a six => Cannot leave home")
 	void noSixTest() {
 		String expected = """
@@ -65,6 +67,7 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First Player rolls six on 2nd try - 2nd Player figure on 1st Player Start Pos => Gets captured")
 	void captureOnLeaveTest() {
 		String expected = """
@@ -119,6 +122,7 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First player leaves home and can only go less than rolled (artemis example #5)")
 	void goLessAfterLeaveTest() {
 		String expected = """
@@ -183,6 +187,7 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First player leaves home on 1st roll and can go more")
 	void goMoreAfterLeaveTest() {
 		String expected = """
@@ -250,6 +255,7 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First player can only go less after leaving and captures figure")
 	void lessAndCaptureTest() {
 		String expected = """
@@ -319,6 +325,7 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("First player can go more after leaving and captures figure (artemis example #6)")
 	void moreAndCaptureTest() {
 		String expected = """
@@ -388,6 +395,7 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Can every player leave their home?")
 	void everyHomeLeaveTest() {
 		String expected = """

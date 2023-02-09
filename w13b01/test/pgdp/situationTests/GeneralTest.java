@@ -3,6 +3,7 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
@@ -15,6 +16,7 @@ import static pgdp.GameReflectionUtils.setFigureAttributes;
 public class GeneralTest {
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Invalid User Input (artemis example #8)")
 	void invalidUserInputTest() {
 		String expected = """
@@ -71,6 +73,7 @@ public class GeneralTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Can roll again after rolling a six")
 	void rollAgainTest() {
 		String expected = """
@@ -137,6 +140,7 @@ public class GeneralTest {
 	}
 
 	@Test
+	@Timeout(2)
 	@DisplayName("Can roll again multiple times after rolling multiple sixes")
 	void rollAgainMultiTest() {
 		String expected = """
