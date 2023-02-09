@@ -3,9 +3,9 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -21,7 +21,8 @@ public class ReachGoalTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -35,7 +36,7 @@ public class ReachGoalTest {
 				Pinguin 1 ist am Zug.
 				Pinguin 1 hat eine 6 gewürfelt.
 				Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
-				KI wählt Figur 1.
+				> 1
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -64,7 +65,7 @@ public class ReachGoalTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(new GameInputStream("4", "1"));
 
 		PinguGame game = new SpecificPinguGame(6, 1);
 
@@ -84,7 +85,8 @@ public class ReachGoalTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t2⌂\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -98,7 +100,7 @@ public class ReachGoalTest {
 				Pinguin 1 ist am Zug.
 				Pinguin 1 hat eine 5 gewürfelt.
 				Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
-				KI wählt Figur 1.
+				> 1
 				Beim Erreichen des Ziels wurde Figur 3 des Pinguins 2 geschlagen.
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
@@ -116,7 +118,7 @@ public class ReachGoalTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(new GameInputStream("4", "1"));
 
 		PinguGame game = new SpecificPinguGame(5);
 
@@ -139,7 +141,8 @@ public class ReachGoalTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t2⌂\t
 				1⌂\t \t \t11\t2x\t22\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -170,7 +173,7 @@ public class ReachGoalTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(4);
 
@@ -196,7 +199,8 @@ public class ReachGoalTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t12\t \t21\t o\t2⊚\t \t2⌂\t22\t
 				1⌂\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -270,7 +274,7 @@ public class ReachGoalTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(4, 1, 5, 3);
 

@@ -1,9 +1,9 @@
 package pgdp.situationTests;
 
 import org.junit.jupiter.api.Assertions;
+import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -11,9 +11,9 @@ import static pgdp.GameReflectionUtils.getBoardFields;
 import static pgdp.GameReflectionUtils.setFigureAttributes;
 
 //Just a class with Test Method templates, No tests!!!
-class TemplateTest {
+class TestTemplate {
 
-	void templateCommentedTest() {
+	void testTemplateCommented() {
 		//Template Test Method body
 
 		//Insert expected output here
@@ -23,7 +23,7 @@ class TemplateTest {
 		System.setOut(new PrintStream(out));
 
 		//Initialize ByteArrayInputStream with simulated user inputs, seperated by '\n'
-		System.setIn(new ByteArrayInputStream("4\n1\n2".getBytes()));
+		System.setIn(new GameInputStream("4", "2", "1"));
 
 		//Initialize SpecificPinguGame with results of dice rolls, Game will terminate by next dice roll, if all dices have already been rolled
 		PinguGame game = new SpecificPinguGame(6);
@@ -38,13 +38,13 @@ class TemplateTest {
 		Assertions.assertEquals(expected, out.toString().replaceAll("\r", ""));
 	}
 
-	void templateTest() {
+	void testTemplate() {
 		String expected = "";
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(new ByteArrayInputStream("4\n1\n2".getBytes()));
+		System.setIn(new GameInputStream("4", "2", "1"));
 
 		PinguGame game = new SpecificPinguGame(6);
 

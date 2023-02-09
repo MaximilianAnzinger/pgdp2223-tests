@@ -23,7 +23,8 @@ public class SpecificPinguGame extends PinguGame {
 	public void play() {
 		try {
 			super.play();
-		} catch (NoSuchElementException wanted) {}
+		} catch (NoSuchElementException wanted) {
+		}
 	}
 
 	@Override

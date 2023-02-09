@@ -3,9 +3,9 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -20,7 +20,8 @@ public class LeaveHomeTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -53,7 +54,7 @@ public class LeaveHomeTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(4, 5, 1);
 
@@ -70,7 +71,8 @@ public class LeaveHomeTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t12\t \t o\t o\t2⊚\t \t21\t2⌂\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -103,7 +105,7 @@ public class LeaveHomeTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(3, 6);
 
@@ -117,17 +119,18 @@ public class LeaveHomeTest {
 	}
 
 	@Test
-	@DisplayName("First player leaves home on 1st roll and can only go 4 (rolled 5) ")
+	@DisplayName("First player leaves home and can only go less than rolled (artemis example #5)")
 	void goLessAfterLeaveTest() {
 		String expected = """
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
-				11\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
-				13\t \t \t12\t2x\t o\t \t \t23\t
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
+				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
-				1⊚\t o\t o\t o\t2x\t o\t o\t o\t o\t
+				1⊚\t o\t11\t o\t2x\t o\t o\t o\t o\t
 				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
 				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
 				 \t \t \t o\t4x\t o\t \t \t \t
@@ -137,11 +140,11 @@ public class LeaveHomeTest {
 				Pinguin 1 ist am Zug.
 				Pinguin 1 hat eine 6 gewürfelt.
 				Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
-				KI wählt Figur 1.
+				> 2
 				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
-				13\t \t \t12\t2x\t o\t \t \t23\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
-				11\t o\t o\t o\t2x\t o\t o\t o\t o\t
+				12\t o\t11\t o\t2x\t o\t o\t o\t o\t
 				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
 				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
 				 \t \t \t o\t4x\t o\t \t \t \t
@@ -149,12 +152,12 @@ public class LeaveHomeTest {
 				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
 
 				Pinguin 1 muss das Startfeld räumen.
-				Pinguin 1 hat eine 5 gewürfelt.
-				Feld bereits belegt, es kann/können nur 4 Feld(er) gegangen werden.
+				Pinguin 1 hat eine 2 gewürfelt.
+				Feld bereits belegt, es kann/können nur 1 Feld(er) gegangen werden.
 				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
-				13\t \t \t12\t2x\t o\t \t \t23\t
-				 \t \t \t11\t2x\t o\t \t \t \t
-				1⊚\t o\t o\t o\t2x\t o\t o\t o\t o\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t12\t11\t o\t2x\t o\t o\t o\t o\t
 				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
 				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
 				 \t \t \t o\t4x\t o\t \t \t \t
@@ -166,12 +169,12 @@ public class LeaveHomeTest {
 				""";
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(new GameInputStream("4", "2"));
 
-		PinguGame game = new SpecificPinguGame(6, 5);
+		PinguGame game = new SpecificPinguGame(6, 2);
 
-		setFigureAttributes(game, 1, 2, false, false, 5);
-		getBoardFields(game)[5] = 1200;
+		setFigureAttributes(game, 1, 1, false, false, 2);
+		getBoardFields(game)[2] = 1100;
 
 		game.play();
 
@@ -180,13 +183,14 @@ public class LeaveHomeTest {
 	}
 
 	@Test
-	@DisplayName("First player leaves home on 1st roll and can go 3 (rolled 1) ")
+	@DisplayName("First player leaves home on 1st roll and can go more")
 	void goMoreAfterLeaveTest() {
 		String expected = """
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
 				1⌂\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -229,7 +233,7 @@ public class LeaveHomeTest {
 				""";
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(6, 1);
 
@@ -246,13 +250,14 @@ public class LeaveHomeTest {
 	}
 
 	@Test
-	@DisplayName("First player can go less after leaving and captures figure (artemis example #6)")
+	@DisplayName("First player can only go less after leaving and captures figure")
 	void lessAndCaptureTest() {
 		String expected = """
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t2⌂\t
 				 \t \t \t12\t2x\t o\t \t \t \t
@@ -297,7 +302,7 @@ public class LeaveHomeTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(6, 4);
 
@@ -320,7 +325,8 @@ public class LeaveHomeTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t2⌂\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -334,7 +340,8 @@ public class LeaveHomeTest {
 				Pinguin 1 ist am Zug.
 				Pinguin 1 hat eine 6 gewürfelt.
 				Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
-				> 1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
+				> 2
+				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t2⌂\t
 				 \t \t \t o\t2x\t o\t \t \t \t
 				12\t11\t23\t o\t2x\t o\t o\t o\t o\t
@@ -364,7 +371,7 @@ public class LeaveHomeTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("4\n2".getBytes()));
+		System.setIn(new GameInputStream("4", "2"));
 
 		PinguGame game = new SpecificPinguGame(6, 1);
 
@@ -387,7 +394,8 @@ public class LeaveHomeTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -512,7 +520,7 @@ public class LeaveHomeTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(new ByteArrayInputStream("0".getBytes()));
+		System.setIn(GameInputStream.fullAI());
 
 		PinguGame game = new SpecificPinguGame(6, 3, 6, 5, 6, 2, 6, 5);
 

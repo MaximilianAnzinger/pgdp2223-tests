@@ -3,9 +3,9 @@ package pgdp.situationTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pgdp.GameInputStream;
 import pgdp.game.PinguGame;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -21,7 +21,8 @@ public class VictoryTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
 				1⌂\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -35,7 +36,8 @@ public class VictoryTest {
 				Pinguin 1 ist am Zug.
 				Pinguin 1 hat eine 6 gewürfelt.
 				Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
-				> 1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
+				> 1
+				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
 				1⌂\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
 				1⊚\t o\t o\t o\t2x\t o\t o\t o\t o\t
@@ -47,11 +49,15 @@ public class VictoryTest {
 
 				Herzlichen Glückwunsch Pinguin 1, du hast gewonnen!!!
 				Soll ein neues Spiel gestartet werden? 1 - Ja, 0 - Nein
-				> Keine gültige Zahl!
-				> > Willkommen zu "Pingu ärgere dich nicht"!
+				> nein
+				Keine gültige Zahl!
+				> 2
+				> 1
+				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				11\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -68,7 +74,7 @@ public class VictoryTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new ByteArrayInputStream("4\n1\nnein\n2\n1\n0".getBytes()));
+		System.setIn(new GameInputStream("4", "1", "nein", "2", "1", "0"));
 
 		PinguGame game = new SpecificPinguGame(6);
 
@@ -91,7 +97,8 @@ public class VictoryTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 0
+				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
 				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t2⌂\t
 				1⌂\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -119,12 +126,13 @@ public class VictoryTest {
 
 				Herzlichen Glückwunsch Pinguin 1, du hast gewonnen!!!
 				Soll ein neues Spiel gestartet werden? 1 - Ja, 0 - Nein
-				>\s""";
+				> 0
+				""";
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(new ByteArrayInputStream("0\n0".getBytes()));
+		System.setIn(GameInputStream.fullAI(0));
 
 		PinguGame game = new SpecificPinguGame(6);
 
