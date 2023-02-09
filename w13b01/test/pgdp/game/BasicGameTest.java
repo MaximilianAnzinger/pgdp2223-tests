@@ -29,7 +29,7 @@ public class BasicGameTest
         c.play();
 
         String expectedString = Files.readString(expected.toPath());
-        String actualString = Files.readString(actual.toPath());
+        String actualString = Files.readString(actual.toPath().replaceAll("\r", ""));
         Assertions.assertEquals(expectedString, actualString);
     }
 
@@ -48,7 +48,7 @@ public class BasicGameTest
         c.play();
 
         String expectedString = Files.readString(expected.toPath());
-        String actualString = Files.readString(actual.toPath());
+        String actualString = Files.readString(actual.toPath().replaceAll("\r", ""));
         Assertions.assertEquals(expectedString, actualString);
     }
 
@@ -67,7 +67,7 @@ public class BasicGameTest
         c.play();
 
         String expectedString = Files.readString(expected.toPath());
-        String actualString = Files.readString(actual.toPath());
+        String actualString = Files.readString(actual.toPath().replaceAll("\r", ""));
         Assertions.assertEquals(expectedString, actualString);
     }
 
@@ -87,7 +87,7 @@ public class BasicGameTest
         PinguGame c = new PinguGame(true, 420, 5);
         c.play();
         String expectedString = Files.readString(expected.toPath());
-        String actualString = Files.readString(actual.toPath());
+        String actualString = Files.readString(actual.toPath().replaceAll("\r", ""));
         Assertions.assertEquals(expectedString, actualString);
     }
 }
