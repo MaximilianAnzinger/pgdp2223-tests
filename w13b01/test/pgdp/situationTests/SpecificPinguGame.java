@@ -17,6 +17,8 @@ public class SpecificPinguGame extends PinguGame {
 		}
 	}
 
+	// Only as many dices as entrys in the diceRollQueue will be "rolled", as an NoSuchElementException will be thrown with the next roll, which is caught here.
+	// The output can now be compared to the expected output. I know, not very clean, but whatever.
 	@Override
 	public void play() {
 		try {

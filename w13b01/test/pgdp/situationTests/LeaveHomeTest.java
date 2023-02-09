@@ -246,6 +246,74 @@ public class LeaveHomeTest {
 	}
 
 	@Test
+	@DisplayName("First player can go less after leaving and captures figure (artemis example #6)")
+	void lessAndCaptureTest() {
+		String expected = """
+				Willkommen zu "Pingu ärgere dich nicht"!
+				Wie viele Pinguine wollen spielen?
+				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
+				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				11\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t2⌂\t
+				 \t \t \t12\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t23\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 1 ist am Zug.
+				Pinguin 1 hat eine 6 gewürfelt.
+				Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+				KI wählt Figur 1.
+				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t2⌂\t
+				 \t \t \t12\t2x\t o\t \t \t \t
+				11\t o\t o\t23\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 1 muss das Startfeld räumen.
+				Pinguin 1 hat eine 4 gewürfelt.
+				Feld bereits belegt, es kann/können nur 3 Feld(er) gegangen werden und dabei wird eine andere Figur geschlagen.
+				Figur 3 von Pinguin 2 wurde geschlagen.
+				1⌂\t1⌂\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t12\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 2 ist am Zug.
+				Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+				""";
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+		System.setIn(new ByteArrayInputStream("0".getBytes()));
+
+		PinguGame game = new SpecificPinguGame(6, 4);
+
+		setFigureAttributes(game, 1, 2, false, false, 4);
+		getBoardFields(game)[4] = 1200;
+
+		setFigureAttributes(game, 2, 3, false, false, 3);
+		getBoardFields(game)[3] = 2300;
+
+		game.play();
+
+		System.out.flush();
+		Assertions.assertEquals(expected, out.toString().replaceAll("\r", ""));
+	}
+
+	@Test
 	@DisplayName("First player can go more after leaving and captures figure (artemis example #6)")
 	void moreAndCaptureTest() {
 		String expected = """
@@ -311,4 +379,147 @@ public class LeaveHomeTest {
 		System.out.flush();
 		Assertions.assertEquals(expected, out.toString().replaceAll("\r", ""));
 	}
+
+	@Test
+	@DisplayName("Can every player leave their home?")
+	void everyHomeLeaveTest() {
+		String expected = """
+				Willkommen zu "Pingu ärgere dich nicht"!
+				Wie viele Pinguine wollen spielen?
+				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
+				> Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				11\t12\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t o\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 1 ist am Zug.
+				Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+				Pinguin 1 hat eine 6 gewürfelt.
+				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+				KI wählt Figur 1.
+				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				11\t o\t o\t o\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 1 muss das Startfeld räumen.
+				Pinguin 1 hat eine 3 gewürfelt.
+				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 2 ist am Zug.
+				Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+				Pinguin 2 hat eine 6 gewürfelt.
+				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+				KI wählt Figur 1.
+				1⌂\t12\t \t o\t o\t21\t \t2⌂\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t o\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 2 muss das Startfeld räumen.
+				Pinguin 2 hat eine 5 gewürfelt.
+				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t21\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t31\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 3 ist am Zug.
+				Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+				Pinguin 3 hat eine 6 gewürfelt.
+				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+				KI wählt Figur 1.
+				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t21\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t o\t o\t31\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t3⌂\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 3 muss das Startfeld räumen.
+				Pinguin 3 hat eine 2 gewürfelt.
+				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t21\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t31\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				41\t \t \t o\t4x\t o\t \t \t3⌂\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 4 ist am Zug.
+				Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+				Pinguin 4 hat eine 6 gewürfelt.
+				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+				KI wählt Figur 1.
+				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t21\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t o\t o\t o\t4x\t o\t31\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				4⌂\t \t \t o\t4x\t o\t \t \t3⌂\t
+				42\t43\t \t41\t o\t o\t \t32\t33\t
+
+				Pinguin 4 muss das Startfeld räumen.
+				Pinguin 4 hat eine 5 gewürfelt.
+				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t22\t
+				13\t \t \t o\t2x\t o\t \t \t23\t
+				 \t \t \t o\t2x\t o\t \t \t \t
+				1⊚\t o\t o\t11\t2x\t o\t o\t21\t o\t
+				 o\t1x\t1x\t1x\t \t3x\t3x\t3x\t o\t
+				 o\t41\t o\t o\t4x\t o\t31\t o\t3⊚\t
+				 \t \t \t o\t4x\t o\t \t \t \t
+				4⌂\t \t \t o\t4x\t o\t \t \t3⌂\t
+				42\t43\t \t4⊚\t o\t o\t \t32\t33\t
+
+				Pinguin 1 ist am Zug.
+				""";
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+
+		System.setIn(new ByteArrayInputStream("0".getBytes()));
+
+		PinguGame game = new SpecificPinguGame(6, 3, 6, 5, 6, 2, 6, 5);
+
+		game.play();
+
+		System.out.flush();
+		Assertions.assertEquals(expected, out.toString().replaceAll("\r", ""));
+	}
+
 }
