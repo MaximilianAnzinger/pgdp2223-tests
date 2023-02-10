@@ -3880,17 +3880,6 @@ Beim Erreichen des Ziels wurde Figur 2 des Pinguins 2 geschlagen.
 4⌂	 	 	 o	41	 o	 	 	31	
 4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
 
-Pinguin 4 hat eine 0 gewürfelt.
-1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
-13	 	 	 o	2x	 o	 	 	2⌂	
- 	 	 	 o	2x	12	 	 	 	
-1⊚	11	 o	 o	23	 o	 o	 o	 o	
- o	1x	1x	1x	 	3x	3x	3x	 o	
- o	 o	 o	 o	43	21	 o	 o	3⊚	
- 	 	 	 o	42	 o	 	 	 	
-4⌂	 	 	 o	41	 o	 	 	31	
-4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
-
 Herzlichen Glückwunsch Pinguin 4, du hast gewonnen!!!
 Soll ein neues Spiel gestartet werden? 1 - Ja, 0 - Nein
 > 2
