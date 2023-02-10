@@ -135,7 +135,7 @@ public class VictoryTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(GameInputStream.fullAI(0));
+		System.setIn(new GameInputStream("0", "0"));
 
 		PinguGame game = new SpecificPinguGame(6);
 

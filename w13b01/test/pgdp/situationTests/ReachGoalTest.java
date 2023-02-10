@@ -177,7 +177,7 @@ public class ReachGoalTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(GameInputStream.fullAI());
+		System.setIn(new GameInputStream("0"));
 
 		PinguGame game = new SpecificPinguGame(4);
 
@@ -279,7 +279,7 @@ public class ReachGoalTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(GameInputStream.fullAI());
+		System.setIn(new GameInputStream("0"));
 
 		PinguGame game = new SpecificPinguGame(4, 1, 5, 3);
 
