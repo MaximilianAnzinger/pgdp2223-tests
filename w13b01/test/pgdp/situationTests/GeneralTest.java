@@ -253,8 +253,8 @@ public class GeneralTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> 0
-				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				11\t12\t \t o\t o\t2⊚\t \t2⌂\t2⌂\t
 				13\t \t \t23\t21\t o\t \t \t2⌂\t
 				 \t \t \t o\t22\t o\t \t \t \t
@@ -269,7 +269,7 @@ public class GeneralTest {
 				Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
 				Pinguin 1 hat eine 6 gewürfelt.
 				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
-				KI wählt Figur 1.
+				> 1
 				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t2⌂\t
 				13\t \t \t23\t21\t o\t \t \t2⌂\t
 				 \t \t \t o\t22\t o\t \t \t \t
@@ -295,7 +295,7 @@ public class GeneralTest {
 				Pinguin 2 ist am Zug.
 				Pinguin 2 hat eine 4 gewürfelt.
 				Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 3
-				KI wählt Figur 3.
+				> 3
 				1⌂\t12\t \t o\t o\t2⊚\t \t2⌂\t2⌂\t
 				13\t \t \t o\t21\t o\t \t \t2⌂\t
 				 \t \t \t o\t22\t o\t \t \t \t
@@ -312,8 +312,8 @@ public class GeneralTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> 0
-				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				11\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -328,7 +328,7 @@ public class GeneralTest {
 				Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
 				Pinguin 1 hat eine 6 gewürfelt.
 				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
-				KI wählt Figur 1.
+				> 1
 				1⌂\t12\t \t o\t o\t2⊚\t \t21\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -355,7 +355,7 @@ public class GeneralTest {
 				Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
 				Pinguin 2 hat eine 6 gewürfelt.
 				Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
-				KI wählt Figur 1.
+				> 1
 				1⌂\t12\t \t o\t o\t21\t \t2⌂\t22\t
 				13\t \t \t o\t2x\t o\t \t \t23\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -385,7 +385,7 @@ public class GeneralTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 
-		System.setIn(new GameInputStream("0", "1", "0"));
+		System.setIn(new GameInputStream("4", "1", "3", "1", "4", "1", "1"));
 
 		PinguGame game = new SpecificPinguGame(6, 2, 4, 6, 3, 6, 3);
 
