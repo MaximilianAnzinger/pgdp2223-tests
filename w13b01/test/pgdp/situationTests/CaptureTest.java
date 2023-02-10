@@ -79,8 +79,8 @@ public class CaptureTest {
 				Willkommen zu "Pingu ärgere dich nicht"!
 				Wie viele Pinguine wollen spielen?
 				Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
-				> 0
-				Starte Spiel mit 0 "echten" und 4 KI Pinguinen.
+				> 4
+				Starte Spiel mit 4 "echten" und 0 KI Pinguinen.
 				1⌂\t12\t \t o\t o\t11\t \t21\t22\t
 				1⌂\t \t \t23\t2x\t o\t \t \t2⌂\t
 				 \t \t \t o\t2x\t o\t \t \t \t
@@ -94,7 +94,7 @@ public class CaptureTest {
 				Pinguin 1 ist am Zug.
 				Pinguin 1 hat eine 4 gewürfelt.
 				Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 3
-				KI wählt Figur 3.
+				> 3
 				Figur 3 von Pinguin 2 wurde geschlagen.
 				1⌂\t12\t \t o\t o\t11\t \t21\t22\t
 				1⌂\t \t \t13\t2x\t o\t \t \t23\t
@@ -112,7 +112,7 @@ public class CaptureTest {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		System.setIn(new GameInputStream("0"));
+		System.setIn(new GameInputStream("4", "3"));
 
 		PinguGame game = new SpecificPinguGame(4);
 
