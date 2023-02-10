@@ -1,0 +1,2378 @@
+Willkommen zu "Pingu ärgere dich nicht"!
+Wie viele Pinguine wollen spielen?
+Bitte eine Zahl von 0 (nur KI) bis 4 eingeben!
+> Starte Spiel mit 1 "echten" und 3 KI Pinguinen.
+11	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 1 hat eine 1 gewürfelt.
+Pinguin 1 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+> 1⌂	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+11	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 muss das Startfeld räumen.
+Pinguin 1 hat eine 2 gewürfelt.
+1⌂	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 4 gewürfelt.
+Pinguin 2 hat eine 4 gewürfelt.
+Pinguin 2 hat eine 2 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 3 gewürfelt.
+Pinguin 3 hat eine 4 gewürfelt.
+Pinguin 3 hat eine 2 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 2 gewürfelt.
+Pinguin 4 hat eine 3 gewürfelt.
+Pinguin 4 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	41	 o	 o	 	32	33	
+
+Pinguin 4 muss das Startfeld räumen.
+Pinguin 4 hat eine 2 gewürfelt.
+1⌂	12	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	41	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+12	 o	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	41	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 muss das Startfeld räumen.
+Pinguin 1 hat eine 2 gewürfelt.
+Feld bereits belegt, es kann/können nur 1 Feld(er) gegangen werden.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	41	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 4 gewürfelt.
+Pinguin 2 hat eine 5 gewürfelt.
+Pinguin 2 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	41	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 4 gewürfelt.
+Pinguin 3 hat eine 4 gewürfelt.
+Pinguin 3 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	31	
+ 	 	 	41	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 muss das Startfeld räumen.
+Pinguin 3 hat eine 6 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	41	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	11	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+> 1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	11	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 3 gewürfelt.
+Pinguin 2 hat eine 2 gewürfelt.
+Pinguin 2 hat eine 4 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	11	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	11	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	31	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	11	2x	 o	 o	 o	 o	
+41	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	31	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+> 1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	 o	2x	 o	 o	 o	 o	
+41	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	31	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 4 gewürfelt.
+Pinguin 2 hat eine 4 gewürfelt.
+Pinguin 2 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	21	 	2⌂	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	 o	2x	 o	 o	 o	 o	
+41	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	31	 o	 	32	33	
+
+Pinguin 2 muss das Startfeld räumen.
+Pinguin 2 hat eine 4 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	 o	2x	 o	21	 o	 o	
+41	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	31	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	 o	2x	 o	21	 o	 o	
+41	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	31	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	41	 o	2x	 o	21	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	31	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	41	 o	2x	 o	21	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	31	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	41	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	31	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	41	 o	2x	 o	 o	 o	21	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	41	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	12	 o	 o	2x	 o	 o	 o	21	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 2
+> Figur 1 von Pinguin 4 wurde geschlagen.
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	12	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	12	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	21	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	12	2x	 o	 	 	23	
+ 	 	 	31	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	21	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 3 gewürfelt.
+Pinguin 4 hat eine 2 gewürfelt.
+Pinguin 4 hat eine 3 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	11	 	2⌂	22	
+13	 	 	12	2x	 o	 	 	23	
+ 	 	 	31	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	21	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	12	2x	 o	 	 	23	
+ 	 	 	31	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	21	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	12	2x	 o	 	 	23	
+ 	 	 	31	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	12	2x	31	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 2 gewürfelt.
+Pinguin 4 hat eine 2 gewürfelt.
+Pinguin 4 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	12	2x	31	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	12	2⊚	 	2⌂	22	
+13	 	 	 o	2x	31	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	12	2⊚	 	2⌂	22	
+13	 	 	 o	2x	31	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	21	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 1
+KI wählt Figur 1.
+Figur 1 von Pinguin 1 wurde geschlagen.
+11	1⌂	 	 o	12	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	31	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	21	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 1 gewürfelt.
+Pinguin 4 hat eine 1 gewürfelt.
+Pinguin 4 hat eine 4 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+11	1⌂	 	 o	12	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	31	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	21	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+> > > > 11	1⌂	 	 o	 o	12	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	31	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	21	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	12	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	31	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	21	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	12	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	31	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	21	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	12	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	31	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	21	4x	 o	 	 	3⌂	
+42	43	 	41	 o	 o	 	32	33	
+
+Pinguin 4 muss das Startfeld räumen.
+Pinguin 4 hat eine 3 gewürfelt.
+11	1⌂	 	 o	 o	12	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	31	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	41	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	21	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 2
+> > > > Figur 1 von Pinguin 3 wurde geschlagen.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	12	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	41	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	21	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	12	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	41	4x	 o	 o	 o	3⊚	
+ 	 	 	21	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	12	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	41	4x	 o	 o	 o	3⊚	
+ 	 	 	21	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	12	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	41	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	21	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+> > 11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	41	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	21	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+21	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	41	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	21	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	41	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	31	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 4 gewürfelt.
+Pinguin 3 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	21	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	41	 o	4x	 o	 o	 o	31	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 muss das Startfeld räumen.
+Pinguin 3 hat eine 6 gewürfelt.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	21	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	41	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+11	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	21	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+41	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 1, 3
+> Die Figur 1 von Pinguin 4 wurde beim Verlassen des Hauses geschlagen.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	21	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+11	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 1 muss das Startfeld räumen.
+Pinguin 1 hat eine 5 gewürfelt.
+Figur 1 von Pinguin 2 wurde geschlagen.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 1 gewürfelt.
+Pinguin 2 hat eine 5 gewürfelt.
+Pinguin 2 hat eine 5 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+41	 	 	31	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	31	4x	 o	 	 	3⌂	
+42	43	 	41	 o	 o	 	32	33	
+
+Pinguin 4 muss das Startfeld räumen.
+Pinguin 4 hat eine 5 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	11	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	31	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	11	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	31	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 2 gewürfelt.
+Pinguin 2 hat eine 3 gewürfelt.
+Pinguin 2 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	11	21	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	31	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 muss das Startfeld räumen.
+Pinguin 2 hat eine 2 gewürfelt.
+1⌂	1⌂	 	 o	11	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	21	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	31	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	11	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	21	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	41	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	31	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	11	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	21	 	 	 	
+1⊚	 o	 o	41	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	31	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	11	2⊚	 	2⌂	22	
+13	 	 	41	2x	 o	 	 	23	
+ 	 	 	 o	2x	21	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	31	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 1
+> Figur 1 von Pinguin 2 wurde geschlagen.
+1⌂	1⌂	 	 o	 o	2⊚	 	21	22	
+13	 	 	41	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	31	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	21	 	2⌂	22	
+13	 	 	41	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	31	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 muss das Startfeld räumen.
+Pinguin 2 hat eine 6 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	41	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	31	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	41	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+31	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	41	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+31	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+31	 o	 o	 o	4x	 o	 o	41	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	12	
+31	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	 o	 	 	3⌂	
+42	43	 	4⊚	 o	41	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	11	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+31	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	12	 	 	3⌂	
+42	43	 	4⊚	 o	41	 	32	33	
+
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	11	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+31	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	12	 	 	3⌂	
+42	43	 	4⊚	 o	41	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	11	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+31	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	12	 	 	3⌂	
+42	43	 	4⊚	 o	41	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	11	 o	 o	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	4x	12	 	 	3⌂	
+42	43	 	4⊚	 o	41	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	11	 o	 o	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	11	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	11	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 2 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	11	
+31	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	21	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	11	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	21	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 3 gewürfelt.
+Pinguin 4 hat eine 2 gewürfelt.
+Pinguin 4 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	11	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	21	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	21	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	21	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	31	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	21	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+42	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 4 gewürfelt.
+Pinguin 4 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 2, 3
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	31	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	21	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+4⌂	43	 	42	 o	 o	 	32	33	
+
+Pinguin 4 muss das Startfeld räumen.
+Pinguin 4 hat eine 4 gewürfelt.
+Figur 1 von Pinguin 2 wurde geschlagen.
+1⌂	1⌂	 	 o	31	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	42	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	12	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	31	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	42	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 5 gewürfelt.
+Pinguin 2 hat eine 4 gewürfelt.
+Pinguin 2 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	31	2⊚	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	42	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	31	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	42	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	31	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+42	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	11	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	31	 	21	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+42	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	11	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+Die Figur 1 von Pinguin 3 wurde beim Verlassen des Hauses geschlagen.
+1⌂	1⌂	 	 o	 o	21	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+42	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 muss das Startfeld räumen.
+Pinguin 2 hat eine 6 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+42	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 5 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+42	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	42	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	12	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	42	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	21	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	42	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	21	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 2 gewürfelt.
+Pinguin 3 hat eine 5 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	42	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	21	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	42	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	21	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	11	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	42	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	21	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 2 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	42	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 2 gewürfelt.
+Pinguin 3 hat eine 3 gewürfelt.
+Pinguin 3 hat eine 5 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	42	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	42	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	12	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	42	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	12	 o	 o	4x	 o	 o	21	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	42	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	12	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 3 gewürfelt.
+Pinguin 3 hat eine 5 gewürfelt.
+Pinguin 3 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	42	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	12	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2, 3
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	12	 o	 o	4x	 o	 o	 o	42	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 4 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	1x	1x	 	3x	3x	3x	 o	
+ o	12	 o	 o	4x	42	 o	 o	3⊚	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 2
+> > > > 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	42	 o	 o	3⊚	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	11	 	32	33	
+
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	1x	12	1x	 	3x	3x	3x	 o	
+ o	 o	11	 o	4x	42	 o	 o	3⊚	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
+> > 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	42	 o	 o	3⊚	
+ 	 	 	 o	4x	21	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	42	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 4 gewürfelt.
+Pinguin 3 hat eine 3 gewürfelt.
+Pinguin 3 hat eine 4 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	42	 o	 o	3⊚	
+ 	 	 	 o	4x	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	42	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 1 hat eine 4 gewürfelt.
+Pinguin 1 hat eine 5 gewürfelt.
+Pinguin 1 hat eine 4 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	42	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	21	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	42	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	21	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 2 gewürfelt.
+Pinguin 3 hat eine 1 gewürfelt.
+Pinguin 3 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	31	
+ 	 	 	 o	4x	42	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	43	 	21	 o	 o	 	32	33	
+
+Pinguin 3 muss das Startfeld räumen.
+Pinguin 3 hat eine 5 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	4x	42	 	 	 	
+4⌂	 	 	 o	41	31	 	 	3⌂	
+4⌂	43	 	21	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	31	 	 	3⌂	
+4⌂	43	 	21	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 1 hat eine 4 gewürfelt.
+Pinguin 1 hat eine 3 gewürfelt.
+Pinguin 1 hat eine 5 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	31	 	 	3⌂	
+4⌂	43	 	21	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	21	41	31	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	31	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	21	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+31	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	21	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 4 gewürfelt.
+Pinguin 4 hat eine 4 gewürfelt.
+Pinguin 4 hat eine 1 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+13	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+31	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	21	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 1 hat eine 5 gewürfelt.
+Pinguin 1 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 3
+> > > > > Die Figur 1 von Pinguin 3 wurde beim Verlassen des Hauses geschlagen.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+13	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	21	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 muss das Startfeld räumen.
+Pinguin 1 hat eine 6 gewürfelt.
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	21	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	21	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 4 gewürfelt.
+Pinguin 3 hat eine 2 gewürfelt.
+Pinguin 3 hat eine 4 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	21	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 2 gewürfelt.
+Pinguin 4 hat eine 1 gewürfelt.
+Pinguin 4 hat eine 3 gewürfelt.
+Schade, keine 6. Mehr Glück nächste Runde!
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	21	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	13	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	21	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	13	
+ o	21	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	21	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	13	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	31	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 3 hat eine 2 gewürfelt.
+Pinguin 3 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	21	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	13	
+ o	 o	 o	 o	4x	 o	 o	 o	31	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 muss das Startfeld räumen.
+Pinguin 3 hat eine 6 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	21	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	13	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	31	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 1 gewürfelt.
+Pinguin 4 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 3
+KI wählt Figur 3.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	21	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	13	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	43	 o	31	 	32	33	
+
+Pinguin 4 muss das Startfeld räumen.
+Pinguin 4 hat eine 2 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	21	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	13	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	31	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	21	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	13	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	31	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	21	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	13	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	31	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	21	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	31	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	13	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	21	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+31	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	13	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+KI wählt Figur 3.
+1⌂	1⌂	 	21	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+31	 o	 o	 o	2x	 o	 o	 o	 o	
+43	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	13	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	21	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	2x	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+31	 o	 o	 o	2x	 o	 o	 o	 o	
+43	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	13	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+31	 o	 o	 o	2x	 o	 o	 o	 o	
+43	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	13	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	31	 o	 o	2x	 o	 o	 o	 o	
+43	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	13	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+KI wählt Figur 3.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	31	43	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	13	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	22	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	31	43	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	13	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 2, 3
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	22	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	31	43	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	13	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 muss das Startfeld räumen.
+Pinguin 2 hat eine 2 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	22	 	 	 	
+1⊚	31	43	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	13	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 1
+KI wählt Figur 1.
+Figur 3 von Pinguin 4 wurde geschlagen.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	22	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	13	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	43	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 4 hat eine 4 gewürfelt.
+Pinguin 4 hat eine 1 gewürfelt.
+Pinguin 4 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 3
+KI wählt Figur 3.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	22	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	13	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	43	 o	 o	 	32	33	
+
+Pinguin 4 muss das Startfeld räumen.
+Pinguin 4 hat eine 2 gewürfelt.
+Figur 3 von Pinguin 1 wurde geschlagen.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+13	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	22	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 1 hat eine 1 gewürfelt.
+Pinguin 1 hat eine 2 gewürfelt.
+Pinguin 1 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	22	 	 	 	
+13	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 muss das Startfeld räumen.
+Pinguin 1 hat eine 6 gewürfelt.
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	22	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2, 3
+KI wählt Figur 2.
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	22	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 hat eine 1 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2
+KI wählt Figur 2.
+1⌂	1⌂	 	13	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	31	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	22	3⊚	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	13	31	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	 o	 o	 o	4x	 o	 o	22	3⊚	
+ 	 	 	43	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 3 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+KI wählt Figur 3.
+1⌂	1⌂	 	13	31	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	43	 o	 o	4x	 o	 o	22	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	31	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	13	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	43	 o	 o	4x	 o	 o	22	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 1 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann eine gegnerische Figur schlagen (bitte auswählen): 3
+> Figur 2 von Pinguin 2 wurde geschlagen.
+1⌂	1⌂	 	 o	31	2⊚	 	2⌂	22	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	43	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 ist am Zug.
+Pinguin 2 hat keine Figur auf dem Feld und braucht eine 6. Er darf bis zu 3-mal würfeln.
+Pinguin 2 hat eine 6 gewürfelt.
+Welche Figur möchtest du aufs Spielfeld ziehen? Bitte wählen: 2, 3
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	31	22	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	 o	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	43	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 2 muss das Startfeld räumen.
+Pinguin 2 hat eine 6 gewürfelt.
+1⌂	1⌂	 	 o	31	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	43	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 ist am Zug.
+Pinguin 3 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 1, 2, 3
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	31	22	
+ o	11	12	1x	 	3x	3x	3x	 o	
+ o	43	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 1
+KI wählt Figur 1.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	31	 o	
+ o	43	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	32	33	
+
+Pinguin 3 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 2, 3
+KI wählt Figur 2.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	31	 o	
+ o	43	 o	 o	4x	 o	 o	13	32	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	 o	 	3⌂	33	
+
+Pinguin 3 muss das Startfeld räumen.
+Pinguin 3 hat eine 6 gewürfelt.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	 o	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	31	 o	
+ o	43	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	32	 	3⌂	33	
+
+Pinguin 4 ist am Zug.
+Pinguin 4 hat eine 5 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+KI wählt Figur 3.
+1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	43	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	31	 o	
+ o	 o	 o	 o	4x	 o	 o	13	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	32	 	3⌂	33	
+
+Pinguin 1 ist am Zug.
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	43	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	31	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	13	32	 	3⌂	33	
+
+Pinguin 1 hat eine 6 gewürfelt.
+Eine der folgenden Figuren kann bewegt werden (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	43	 o	2x	 o	 o	 o	22	
+ o	11	12	1x	 	3x	3x	31	 o	
+ o	13	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	32	 	3⌂	33	
+
+Pinguin 1 hat eine 4 gewürfelt.
+Eine der folgenden Figuren kann das Ziel erreichen (bitte auswählen): 3
+> 1⌂	1⌂	 	 o	 o	2⊚	 	2⌂	2⌂	
+1⌂	 	 	 o	21	 o	 	 	23	
+ 	 	 	 o	2x	 o	 	 	 	
+1⊚	 o	43	 o	2x	 o	 o	 o	22	
+ o	11	12	13	 	3x	3x	31	 o	
+ o	 o	 o	 o	4x	 o	 o	 o	3⊚	
+ 	 	 	 o	42	 o	 	 	 	
+4⌂	 	 	 o	41	 o	 	 	3⌂	
+4⌂	4⌂	 	4⊚	 o	32	 	3⌂	33	
+
+Herzlichen Glückwunsch Pinguin 1, du hast gewonnen!!!
+Soll ein neues Spiel gestartet werden? 1 - Ja, 0 - Nein
+> 
