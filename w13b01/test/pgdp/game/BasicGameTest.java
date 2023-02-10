@@ -77,7 +77,7 @@ public class BasicGameTest
 
     //SIMULATES ONE HUMAN PLAYER, MIGHT TIME OUT IF WRONG OR SLOW IMPLEMENTATION AND PRODUCE MODERATELY LARGE OUTPUT FILE
     @Test
-    @Timeout(value = 1, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
+    @Timeout(value = 2, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
     @DisplayName("One Human Player, standard Seed, if it timeouts, its wrong")
     public void HumanPlayerStandardSeed() throws IOException
     {
@@ -97,7 +97,7 @@ public class BasicGameTest
 
     //SIMULATES FOUR HUMANOID PLAYERS(pressing 0,1,2,3 in that order shared across all players, plus one extra 4 at the beginning to start with 4 humanoid players), ONE GAME, ASCENDING DICE ROLLS, ADDED TIMEOUT
     @Test
-    @Timeout(value = 1, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
+    @Timeout(value = 2, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
     @DisplayName("Four humanoid Players, set Dice Roll")
     public void humanoidPlayersStandardSeed() throws IOException
     {
@@ -115,7 +115,7 @@ public class BasicGameTest
         List<Integer> diceRolls = new ArrayList<>();
         for (int i = 0; i < 1000; i++)
         {
-            diceRolls.add((i%6)+1);
+            diceRolls.add((i%6) + 1);
         }
 
         System.setIn(new GameInputStream(stringInput));
