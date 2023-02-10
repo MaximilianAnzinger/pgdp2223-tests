@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 
 public class GameInputStream extends InputStream {
 
@@ -15,6 +16,15 @@ public class GameInputStream extends InputStream {
 			inputQueue.addLast(s + "\n");
 		}
 	}
+
+	//Take List as Input
+	public GameInputStream(List<String> inputs) {
+		inputQueue = new ArrayDeque<>();
+		for (String s : inputs) {
+			inputQueue.addLast(s + "\n");
+		}
+		}
+
 
 	@Override
 	public int read() throws IOException {
