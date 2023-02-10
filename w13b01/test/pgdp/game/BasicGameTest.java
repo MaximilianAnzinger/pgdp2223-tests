@@ -115,7 +115,7 @@ public class BasicGameTest
         List<Integer> diceRolls = new ArrayList<>();
         for (int i = 0; i < 1000; i++)
         {
-            diceRolls.add(i%7);
+            diceRolls.add((i%6)+1);
         }
 
         System.setIn(new GameInputStream(stringInput));
